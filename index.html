@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>محمد هوك | بوابة الحلول الرقمية</title>
 
-  <!-- خط ثمانية النسخي المخصص + Cairo + FontAwesome لأيقونات النيون -->
+  <!-- الخطوط والأيقونات -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    /* استدعاء خط ثمانية النسخي */
     @font-face {
       font-family: 'Thmanyah';
       src: url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
@@ -40,7 +39,6 @@
       position: relative;
     }
 
-    /* طبقة الفضاء الكونية مع الصورة المرفقة */
     .galaxy-bg {
       position: fixed;
       top: 0;
@@ -75,7 +73,6 @@
       z-index: 10;
     }
 
-    /* الهيدر العلوي والشعار */
     header {
       display: flex;
       align-items: center;
@@ -117,7 +114,6 @@
       display: block;
     }
 
-    /* قسم الهيرو */
     .hero {
       text-align: center;
       margin-bottom: 35px;
@@ -169,11 +165,7 @@
       transition: all 0.3s ease;
     }
 
-    .btn-primary:hover, .btn-secondary:hover {
-      transform: translateY(-2px);
-    }
-
-    /* شبكة البطاقات التسع */
+    /* شبكة البطاقات (3 أعمدة ثابتة) */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -257,6 +249,17 @@
       color: #ffffff;
     }
 
+    /* تذييل الصفحة (Footer) */
+    .site-footer {
+      text-align: center;
+      padding: 25px 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+      color: #94a3b8;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
     /* الشريط السفلي العائم */
     .bottom-nav-wrapper {
       position: fixed;
@@ -322,9 +325,31 @@
 
     .nav-badge.orange { background: #f59e0b; }
 
-    @media (max-width: 600px) {
+    /* جعل الأقسام 3 أعمدة حتى في الشاشات المتوسطة والصغيرة لمن يرغب بذلك */
+    @media (max-width: 768px) {
       .cards-grid {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+      .card {
+        padding: 10px 4px 12px;
+      }
+      .card h3 {
+        font-size: 11px;
+      }
+      .card p {
+        font-size: 9px;
+        min-height: 24px;
+      }
+      .card-preview {
+        height: 65px;
+      }
+      .card-preview i {
+        font-size: 20px;
+      }
+      .btn-card {
+        font-size: 9.5px;
+        padding: 3px 10px;
       }
     }
   </style>
@@ -352,6 +377,7 @@
       </div>
     </section>
 
+    <!-- شبكة البطاقات (3 أعمدة) -->
     <section class="cards-grid">
       <div class="card">
         <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
@@ -416,6 +442,11 @@
         <a href="#" class="btn-card">استعراض</a>
       </div>
     </section>
+
+    <!-- الفوتر مع علامات الحقوق والعلامة التجارية -->
+    <footer class="site-footer">
+      جميع الحقوق محفوظة لـ محمد بلس 2026 MOHD PLUS™℠©
+    </footer>
   </div>
 
   <div class="bottom-nav-wrapper">
