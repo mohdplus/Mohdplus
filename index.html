@@ -66,6 +66,77 @@
       z-index: 1;
     }
 
+    /* تأثير النجوم المتلألئة والشهب */
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+      opacity: var(--opacity);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.6); }
+    }
+
+    /* تأثير الشهب المتحركة */
+    .shooting-star {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(45deg, rgba(255,255,255,1), rgba(56,189,248,0));
+      border-radius: 50%;
+      transform: rotate(-45deg);
+      animation: shoot 4s infinite ease-in-out;
+      opacity: 0;
+    }
+
+    .shooting-star:nth-child(1) {
+      top: 10%;
+      left: 80%;
+      animation-delay: 1s;
+      animation-duration: 3s;
+    }
+
+    .shooting-star:nth-child(2) {
+      top: 30%;
+      left: 90%;
+      animation-delay: 3s;
+      animation-duration: 4.5s;
+    }
+
+    .shooting-star:nth-child(3) {
+      top: 5%;
+      left: 40%;
+      animation-delay: 0.5s;
+      animation-duration: 3.5s;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translateX(0) translateY(0) rotate(-45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-400px) translateY(400px) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -335,7 +406,7 @@
 
     .nav-badge.orange { background: #f59e0b; }
 
-    /* جعل الأقسام 3 أعمدة حتى في الشاشات المتوسطة والصغيرة لمن يرغب بذلك */
+    /* الشاشات الصغيرة */
     @media (max-width: 768px) {
       .cards-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -368,6 +439,32 @@
 
   <div class="galaxy-bg"></div>
   <div class="bg-overlay"></div>
+
+  <!-- طبقة النجوم والشهب الحركية -->
+  <div class="stars-container">
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+  </div>
+
+  <script>
+    // توليد عشوائي لنجوم متلألئة في الخلفية
+    const starsContainer = document.querySelector('.stars-container');
+    const numberOfStars = 35;
+
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 2.5 + 1 + 'px';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+      star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
+      starsContainer.appendChild(star);
+    }
+  </script>
 
   <div class="container">
     <header>
