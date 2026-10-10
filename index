@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>محمد هوك | بوابة الحلول الرقمية</title>
+
+  <!-- خط ثمانية النسخي المخصص + Cairo + FontAwesome لأيقونات النيون -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+
+  <style>
+    /* استدعاء خط ثمانية النسخي */
+    @font-face {
+      font-family: 'Thmanyah';
+      src: url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    body, h1, h2, h3, h4, p, a, button, span, div {
+      font-family: 'Thmanyah', 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #02050f;
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding: 16px 14px 105px;
+      position: relative;
+    }
+
+    /* طبقة الفضاء الكونية مع الصورة المرفقة */
+    .galaxy-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://raw.githubusercontent.com/mohdplus/Mohdplus/25468b83292d0a564de76e3b3c97b093ff14a3f2/galaxy.jpg.JPG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.45;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 20%, rgba(13, 24, 60, 0.3) 0%, rgba(2, 5, 15, 0.9) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* الهيدر العلوي والشعار */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px;
+      background: rgba(10, 18, 38, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      margin-bottom: 30px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .header-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 20px;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .header-btn:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .logo-box img {
+      height: 52px;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* قسم الهيرو */
+    .hero {
+      text-align: center;
+      margin-bottom: 35px;
+      padding: 10px;
+    }
+
+    .hero h1 {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ffffff;
+      margin-bottom: 12px;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+    }
+
+    .hero p {
+      color: #a5b8d0;
+      font-size: 13.5px;
+      max-width: 600px;
+      margin: 0 auto 22px;
+      line-height: 1.6;
+    }
+
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 30%, #7c3aed 100%);
+      color: #ffffff;
+      padding: 10px 28px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      text-decoration: none;
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary {
+      background: rgba(10, 18, 38, 0.8);
+      color: #94a3b8;
+      padding: 10px 28px;
+      border-radius: 25px;
+      font-size: 13.5px;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: translateY(-2px);
+    }
+
+    /* شبكة البطاقات التسع */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(9, 17, 34, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 14px 10px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      transition: all 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .card-preview {
+      width: 100%;
+      height: 90px;
+      background: rgba(4, 8, 18, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .card-preview i {
+      font-size: 32px;
+    }
+
+    .icon-cyan { color: #00f2fe; filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.7)); }
+    .icon-teal { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-indigo { color: #818cf8; filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.7)); }
+    .icon-purple { color: #c084fc; filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.7)); }
+    .icon-amber { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-blue { color: #60a5fa; filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.7)); }
+    .icon-violet { color: #a78bfa; filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.7)); }
+    .icon-emerald { color: #34d399; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.7)); }
+    .icon-rose { color: #f472b6; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.7)); }
+
+    .card h3 {
+      font-size: 14px;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .card p {
+      font-size: 11px;
+      color: #94a3b8;
+      line-height: 1.4;
+      margin-bottom: 14px;
+      min-height: 30px;
+    }
+
+    .btn-card {
+      padding: 5px 18px;
+      border-radius: 18px;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover .btn-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(56, 189, 248, 0.9));
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    /* الشريط السفلي العائم */
+    .bottom-nav-wrapper {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 480px;
+      z-index: 999;
+    }
+
+    .bottom-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 8px 12px;
+      background: rgba(10, 18, 38, 0.92);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 40px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
+    }
+
+    .bottom-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: #94a3b8;
+      padding: 4px 10px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .bottom-nav-item i {
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+
+    .bottom-nav-item span {
+      font-size: 11px;
+    }
+
+    .bottom-nav-item.active, .bottom-nav-item:hover {
+      color: #38bdf8;
+    }
+
+    .nav-badge {
+      position: absolute;
+      top: 0;
+      right: 12px;
+      background: #38bdf8;
+      color: #02050f;
+      font-size: 9.5px;
+      font-weight: bold;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-badge.orange { background: #f59e0b; }
+
+    @media (max-width: 600px) {
+      .cards-grid {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="galaxy-bg"></div>
+  <div class="bg-overlay"></div>
+
+  <div class="container">
+    <header>
+      <button class="header-btn"><i class="fa-solid fa-bars"></i></button>
+      <div class="logo-box">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/25468b83292d0a564de76e3b3c97b093ff14a3f2/AR.png" alt="MohdHook Logo">
+      </div>
+      <button class="header-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </header>
+
+    <section class="hero">
+      <h1>محمد هوك : بوابة الحلول الرقمية</h1>
+      <p>استكشف، ابتكر، وتداول: أدوات، فنون، وابتكارات رقمية تحت مظلة واحدة تصنع الفارق.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">استكشف الآن</a>
+        <a href="#" class="btn-secondary">ابدأ التجربة</a>
+      </div>
+    </section>
+
+    <section class="cards-grid">
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
+        <h3>متجر بلس</h3>
+        <p>منتجات وخدمات رقمية حصرية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-calculator icon-teal"></i></div>
+        <h3>مختبر الأدوات</h3>
+        <p>حاسبات المالية، التمويل والإنتاجية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-terminal icon-indigo"></i></div>
+        <h3>مكتبة الأوامر</h3>
+        <p>أوامر برومبت منسقة للتصميم والذكاء</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-book-bookmark icon-purple"></i></div>
+        <h3>منتجات مميزة</h3>
+        <p>أحدث الكتب الإلكترونية والموارد الرقمية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-palette icon-amber"></i></div>
+        <h3>معرض الفنون</h3>
+        <p>أحدث الهويات البصرية والأعمال الإبداعية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-newspaper icon-blue"></i></div>
+        <h3>المدونة الرقمية</h3>
+        <p>مقالات ورؤى تقنية في عالم التصميم</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-users-viewfinder icon-violet"></i></div>
+        <h3>سوق المبدعين</h3>
+        <p>منصة لعرض وبيع إبداعاتك ومنتجاتك</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-chart-line icon-emerald"></i></div>
+        <h3>ابتكارات المستقبل</h3>
+        <p>مشاريع نوعية وشراكات استراتيجية قادمة</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card">
+        <div class="card-preview"><i class="fa-solid fa-microchip icon-rose"></i></div>
+        <h3>حلول الذكاء</h3>
+        <p>أدوات ذكية وحلول أتمتة الأعمال</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+    </section>
+  </div>
+
+  <div class="bottom-nav-wrapper">
+    <nav class="bottom-nav-bar">
+      <a href="#" class="bottom-nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>التصنيفات</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="nav-badge">2</span>
+        <span>السلة</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-regular fa-user"></i>
+        <span class="nav-badge orange">1</span>
+        <span>الحساب</span>
+      </a>
+    </nav>
+  </div>
+
+</body>
+</html>
