@@ -26,7 +26,7 @@
       user-select: none;
     }
 
-    body, h1, h2, h3, h4, p, a, button, span, div {
+    body, h1, h2, h3, h4, p, a, button, span, div, li {
       font-family: 'Thmanyah', 'Cairo', sans-serif;
     }
 
@@ -91,7 +91,6 @@
       50% { opacity: 0.2; transform: scale(0.6); }
     }
 
-    /* تأثير الشهب المتحركة */
     .shooting-star {
       position: absolute;
       left: 50%;
@@ -144,16 +143,24 @@
       z-index: 10;
     }
 
+    /* إضاءة تتابعية متحركة للحدود (Border Glow) وحواف شبه مستطيلة */
+    @keyframes sequentialGlow {
+      0% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); }
+      50% { border-color: rgba(129, 140, 248, 0.7); box-shadow: 0 0 22px rgba(56, 189, 248, 0.3); }
+      100% { border-color: rgba(56, 189, 248, 0.3); box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); }
+    }
+
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 10px 18px;
       background: rgba(10, 18, 38, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 20px;
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 10px; /* زاوية شبه حادة ومستطيلة */
       backdrop-filter: blur(16px);
       margin-bottom: 30px;
+      animation: sequentialGlow 5s infinite ease-in-out;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -165,7 +172,7 @@
       cursor: pointer;
       width: 40px;
       height: 40px;
-      border-radius: 10px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -197,6 +204,10 @@
       color: #ffffff;
       margin-bottom: 12px;
       text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+      /* إضافة الكشيدة */
+      text-align: justify;
+      text-justify: inter-word;
+      letter-spacing: 0.5px;
     }
 
     .hero p {
@@ -217,7 +228,7 @@
       background: linear-gradient(135deg, #2563eb 0%, #3b82f6 30%, #7c3aed 100%);
       color: #ffffff;
       padding: 10px 28px;
-      border-radius: 25px;
+      border-radius: 10px;
       font-size: 13.5px;
       text-decoration: none;
       border: 1px solid rgba(147, 197, 253, 0.4);
@@ -229,14 +240,14 @@
       background: rgba(10, 18, 38, 0.8);
       color: #94a3b8;
       padding: 10px 28px;
-      border-radius: 25px;
+      border-radius: 10px;
       font-size: 13.5px;
       text-decoration: none;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: all 0.3s ease;
     }
 
-    /* شبكة البطاقات (3 أعمدة ثابتة) */
+    /* شبكة البطاقات (3 أعمدة ثابتة) مع إضاءة تتابعية وحواف شبه حادة */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -246,8 +257,8 @@
 
     .card {
       background: rgba(9, 17, 34, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px; /* زاوية شبه حادة ومستطيلة */
       padding: 14px 10px 16px;
       display: flex;
       flex-direction: column;
@@ -255,12 +266,13 @@
       text-align: center;
       backdrop-filter: blur(14px);
       transition: all 0.35s ease;
+      animation: sequentialGlow 6s infinite ease-in-out;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.25);
+      border-color: rgba(56, 189, 248, 0.8);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.3);
     }
 
     .card-preview {
@@ -268,7 +280,7 @@
       height: 90px;
       background: rgba(4, 8, 18, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -293,6 +305,7 @@
       font-size: 14px;
       color: #ffffff;
       margin-bottom: 4px;
+      letter-spacing: 0.3px; /* كشيدة */
     }
 
     .card p {
@@ -305,7 +318,7 @@
 
     .btn-card {
       padding: 5px 18px;
-      border-radius: 18px;
+      border-radius: 8px;
       font-size: 11.5px;
       color: #cbd5e1;
       background: rgba(255, 255, 255, 0.05);
@@ -318,6 +331,166 @@
       background: linear-gradient(135deg, rgba(37, 99, 235, 0.8), rgba(56, 189, 248, 0.9));
       border-color: #38bdf8;
       color: #ffffff;
+    }
+
+    /* قسم الهيدر المتكامل قبل الفوتر */
+    .pre-footer-section {
+      background: rgba(8, 14, 30, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 12px;
+      padding: 30px 20px;
+      margin-top: 40px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+      animation: sequentialGlow 7s infinite ease-in-out;
+    }
+
+    /* 5 (أولاً): الشعار والوصف التعريفي */
+    .footer-brand-box {
+      text-align: center;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand-box img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .footer-brand-box p {
+      color: #94a3b8;
+      font-size: 12px;
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* 4: روابط تهمك */
+    .footer-links-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-links-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .footer-links-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 18px;
+      list-style: none;
+    }
+    .footer-links-list a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+    .footer-links-list a:hover {
+      color: #38bdf8;
+    }
+
+    /* 3: التواصل وخدمة العملاء */
+    .footer-social-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-social-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+    }
+    .social-icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-icon-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-3px);
+    }
+
+    /* 2: التراخيص (3 أعمدة متناسقة) */
+    .footer-licenses-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-licenses-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .licenses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .license-card {
+      background: rgba(4, 8, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 10px 6px;
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .license-card i {
+      color: #34d399;
+      font-size: 14px;
+    }
+
+    /* 1: طرق الدفع */
+    .footer-payments-group {
+      text-align: center;
+    }
+    .footer-payments-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .payments-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .payment-badge {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #e2e8f0;
+      font-weight: 600;
     }
 
     /* تذييل الصفحة (Footer) */
@@ -358,8 +531,8 @@
       justify-content: space-around;
       padding: 8px 12px;
       background: rgba(10, 18, 38, 0.92);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      border-radius: 40px;
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 14px; /* زاوية شبه مستطيلة */
       backdrop-filter: blur(20px);
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
     }
@@ -431,6 +604,9 @@
       .btn-card {
         font-size: 9.5px;
         padding: 3px 10px;
+      }
+      .licenses-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -550,7 +726,77 @@
       </div>
     </section>
 
-    <!-- الفوتر المعدل -->
+    <!-- القسم التحضيري الشامل قبل الفوتر (مرتب تصاعدياً كما طلبت) -->
+    <div class="pre-footer-section">
+      
+      <!-- 5. الشعار والوصف التعريفي -->
+      <div class="footer-brand-box">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/95d595b7254a9b6738d4459da40b58fcabddec05/MP.png" alt="MohdPlus Logo">
+        <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
+      </div>
+
+      <!-- 4. روابط تهمك -->
+      <div class="footer-links-group">
+        <h4>روابط تهمك</h4>
+        <ul class="footer-links-list">
+          <li><a href="#">من نحن</a></li>
+          <li><a href="#">المدونة</a></li>
+          <li><a href="#">هدفنا</a></li>
+          <li><a href="#">رؤيتنا</a></li>
+          <li><a href="#">سياسة الاستخدام</a></li>
+          <li><a href="#">سياسة الشروط والأحكام</a></li>
+          <li><a href="#">سجل معنا كـ مبدع</a></li>
+          <li><a href="#">سجل معنا كـ بائع</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. التواصل وخدمة العملاء -->
+      <div class="footer-social-group">
+        <h4>تواصل معنا</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon-btn" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-icon-btn" title="إكس (تويتر)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-btn" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-icon-btn" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-btn" title="تيليجرام"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+
+      <!-- 2. التراخيص (3 أعمدة متناسقة) -->
+      <div class="footer-licenses-group">
+        <h4>التراخيص والاعتمادات</h4>
+        <div class="licenses-grid">
+          <div class="license-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>موثق في منصة الأعمال</span>
+          </div>
+          <div class="license-card">
+            <i class="fa-solid fa-certificate"></i>
+            <span>وثيقة العمل الحر</span>
+          </div>
+          <div class="license-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>السجل التجاري</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. طرق الدفع -->
+      <div class="footer-payments-group">
+        <h4>طرق الدفع الآمنة</h4>
+        <div class="payments-list">
+          <span class="payment-badge">مدى (mada)</span>
+          <span class="payment-badge">Visa</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">STC Bank</span>
+          <span class="payment-badge">Apple Pay</span>
+          <span class="payment-badge">Samsung Pay</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- الفوتر النهائي (صنع بحب وحقوق النشر) -->
     <footer class="site-footer">
       <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
       <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
