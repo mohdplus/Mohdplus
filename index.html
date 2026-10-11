@@ -26,7 +26,7 @@
       user-select: none;
     }
 
-    body, h1, h2, h3, h4, p, a, button, span, div {
+    body, h1, h2, h3, h4, p, a, button, span, div, li {
       font-family: 'Thmanyah', 'Cairo', sans-serif;
     }
 
@@ -66,7 +66,7 @@
       z-index: 1;
     }
 
-    /* تأثير النجوم المتلألئة والشهب */
+    /* تأثير النجوم المتلألئة والشهب المزدوجة المتصادمة */
     .stars-container {
       position: fixed;
       top: 0;
@@ -91,48 +91,97 @@
       50% { opacity: 0.2; transform: scale(0.6); }
     }
 
-    /* تأثير الشهب المتحركة */
-    .shooting-star {
+    /* شهاب قادم من اليمين إلى اليسار */
+    .shooting-star-right {
       position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 100px;
+      top: 15%;
+      right: -100px;
+      width: 140px;
       height: 2px;
-      background: linear-gradient(45deg, rgba(255,255,255,1), rgba(56,189,248,0));
+      background: linear-gradient(270deg, rgba(255,255,255,1), rgba(56,189,248,0));
       border-radius: 50%;
-      transform: rotate(-45deg);
-      animation: shoot 4s infinite ease-in-out;
+      transform: rotate(25deg);
+      animation: shootRight 15s infinite ease-in-out;
       opacity: 0;
     }
 
-    .shooting-star:nth-child(1) {
-      top: 10%;
-      left: 80%;
-      animation-delay: 1s;
-      animation-duration: 3s;
+    /* شهاب قادم من اليسار إلى اليمين */
+    .shooting-star-left {
+      position: absolute;
+      top: 25%;
+      left: -100px;
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,1), rgba(168,85,247,0));
+      border-radius: 50%;
+      transform: rotate(-25deg);
+      animation: shootLeft 15s infinite ease-in-out;
+      opacity: 0;
     }
 
-    .shooting-star:nth-child(2) {
-      top: 30%;
-      left: 90%;
-      animation-delay: 3s;
-      animation-duration: 4.5s;
+    @keyframes shootRight {
+      0%, 93% {
+        transform: translateX(0) translateY(0) rotate(25deg);
+        opacity: 0;
+      }
+      94% {
+        opacity: 1;
+      }
+      98% {
+        transform: translateX(-55vw) translateY(35vh) rotate(25deg);
+        opacity: 1;
+      }
+      99%, 100% {
+        transform: translateX(-60vw) translateY(38vh) rotate(25deg);
+        opacity: 0; /* نقطة الاصطدام والانفجار بمنتصف الشاشة تقريباً */
+      }
     }
 
-    .shooting-star:nth-child(3) {
-      top: 5%;
-      left: 40%;
-      animation-delay: 0.5s;
-      animation-duration: 3.5s;
+    @keyframes shootLeft {
+      0%, 93% {
+        transform: translateX(0) translateY(0) rotate(-25deg);
+        opacity: 0;
+      }
+      94% {
+        opacity: 1;
+      }
+      98% {
+        transform: translateX(55vw) translateY(25vh) rotate(-25deg);
+        opacity: 1;
+      }
+      99%, 100% {
+        transform: translateX(60vw) translateY(28vh) rotate(-25deg);
+        opacity: 0;
+      }
     }
 
-    @keyframes shoot {
-      0% {
-        transform: translateX(0) translateY(0) rotate(-45deg);
+    /* تأثير وميض وانفجار لحظة الاصطدام كل 15 ثانية */
+    .collision-flash {
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: 150px;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(56,189,248,0.4) 40%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      animation: explode 15s infinite ease-in-out;
+    }
+
+    @keyframes explode {
+      0%, 97.5% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 0;
+      }
+      98% {
+        transform: translate(-50%, -50%) scale(1.8);
         opacity: 1;
       }
       100% {
-        transform: translateX(-400px) translateY(400px) rotate(-45deg);
+        transform: translate(-50%, -50%) scale(3);
         opacity: 0;
       }
     }
@@ -144,16 +193,24 @@
       z-index: 10;
     }
 
+    /* إطارات بحدود تدرج لوني فضائي متحرك وحواف متوسطة الانحناء */
+    @keyframes borderGlow {
+      0% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+      50% { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 0 25px rgba(168, 85, 247, 0.3); }
+      100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+    }
+
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 18px;
+      padding: 12px 20px;
       background: rgba(10, 18, 38, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 20px;
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 12px; /* حواف متوسطة غير حادة ولا دائرية قوية */
       backdrop-filter: blur(16px);
       margin-bottom: 30px;
+      animation: borderGlow 6s infinite ease-in-out;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -165,7 +222,7 @@
       cursor: pointer;
       width: 40px;
       height: 40px;
-      border-radius: 10px;
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -197,6 +254,7 @@
       color: #ffffff;
       margin-bottom: 12px;
       text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+      text-rendering: optimizeLegibility;
     }
 
     .hero p {
@@ -205,6 +263,7 @@
       max-width: 650px;
       margin: 0 auto 22px;
       line-height: 1.6;
+      text-rendering: optimizeLegibility;
     }
 
     .hero-btns {
@@ -217,7 +276,7 @@
       background: linear-gradient(135deg, #2563eb 0%, #3b82f6 30%, #7c3aed 100%);
       color: #ffffff;
       padding: 10px 28px;
-      border-radius: 25px;
+      border-radius: 12px;
       font-size: 13.5px;
       text-decoration: none;
       border: 1px solid rgba(147, 197, 253, 0.4);
@@ -229,14 +288,14 @@
       background: rgba(10, 18, 38, 0.8);
       color: #94a3b8;
       padding: 10px 28px;
-      border-radius: 25px;
+      border-radius: 12px;
       font-size: 13.5px;
       text-decoration: none;
       border: 1px solid rgba(255, 255, 255, 0.15);
       transition: all 0.3s ease;
     }
 
-    /* شبكة البطاقات (3 أعمدة ثابتة) */
+    /* شبكة البطاقات (3 أعمدة ثابتة) مع إطارات تدرج لوني متحرك وحواف متوسطة */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -246,8 +305,8 @@
 
     .card {
       background: rgba(9, 17, 34, 0.75);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
+      border: 1.5px solid rgba(56, 189, 248, 0.3);
+      border-radius: 14px;
       padding: 14px 10px 16px;
       display: flex;
       flex-direction: column;
@@ -255,12 +314,13 @@
       text-align: center;
       backdrop-filter: blur(14px);
       transition: all 0.35s ease;
+      animation: borderGlow 8s infinite ease-in-out;
     }
 
     .card:hover {
       transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.6);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.25);
+      border-color: rgba(168, 85, 247, 0.8);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 25px rgba(168, 85, 247, 0.3);
     }
 
     .card-preview {
@@ -268,7 +328,7 @@
       height: 90px;
       background: rgba(4, 8, 18, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -293,6 +353,8 @@
       font-size: 14px;
       color: #ffffff;
       margin-bottom: 4px;
+      text-rendering: optimizeLegibility;
+      letter-spacing: 0.2px;
     }
 
     .card p {
@@ -305,7 +367,7 @@
 
     .btn-card {
       padding: 5px 18px;
-      border-radius: 18px;
+      border-radius: 10px;
       font-size: 11.5px;
       color: #cbd5e1;
       background: rgba(255, 255, 255, 0.05);
@@ -320,12 +382,172 @@
       color: #ffffff;
     }
 
-    /* تذييل الصفحة (Footer) */
+    /* قسم الهيدر المتكامل الجديد قبل الفوتر */
+    .pre-footer-section {
+      background: rgba(8, 14, 30, 0.85);
+      border: 1.5px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 30px 20px;
+      margin-top: 40px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+      animation: borderGlow 7s infinite ease-in-out;
+    }
+
+    /* 1. شعار الوصف العلوي */
+    .footer-brand-box {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 25px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .footer-brand-box img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+    .footer-brand-box p {
+      color: #94a3b8;
+      font-size: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* 2. روابط تهمك */
+    .footer-links-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-links-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+    }
+    .footer-links-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 20px;
+      list-style: none;
+    }
+    .footer-links-list a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s ease;
+    }
+    .footer-links-list a:hover {
+      color: #38bdf8;
+    }
+
+    /* 3. التواصل وخدمة العملاء */
+    .footer-social-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-social-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .social-icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .social-icon-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #38bdf8;
+      transform: translateY(-3px);
+    }
+
+    /* 4. التراخيص (3 أعمدة متناسقة) */
+    .footer-licenses-group {
+      margin-bottom: 25px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 20px;
+    }
+    .footer-licenses-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+    .licenses-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .license-card {
+      background: rgba(4, 8, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 10px 6px;
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .license-card i {
+      color: #34d399;
+      font-size: 14px;
+    }
+
+    /* 5. طرق الدفع */
+    .footer-payments-group {
+      text-align: center;
+    }
+    .footer-payments-group h4 {
+      color: #38bdf8;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .payments-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+    .payment-badge {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #e2e8f0;
+      font-weight: 600;
+    }
+
+    /* تذييل الصفحة النهائي */
     .site-footer {
       text-align: center;
       padding: 25px 10px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
-      margin-top: 30px;
+      margin-top: 25px;
       color: #94a3b8;
       font-size: 12.5px;
       line-height: 1.8;
@@ -358,8 +580,8 @@
       justify-content: space-around;
       padding: 8px 12px;
       background: rgba(10, 18, 38, 0.92);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      border-radius: 40px;
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      border-radius: 30px;
       backdrop-filter: blur(20px);
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
     }
@@ -417,6 +639,7 @@
       }
       .card h3 {
         font-size: 11px;
+        letter-spacing: 0;
       }
       .card p {
         font-size: 9px;
@@ -432,6 +655,9 @@
         font-size: 9.5px;
         padding: 3px 10px;
       }
+      .licenses-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -440,11 +666,11 @@
   <div class="galaxy-bg"></div>
   <div class="bg-overlay"></div>
 
-  <!-- طبقة النجوم والشهب الحركية -->
+  <!-- طبقة النجوم والشهب المتصادمة -->
   <div class="stars-container">
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
+    <div class="shooting-star-right"></div>
+    <div class="shooting-star-left"></div>
+    <div class="collision-flash"></div>
   </div>
 
   <script>
@@ -550,7 +776,76 @@
       </div>
     </section>
 
-    <!-- الفوتر المعدل -->
+    <!-- الهيدر التحضيري المتكامل قبل الفوتر -->
+    <div class="pre-footer-section">
+      
+      <!-- 1. الشعار والوصف -->
+      <div class="footer-brand-box">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/95d595b7254a9b6738d4459da40b58fcabddec05/MP.png" alt="MohdPlus Logo">
+        <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
+      </div>
+
+      <!-- 2. روابط تهمك -->
+      <div class="footer-links-group">
+        <h4>روابط تهمك</h4>
+        <ul class="footer-links-list">
+          <li><a href="#">من نحن</a></li>
+          <li><a href="#">المدونة</a></li>
+          <li><a href="#">هدفنا</a></li>
+          <li><a href="#">رؤيتنا</a></li>
+          <li><a href="#">سياسة الأحكام والشروط والاستخدام</a></li>
+          <li><a href="#">سجل معنا كـ مبدع</a></li>
+          <li><a href="#">سجل معنا كـ بائع</a></li>
+        </ul>
+      </div>
+
+      <!-- 3. التواصل وخدمة العملاء -->
+      <div class="footer-social-group">
+        <h4>تواصل معنا</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon-btn" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-icon-btn" title="إكس (تويتر)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-btn" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-icon-btn" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-btn" title="تيليجرام"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+
+      <!-- 4. التراخيص (3 أعمدة) -->
+      <div class="footer-licenses-group">
+        <h4>التراخيص والاعتمادات</h4>
+        <div class="licenses-grid">
+          <div class="license-card">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>موثق في منصة الأعمال</span>
+          </div>
+          <div class="license-card">
+            <i class="fa-solid fa-certificate"></i>
+            <span>وثيقة العمل الحر</span>
+          </div>
+          <div class="license-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>السجل التجاري</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. طرق الدفع -->
+      <div class="footer-payments-group">
+        <h4>طرق الدفع الآمنة</h4>
+        <div class="payments-list">
+          <span class="payment-badge">مدى (mada)</span>
+          <span class="payment-badge">Visa</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">STC Bank</span>
+          <span class="payment-badge">Apple Pay</span>
+          <span class="payment-badge">Samsung Pay</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- الفوتر النهائي لحقوق النشر -->
     <footer class="site-footer">
       <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
       <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
