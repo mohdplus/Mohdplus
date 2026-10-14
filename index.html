@@ -22,10 +22,6 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-    }
-
-    /* منع التحديد فقط للعناصر التفاعلية للحفاظ على إمكانية نسخ النصوص عند الحاجة */
-    button, a, .bottom-nav-bar, .header-btn {
       -webkit-user-select: none;
       user-select: none;
     }
@@ -39,7 +35,7 @@
       color: #ffffff;
       min-height: 100vh;
       overflow-x: hidden;
-      padding: 16px 14px 130px; /* مسافة أمان سفلية للشريط العائم */
+      padding: 16px 14px 105px;
       position: relative;
     }
 
@@ -124,7 +120,7 @@
       z-index: 10;
     }
 
-    /* تقنية تأثير حدود LED متتابعة بلونين */
+    /* تقنية تأثير حدود LED متتابعة بلونين وبدون وميض عشوائي */
     @keyframes ledBorder {
       0% { border-color: #38bdf8; box-shadow: inset 0 0 0 1px #38bdf8; }
       50% { border-color: #a855f7; box-shadow: inset 0 0 0 1px #a855f7; }
@@ -138,7 +134,7 @@
       padding: 12px 20px;
       background: rgba(10, 18, 38, 0.9);
       border: 1.5px solid #38bdf8;
-      border-radius: 10px;
+      border-radius: 10px; /* زاوية شبه مستطيلة */
       backdrop-filter: blur(16px);
       margin-bottom: 30px;
       animation: ledBorder 6s infinite linear;
@@ -224,11 +220,11 @@
       transition: all 0.3s ease;
     }
 
-    /* شبكة البطاقات (افتراضياً 3 أعمدة للشاشات الكبيرة) */
+    /* شبكة البطاقات (3 أعمدة ثابتة) بإطار LED متحرك */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 14px;
       margin-bottom: 40px;
     }
 
@@ -236,7 +232,7 @@
       background: rgba(9, 17, 34, 0.75);
       border: 1.5px solid #38bdf8;
       border-radius: 10px;
-      padding: 16px 12px;
+      padding: 14px 10px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -279,23 +275,23 @@
     .icon-rose { color: #f472b6; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.7)); }
 
     .card h3 {
-      font-size: 15px;
+      font-size: 14px;
       color: #ffffff;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .card p {
-      font-size: 11.5px;
+      font-size: 11px;
       color: #94a3b8;
-      line-height: 1.5;
+      line-height: 1.4;
       margin-bottom: 14px;
-      min-height: 34px;
+      min-height: 30px;
     }
 
     .btn-card {
-      padding: 6px 20px;
+      padding: 5px 18px;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 11.5px;
       color: #cbd5e1;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.15);
@@ -309,7 +305,7 @@
       color: #ffffff;
     }
 
-    /* قسم ما قبل الفوتر */
+    /* قسم الهيدر المتكامل قبل الفوتر */
     .pre-footer-section {
       background: rgba(8, 14, 30, 0.9);
       border: 1.5px solid #38bdf8;
@@ -321,6 +317,7 @@
       animation: ledBorder 6s infinite linear;
     }
 
+    /* 1. الشعار والوصف التعريفي */
     .footer-brand-box {
       text-align: center;
       margin-bottom: 25px;
@@ -341,6 +338,7 @@
       line-height: 1.6;
     }
 
+    /* 2. روابط تهمك (3 أعمدة منسقة) */
     .footer-links-group {
       margin-bottom: 25px;
       text-align: center;
@@ -366,13 +364,14 @@
     .footer-col a {
       color: #cbd5e1;
       text-decoration: none;
-      font-size: 12px;
+      font-size: 11.5px;
       transition: color 0.2s ease;
     }
     .footer-col a:hover {
       color: #38bdf8;
     }
 
+    /* 3. التواصل وخدمة العملاء */
     .footer-social-group {
       margin-bottom: 25px;
       text-align: center;
@@ -410,6 +409,7 @@
       transform: translateY(-3px);
     }
 
+    /* 4. التراخيص (3 أعمدة متناسقة) */
     .footer-licenses-group {
       margin-bottom: 25px;
       text-align: center;
@@ -431,7 +431,7 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
       padding: 10px 6px;
-      font-size: 11.5px;
+      font-size: 11px;
       color: #94a3b8;
       display: flex;
       flex-direction: column;
@@ -440,9 +440,10 @@
     }
     .license-card i {
       color: #34d399;
-      font-size: 15px;
+      font-size: 14px;
     }
 
+    /* 5. طرق الدفع */
     .footer-payments-group {
       text-align: center;
     }
@@ -467,7 +468,7 @@
       font-weight: 600;
     }
 
-    /* صندوق الفوتر النهائي المستقل */
+    /* صندوق الفوتر النهائي المستقل (بدون خط فاصل خطي) */
     .site-footer-box {
       background: rgba(8, 14, 30, 0.9);
       border: 1.5px solid #38bdf8;
@@ -559,50 +560,35 @@
 
     .nav-badge.orange { background: #f59e0b; }
 
-    /* تحسينات الجوال والشاشات الصغيرة */
+    /* الشاشات الصغيرة */
     @media (max-width: 768px) {
-      body {
-        padding-bottom: 130px;
-      }
-
       .cards-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
       }
-
       .card {
-        padding: 14px 10px;
+        padding: 10px 4px 12px;
       }
-
       .card h3 {
-        font-size: 13px;
-      }
-
-      .card p {
-        font-size: 10.5px;
-        min-height: 32px;
-        line-height: 1.4;
-      }
-
-      .card-preview {
-        height: 75px;
-      }
-
-      .card-preview i {
-        font-size: 26px;
-      }
-
-      .btn-card {
         font-size: 11px;
-        padding: 6px 0;
-        width: 85%;
-        text-align: center;
       }
-
+      .card p {
+        font-size: 9px;
+        min-height: 24px;
+      }
+      .card-preview {
+        height: 65px;
+      }
+      .card-preview i {
+        font-size: 20px;
+      }
+      .btn-card {
+        font-size: 9.5px;
+        padding: 3px 10px;
+      }
       .licenses-grid {
         grid-template-columns: 1fr;
       }
-
       .footer-links-grid {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -642,11 +628,11 @@
 
   <div class="container">
     <header>
-      <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+      <button class="header-btn"><i class="fa-solid fa-bars"></i></button>
       <div class="logo-box">
         <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/95d595b7254a9b6738d4459da40b58fcabddec05/MP.png" alt="MohdPlus Logo">
       </div>
-      <button class="header-btn" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button class="header-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
     </header>
 
     <section class="hero">
@@ -658,7 +644,7 @@
       </div>
     </section>
 
-    <!-- شبكة البطاقات -->
+    <!-- شبكة البطاقات (3 أعمدة) -->
     <section class="cards-grid">
       <div class="card">
         <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
@@ -733,7 +719,7 @@
         <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
       </div>
 
-      <!-- 2. روابط تهمك -->
+      <!-- 2. روابط تهمك (3 أعمدة مقسمة بدقة) -->
       <div class="footer-links-group">
         <h4>روابط تهمك</h4>
         <div class="footer-links-grid">
@@ -766,7 +752,7 @@
         </div>
       </div>
 
-      <!-- 4. التراخيص -->
+      <!-- 4. التراخيص (3 أعمدة متناسقة) -->
       <div class="footer-licenses-group">
         <h4>التراخيص والاعتمادات</h4>
         <div class="licenses-grid">
@@ -800,14 +786,13 @@
 
     </div>
 
-    <!-- صندوق الفوتر النهائي المستقل -->
+    <!-- صندوق الفوتر النهائي المستقل بدون أي خطوط فاصلة -->
     <div class="site-footer-box">
       <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
       <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
     </div>
   </div>
 
-  <!-- الشريط السفلي العائم -->
   <div class="bottom-nav-wrapper">
     <nav class="bottom-nav-bar">
       <a href="#" class="bottom-nav-item active">
