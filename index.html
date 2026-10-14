@@ -18,6 +18,13 @@
       font-display: swap;
     }
 
+    /* تعريف خاصية الزاوية لحركة الشعاع التتابعي */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -78,7 +85,7 @@
       z-index: 1;
     }
 
-    /* تأثير النجوم المتلألئة والشهب */
+    /* النجوم والشهب */
     .stars-container {
       position: fixed;
       top: 0;
@@ -132,10 +139,41 @@
       z-index: 10;
     }
 
-    @keyframes ledBorder {
-      0% { border-color: #38bdf8; box-shadow: inset 0 0 0 1px #38bdf8; }
-      50% { border-color: #a855f7; box-shadow: inset 0 0 0 1px #a855f7; }
-      100% { border-color: #38bdf8; box-shadow: inset 0 0 0 1px #38bdf8; }
+    /* حركة دوران الشعاع الضوئي التتابعي حول الحواف */
+    @keyframes rotateLight {
+      to {
+        --angle: 360deg;
+      }
+    }
+
+    /* فئة الإطار التتابعي بنحافة 1px وأناقة تامة */
+    .glowing-border {
+      position: relative;
+      border-radius: 12px;
+      background: rgba(9, 17, 34, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.2); /* إطار نحيف أساسي */
+      backdrop-filter: blur(16px);
+    }
+
+    .glowing-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px; /* سمك الإطار 1px فقط */
+      border-radius: inherit;
+      padding: 1px;
+      background: conic-gradient(
+        from var(--angle),
+        transparent 0%,
+        rgba(56, 189, 248, 0.05) 50%,
+        #38bdf8 80%,
+        #c084fc 95%,
+        transparent 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotateLight 5s linear infinite;
+      pointer-events: none;
     }
 
     header {
@@ -143,12 +181,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 12px 20px;
-      background: rgba(10, 18, 38, 0.9);
-      border: 1.5px solid #38bdf8;
-      border-radius: 10px;
-      backdrop-filter: blur(16px);
       margin-bottom: 30px;
-      animation: ledBorder 6s infinite linear;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
     }
 
@@ -231,7 +264,7 @@
       transition: all 0.3s ease;
     }
 
-    /* شبكة البطاقات (3 أعمدة ثابتة) */
+    /* شبكة البطاقات */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -240,23 +273,17 @@
     }
 
     .card {
-      background: rgba(9, 17, 34, 0.75);
-      border: 1.5px solid #38bdf8;
-      border-radius: 10px;
       padding: 14px 10px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      backdrop-filter: blur(14px);
       transition: all 0.35s ease;
-      animation: ledBorder 6s infinite linear;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      border-color: #a855f7;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.8), 0 0 20px rgba(168, 85, 247, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7), 0 0 15px rgba(56, 189, 248, 0.2);
     }
 
     .card-preview {
@@ -318,14 +345,9 @@
 
     /* قسم الهيدر المتكامل قبل الفوتر */
     .pre-footer-section {
-      background: rgba(8, 14, 30, 0.9);
-      border: 1.5px solid #38bdf8;
-      border-radius: 10px;
       padding: 30px 20px;
       margin-top: 40px;
-      backdrop-filter: blur(18px);
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
-      animation: ledBorder 6s infinite linear;
     }
 
     .footer-brand-box {
@@ -348,7 +370,7 @@
       line-height: 1.6;
     }
 
-    /* روابط تهمك - تقسيم 3 أعمدة ثابت ومنسق */
+    /* روابط تهمك - 3 أعمدة منسقة */
     .footer-links-group {
       margin-bottom: 25px;
       text-align: center;
@@ -479,15 +501,10 @@
 
     /* صندوق الفوتر النهائي المستقل */
     .site-footer-box {
-      background: rgba(8, 14, 30, 0.9);
-      border: 1.5px solid #38bdf8;
-      border-radius: 10px;
       padding: 20px 15px;
       margin-top: 25px;
       text-align: center;
-      backdrop-filter: blur(18px);
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
-      animation: ledBorder 6s infinite linear;
       color: #94a3b8;
       font-size: 12.5px;
       line-height: 1.8;
@@ -519,12 +536,7 @@
       align-items: center;
       justify-content: space-around;
       padding: 6px 12px;
-      background: rgba(10, 18, 38, 0.94);
-      border: 1.5px solid #38bdf8;
-      border-radius: 14px;
-      backdrop-filter: blur(20px);
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
-      animation: ledBorder 6s infinite linear;
     }
 
     .bottom-nav-item {
@@ -598,7 +610,6 @@
       .licenses-grid {
         grid-template-columns: 1fr;
       }
-      /* الحفاظ على الأعمدة الثلاثة للروابط مع تناسق الخط والمسافات للجوال */
       .footer-links-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
@@ -614,7 +625,6 @@
   <div class="galaxy-bg"></div>
   <div class="bg-overlay"></div>
 
-  <!-- طبقة النجوم والشهب الحركية -->
   <div class="stars-container">
     <div class="shooting-star"></div>
     <div class="shooting-star"></div>
@@ -640,7 +650,7 @@
   </script>
 
   <div class="container">
-    <header>
+    <header class="glowing-border">
       <button class="header-btn"><i class="fa-solid fa-bars"></i></button>
       <div class="logo-box">
         <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/95d595b7254a9b6738d4459da40b58fcabddec05/MP.png" alt="MohdPlus Logo">
@@ -657,65 +667,65 @@
       </div>
     </section>
 
-    <!-- شبكة البطاقات (3 أعمدة) -->
+    <!-- شبكة البطاقات بالإطار التتابعي النحيف -->
     <section class="cards-grid">
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
         <h3>متجر بلس</h3>
         <p>منتجات وخدمات رقمية حصرية</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-calculator icon-teal"></i></div>
         <h3>مختبر الأدوات</h3>
         <p>حاسبات المالية، التمويل والإنتاجية</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-terminal icon-indigo"></i></div>
         <h3>مكتبة الأوامر</h3>
         <p>أوامر برومبت منسقة للتصميم والذكاء</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-book-bookmark icon-purple"></i></div>
         <h3>منتجات مميزة</h3>
         <p>أحدث الكتب الإلكترونية والموارد الرقمية</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-palette icon-amber"></i></div>
         <h3>معرض الفنون</h3>
         <p>أحدث الهويات البصرية والأعمال الإبداعية</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-newspaper icon-blue"></i></div>
         <h3>المدونة الرقمية</h3>
         <p>مقالات ورؤى تقنية في عالم التصميم</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-users-viewfinder icon-violet"></i></div>
         <h3>سوق المبدعين</h3>
         <p>منصة لعرض وبيع إبداعاتك ومنتجاتك</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-chart-line icon-emerald"></i></div>
         <h3>ابتكارات المستقبل</h3>
         <p>مشاريع نوعية وشراكات استراتيجية قادمة</p>
         <a href="#" class="btn-card">استعراض</a>
       </div>
 
-      <div class="card">
+      <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-microchip icon-rose"></i></div>
         <h3>حلول الذكاء</h3>
         <p>أدوات ذكية وحلول أتمتة الأعمال</p>
@@ -724,7 +734,7 @@
     </section>
 
     <!-- القسم التحضيري الشامل قبل الفوتر -->
-    <div class="pre-footer-section">
+    <div class="pre-footer-section glowing-border">
       
       <!-- 1. الشعار والوصف التعريفي -->
       <div class="footer-brand-box">
@@ -736,19 +746,16 @@
       <div class="footer-links-group">
         <h4>روابط تهمك</h4>
         <div class="footer-links-grid">
-          <!-- العمود الأول -->
           <div class="footer-col">
             <a href="#">من نحن</a>
             <a href="#">هدفنا</a>
             <a href="#">رؤيتنا</a>
           </div>
-          <!-- العمود الثاني -->
           <div class="footer-col">
             <a href="#">المدونة</a>
             <a href="#">سياسة الاستخدام</a>
             <a href="#">سياسة الشروط والأحكام</a>
           </div>
-          <!-- العمود الثالث -->
           <div class="footer-col">
             <a href="#">سجل معنا</a>
             <a href="#">سجل معنا كـ مبدع</a>
@@ -803,15 +810,15 @@
 
     </div>
 
-    <!-- صندوق الفوتر النهائي المستقل بدون أي خطوط فاصلة -->
-    <div class="site-footer-box">
+    <!-- صندوق الفوتر النهائي المستقل -->
+    <div class="site-footer-box glowing-border">
       <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
       <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
     </div>
   </div>
 
   <div class="bottom-nav-wrapper">
-    <nav class="bottom-nav-bar">
+    <nav class="bottom-nav-bar glowing-border">
       <a href="#" class="bottom-nav-item active">
         <i class="fa-solid fa-house"></i>
         <span>الرئيسية</span>
