@@ -176,32 +176,12 @@
       pointer-events: none;
     }
 
-    /* فواصل تتابعية دقيقة تحل محل الخطوط العادية داخل الفوتر */
-    .glowing-divider {
-      position: relative;
+    /* الفواصل الناعمة الكلاسيكية السابقة */
+    .section-divider {
       height: 1px;
       width: 100%;
-      background: rgba(56, 189, 248, 0.15);
-      margin: 25px 0;
-      border-radius: 50%;
-    }
-    .glowing-divider::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: conic-gradient(
-        from var(--angle),
-        transparent 0%,
-        #38bdf8 50%,
-        transparent 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: rotateLight 5s linear infinite;
-      pointer-events: none;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 24px 0;
     }
 
     header {
@@ -380,7 +360,7 @@
 
     .footer-brand-box {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .footer-brand-box img {
       height: 48px;
@@ -398,13 +378,13 @@
 
     /* روابط تهمك - 3 أعمدة منسقة */
     .footer-links-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
     }
     .footer-links-group h4 {
       color: #38bdf8;
       font-size: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .footer-links-grid {
       display: grid;
@@ -431,13 +411,13 @@
 
     /* التواصل وخدمة العملاء */
     .footer-social-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
     }
     .footer-social-group h4 {
       color: #38bdf8;
       font-size: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .social-icons {
       display: flex;
@@ -461,15 +441,15 @@
       transform: translateY(-3px);
     }
 
-    /* التراخيص والاعتمادات - 4 أعمدة بمربعات مصغرة وتقارب النص للشعار */
+    /* التراخيص والاعتمادات - 4 أعمدة بالمربعات المصغرة */
     .footer-licenses-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
     }
     .footer-licenses-group h4 {
       color: #38bdf8;
       font-size: 14px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .licenses-grid {
       display: grid;
@@ -484,7 +464,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-      gap: 4px; /* تقريب النص من الشعار */
+      gap: 4px;
       text-align: center;
       line-height: 1.3;
       transition: all 0.35s ease;
@@ -495,13 +475,13 @@
     }
     .license-logo-box {
       width: 100%;
-      height: 38px; /* تصغير طفيف لمساحة الشعار */
+      height: 38px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .license-logo {
-      height: 34px; /* تصغير حجم الشعار قليلاً */
+      height: 34px;
       width: auto;
       max-width: 90%;
       object-fit: contain;
@@ -515,7 +495,7 @@
     .footer-payments-group h4 {
       color: #38bdf8;
       font-size: 14px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .payments-list {
       display: flex;
@@ -789,7 +769,7 @@
         <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
       </div>
 
-      <div class="glowing-divider"></div>
+      <div class="section-divider"></div>
 
       <!-- 2. روابط تهمك (3 أعمدة مقسمة بدقة) -->
       <div class="footer-links-group">
@@ -813,7 +793,7 @@
         </div>
       </div>
 
-      <div class="glowing-divider"></div>
+      <div class="section-divider"></div>
 
       <!-- 3. التواصل وخدمة العملاء (بإطارات تتابعية مصغرة) -->
       <div class="footer-social-group">
@@ -827,7 +807,7 @@
         </div>
       </div>
 
-      <div class="glowing-divider"></div>
+      <div class="section-divider"></div>
 
       <!-- 4. التراخيص والاعتمادات (4 أعمدة بمربعات مصغرة ومتقارب النص للشعار) -->
       <div class="footer-licenses-group">
@@ -860,7 +840,7 @@
         </div>
       </div>
 
-      <div class="glowing-divider"></div>
+      <div class="section-divider"></div>
 
       <!-- 5. طرق الدفع -->
       <div class="footer-payments-group">
