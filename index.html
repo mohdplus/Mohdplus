@@ -176,7 +176,7 @@
       pointer-events: none;
     }
 
-    /* الفواصل الناعمة الكلاسيكية السابقة */
+    /* الفواصل الناعمة الكلاسيكية */
     .section-divider {
       height: 1px;
       width: 100%;
@@ -376,7 +376,7 @@
       line-height: 1.6;
     }
 
-    /* روابط تهمك - 3 أعمدة منسقة */
+    /* روابط تهمك - 3 أعمدة بمربعات تتابعية */
     .footer-links-group {
       margin-bottom: 15px;
       text-align: center;
@@ -395,18 +395,23 @@
     .footer-col {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
-    .footer-col a {
+    .footer-link-badge {
+      display: block;
+      padding: 7px 10px;
+      border-radius: 8px;
       color: #cbd5e1;
       text-decoration: none;
       font-size: 11px;
       line-height: 1.35;
-      transition: color 0.2s ease;
-      word-break: keep-all;
+      transition: all 0.3s ease;
+      text-align: center;
     }
-    .footer-col a:hover {
+    .footer-link-badge:hover {
       color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.2);
     }
 
     /* التواصل وخدمة العملاء */
@@ -441,7 +446,7 @@
       transform: translateY(-3px);
     }
 
-    /* التراخيص والاعتمادات - 4 أعمدة بالمربعات المصغرة */
+    /* التراخيص والاعتمادات - 4 أعمدة بمربعات مصغرة */
     .footer-licenses-group {
       margin-bottom: 15px;
       text-align: center;
@@ -489,28 +494,39 @@
       filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.12));
     }
 
+    /* طرق الدفع الآمنة - شبكة مربعات تتابعية للشعارات */
     .footer-payments-group {
       text-align: center;
     }
     .footer-payments-group h4 {
       color: #38bdf8;
       font-size: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
-    .payments-list {
+    .payments-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .payment-card {
+      padding: 10px 8px;
+      height: 48px;
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       justify-content: center;
-      gap: 8px;
+      transition: all 0.35s ease;
     }
-    .payment-badge {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-      color: #e2e8f0;
-      font-weight: 600;
+    .payment-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(56, 189, 248, 0.2);
+    }
+    .payment-logo {
+      height: 26px;
+      width: auto;
+      max-width: 90%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 6px rgba(255, 255, 255, 0.12));
     }
 
     /* صندوق الفوتر النهائي المستقل */
@@ -641,8 +657,20 @@
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
       }
-      .footer-col a {
-        font-size: 10px;
+      .footer-link-badge {
+        font-size: 9.5px;
+        padding: 6px 4px;
+      }
+      .payments-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+      .payment-card {
+        height: 40px;
+        padding: 6px 4px;
+      }
+      .payment-logo {
+        height: 22px;
       }
     }
   </style>
@@ -771,24 +799,24 @@
 
       <div class="section-divider"></div>
 
-      <!-- 2. روابط تهمك (3 أعمدة مقسمة بدقة) -->
+      <!-- 2. روابط تهمك (أصناف بمربعات تتابعية) -->
       <div class="footer-links-group">
         <h4>روابط تهمك</h4>
         <div class="footer-links-grid">
           <div class="footer-col">
-            <a href="#">من نحن</a>
-            <a href="#">هدفنا</a>
-            <a href="#">رؤيتنا</a>
+            <a href="#" class="footer-link-badge glowing-border">من نحن</a>
+            <a href="#" class="footer-link-badge glowing-border">هدفنا</a>
+            <a href="#" class="footer-link-badge glowing-border">رؤيتنا</a>
           </div>
           <div class="footer-col">
-            <a href="#">المدونة</a>
-            <a href="#">سياسة الاستخدام</a>
-            <a href="#">سياسة الشروط والأحكام</a>
+            <a href="#" class="footer-link-badge glowing-border">المدونة</a>
+            <a href="#" class="footer-link-badge glowing-border">سياسة الاستخدام</a>
+            <a href="#" class="footer-link-badge glowing-border">سياسة الشروط والأحكام</a>
           </div>
           <div class="footer-col">
-            <a href="#">سجل معنا</a>
-            <a href="#">سجل معنا كـ مبدع</a>
-            <a href="#">سجل معنا كـ تاجر</a>
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا</a>
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا كـ مبدع</a>
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا كـ تاجر</a>
           </div>
         </div>
       </div>
@@ -842,16 +870,28 @@
 
       <div class="section-divider"></div>
 
-      <!-- 5. طرق الدفع -->
+      <!-- 5. طرق الدفع الآمنة (بشعارات الإطارات التتابعية المنظمة) -->
       <div class="footer-payments-group">
         <h4>طرق الدفع الآمنة</h4>
-        <div class="payments-list">
-          <span class="payment-badge">مدى (mada)</span>
-          <span class="payment-badge">Visa</span>
-          <span class="payment-badge">Mastercard</span>
-          <span class="payment-badge">STC Bank</span>
-          <span class="payment-badge">Apple Pay</span>
-          <span class="payment-badge">Samsung Pay</span>
+        <div class="payments-grid">
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.PNG" alt="mada" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.PNG" alt="Visa" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.PNG" alt="Mastercard" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.PNG" alt="STC Bank" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.PNG" alt="Apple Pay" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.PNG" alt="Samsung Pay" class="payment-logo">
+          </div>
         </div>
       </div>
 
