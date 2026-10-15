@@ -442,6 +442,7 @@
       transform: translateY(-3px);
     }
 
+    /* التراخيص والاعتمادات - 4 أعمدة بجانب بعضها */
     .footer-licenses-group {
       margin-bottom: 25px;
       text-align: center;
@@ -455,24 +456,27 @@
     }
     .licenses-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
     }
     .license-card {
       background: rgba(4, 8, 18, 0.6);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 8px;
-      padding: 10px 6px;
+      padding: 12px 6px;
       font-size: 11px;
       color: #94a3b8;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: 6px;
+      text-align: center;
+      line-height: 1.35;
     }
     .license-card i {
       color: #34d399;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     .footer-payments-group {
@@ -607,8 +611,17 @@
         font-size: 9.5px;
         padding: 3px 10px;
       }
+      /* إبقاء التراخيص على 4 أعمدة بجانب بعضها في الجوال */
       .licenses-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+      .license-card {
+        padding: 10px 4px;
+        font-size: 9.5px;
+      }
+      .license-card i {
+        font-size: 13px;
       }
       .footer-links-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -776,13 +789,13 @@
         </div>
       </div>
 
-      <!-- 4. التراخيص (3 أعمدة متناسقة) -->
+      <!-- 4. التراخيص والاعتمادات (4 أعمدة بجانب بعضها) -->
       <div class="footer-licenses-group">
         <h4>التراخيص والاعتمادات</h4>
         <div class="licenses-grid">
           <div class="license-card">
             <i class="fa-solid fa-circle-check"></i>
-            <span>موثق في منصة الأعمال</span>
+            <span>موثوق في منصة الأعمال</span>
           </div>
           <div class="license-card">
             <i class="fa-solid fa-certificate"></i>
@@ -791,6 +804,10 @@
           <div class="license-card">
             <i class="fa-solid fa-shield-halved"></i>
             <span>السجل التجاري</span>
+          </div>
+          <div class="license-card">
+            <i class="fa-solid fa-award"></i>
+            <span>معتمد في معروف</span>
           </div>
         </div>
       </div>
