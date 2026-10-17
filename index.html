@@ -47,84 +47,18 @@
 
     body {
       background-color: #02050f;
+      /* خلفية فضائية كحلية عميقة وخفيفة جداً بديلة لصورة المجرة الثقيلة */
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.35) 0%, transparent 60%),
+        radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 15% 70%, rgba(56, 189, 248, 0.12) 0%, transparent 50%);
+      background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
       width: 100%;
       overflow-x: hidden;
       padding: 20px 16px calc(100px + env(safe-area-inset-bottom, 15px));
       position: relative;
-    }
-
-    .galaxy-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('https://raw.githubusercontent.com/mohdplus/Mohdplus/main/galaxy.jpg.JPG');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.45;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at 50% 20%, rgba(13, 24, 60, 0.3) 0%, rgba(2, 5, 15, 0.92) 75%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* النجوم والشهب */
-    .stars-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 2;
-      overflow: hidden;
-    }
-
-    .star {
-      position: absolute;
-      background: #ffffff;
-      border-radius: 50%;
-      animation: twinkle var(--duration) infinite ease-in-out;
-      opacity: var(--opacity);
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: var(--opacity); transform: scale(1); }
-      50% { opacity: 0.2; transform: scale(0.6); }
-    }
-
-    .shooting-star {
-      position: absolute;
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(45deg, rgba(255,255,255,1), rgba(56,189,248,0));
-      border-radius: 50%;
-      transform: rotate(-45deg);
-      animation: shoot 4s infinite ease-in-out;
-      opacity: 0;
-    }
-
-    .shooting-star:nth-child(1) { top: 10%; left: 80%; animation-delay: 1s; animation-duration: 3s; }
-    .shooting-star:nth-child(2) { top: 25%; left: 90%; animation-delay: 3s; animation-duration: 4.5s; }
-    .shooting-star:nth-child(3) { top: 5%; left: 45%; animation-delay: 0.5s; animation-duration: 3.5s; }
-
-    @keyframes shoot {
-      0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
-      100% { transform: translateX(-400px) translateY(400px) rotate(-45deg); opacity: 0; }
     }
 
     .container {
@@ -748,7 +682,7 @@
         max-width: 90%;
       }
 
-      /* بوابات الدفع (تصبح 3 في كل صف لسهولة القراءة) */
+      /* بوابات الدفع */
       .payments-grid {
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
@@ -769,7 +703,7 @@
       }
     }
 
-    /* الهواتف فائقة الصغر (أقل من 380px مثل iPhone SE / Fold) */
+    /* الهواتف فائقة الصغر */
     @media (max-width: 380px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -785,38 +719,11 @@
 </head>
 <body>
 
-  <div class="galaxy-bg"></div>
-  <div class="bg-overlay"></div>
-
-  <div class="stars-container">
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-  </div>
-
-  <script>
-    const starsContainer = document.querySelector('.stars-container');
-    const numberOfStars = 35;
-
-    for (let i = 0; i < numberOfStars; i++) {
-      const star = document.createElement('div');
-      star.classList.add('star');
-      const size = Math.random() * 2.5 + 1 + 'px';
-      star.style.width = size;
-      star.style.height = size;
-      star.style.top = Math.random() * 100 + 'vh';
-      star.style.left = Math.random() * 100 + 'vw';
-      star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-      star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
-      starsContainer.appendChild(star);
-    }
-  </script>
-
   <div class="container">
     <header class="glowing-border">
       <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
       <div class="logo-box">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/MP.png" alt="MohdPlus Logo">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/Mohdpluslogo.webp" alt="MohdPlus Logo">
       </div>
       <button class="header-btn" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
     </header>
@@ -901,7 +808,7 @@
       
       <!-- 1. الشعار والوصف التعريفي -->
       <div class="footer-brand-box">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/MP.png" alt="MohdPlus Logo">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/Mohdpluslogo.webp" alt="MohdPlus Logo">
         <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
       </div>
 
@@ -983,22 +890,22 @@
         <h4>طرق دفع آمنة ومتعددة</h4>
         <div class="payments-grid">
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.png" alt="mada" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.png" alt="Visa" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.png" alt="Mastercard" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.png" alt="STC Bank" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.png" alt="Apple Pay" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.png" alt="Samsung Pay" class="payment-logo">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo">
           </div>
         </div>
       </div>
