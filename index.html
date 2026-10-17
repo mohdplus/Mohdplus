@@ -2,240 +2,289 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>محمد بلس | بوابة الحلول الرقمية</title>
 
-  <!-- الخطوط والأيقونات السريعة عبر Google CDN -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet"/>
+  <!-- الخطوط والأيقونات -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
 
   <style>
-    :root {
-      /* لوحة الألوان: أسود كربوني، أصفر كهربائي، أبيض */
-      --bg-base: #060709;
-      --bg-surface: #0e1117;
-      --bg-card: #131720;
-      --bg-card-hover: #1a202c;
-      
-      --yellow-primary: #ffea00;
-      --yellow-glow: rgba(255, 234, 0, 0.22);
-      --yellow-dark: #ffd600;
-      
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      --border-yellow: rgba(255, 234, 0, 0.4);
-      
-      --text-white: #ffffff;
-      --text-muted: #a0aec0;
-      --text-dim: #718096;
-      
-      --radius-sm: 8px;
-      --radius-md: 14px;
-      --radius-lg: 20px;
+    @font-face {
+      font-family: 'Thmanyah';
+      src: url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    /* تعريف خاصية الزاوية لحركة الشعاع التتابعي */
+    @property --angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-user-select: none;
+      user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
-    body {
-      background-color: var(--bg-base);
-      color: var(--text-white);
-      font-family: 'Tajawal', sans-serif;
-      min-height: 100vh;
+    html {
       overflow-x: hidden;
-      padding-bottom: 95px; /* مسافة للناف بار السفلي العائم */
+      width: 100%;
+      min-height: 100%;
+      background-color: #02050f;
+    }
+
+    body, h1, h2, h3, h4, p, a, button, span, div, li {
+      font-family: 'Thmanyah', 'Cairo', sans-serif;
+    }
+
+    body {
+      background-color: #02050f;
+      color: #ffffff;
+      min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
+      padding: 20px 16px calc(100px + env(safe-area-inset-bottom, 15px));
       position: relative;
     }
 
-    /* خلفية شبكية هندسية خفيفة جداً وعالية الأداء */
-    .cyber-grid-bg {
+    .galaxy-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-image: 
-        linear-gradient(to right, rgba(255, 234, 0, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 234, 0, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: url('https://raw.githubusercontent.com/mohdplus/Mohdplus/main/galaxy.jpg.JPG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.45;
+      mix-blend-mode: screen;
       pointer-events: none;
       z-index: 0;
     }
 
-    .ambient-glow {
+    .bg-overlay {
       position: fixed;
-      top: -150px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(700px, 90vw);
-      height: 350px;
-      background: radial-gradient(circle, var(--yellow-glow) 0%, rgba(6, 7, 9, 0) 70%);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 20%, rgba(13, 24, 60, 0.3) 0%, rgba(2, 5, 15, 0.92) 75%);
       pointer-events: none;
-      z-index: 0;
+      z-index: 1;
+    }
+
+    /* النجوم والشهب */
+    .stars-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background: #ffffff;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+      opacity: var(--opacity);
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: var(--opacity); transform: scale(1); }
+      50% { opacity: 0.2; transform: scale(0.6); }
+    }
+
+    .shooting-star {
+      position: absolute;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(45deg, rgba(255,255,255,1), rgba(56,189,248,0));
+      border-radius: 50%;
+      transform: rotate(-45deg);
+      animation: shoot 4s infinite ease-in-out;
+      opacity: 0;
+    }
+
+    .shooting-star:nth-child(1) { top: 10%; left: 80%; animation-delay: 1s; animation-duration: 3s; }
+    .shooting-star:nth-child(2) { top: 25%; left: 90%; animation-delay: 3s; animation-duration: 4.5s; }
+    .shooting-star:nth-child(3) { top: 5%; left: 45%; animation-delay: 0.5s; animation-duration: 3.5s; }
+
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0) rotate(-45deg); opacity: 1; }
+      100% { transform: translateX(-400px) translateY(400px) rotate(-45deg); opacity: 0; }
     }
 
     .container {
-      max-width: 1140px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 20px 16px 0;
       position: relative;
-      z-index: 2;
+      z-index: 10;
+      width: 100%;
     }
 
-    /* الهيدر */
+    /* حركة دوران الشعاع الضوئي */
+    @keyframes rotateLight {
+      to {
+        --angle: 360deg;
+      }
+    }
+
+    /* فئة الإطار التتابعي التفاعلي */
+    .glowing-border {
+      position: relative;
+      border-radius: 14px;
+      background: rgba(9, 17, 34, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .glowing-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: conic-gradient(
+        from var(--angle),
+        transparent 0%,
+        rgba(56, 189, 248, 0.05) 50%,
+        #38bdf8 80%,
+        #c084fc 95%,
+        transparent 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: rotateLight 5s linear infinite;
+      pointer-events: none;
+    }
+
+    .section-divider {
+      height: 1px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 22px 0;
+    }
+
+    /* رأس الصفحة */
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 20px;
-      background: rgba(14, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      margin-bottom: 30px;
+      padding: 12px 24px;
+      margin-bottom: 35px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
     }
 
-    .header-logo img {
-      height: 44px;
+    .header-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 20px;
+      cursor: pointer;
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.25s ease;
+    }
+
+    .header-btn:hover {
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .logo-box img {
+      height: 50px;
       width: auto;
+      max-width: 190px;
       object-fit: contain;
       display: block;
     }
 
-    .header-btn {
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-md);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.2s ease;
-      font-size: 16px;
-    }
-
-    .header-btn:hover {
-      color: var(--yellow-primary);
-      border-color: var(--border-yellow);
-      background: var(--bg-card-hover);
-    }
-
-    /* قسم الهيرو الترحيبي */
-    .hero-section {
+    /* القسم الترحيبي (Hero) */
+    .hero {
       text-align: center;
-      padding: 20px 10px 40px;
+      margin-bottom: 40px;
+      padding: 0 10px;
     }
 
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 234, 0, 0.08);
-      border: 1px solid var(--border-yellow);
-      color: var(--yellow-primary);
-      padding: 6px 16px;
-      border-radius: 50px;
-      font-size: 13px;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    .hero-section h1 {
-      font-size: clamp(24px, 4vw, 42px);
-      font-weight: 900;
-      line-height: 1.3;
+    .hero h1 {
+      font-size: clamp(20px, 4vw, 32px);
+      font-weight: 800;
+      color: #ffffff;
       margin-bottom: 14px;
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+      line-height: 1.3;
     }
 
-    .hero-section h1 span {
-      color: var(--yellow-primary);
-      text-shadow: 0 0 20px rgba(255, 234, 0, 0.4);
-    }
-
-    .hero-section p {
-      color: var(--text-muted);
-      font-size: clamp(13px, 1.8vw, 16px);
-      max-width: 620px;
-      margin: 0 auto 26px;
-      line-height: 1.8;
+    .hero p {
+      color: #a5b8d0;
+      font-size: clamp(12px, 2vw, 15px);
+      max-width: 650px;
+      margin: 0 auto 24px;
+      line-height: 1.7;
     }
 
     .hero-btns {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
-    .btn-main {
-      background: var(--yellow-primary);
-      color: #060709;
-      padding: 12px 30px;
-      border-radius: var(--radius-md);
-      font-size: 14.5px;
-      font-weight: 800;
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 30%, #7c3aed 100%);
+      color: #ffffff;
+      padding: 11px 32px;
+      border-radius: 10px;
+      font-size: 14px;
       text-decoration: none;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 20px rgba(255, 234, 0, 0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      font-weight: 600;
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+      transition: all 0.3s ease;
     }
 
-    .btn-main:hover {
+    .btn-primary:hover {
       transform: translateY(-2px);
-      background: #ffffff;
-      box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
     }
 
-    .btn-outline {
-      background: var(--bg-surface);
-      color: var(--text-white);
-      padding: 12px 30px;
-      border-radius: var(--radius-md);
-      font-size: 14.5px;
-      font-weight: 700;
+    .btn-secondary {
+      background: rgba(10, 18, 38, 0.85);
+      color: #cbd5e1;
+      padding: 11px 32px;
+      border-radius: 10px;
+      font-size: 14px;
       text-decoration: none;
-      border: 1px solid var(--border-subtle);
-      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: all 0.3s ease;
     }
 
-    .btn-outline:hover {
-      border-color: var(--border-yellow);
-      color: var(--yellow-primary);
+    .btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #ffffff;
     }
 
-    /* شبكة الخدمات والمتاجر */
-    .section-head {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .section-head-bar {
-      width: 5px;
-      height: 22px;
-      background: var(--yellow-primary);
-      border-radius: 4px;
-      box-shadow: 0 0 10px var(--yellow-primary);
-    }
-
-    .section-head h2 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-
+    /* شبكة البطاقات - متجاوبة ديناميكياً */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -243,519 +292,749 @@
       margin-bottom: 45px;
     }
 
-    .store-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 22px 18px;
+    .card {
+      padding: 16px 12px 18px;
       display: flex;
       flex-direction: column;
-      position: relative;
-      transition: all 0.25s ease;
+      align-items: center;
+      text-align: center;
+      transition: all 0.35s ease;
     }
 
-    .store-card:hover {
-      background: var(--bg-card-hover);
-      border-color: var(--border-yellow);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 234, 0, 0.15);
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 18px rgba(56, 189, 248, 0.25);
     }
 
-    .card-icon-box {
-      width: 48px;
-      height: 48px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 234, 0, 0.08);
-      border: 1px solid rgba(255, 234, 0, 0.2);
-      color: var(--yellow-primary);
+    .card-preview {
+      width: 100%;
+      height: 90px;
+      background: rgba(4, 8, 18, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
-      margin-bottom: 16px;
-      transition: all 0.25s ease;
+      margin-bottom: 14px;
     }
 
-    .store-card:hover .card-icon-box {
-      background: var(--yellow-primary);
-      color: #060709;
-      box-shadow: 0 0 15px var(--yellow-primary);
+    .card-preview i {
+      font-size: 32px;
     }
 
-    .store-card h3 {
-      font-size: 16px;
-      font-weight: 800;
+    .icon-cyan { color: #00f2fe; filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.7)); }
+    .icon-teal { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-indigo { color: #818cf8; filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.7)); }
+    .icon-purple { color: #c084fc; filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.7)); }
+    .icon-amber { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-blue { color: #60a5fa; filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.7)); }
+    .icon-violet { color: #a78bfa; filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.7)); }
+    .icon-emerald { color: #34d399; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.7)); }
+    .icon-rose { color: #f472b6; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.7)); }
+
+    .card h3 {
+      font-size: clamp(12.5px, 1.4vw, 15px);
       color: #ffffff;
       margin-bottom: 6px;
-    }
-
-    .store-card p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .card-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px 14px;
-      border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-white);
-      text-decoration: none;
-      font-size: 12.5px;
       font-weight: 700;
-      transition: all 0.2s ease;
     }
 
-    .store-card:hover .card-btn {
-      border-color: var(--border-yellow);
-      color: var(--yellow-primary);
-      background: rgba(255, 234, 0, 0.05);
+    .card p {
+      font-size: clamp(10px, 1.1vw, 12px);
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      min-height: 32px;
     }
 
-    /* قسم ما قبل الفوتر (المصداقية، التراخيص، بوابات الدفع) */
-    .pre-footer-hub {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+    .btn-card {
+      padding: 6px 20px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      margin-top: auto;
+    }
+
+    .card:hover .btn-card {
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(56, 189, 248, 0.95));
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    /* ما قبل الفوتر */
+    .pre-footer-section {
       padding: 32px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      margin-bottom: 25px;
+      margin-top: 40px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
     }
 
-    .brand-intro {
+    .footer-brand-box {
       text-align: center;
-      max-width: 600px;
-      margin: 0 auto;
+      margin-bottom: 18px;
     }
-
-    .brand-intro img {
-      height: 42px;
+    .footer-brand-box img {
+      height: 48px;
       width: auto;
+      object-fit: contain;
       margin-bottom: 12px;
     }
-
-    .brand-intro p {
-      color: var(--text-muted);
-      font-size: 13.5px;
+    .footer-brand-box p {
+      color: #94a3b8;
+      font-size: clamp(11.5px, 1.2vw, 13px);
+      max-width: 620px;
+      margin: 0 auto;
       line-height: 1.7;
     }
 
-    .hub-title {
-      color: var(--yellow-primary);
-      font-size: 14px;
-      font-weight: 800;
+    /* روابط تهمك */
+    .footer-links-group {
+      margin-bottom: 18px;
       text-align: center;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
     }
-
-    /* التراخيص */
-    .licenses-grid {
+    .footer-links-group h4 {
+      color: #38bdf8;
+      font-size: 14.5px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    .footer-links-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
     }
-
-    .license-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 12px 8px;
+    .footer-col {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       gap: 8px;
+    }
+    .footer-link-badge {
+      display: block;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: clamp(10.5px, 1.1vw, 12px);
+      line-height: 1.4;
+      transition: all 0.3s ease;
       text-align: center;
-      transition: all 0.25s ease;
     }
-
-    .license-card:hover {
-      border-color: var(--border-yellow);
+    .footer-link-badge:hover {
+      color: #38bdf8;
       transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.2);
     }
 
-    .license-card img {
-      height: 25px;
-      max-width: 80%;
-      object-fit: contain;
+    /* التواصل */
+    .footer-social-group {
+      margin-bottom: 18px;
+      text-align: center;
     }
-
-    .license-card span {
-      font-size: 11.5px;
+    .footer-social-group h4 {
+      color: #38bdf8;
+      font-size: 14.5px;
+      margin-bottom: 14px;
       font-weight: 700;
-      color: var(--text-muted);
     }
-
-    /* بوابات الدفع المعتمدة */
-    .payments-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px;
-    }
-
-    .payment-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px;
-      transition: all 0.2s ease;
-    }
-
-    .payment-card:hover {
-      border-color: var(--border-yellow);
-      background: var(--bg-card-hover);
-    }
-
-    .payment-card img {
-      height: 20px;
-      max-width: 80%;
-      object-fit: contain;
-    }
-
-    /* الروابط وأيقونات التواصل */
-    .social-strip {
+    .social-icons {
       display: flex;
       justify-content: center;
       gap: 12px;
       flex-wrap: wrap;
     }
-
-    .social-btn {
+    .social-icon-btn {
       width: 40px;
       height: 40px;
-      border-radius: var(--radius-md);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-muted);
+      border-radius: 9px;
+      color: #cbd5e1;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 16px;
       text-decoration: none;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
     }
-
-    .social-btn:hover {
-      color: #060709;
-      background: var(--yellow-primary);
-      border-color: var(--yellow-primary);
+    .social-icon-btn:hover {
+      color: #38bdf8;
       transform: translateY(-3px);
     }
 
-    /* الفوتر النهائي */
-    footer {
+    /* التراخيص والاعتمادات */
+    .footer-licenses-group {
+      margin-bottom: 18px;
       text-align: center;
-      padding: 20px 10px;
-      color: var(--text-dim);
-      font-size: 12.5px;
-      border-top: 1px solid var(--border-subtle);
+    }
+    .footer-licenses-group h4 {
+      color: #38bdf8;
+      font-size: 14.5px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .licenses-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .license-card {
+      padding: 10px 6px;
+      font-size: clamp(10px, 1.1vw, 12px);
+      color: #cbd5e1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-align: center;
+      min-height: 72px;
+      transition: all 0.35s ease;
+    }
+    .license-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(56, 189, 248, 0.2);
+    }
+    .license-logo-box {
+      width: 100%;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .license-logo {
+      height: 25px;
+      width: auto;
+      max-width: 80%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.1));
     }
 
-    footer p span {
-      color: var(--yellow-primary);
+    /* طرق دفع آمنة ومتعددة */
+    .footer-payments-group {
+      text-align: center;
+    }
+    .footer-payments-group h4 {
+      color: #38bdf8;
+      font-size: 14.5px;
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .payments-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+    }
+    .payment-card {
+      padding: 6px 4px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.35s ease;
+    }
+    .payment-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+    .payment-logo {
+      height: 20px;
+      width: auto;
+      max-width: 85%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 1px 4px rgba(255, 255, 255, 0.1));
     }
 
-    /* شريط الملاحة السفلي للجوال */
-    .bottom-nav {
+    /* صندوق الفوتر النهائي */
+    .site-footer-box {
+      padding: 22px 15px;
+      margin-top: 25px;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+      color: #94a3b8;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .site-footer-box p {
+      margin-bottom: 4px;
+    }
+    .site-footer-box .heart {
+      color: #ef4444;
+      display: inline-block;
+      margin: 0 2px;
+    }
+
+    /* شريط التنقل السفلي العائم المخصص للأجهزة الذكية واللوحية */
+    .bottom-nav-wrapper {
       position: fixed;
       bottom: 12px;
       left: 50%;
       transform: translateX(-50%);
       width: calc(100% - 24px);
-      max-width: 440px;
-      background: rgba(14, 17, 23, 0.92);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border-yellow);
-      border-radius: 50px;
-      padding: 6px 14px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(255, 234, 0, 0.15);
+      max-width: 480px;
       z-index: 999;
     }
 
-    .nav-btn {
+    .bottom-nav-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      padding: 7px 12px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
+    }
+
+    .bottom-nav-item {
       display: flex;
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      color: var(--text-muted);
-      font-size: 11px;
-      padding: 4px 10px;
-      transition: color 0.2s ease;
+      color: #94a3b8;
+      padding: 4px 12px;
+      position: relative;
+      transition: all 0.25s ease;
     }
 
-    .nav-btn i {
-      font-size: 18px;
+    .bottom-nav-item i {
+      font-size: 19px;
       margin-bottom: 3px;
     }
 
-    .nav-btn.active, .nav-btn:hover {
-      color: var(--yellow-primary);
+    .bottom-nav-item span {
+      font-size: 11px;
     }
 
-    /* التجاوب مع الجوال والشاشات المختلفة */
-    @media (max-width: 900px) {
+    .bottom-nav-item.active, .bottom-nav-item:hover {
+      color: #38bdf8;
+    }
+
+    .nav-badge {
+      position: absolute;
+      top: 0;
+      right: 14px;
+      background: #38bdf8;
+      color: #02050f;
+      font-size: 9.5px;
+      font-weight: bold;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-badge.orange { background: #f59e0b; }
+
+    /* ========================================================= */
+    /* قواعد التوافق والاستجابة لجميع مقاسات الشاشات (RESPONSIVE) */
+    /* ========================================================= */
+
+    /* شاشات الحواسيب الكبيرة (1200px فما فوق) */
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 1140px;
+      }
+      .card-preview {
+        height: 105px;
+      }
+      .card-preview i {
+        font-size: 38px;
+      }
+    }
+
+    /* الأجهزة اللوحية والآيباد والشاشات المتوسطة (769px - 1024px) */
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .payments-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+      }
+      .licenses-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+      }
+    }
+
+    /* الهواتف الذكية والأجهزة الصغيرة (أقل من 768px) */
+    @media (max-width: 768px) {
+      body {
+        padding: 12px 10px calc(90px + env(safe-area-inset-bottom, 15px));
+      }
+
+      header {
+        padding: 10px 14px;
+        margin-bottom: 25px;
+      }
+
+      .logo-box img {
+        height: 42px;
+      }
+
+      /* تحسين عرض البطاقات للشاشات الصغيرة */
+      .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .card {
+        padding: 10px 4px 12px;
+        border-radius: 10px;
+      }
+
+      .card-preview {
+        height: 60px;
+        margin-bottom: 8px;
+      }
+
+      .card-preview i {
+        font-size: 20px;
+      }
+
+      .card h3 {
+        font-size: 11px;
+      }
+
+      .card p {
+        font-size: 9px;
+        min-height: 24px;
+        line-height: 1.35;
+        margin-bottom: 8px;
+      }
+
+      .btn-card {
+        font-size: 9.5px;
+        padding: 4px 10px;
+      }
+
+      .pre-footer-section {
+        padding: 20px 12px;
+        margin-top: 30px;
+      }
+
+      .footer-links-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .footer-link-badge {
+        font-size: 9.5px;
+        padding: 7px 4px;
+      }
+
+      /* التراخيص على الهواتف */
+      .licenses-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+      }
+
+      .license-card {
+        padding: 6px 3px;
+        min-height: 60px;
+        font-size: 8.5px;
+      }
+
+      .license-logo-box {
+        height: 22px;
+      }
+
+      .license-logo {
+        height: 20px;
+        max-width: 90%;
+      }
+
+      /* بوابات الدفع (تصبح 3 في كل صف لسهولة القراءة) */
+      .payments-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+      }
+
+      .payment-card {
+        height: 36px;
+        padding: 4px;
+      }
+
+      .payment-logo {
+        height: 18px;
+      }
+
+      .site-footer-box {
+        font-size: 11px;
+        padding: 16px 10px;
+      }
+    }
+
+    /* الهواتف فائقة الصغر (أقل من 380px مثل iPhone SE / Fold) */
+    @media (max-width: 380px) {
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+      }
+      .footer-links-grid {
+        grid-template-columns: repeat(1, 1fr);
       }
       .licenses-grid {
         grid-template-columns: repeat(2, 1fr);
-      }
-      .payments-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 580px) {
-      .container {
-        padding: 12px 10px 0;
-      }
-      header {
-        padding: 10px 14px;
-        margin-bottom: 22px;
-      }
-      .header-logo img {
-        height: 38px;
-      }
-      .hero-section {
-        padding: 14px 6px 30px;
-      }
-      .hero-section h1 {
-        font-size: 23px;
-      }
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-      .store-card {
-        padding: 14px 10px;
-      }
-      .card-icon-box {
-        width: 40px;
-        height: 40px;
-        font-size: 17px;
-        margin-bottom: 12px;
-      }
-      .store-card h3 {
-        font-size: 13.5px;
-      }
-      .store-card p {
-        font-size: 11px;
-        margin-bottom: 12px;
-        line-height: 1.45;
-      }
-      .card-btn {
-        font-size: 11px;
-        padding: 6px 10px;
-      }
-      .pre-footer-hub {
-        padding: 20px 12px;
-        gap: 20px;
       }
     }
   </style>
 </head>
 <body>
 
-  <div class="cyber-grid-bg"></div>
-  <div class="ambient-glow"></div>
+  <div class="galaxy-bg"></div>
+  <div class="bg-overlay"></div>
 
-  <div class="container">
-    <!-- الهيدر -->
-    <header>
-      <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars-staggered"></i></button>
-      <div class="header-logo">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/Mohdpluslogo.webp" alt="شعار محمد بلس">
-      </div>
-      <button class="header-btn" aria-label="البحث"><i class="fa-solid fa-magnifying-glass"></i></button>
-    </header>
-
-    <!-- الواجهة الترحيبية -->
-    <section class="hero-section">
-      <div class="hero-tag">
-        <i class="fa-solid fa-bolt"></i> منظومة الحلول الرقمية الذكية
-      </div>
-      <h1>ارتقِ بأعمالك الرقمية مع <span>محمد بلس</span></h1>
-      <p>منصة متكاملة تدمج الأدوات التقنية المتطورة، المنتجات الرقمية الحصرية، وسوق المبدعين لدعم رواد الأعمال والمطورين.</p>
-      <div class="hero-btns">
-        <a href="#" class="btn-main"><i class="fa-solid fa-bag-shopping"></i> استكشف المتاجر</a>
-        <a href="#" class="btn-outline">سوق المبدعين</a>
-      </div>
-    </section>
-
-    <!-- رأس شبكة الأقسام -->
-    <div class="section-head">
-      <div class="section-head-bar"></div>
-      <h2>متاجر وخدمات المنصة</h2>
-    </div>
-
-    <!-- شبكة البطاقات التسع -->
-    <section class="cards-grid">
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-gem"></i></div>
-        <h3>متجر بلس</h3>
-        <p>منتجات وخدمات رقمية حصرية تلبي متطلبات المشاريع الريادية.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-calculator"></i></div>
-        <h3>مختبر الأدوات</h3>
-        <p>حاسبات ذكية للمالية، التمويل، ونمو الأعمال والإنتاجية.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-terminal"></i></div>
-        <h3>مكتبة الأوامر</h3>
-        <p>أوامر برومبت منسقة واحترافية لتوليد المحتوى والتصميم بالذكاء.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-book-bookmark"></i></div>
-        <h3>منتجات مميزة</h3>
-        <p>أحدث الكتب الإلكترونية والأدلة التقنية لتطوير مهاراتك ومبيعاتك.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-palette"></i></div>
-        <h3>معرض الفنون</h3>
-        <p>هويات بصرية وتصاميم إبداعية جاهزة تعكس قوة علامتك التجارية.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-newspaper"></i></div>
-        <h3>المدونة الرقمية</h3>
-        <p>رؤى ومقالات حصرية حول أحدث اتجاهات التقنية والتجارة الإلكترونية.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-users"></i></div>
-        <h3>سوق المبدعين</h3>
-        <p>مساحة رقمية آمنة تتيح للمبدعين والمستقلين بيع خدماتهم ومنتجاتهم.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-chart-line"></i></div>
-        <h3>ابتكارات المستقبل</h3>
-        <p>مشاريع نوعية وشراكات استراتيجية لدعم الجيل القادم من الحلول.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-
-      <div class="store-card">
-        <div class="card-icon-box"><i class="fa-solid fa-microchip"></i></div>
-        <h3>حلول الذكاء</h3>
-        <p>أدوات وحلول أتمتة الأعمال لرفع كفاءة وسرعة إنجاز مهامك.</p>
-        <a href="#" class="card-btn"><span>استعراض</span> <i class="fa-solid fa-arrow-left"></i></a>
-      </div>
-    </section>
-
-    <!-- حاوية الفوتر الشاملة -->
-    <div class="pre-footer-hub">
-      <div class="brand-intro">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/Mohdpluslogo.webp" alt="شعار محمد بلس">
-        <p>محمد بلس منظومة رقمية متكاملة تقدم أحدث الأدوات والمنتجات لرواد الأعمال والمبدعين بموثوقية عالية واعتمادات رسمية.</p>
-      </div>
-
-      <!-- التراخيص -->
-      <div>
-        <div class="hub-title"><i class="fa-solid fa-certificate"></i> التراخيص والاعتمادات</div>
-        <div class="licenses-grid">
-          <div class="license-card">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/sbc.png" alt="موثّق">
-            <span>موثّق</span>
-          </div>
-          <div class="license-card">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/freelance.png" alt="العمل الحر">
-            <span>العمل الحر</span>
-          </div>
-          <div class="license-card">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/moc.png" alt="السجل التجاري">
-            <span>السجل التجاري</span>
-          </div>
-          <div class="license-card">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/maroof.png" alt="معروف">
-            <span>معتمد بمعروف</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- بوابات الدفع بالسحب الفيكتور SVG -->
-      <div>
-        <div class="hub-title"><i class="fa-solid fa-shield-halved"></i> طرق دفع آمنة ومتعددة</div>
-        <div class="payments-grid">
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada"></div>
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa"></div>
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard"></div>
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank"></div>
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay"></div>
-          <div class="payment-card"><img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay"></div>
-        </div>
-      </div>
-
-      <!-- قنوات التواصل -->
-      <div>
-        <div class="hub-title"><i class="fa-solid fa-headset"></i> تواصل معنا</div>
-        <div class="social-strip">
-          <a href="#" class="social-btn" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" class="social-btn" title="إكس"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="social-btn" title="تيليجرام"><i class="fa-brands fa-telegram"></i></a>
-          <a href="#" class="social-btn" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="#" class="social-btn" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-
-    <!-- الفوتر النهائي -->
-    <footer>
-      <p>جميع الحقوق محفوظة لـ <span>MOHD PLUS</span> © 2026</p>
-    </footer>
+  <div class="stars-container">
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
   </div>
 
-  <!-- الشريط السفلي العائم للجوال -->
-  <nav class="bottom-nav">
-    <a href="#" class="nav-btn active">
-      <i class="fa-solid fa-house"></i>
-      <span>الرئيسية</span>
-    </a>
-    <a href="#" class="nav-btn">
-      <i class="fa-solid fa-shapes"></i>
-      <span>الأقسام</span>
-    </a>
-    <a href="#" class="nav-btn">
-      <i class="fa-solid fa-bag-shopping"></i>
-      <span>السلة</span>
-    </a>
-    <a href="#" class="nav-btn">
-      <i class="fa-regular fa-user"></i>
-      <span>حسابي</span>
-    </a>
-  </nav>
+  <script>
+    const starsContainer = document.querySelector('.stars-container');
+    const numberOfStars = 35;
+
+    for (let i = 0; i < numberOfStars; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      const size = Math.random() * 2.5 + 1 + 'px';
+      star.style.width = size;
+      star.style.height = size;
+      star.style.top = Math.random() * 100 + 'vh';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+      star.style.setProperty('--opacity', Math.random() * 0.7 + 0.3);
+      starsContainer.appendChild(star);
+    }
+  </script>
+
+  <div class="container">
+    <header class="glowing-border">
+      <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
+      <div class="logo-box">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/MP.png" alt="MohdPlus Logo">
+      </div>
+      <button class="header-btn" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </header>
+
+    <section class="hero">
+      <h1>منصة محمد بلس الرقمية</h1>
+      <p>منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">استكشف الآن</a>
+        <a href="#" class="btn-secondary">ابدأ التجربة</a>
+      </div>
+    </section>
+
+    <!-- شبكة البطاقات المتجاوبة -->
+    <section class="cards-grid">
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
+        <h3>متجر بلس</h3>
+        <p>منتجات وخدمات رقمية حصرية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-calculator icon-teal"></i></div>
+        <h3>مختبر الأدوات</h3>
+        <p>حاسبات المالية، التمويل والإنتاجية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-terminal icon-indigo"></i></div>
+        <h3>مكتبة الأوامر</h3>
+        <p>أوامر برومبت منسقة للتصميم والذكاء</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-book-bookmark icon-purple"></i></div>
+        <h3>منتجات مميزة</h3>
+        <p>أحدث الكتب الإلكترونية والموارد الرقمية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-palette icon-amber"></i></div>
+        <h3>معرض الفنون</h3>
+        <p>أحدث الهويات البصرية والأعمال الإبداعية</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-newspaper icon-blue"></i></div>
+        <h3>المدونة الرقمية</h3>
+        <p>مقالات ورؤى تقنية في عالم التصميم</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-users-viewfinder icon-violet"></i></div>
+        <h3>سوق المبدعين</h3>
+        <p>منصة لعرض وبيع إبداعاتك ومنتجاتك</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-chart-line icon-emerald"></i></div>
+        <h3>ابتكارات المستقبل</h3>
+        <p>مشاريع نوعية وشراكات استراتيجية قادمة</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+
+      <div class="card glowing-border">
+        <div class="card-preview"><i class="fa-solid fa-microchip icon-rose"></i></div>
+        <h3>حلول الذكاء</h3>
+        <p>أدوات ذكية وحلول أتمتة الأعمال</p>
+        <a href="#" class="btn-card">استعراض</a>
+      </div>
+    </section>
+
+    <!-- القسم التحضيري الشامل قبل الفوتر -->
+    <div class="pre-footer-section glowing-border">
+      
+      <!-- 1. الشعار والوصف التعريفي -->
+      <div class="footer-brand-box">
+        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/MP.png" alt="MohdPlus Logo">
+        <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 2. روابط تهمك -->
+      <div class="footer-links-group">
+        <h4>روابط تهمك</h4>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <a href="#" class="footer-link-badge glowing-border">من نحن</a>
+            <a href="#" class="footer-link-badge glowing-border">هدفنا</a>
+            <a href="#" class="footer-link-badge glowing-border">رؤيتنا</a>
+          </div>
+          <div class="footer-col">
+            <a href="#" class="footer-link-badge glowing-border">المدونة</a>
+            <a href="#" class="footer-link-badge glowing-border">سياسة الاستخدام</a>
+            <a href="#" class="footer-link-badge glowing-border">سياسة الشروط والأحكام</a>
+          </div>
+          <div class="footer-col">
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا</a>
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا كـ مبدع</a>
+            <a href="#" class="footer-link-badge glowing-border">سجل معنا كـ تاجر</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 3. التواصل وخدمة العملاء -->
+      <div class="footer-social-group">
+        <h4>تواصل معنا</h4>
+        <div class="social-icons">
+          <a href="#" class="social-icon-btn glowing-border" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="social-icon-btn glowing-border" title="إكس (تويتر)"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" class="social-icon-btn glowing-border" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="social-icon-btn glowing-border" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="social-icon-btn glowing-border" title="تيليجرام"><i class="fa-brands fa-telegram"></i></a>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 4. التراخيص والاعتمادات -->
+      <div class="footer-licenses-group">
+        <h4>التراخيص والاعتمادات</h4>
+        <div class="licenses-grid">
+          <div class="license-card glowing-border">
+            <div class="license-logo-box">
+              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/sbc.png" alt="موثّق" class="license-logo">
+            </div>
+            <span>موثّق</span>
+          </div>
+          <div class="license-card glowing-border">
+            <div class="license-logo-box">
+              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/freelance.png" alt="وثيقة العمل الحر" class="license-logo">
+            </div>
+            <span>وثيقة العمل الحر</span>
+          </div>
+          <div class="license-card glowing-border">
+            <div class="license-logo-box">
+              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/moc.png" alt="السجل التجاري" class="license-logo">
+            </div>
+            <span>السجل التجاري</span>
+          </div>
+          <div class="license-card glowing-border">
+            <div class="license-logo-box">
+              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/maroof.png" alt="معتمد في معروف" class="license-logo">
+            </div>
+            <span>معتمد في معروف</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- 5. طرق دفع آمنة ومتعددة -->
+      <div class="footer-payments-group">
+        <h4>طرق دفع آمنة ومتعددة</h4>
+        <div class="payments-grid">
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.png" alt="mada" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.png" alt="Visa" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.png" alt="Mastercard" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.png" alt="STC Bank" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.png" alt="Apple Pay" class="payment-logo">
+          </div>
+          <div class="payment-card glowing-border">
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.png" alt="Samsung Pay" class="payment-logo">
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- صندوق الفوتر النهائي -->
+    <div class="site-footer-box glowing-border">
+      <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
+      <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
+    </div>
+  </div>
+
+  <!-- الشريط السفلي العائم -->
+  <div class="bottom-nav-wrapper">
+    <nav class="bottom-nav-bar glowing-border">
+      <a href="#" class="bottom-nav-item active">
+        <i class="fa-solid fa-house"></i>
+        <span>الرئيسية</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-solid fa-list-ul"></i>
+        <span>التصنيفات</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="nav-badge">2</span>
+        <span>السلة</span>
+      </a>
+      <a href="#" class="bottom-nav-item">
+        <i class="fa-regular fa-user"></i>
+        <span class="nav-badge orange">1</span>
+        <span>الحساب</span>
+      </a>
+    </nav>
+  </div>
 
 </body>
 </html>
