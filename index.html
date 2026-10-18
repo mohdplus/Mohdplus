@@ -1,1007 +1,1315 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-  <title>محمد بلس | بوابة الحلول الرقمية</title>
-
-  <!-- الاتصال المسبق بالخطوط والأيقونات للتحميل السريع -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محمد بلس | Mohamed Plus - البوابة الرقمية الشاملة</title>
+  
+  <!-- خطوط عربية تقنية حادة وحديثة مع أيقونات FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            obsidian: {
+              950: '#06080D',
+              900: '#0C1018',
+              850: '#111622',
+              800: '#171F30',
+              750: '#1E283E',
+              700: '#2A3752',
+              600: '#3D4F75'
+            },
+            cyberYellow: {
+              DEFAULT: '#FFE600',
+              hover: '#E5CF00',
+              glow: 'rgba(255, 230, 0, 0.45)',
+              dim: '#332E00'
+            },
+            cosmicCyan: {
+              DEFAULT: '#00E5FF',
+              hover: '#00C8DE',
+              glow: 'rgba(0, 229, 255, 0.42)',
+              dim: '#002B33'
+            },
+            cosmicPurple: {
+              DEFAULT: '#8B5CF6',
+              hover: '#7C3AED',
+              glow: 'rgba(139, 92, 246, 0.35)'
+            }
+          },
+          fontFamily: {
+            readex: ['"Readex Pro"', 'sans-serif'],
+            mono: ['"Space Grotesk"', 'monospace']
+          },
+          animation: {
+            'glow-pulse': 'pulseGlow 3.5s ease-in-out infinite',
+            'float-subtle': 'floatSubtle 4s ease-in-out infinite'
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { opacity: '0.4' },
+              '50%': { opacity: '0.85' }
+            },
+            floatSubtle: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-5px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    @property --angle {
-      syntax: '<angle>';
-      initial-value: 0deg;
-      inherits: false;
-    }
-
-    :root {
-      --bg-space: #02050f;
-      --bg-card: #091122;
-      --bg-card-hover: #0d1933;
-      --cyan-neon: #38bdf8;
-      --purple-neon: #c084fc;
-      --border-subtle: rgba(56, 189, 248, 0.18);
-      --text-main: #ffffff;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
-      
-      /* زوايا شبه حادة موحدة للمنصة */
-      --radius-sharp: 4px;
-      --radius-box: 6px;
-    }
-
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
+      font-family: 'Readex Pro', sans-serif;
+    }
+    .code-font {
+      font-family: 'Space Grotesk', monospace;
     }
 
-    html {
-      width: 100%;
-      min-height: 100%;
-      background-color: var(--bg-space);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
+    /* Custom Tech Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #06080D;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1E283E;
+      border-radius: 2px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00E5FF;
     }
 
-    body {
-      background-color: var(--bg-space);
-      color: var(--text-main);
-      font-family: 'Cairo', 'Tajawal', sans-serif;
-      min-height: 100vh;
-      width: 100%;
-      overflow-x: hidden;
-      padding: 16px 14px calc(95px + env(safe-area-inset-bottom, 15px));
+    /* Sharp Corner Cyber Aesthetics */
+    .sharp-box {
+      border-radius: 3px;
+    }
+    .sharp-badge {
+      border-radius: 2px;
+    }
+    
+    /* Cyber Chamfered Card Borders */
+    .cyber-card {
+      background: linear-gradient(145deg, rgba(17, 22, 34, 0.85) 0%, rgba(12, 16, 24, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
       position: relative;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
+      border-radius: 3px;
+      transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-
-    /* خلفية المجرة المحدثة وطبقة الدمج السريعة */
-    .galaxy-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-image: url('https://raw.githubusercontent.com/mohdplus/Mohdplus/main/galaxy.webp');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      opacity: 0.35;
-      mix-blend-mode: screen;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .bg-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: radial-gradient(circle at 50% 15%, rgba(13, 24, 60, 0.4) 0%, rgba(2, 5, 15, 0.94) 75%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    .container {
-      max-width: 1140px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 5;
-    }
-
-    /* حركة دوران الشعاع الضوئي */
-    @keyframes rotateLight {
-      to { --angle: 360deg; }
-    }
-
-    /* الإطار الفضائي المضيء بزوايا شبه حادة */
-    .glowing-border {
-      position: relative;
-      border-radius: var(--radius-box);
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      contain: layout style;
-    }
-
-    .glowing-border::before {
+    .cyber-card::before {
       content: '';
       position: absolute;
-      inset: -1px;
-      border-radius: inherit;
-      padding: 1px;
-      background: conic-gradient(
-        from var(--angle),
-        transparent 0%,
-        rgba(56, 189, 248, 0.05) 50%,
-        var(--cyan-neon) 80%,
-        var(--purple-neon) 95%,
-        transparent 100%
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: rotateLight 6s linear infinite;
-      pointer-events: none;
-      will-change: transform;
-    }
-
-    .section-divider {
-      height: 1px;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.07);
-      margin: 20px 0;
-    }
-
-    /* ================================================= */
-    /* أنيميشن نزول حروف الشعار حرفاً حرفاً (Kinetic Drop) */
-    /* ================================================= */
-
-    @keyframes dropIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-32px);
-      }
-      60% {
-        opacity: 1;
-        transform: translateY(3px);
-      }
-      80% {
-        transform: translateY(-1px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .logo-container {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      user-select: none;
-      height: 44px;
-      padding: 0 4px;
-    }
-
-    .logo-svg {
-      height: 38px;
-      width: auto;
-      overflow: visible;
-      display: block;
-    }
-
-    /* تطبيق حركة النزول على كل حرف */
-    .char-drop {
-      opacity: 0;
-      animation: dropIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-      animation-iteration-count: infinite;
-      /* يعيد الحركة كل 8 ثوانٍ */
-      animation-duration: 8s;
-      transform-origin: center top;
-    }
-
-    /* تأخير زمني مخصص لكل حرف بالتسلسل */
-    .char-m1 { animation-delay: 0.10s; }
-    .char-o  { animation-delay: 0.20s; }
-    .char-h  { animation-delay: 0.30s; }
-    .char-d  { animation-delay: 0.40s; }
-    .char-p  { animation-delay: 0.55s; }
-    .char-l  { animation-delay: 0.65s; }
-    .char-u  { animation-delay: 0.75s; }
-    .char-s  { animation-delay: 0.85s; }
-    .char-plus { animation-delay: 1.00s; }
-
-    /* رأس الصفحة (Header) */
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 18px;
-      margin-bottom: 25px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-      border-radius: var(--radius-box);
-    }
-
-    .header-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 18px;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      border-radius: var(--radius-sharp);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s ease;
-    }
-
-    .header-btn:hover {
-      color: var(--cyan-neon);
-      background: rgba(56, 189, 248, 0.1);
-    }
-
-    /* القسم الترحيبي (Hero) */
-    .hero {
-      text-align: center;
-      margin-bottom: 35px;
-      padding: 0 10px;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(56, 189, 248, 0.08);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      color: var(--cyan-neon);
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: var(--radius-sharp);
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size: clamp(22px, 4.2vw, 34px);
-      font-weight: 800;
-      color: #ffffff;
-      margin-bottom: 12px;
-      text-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
-      line-height: 1.35;
-    }
-
-    .hero p {
-      color: #a5b8d0;
-      font-size: clamp(13px, 1.8vw, 15px);
-      max-width: 620px;
-      margin: 0 auto 22px;
-      line-height: 1.7;
-    }
-
-    .hero-btns {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 40%, #7c3aed 100%);
-      color: #ffffff;
-      padding: 10px 28px;
-      border-radius: var(--radius-sharp);
-      font-size: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid rgba(147, 197, 253, 0.35);
-      box-shadow: 0 4px 18px rgba(59, 130, 246, 0.35);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(59, 130, 246, 0.55);
-    }
-
-    .btn-secondary {
-      background: rgba(10, 18, 38, 0.85);
-      color: #cbd5e1;
-      padding: 10px 28px;
-      border-radius: var(--radius-sharp);
-      font-size: 14px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transition: all 0.2s ease;
-    }
-
-    .btn-secondary:hover {
-      background: rgba(56, 189, 248, 0.08);
-      border-color: rgba(56, 189, 248, 0.35);
-      color: #ffffff;
-    }
-
-    /* شبكة البطاقات بزوايا شبه حادة */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 35px;
-    }
-
-    .card {
-      padding: 16px 14px 18px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border-radius: var(--radius-box);
-      transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.45);
-      background: var(--bg-card-hover);
-    }
-
-    .card-preview {
-      width: 100%;
-      height: 75px;
-      background: rgba(4, 8, 18, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: var(--radius-sharp);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 12px;
-    }
-
-    .card-preview i {
-      font-size: 28px;
-    }
-
-    /* ألوان الأيقونات الفضائية */
-    .icon-cyan { color: #00f2fe; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6)); }
-    .icon-teal { color: #38bdf8; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
-    .icon-indigo { color: #818cf8; filter: drop-shadow(0 0 8px rgba(129, 140, 248, 0.6)); }
-    .icon-purple { color: #c084fc; filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.6)); }
-    .icon-amber { color: #38bdf8; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
-    .icon-blue { color: #60a5fa; filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.6)); }
-    .icon-violet { color: #a78bfa; filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.6)); }
-    .icon-emerald { color: #34d399; filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.6)); }
-    .icon-rose { color: #f472b6; filter: drop-shadow(0 0 8px rgba(244, 114, 182, 0.6)); }
-
-    .card h3 {
-      font-size: 15px;
-      color: #ffffff;
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-
-    .card p {
-      font-size: 12px;
-      color: var(--text-muted);
-      line-height: 1.5;
-      margin-bottom: 14px;
-      flex-grow: 1;
-    }
-
-    .btn-card {
-      padding: 6px 18px;
-      border-radius: var(--radius-sharp);
-      font-size: 12px;
-      font-weight: 600;
-      color: #cbd5e1;
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      width: 100%;
-      max-width: 140px;
-    }
-
-    .card:hover .btn-card {
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(56, 189, 248, 0.95));
-      border-color: var(--cyan-neon);
-      color: #ffffff;
-    }
-
-    /* قسم ما قبل الفوتر */
-    .pre-footer-section {
-      padding: 26px 20px;
-      margin-top: 30px;
-      border-radius: var(--radius-box);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    }
-
-    .footer-brand-box {
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .footer-brand-box p {
-      color: var(--text-muted);
-      font-size: 13px;
-      max-width: 600px;
-      margin: 12px auto 0;
-      line-height: 1.7;
-    }
-
-    .footer-section-title {
-      color: var(--cyan-neon);
-      font-size: 14px;
-      margin-bottom: 14px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    /* روابط تهمك */
-    .footer-links-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .footer-link-badge {
-      display: block;
-      padding: 8px 10px;
-      border-radius: var(--radius-sharp);
-      color: #cbd5e1;
-      text-decoration: none;
-      font-size: 12px;
-      line-height: 1.4;
-      transition: all 0.2s ease;
-      text-align: center;
-    }
-    .footer-link-badge:hover {
-      color: var(--cyan-neon);
-      border-color: var(--cyan-neon);
-      transform: translateY(-2px);
-    }
-
-    /* التواصل الاجتماعي */
-    .social-icons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .social-icon-btn {
-      width: 38px;
-      height: 38px;
-      border-radius: var(--radius-sharp);
-      color: #cbd5e1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .social-icon-btn:hover {
-      color: var(--cyan-neon);
-      border-color: var(--cyan-neon);
-      transform: translateY(-2px);
-    }
-
-    /* التراخيص والاعتمادات */
-    .licenses-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-    }
-    .license-card {
-      padding: 10px 6px;
-      font-size: 11.5px;
-      color: #cbd5e1;
-      border-radius: var(--radius-sharp);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      text-align: center;
-      min-height: 68px;
-    }
-    .license-logo-box {
-      width: 100%;
-      height: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .license-logo {
-      height: 24px;
-      width: auto;
-      max-width: 85%;
-      object-fit: contain;
-    }
-
-    /* بوابات الدفع المعتمدة */
-    .payments-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 8px;
-    }
-    .payment-card {
-      padding: 6px 4px;
-      height: 38px;
-      border-radius: var(--radius-sharp);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .payment-logo {
-      height: 18px;
-      width: auto;
-      max-width: 85%;
-      object-fit: contain;
-    }
-
-    /* الفوتر النهائي */
-    .site-footer-box {
-      padding: 18px 12px;
-      margin-top: 20px;
-      border-radius: var(--radius-box);
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
-      color: var(--text-muted);
-      font-size: 12.5px;
-      line-height: 1.8;
-    }
-    .site-footer-box .heart {
-      color: #ef4444;
-      display: inline-block;
-      margin: 0 2px;
-    }
-
-    /* شريط الملاحة السفلي للجوال (Floating Dock) */
-    .bottom-nav-wrapper {
-      position: fixed;
-      bottom: calc(10px + env(safe-area-inset-bottom, 0px));
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 24px);
-      max-width: 440px;
-      z-index: 999;
-    }
-
-    .bottom-nav-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 6px 10px;
-      background: rgba(9, 17, 34, 0.94);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: var(--radius-box);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 16px rgba(56, 189, 248, 0.2);
-    }
-
-    .bottom-nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: var(--text-muted);
-      padding: 4px 10px;
-      position: relative;
-      transition: color 0.2s ease;
-    }
-
-    .bottom-nav-item i {
-      font-size: 18px;
-      margin-bottom: 2px;
-    }
-
-    .bottom-nav-item span {
-      font-size: 10.5px;
-    }
-
-    .bottom-nav-item.active, .bottom-nav-item:hover {
-      color: var(--cyan-neon);
-    }
-
-    .nav-badge {
-      position: absolute;
-      top: 0;
+      top: -1px;
+      left: 12px;
       right: 12px;
-      background: var(--cyan-neon);
-      color: #02050f;
-      font-size: 9px;
-      font-weight: 800;
-      width: 15px;
-      height: 15px;
-      border-radius: var(--radius-sharp);
-      display: flex;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      opacity: 0.7;
+    }
+    .cyber-card:hover {
+      border-color: rgba(0, 229, 255, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(0, 229, 255, 0.15);
+    }
+    .cyber-card.card-yellow:hover {
+      border-color: rgba(255, 230, 0, 0.45);
+      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(255, 230, 0, 0.2);
+    }
+
+    /* Ambient Glows */
+    .glow-yellow-sm {
+      box-shadow: 0 0 15px rgba(255, 230, 0, 0.35);
+    }
+    .glow-cyan-sm {
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.35);
+    }
+    .glow-purple-sm {
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.35);
+    }
+
+    .glass-nav {
+      background: rgba(8, 12, 18, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cyber-grid {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+    }
+
+    /* Sharp Floating Dock Container */
+    .dock-container {
+      background: rgba(12, 16, 24, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.85), 0 0 22px rgba(0, 229, 255, 0.18);
+    }
+    .dock-btn {
+      position: relative;
+      transition: all 0.22s ease;
+      border-radius: 2px;
+    }
+    .dock-btn.active {
+      color: #00E5FF;
+    }
+    .dock-btn.active .dock-icon-box {
+      background: rgba(0, 229, 255, 0.14);
+      border-color: rgba(0, 229, 255, 0.5);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
+      color: #00E5FF;
+    }
+    .dock-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 30%;
+      right: 30%;
+      height: 2px;
+      background: #00E5FF;
+      box-shadow: 0 0 8px #00E5FF;
+    }
+
+    /* Logo Image Style */
+    .site-logo {
+      height: 44px;
+      width: auto;
+      max-width: 180px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.35));
+      transition: all 0.3s ease;
+    }
+    .site-logo:hover {
+      filter: drop-shadow(0 0 18px rgba(255, 230, 0, 0.55));
+    }
+    .footer-logo {
+      height: 40px;
+      width: auto;
+      max-width: 165px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.25));
+    }
+
+    /* Payment Badge Styles */
+    .payment-badge {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
+      background: rgba(17, 22, 34, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      padding: 6px 12px;
+      height: 42px;
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
-
-    .nav-badge.orange { background: #f59e0b; color: #fff; }
-
-    /* ========================================================= */
-    /* قواعد التوافق والاستجابة الذكية لجميع الأجهزة (RESPONSIVE) */
-    /* ========================================================= */
-
-    @media (max-width: 1024px) {
-      .cards-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-      }
-      .payments-grid {
-        grid-template-columns: repeat(6, 1fr);
-      }
+    .payment-badge:hover {
+      border-color: rgba(0, 229, 255, 0.45);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px -3px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 229, 255, 0.25);
     }
-
-    @media (max-width: 768px) {
-      body {
-        padding: 12px 10px calc(85px + env(safe-area-inset-bottom, 15px));
-      }
-
-      header {
-        padding: 10px 14px;
-        margin-bottom: 20px;
-      }
-
-      .logo-svg {
-        height: 32px;
-      }
-
-      /* تحويل شبكة البطاقات إلى عمودين مريحين جداً لمنع الازدحام */
-      .cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin-bottom: 25px;
-      }
-
-      .card {
-        padding: 12px 8px 14px;
-      }
-
-      .card-preview {
-        height: 55px;
-        margin-bottom: 8px;
-      }
-
-      .card-preview i {
-        font-size: 22px;
-      }
-
-      .card h3 {
-        font-size: 13px;
-        margin-bottom: 4px;
-      }
-
-      .card p {
-        font-size: 11px;
-        line-height: 1.4;
-        margin-bottom: 10px;
-      }
-
-      .btn-card {
-        font-size: 11px;
-        padding: 5px 12px;
-      }
-
-      .pre-footer-section {
-        padding: 18px 12px;
-      }
-
-      .footer-links-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-      }
-
-      .footer-link-badge {
-        font-size: 10.5px;
-        padding: 6px 4px;
-      }
-
-      .licenses-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-      }
-
-      .license-card {
-        min-height: 58px;
-        font-size: 10.5px;
-      }
-
-      .payments-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-      }
-
-      .payment-card {
-        height: 35px;
-      }
+    .payment-badge img {
+      max-height: 24px;
+      width: auto;
+      max-width: 72px;
+      object-fit: contain;
+      filter: brightness(0.95);
+      transition: all 0.25s ease;
     }
-
-    @media (max-width: 360px) {
-      .hero h1 { font-size: 20px; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-      .card { padding: 10px 5px; }
-      .card h3 { font-size: 12px; }
-      .card p { font-size: 10px; }
-      .footer-links-grid { grid-template-columns: 1fr; }
+    .payment-badge:hover img {
+      filter: brightness(1.15) drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+    }
+    .payment-badge-compact {
+      height: 36px;
+      padding: 4px 10px;
+    }
+    .payment-badge-compact img {
+      max-height: 20px;
+      max-width: 58px;
     }
   </style>
 </head>
-<body>
+<body class="bg-obsidian-950 text-slate-100 min-h-screen relative overflow-x-hidden antialiased selection:bg-cosmicCyan selection:text-obsidian-950 pb-28">
 
-  <!-- صورة الخلفية وطبقة الدمج السريعة -->
-  <div class="galaxy-bg"></div>
-  <div class="bg-overlay"></div>
+  <!-- خلفية الإشعاع الفضائي التقني -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-36 right-[-5%] w-[620px] h-[620px] rounded-full bg-cosmicCyan/10 blur-[130px] animate-glow-pulse"></div>
+    <div class="absolute top-[40%] -left-36 w-[560px] h-[560px] rounded-full bg-cosmicPurple/10 blur-[140px]"></div>
+    <div class="absolute bottom-16 right-1/4 w-[520px] h-[520px] rounded-full bg-cyberYellow/5 blur-[150px]"></div>
+  </div>
 
-  <div class="container">
-    <!-- رأس الصفحة مع حركة الشعار التايبوغرافي حرفاً حرفاً -->
-    <header class="glowing-border">
-      <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
-      
-      <!-- شعار فيكتور حركي مدمج ينزل حرفاً حرفاً بتتابع انسيابي -->
-      <a href="#" class="logo-container" aria-label="شعار محمد بلس">
-        <svg class="logo-svg" viewBox="0 0 320 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <style>
-            .txt-bold {
-              font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
-              font-weight: 900;
-              font-size: 36px;
-              letter-spacing: 2px;
-            }
-            .white-glow {
-              fill: #ffffff;
-              filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
-            }
-            .cyan-glow {
-              fill: #38bdf8;
-              filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.75));
-            }
-          </style>
+  <div class="relative z-10 flex flex-col min-h-screen cyber-grid">
 
-          <!-- كلمة MOHD: بيضاء ناصعة تسقط حرفاً حرفاً -->
-          <text x="6"   y="40" class="txt-bold white-glow char-drop char-m1">M</text>
-          <text x="44"  y="40" class="txt-bold white-glow char-drop char-o">O</text>
-          <text x="80"  y="40" class="txt-bold white-glow char-drop char-h">H</text>
-          <text x="114" y="40" class="txt-bold white-glow char-drop char-d">D</text>
+    <!-- شريط الإعلان العلوي السريع شبه الحاد -->
+    <div class="bg-obsidian-900/90 border-b border-white/5 py-2 px-4 text-xs">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="inline-flex items-center px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 tracking-wider">
+            SYSTEM // READY
+          </span>
+          <span class="text-slate-300 hidden sm:inline text-[11px]">
+            تسليم آلي للبطاقات والخدمات السحابية في أقل من 15 ثانية | دعم على مدار الساعة
+          </span>
+        </div>
+        <div class="flex items-center gap-4 text-slate-400 text-[11px] code-font">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-cyberYellow text-xs"></i> AUTO-DISPATCH</span>
+          <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cosmicCyan text-xs"></i> 256-BIT SECURE</span>
+        </div>
+      </div>
+    </div>
 
-          <!-- كلمة PLUS⁺: سماوية نيون تسقط تباعاً -->
-          <text x="160" y="40" class="txt-bold cyan-glow char-drop char-p">P</text>
-          <text x="190" y="40" class="txt-bold cyan-glow char-drop char-l">L</text>
-          <text x="216" y="40" class="txt-bold cyan-glow char-drop char-u">U</text>
-          <text x="249" y="40" class="txt-bold cyan-glow char-drop char-s">S</text>
-          <text x="282" y="38" class="txt-bold cyan-glow char-drop char-plus" font-size="34px">+</text>
-        </svg>
-      </a>
+    <!-- شريط التنقل العلوي Navbar -->
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        
+        <!-- الشعار الجديد logomohdplus.svg مع الفولباك شبه الحاد -->
+        <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
+          <div class="relative flex items-center">
+            <img 
+              src="logomohdplus.svg" 
+              alt="محمد بلس | Mohamed Plus" 
+              class="site-logo" 
+              onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('navbar-logo-fallback').classList.remove('hidden');"
+            >
+            <!-- Fallback الشعار البديل شبه الحاد في حال عدم توفر الصورة -->
+            <div id="navbar-logo-fallback" class="hidden flex items-center gap-2.5">
+              <div class="w-10 h-10 sharp-box bg-gradient-to-br from-cosmicCyan to-cosmicPurple p-[1.5px]">
+                <div class="w-full h-full bg-obsidian-900 sharp-box flex items-center justify-center font-mono font-bold text-base text-white">
+                  M<span class="text-cyberYellow">+</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-1.5 font-bold text-lg">
+                <span class="text-white">محمد</span>
+                <span class="px-1.5 py-0.5 sharp-badge bg-cyberYellow text-obsidian-950 text-xs font-black">بلس</span>
+              </div>
+            </div>
+          </div>
+        </a>
 
-      <button class="header-btn" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <!-- روابط القائمة الرئيسية للشاشات الكبيرة -->
+        <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-300">
+          <a href="#hero" class="hover:text-white transition-colors">الرئيسية</a>
+          <a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-gamepad text-cyberYellow"></i> المتجر والبطاقات
+          </a>
+          <a href="#showcase" onclick="filterTab('ai')" class="hover:text-cosmicCyan transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-brain text-cosmicCyan"></i> الذكاء الاصطناعي
+          </a>
+          <a href="#showcase" onclick="filterTab('cloud')" class="hover:text-cosmicPurple transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-server text-cosmicPurple"></i> السحابة والبرمجيات
+          </a>
+          <a href="#showcase" onclick="filterTab('b2b')" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-briefcase text-emerald-400"></i> حلول الشركات B2B
+          </a>
+          <a href="#calculator" class="hover:text-cosmicCyan transition-colors flex items-center gap-1.5">
+            <i class="fa-solid fa-sliders text-slate-400"></i> حاسبة المواصفات
+          </a>
+        </nav>
+
+        <!-- أزرار الإجراء السريع ذات الحواف شبه الحادة -->
+        <div class="flex items-center gap-3">
+          <button onclick="toggleCartModal()" class="relative p-2.5 sharp-box bg-obsidian-850 border border-white/10 hover:border-cyberYellow/60 text-slate-300 hover:text-cyberYellow transition-all" title="سلة الطلبات">
+            <i class="fa-solid fa-basket-shopping text-sm"></i>
+            <span class="cartCountBadge absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[10px] flex items-center justify-center">0</span>
+          </button>
+
+          <button onclick="openAccountModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 text-obsidian-950 font-bold text-xs hover:brightness-110 transition-all glow-cyan-sm">
+            <i class="fa-solid fa-terminal text-xs"></i>
+            <span>بوابة الحساب</span>
+          </button>
+
+          <!-- زر قائمة الجوال العلوية -->
+          <button id="mobileMenuBtn" class="lg:hidden p-2.5 sharp-box bg-obsidian-850 border border-white/10 text-slate-300">
+            <i class="fa-solid fa-bars text-base"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- قائمة الموبايل المنسدلة شبه الحادة -->
+      <div id="mobileMenu" class="hidden lg:hidden bg-obsidian-900/98 border-b border-white/10 px-6 py-6 transition-all space-y-3 text-sm font-medium">
+        <a href="#hero" onclick="toggleMobileMenu()" class="block text-white hover:text-cosmicCyan">الرئيسية</a>
+        <a href="#showcase" onclick="filterTab('store'); toggleMobileMenu()" class="block text-slate-300 hover:text-cyberYellow">المتجر والبطاقات الرقمية</a>
+        <a href="#showcase" onclick="filterTab('ai'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicCyan">أنظمة وواجهات الذكاء الاصطناعي</a>
+        <a href="#showcase" onclick="filterTab('cloud'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicPurple">السيرفرات والخدمات السحابية</a>
+        <a href="#showcase" onclick="filterTab('b2b'); toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400">حلول وخدمات الأعمال B2B</a>
+        <a href="#calculator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicCyan">حاسبة المواصفات والأسعار</a>
+      </div>
     </header>
 
-    <!-- الواجهة الترحيبية -->
-    <section class="hero">
-      <div class="hero-badge"><i class="fa-solid fa-shield-halved"></i> منظومة رقمية معتمدة</div>
-      <h1>منصة محمد بلس الرقمية</h1>
-      <p>منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين</p>
-      <div class="hero-btns">
-        <a href="#" class="btn-primary">استكشف الآن</a>
-        <a href="#" class="btn-secondary">ابدأ التجربة</a>
+    <!-- القسم الرئيسي Hero Section -->
+    <section id="hero" class="relative pt-16 pb-16 md:pt-24 md:pb-28 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        
+        <!-- شارة فضائية سيبرانية حادة -->
+        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 sharp-badge bg-obsidian-850/90 border border-cosmicCyan/40 text-[11px] text-cosmicCyan mb-8">
+          <span class="w-1.5 h-1.5 sharp-badge bg-cosmicCyan shadow-[0_0_8px_#00E5FF]"></span>
+          <span class="tracking-wide">البيئة الرقمية الهجينة: تجارة واشتراكات ترفيهية + بنية ذكاء اصطناعي وحلول B2B</span>
+        </div>
+
+        <!-- العنوان الرئيسي الجريء -->
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-[1.25] max-w-5xl mx-auto mb-6">
+          منظومة رقمية فائقة بين <br class="hidden sm:inline">
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-cosmicCyan via-sky-300 to-cosmicPurple">ذكاء السحابة المتطور</span>
+          <span class="text-white"> و </span>
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyberYellow via-amber-300 to-yellow-500">حيوية المتجر الفوري</span>
+        </h1>
+
+        <!-- الوصف -->
+        <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
+          تجمع منصة <strong class="text-white font-bold">محمد بلس</strong> بين سرعة شراء بطاقات الألعاب والترفيه الرقمية المؤتمتة، وأقوى بيئات الذكاء الاصطناعي، السيرفرات السحابية الخاصة، وحلول الأتمتة المخصصة للمؤسسات مع خيارات دفع سعودية وعالمية فورية.
+        </p>
+
+        <!-- أزرار الإجراء السريع شبه الحادة -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
+          <a href="#showcase" onclick="filterTab('store'); highlightDock('categories')" class="w-full sm:w-auto px-7 py-3.5 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs tracking-wider transition-all transform hover:-translate-y-0.5 glow-yellow-sm flex items-center justify-center gap-2">
+            <i class="fa-solid fa-gamepad text-sm"></i>
+            <span>تصفح المتجر والبطاقات</span>
+          </a>
+
+          <a href="#showcase" onclick="filterTab('ai'); highlightDock('categories')" class="w-full sm:w-auto px-7 py-3.5 sharp-box bg-obsidian-850 hover:bg-obsidian-800 text-cosmicCyan border border-cosmicCyan/40 font-bold text-xs transition-all transform hover:-translate-y-0.5 glow-cyan-sm flex items-center justify-center gap-2">
+            <i class="fa-solid fa-microchip text-sm"></i>
+            <span>بنية الذكاء الاصطناعي</span>
+          </a>
+        </div>
+
+        <!-- مؤشرات وبيانات رقمية شبه حادة -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mt-16 pt-8 border-t border-white/10 text-right">
+          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
+            <div class="text-2xl font-black text-cyberYellow code-font">+120,000</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">طلب وبطاقة منجزة فورياً</div>
+          </div>
+          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
+            <div class="text-2xl font-black text-cosmicCyan code-font">99.98%</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">جاهزية واستقرار السيرفرات</div>
+          </div>
+          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
+            <div class="text-2xl font-black text-cosmicPurple code-font">&lt; 15s</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">متوسط تسليم الأكواد الرقمية</div>
+          </div>
+          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
+            <div class="text-2xl font-black text-emerald-400 code-font">+450</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">مؤسسة معتمدة لخدمات B2B</div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- شبكة البطاقات المتجاوبة بزوايا شبه حادة -->
-    <section class="cards-grid">
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
-        <h3>متجر بلس</h3>
-        <p>منتجات وخدمات رقمية حصرية</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+    <!-- شريط بوابات الدفع المعتمدة (Trust & Payments Ribbon) مع الأيقونات الجديدة -->
+    <section class="py-7 bg-obsidian-900/80 border-y border-white/10 relative z-10 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-5">
+          
+          <div class="flex items-center gap-3 text-right">
+            <div class="w-10 h-10 sharp-box bg-obsidian-850 border border-white/10 flex items-center justify-center text-cyberYellow text-lg">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-white block">بوابات دفع سعودية وعالمية معتمدة ومشفرة</span>
+              <span class="text-[11px] text-slate-400">تنفيذ فوري للطلبات عبر أحدث قنوات الدفع الآمنة بنسبة حماية 100%</span>
+            </div>
+          </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-calculator icon-teal"></i></div>
-        <h3>مختبر الأدوات</h3>
-        <p>حاسبات المالية، التمويل والإنتاجية</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+          <!-- بطاقات شعارات الدفع الست الجديدة شبه الحادة مع الـ Fallbacks -->
+          <div class="flex flex-wrap items-center justify-center gap-2.5">
+            
+            <!-- أبل باي -->
+            <div class="payment-badge" title="Apple Pay">
+              <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-white font-bold text-xs flex items-center gap-1"><i class="fa-brands fa-apple text-sm"></i> Pay</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-terminal icon-indigo"></i></div>
-        <h3>مكتبة الأوامر</h3>
-        <p>أوامر برومبت منسقة للتصميم والذكاء</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+            <!-- مدى -->
+            <div class="payment-badge" title="مدى Mada">
+              <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-emerald-400 font-bold text-xs code-font">mada</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-book-bookmark icon-purple"></i></div>
-        <h3>منتجات مميزة</h3>
-        <p>أحدث الكتب والموارد الرقمية</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+            <!-- فيزا -->
+            <div class="payment-badge" title="Visa">
+              <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-sky-400 font-black text-xs code-font italic">VISA</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-palette icon-amber"></i></div>
-        <h3>معرض الفنون</h3>
-        <p>أحدث الهويات البصرية الإبداعية</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+            <!-- ماستركارد -->
+            <div class="payment-badge" title="Mastercard">
+              <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-orange-400 font-bold text-xs flex items-center gap-1"><i class="fa-brands fa-cc-mastercard"></i> Master</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-newspaper icon-blue"></i></div>
-        <h3>المدونة الرقمية</h3>
-        <p>مقالات ورؤى تقنية في عالم التصميم</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+            <!-- سامسونج باي -->
+            <div class="payment-badge" title="Samsung Pay">
+              <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-blue-400 font-bold text-xs code-font">SAMSUNG Pay</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-users-viewfinder icon-violet"></i></div>
-        <h3>سوق المبدعين</h3>
-        <p>منصة لعرض وبيع إبداعاتك ومنتجاتك</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+            <!-- اس تي سي بنك -->
+            <div class="payment-badge" title="STC Bank">
+              <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-purple-400 font-black text-xs code-font">stc bank</span>
+            </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-chart-line icon-emerald"></i></div>
-        <h3>ابتكارات المستقبل</h3>
-        <p>مشاريع نوعية وشراكات قادمة</p>
-        <a href="#" class="btn-card">استعراض</a>
-      </div>
+          </div>
 
-      <div class="card glowing-border">
-        <div class="card-preview"><i class="fa-solid fa-microchip icon-rose"></i></div>
-        <h3>حلول الذكاء</h3>
-        <p>أدوات ذكية وحلول أتمتة الأعمال</p>
-        <a href="#" class="btn-card">استعراض</a>
+        </div>
       </div>
     </section>
 
-    <!-- القسم التحضيري الشامل قبل الفوتر -->
-    <div class="pre-footer-section glowing-border">
+    <!-- قسم المعروضات التفاعلي مع الفلترة شبه الحادة -->
+    <section id="showcase" class="py-16 relative z-10 border-t border-white/5 bg-obsidian-900/50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-2xl sm:text-3xl font-black text-white">الكتالوج الرقمي ومنظومة الخدمات</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-2">اختر التصنيف المفضل واستعرض الباقات الفورية أو البنى التحتية المتخصصة</p>
+          
+          <!-- أزرار التبديل الحادة شبه المربعة -->
+          <div class="flex flex-wrap items-center justify-center gap-1.5 mt-6 p-1.5 sharp-box bg-obsidian-850 border border-white/10 max-w-xl mx-auto">
+            <button onclick="filterTab('all')" class="tab-btn active px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-white bg-obsidian-750 border border-white/15" data-tab="all">الكل</button>
+            <button onclick="filterTab('store')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cyberYellow" data-tab="store">
+              <i class="fa-solid fa-gamepad ml-1 text-cyberYellow"></i> المتجر والبطاقات
+            </button>
+            <button onclick="filterTab('ai')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cosmicCyan" data-tab="ai">
+              <i class="fa-solid fa-brain ml-1 text-cosmicCyan"></i> الذكاء الاصطناعي
+            </button>
+            <button onclick="filterTab('cloud')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cosmicPurple" data-tab="cloud">
+              <i class="fa-solid fa-cloud ml-1 text-cosmicPurple"></i> سحابة وبرمجيات
+            </button>
+            <button onclick="filterTab('b2b')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-emerald-400" data-tab="b2b">
+              <i class="fa-solid fa-briefcase ml-1 text-emerald-400"></i> حلول B2B
+            </button>
+          </div>
+        </div>
+
+        <!-- شبكة البطاقات شبه الحادة Cyber Grid -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <!-- بطاقة 1: بلايستيشن (Store/Gaming) -->
+          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 flex items-center gap-1">
+                  <i class="fa-solid fa-bolt"></i> تسليم مؤتمت فوري
+                </span>
+                <span class="text-[11px] text-slate-400 code-font">ID: PS-50USD</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cyberYellow text-2xl">
+                  <i class="fa-brands fa-playstation"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">بطاقة بلايستيشن 50$ ستور</h3>
+                  <p class="text-[11px] text-slate-400">كود أصلي مباشر سعودي أو أمريكي معتمد</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>النوع:</span> <strong class="text-white">رمز تفعيل رقمي فوري</strong></div>
+                <div class="flex items-center justify-between"><span>الضمان:</span> <strong class="text-emerald-400">استرداد رسمي 100%</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">السعر النهائي</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-cyberYellow code-font">189.00</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                  <span class="text-[10px] text-slate-500 line-through code-font">210.00</span>
+                </div>
+              </div>
+              <button onclick="addToCart('بطاقة بلايستيشن 50$', 189)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 2: اشتراك الذكاء الاصطناعي (AI) -->
+          <div class="card-item ai cyber-card p-5 flex flex-col justify-between border-t-2 border-t-cosmicCyan">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-cosmicCyan/20 text-cosmicCyan border border-cosmicCyan/40 flex items-center gap-1">
+                  <i class="fa-solid fa-sparkles"></i> LLM & API HUB
+                </span>
+                <span class="text-[11px] text-cosmicCyan code-font">PLUS-AI-PRO</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cosmicCyan text-2xl">
+                  <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">باقة الذكاء الاصطناعي التوليدي</h3>
+                  <p class="text-[11px] text-slate-400">ربط فائق لنماذج التوليد والترميز والرؤية</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>الاستجابة:</span> <strong class="text-cosmicCyan code-font">&lt; 180ms Latency</strong></div>
+                <div class="flex items-center justify-between"><span>الرموز المضمنة:</span> <strong class="text-white code-font">10,000,000 Tokens</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">شهرياً</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-cosmicCyan code-font">299.00</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                </div>
+              </div>
+              <button onclick="addToCart('باقة الذكاء الاصطناعي Pro', 299)" class="px-3.5 py-2 sharp-box bg-cosmicCyan hover:bg-cosmicCyan-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-terminal"></i> تفعيل المفتاح
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 3: اشتراك Game Pass Ultimate (Store/Gaming) -->
+          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-amber-400/20 text-cyberYellow border border-cyberYellow/40 flex items-center gap-1">
+                  <i class="fa-solid fa-fire"></i> باقة شائعة
+                </span>
+                <span class="text-[11px] text-slate-400 code-font">XBOX-ULT-3M</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-emerald-400 text-2xl">
+                  <i class="fa-brands fa-xbox"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">Xbox Game Pass Ultimate</h3>
+                  <p class="text-[11px] text-slate-400">اشتراك لمدة 3 أشهر للكونسول والكمبيوتر</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>المنطقة:</span> <strong class="text-white">عالمي (Global Direct)</strong></div>
+                <div class="flex items-center justify-between"><span>المكتبة:</span> <strong class="text-white">+400 لعبة كاملة</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">السعر الحالي</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-cyberYellow code-font">135.00</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                  <span class="text-[10px] text-slate-500 line-through code-font">160.00</span>
+                </div>
+              </div>
+              <button onclick="addToCart('Xbox Game Pass 3 Months', 135)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 4: سيرفرات سحابية مدارة (Cloud) -->
+          <div class="card-item cloud cyber-card p-5 flex flex-col justify-between border-t-2 border-t-cosmicPurple">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-cosmicPurple/20 text-purple-300 border border-cosmicPurple/40 flex items-center gap-1">
+                  <i class="fa-solid fa-shield-virus"></i> حماية DDoS متطورة
+                </span>
+                <span class="text-[11px] text-slate-400 code-font">VPS-NVME-8</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cosmicPurple text-2xl">
+                  <i class="fa-solid fa-server"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">سيرفر سحابي خاص NVMe Ultra</h3>
+                  <p class="text-[11px] text-slate-400">بنية سريعة للاستضافة والألعاب والأنظمة</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>المواصفات:</span> <strong class="text-white code-font">8 vCPU | 16GB RAM | 250GB NVMe</strong></div>
+                <div class="flex items-center justify-between"><span>مركز البيانات:</span> <strong class="text-emerald-400">الرياض (KSA Edge)</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">شهرياً</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-purple-300 code-font">420.00</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                </div>
+              </div>
+              <button onclick="addToCart('سيرفر سحابي NVMe Ultra', 420)" class="px-3.5 py-2 sharp-box bg-cosmicPurple hover:bg-cosmicPurple-hover text-white text-xs font-bold transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-rocket"></i> حجز السيرفر
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 5: حلول الشركات وحزم B2B (B2B) -->
+          <div class="card-item b2b cyber-card p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 flex items-center gap-1">
+                  <i class="fa-solid fa-building-circle-check"></i> عقد خدمة SLA
+                </span>
+                <span class="text-[11px] text-slate-400 code-font">ENTERPRISE-B2B</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-emerald-400 text-2xl">
+                  <i class="fa-solid fa-network-wired"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">التحول الرقمي وأتمتة التجارة</h3>
+                  <p class="text-[11px] text-slate-400">ربط بوابات الدفع، الأكواد، ومخازن الـ APIs</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>الدعم:</span> <strong class="text-emerald-400">مدير حساب تقني مخصص 24/7</strong></div>
+                <div class="flex items-center justify-between"><span>الفوترة:</span> <strong class="text-white">فواتير ضريبية نظامية معتمدة</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">البداية من</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-emerald-400 code-font">2,500</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                </div>
+              </div>
+              <button onclick="openConsultationModal()" class="px-3.5 py-2 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-headset"></i> طلب استشارة
+              </button>
+            </div>
+          </div>
+
+          <!-- بطاقة 6: بطاقة Steam 100$ (Store/Gaming) -->
+          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 flex items-center gap-1">
+                  <i class="fa-solid fa-tag"></i> تسليم تلقائي
+                </span>
+                <span class="text-[11px] text-slate-400 code-font">STEAM-100USD</span>
+              </div>
+              <div class="flex items-center gap-3.5 mb-3">
+                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-slate-200 text-2xl">
+                  <i class="fa-brands fa-steam"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-white">بطاقة محفظة Steam 100$</h3>
+                  <p class="text-[11px] text-slate-400">شحن فوري مباشر لمكتبتك على الـ PC</p>
+                </div>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
+                <div class="flex items-center justify-between"><span>المنطقة:</span> <strong class="text-white">عالمي (Global Currency)</strong></div>
+                <div class="flex items-center justify-between"><span>الإرسال:</span> <strong class="text-cyberYellow">فوري بالرسائل والإيميل</strong></div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">السعر الحالي</span>
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-lg font-black text-cyberYellow code-font">375.00</span>
+                  <span class="text-[10px] text-slate-400">ريال</span>
+                  <span class="text-[10px] text-slate-500 line-through code-font">405.00</span>
+                </div>
+              </div>
+              <button onclick="addToCart('بطاقة Steam 100$', 375)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
+                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- حاسبة الأسعار والمواصفات التفاعلية شبه الحادة -->
+    <section id="calculator" class="py-16 relative z-10 border-t border-white/5 bg-obsidian-950">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center mb-10">
+          <span class="text-[10px] font-bold text-cosmicCyan px-3 py-1 sharp-badge bg-cosmicCyan/10 border border-cosmicCyan/30 code-font">
+            SPEC_CONFIGURATOR // V2
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black text-white mt-3">حاسبة المواصفات والموارد السحابية</h2>
+          <p class="text-slate-400 text-xs mt-1.5">خصص أنوية المعالجة، الذاكرة العشوائية، والمحركات واحسب التكلفة المباشرة</p>
+        </div>
+
+        <div class="sharp-box bg-obsidian-900 border border-white/10 p-6 sm:p-8 relative overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            
+            <div class="space-y-5">
+              <!-- سلايدر الأنوية المعالجة -->
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-300 font-medium">أنوية المعالجة (vCPU):</span>
+                  <span id="cpuVal" class="text-cosmicCyan code-font font-bold">4 Cores</span>
+                </div>
+                <input type="range" id="cpuRange" min="2" max="32" step="2" value="4" class="w-full h-1.5 bg-obsidian-750 sharp-box appearance-none cursor-pointer accent-cosmicCyan" oninput="calculateEstimate()">
+              </div>
+
+              <!-- سلايدر الذاكرة -->
+              <div>
+                <div class="flex justify-between text-xs mb-2">
+                  <span class="text-slate-300 font-medium">الذاكرة العشوائية (RAM):</span>
+                  <span id="ramVal" class="text-cosmicPurple code-font font-bold">8 GB</span>
+                </div>
+                <input type="range" id="ramRange" min="4" max="64" step="4" value="8" class="w-full h-1.5 bg-obsidian-750 sharp-box appearance-none cursor-pointer accent-cosmicPurple" oninput="calculateEstimate()">
+              </div>
+
+              <!-- خيارات إضافية ذات مربعات شبه حادة -->
+              <div class="space-y-2.5 pt-2 border-t border-white/5">
+                <label class="flex items-center gap-2.5 cursor-pointer text-xs text-slate-300">
+                  <input type="checkbox" id="aiTokensOpt" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cosmicCyan focus:ring-0 w-3.5 h-3.5" onchange="calculateEstimate()">
+                  <span>محرك ربط واستدعاء الذكاء الاصطناعي (API Tokens)</span>
+                </label>
+                <label class="flex items-center gap-2.5 cursor-pointer text-xs text-slate-300">
+                  <input type="checkbox" id="backupOpt" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cyberYellow focus:ring-0 w-3.5 h-3.5" onchange="calculateEstimate()">
+                  <span>نسخ احتياطي يومي مؤتمت ومشفر</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- لوحة الملخص شبه الحادة -->
+            <div class="bg-obsidian-850 p-6 sharp-box border border-white/10 flex flex-col justify-between text-center md:text-right">
+              <div>
+                <span class="text-[11px] text-slate-400 font-medium code-font">ESTIMATED_MONTHLY_COST</span>
+                <div class="mt-2 flex items-baseline justify-center md:justify-start gap-2">
+                  <span id="totalEstimate" class="text-4xl font-black text-cyberYellow code-font">245</span>
+                  <span class="text-xs text-slate-300 font-bold">ريال / شهرياً</span>
+                </div>
+                <p class="text-[11px] text-slate-400 mt-2.5 leading-relaxed">
+                  تشمل الخطة حماية متقدمة من هجمات الحرمان من الخدمة (Anti-DDoS)، ولوحة تحكم حية بنسبة استقرار 99.9%.
+                </p>
+              </div>
+
+              <div class="mt-5 pt-5 border-t border-white/10">
+                <button onclick="addToCart('خطة سحابية مخصصة', parseInt(document.getElementById('totalEstimate').innerText))" class="w-full py-3 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs transition-all glow-yellow-sm">
+                  اعتماد هذه المواصفات وإضافتها للسلة
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- الفوتر الأنيق ذو العناصر شبه الحادة وبوابات الدفع الرسمية -->
+    <footer class="bg-obsidian-950 border-t border-white/10 pt-14 pb-10 text-slate-400 text-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+          
+          <div class="space-y-3">
+            <div class="flex items-center gap-2">
+              <img 
+                src="logomohdplus.svg" 
+                alt="محمد بلس | Mohamed Plus" 
+                class="footer-logo"
+                onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('footer-logo-fallback').classList.remove('hidden');"
+              >
+              <div id="footer-logo-fallback" class="hidden flex items-center gap-2">
+                <span class="text-xl font-black text-white">محمد</span>
+                <span class="px-1.5 py-0.5 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[10px]">بلس</span>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-400 leading-relaxed">
+              المنصة السعودية الشاملة التي تدمج التجارة الرقمية السريعة مع تقنيات الذكاء الاصطناعي والحلول المؤسسية.
+            </p>
+            <div class="flex items-center gap-2 text-slate-300 pt-1">
+              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cosmicCyan hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cyberYellow hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-discord"></i></a>
+              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-emerald-400 hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cosmicPurple hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-github"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// PRODUCTS_AND_GAMES</h4>
+            <ul class="space-y-1.5 text-[11px]">
+              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">بطاقات بلايستيشن واكسبوكس</a></li>
+              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">شحن محفظة Steam و Epic</a></li>
+              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">اشتراكات الترفيه والبث المباشر</a></li>
+              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">أكواد الهدايا الرقمية المؤتمتة</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// AI_AND_ENTERPRISE</h4>
+            <ul class="space-y-1.5 text-[11px]">
+              <li><a href="#showcase" onclick="filterTab('ai')" class="hover:text-cosmicCyan transition-colors">واجهات ومحركات الذكاء الاصطناعي</a></li>
+              <li><a href="#showcase" onclick="filterTab('cloud')" class="hover:text-cosmicPurple transition-colors">سيرفرات سحابية واستضافة NVMe</a></li>
+              <li><a href="#showcase" onclick="filterTab('b2b')" class="hover:text-emerald-400 transition-colors">عقود وفواتير الشركات B2B</a></li>
+              <li><a href="#calculator" class="hover:text-cosmicCyan transition-colors">حاسبة السحابة وتخصيص الموارد</a></li>
+            </ul>
+          </div>
+
+          <!-- قنوات الدفع الرسمية بالفوتر -->
+          <div>
+            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// VERIFIED_PAYMENTS</h4>
+            <p class="text-[11px] text-slate-400 mb-3">وسائل دفع معتمدة بتشفير بنكي 256-bit.</p>
+            <div class="grid grid-cols-3 gap-2">
+              
+              <div class="payment-badge payment-badge-compact" title="Apple Pay">
+                <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-white font-bold text-[11px] flex items-center gap-1"><i class="fa-brands fa-apple text-xs"></i> Pay</span>
+              </div>
+
+              <div class="payment-badge payment-badge-compact" title="مدى Mada">
+                <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-emerald-400 font-bold text-[10px] code-font">mada</span>
+              </div>
+
+              <div class="payment-badge payment-badge-compact" title="Visa">
+                <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-sky-400 font-black text-[11px] code-font italic">VISA</span>
+              </div>
+
+              <div class="payment-badge payment-badge-compact" title="Mastercard">
+                <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-orange-400 font-bold text-[10px] flex items-center gap-1"><i class="fa-brands fa-cc-mastercard"></i> MC</span>
+              </div>
+
+              <div class="payment-badge payment-badge-compact" title="Samsung Pay">
+                <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-blue-400 font-bold text-[9px] code-font">S-Pay</span>
+              </div>
+
+              <div class="payment-badge payment-badge-compact" title="STC Bank">
+                <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+                <span class="hidden text-purple-400 font-black text-[10px] code-font">stc pay</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
+          <p>© 2026 محمد بلس (Mohamed Plus) - جميع الحقوق محفوظة.</p>
+          <div class="flex items-center gap-3">
+            <a href="#" class="hover:text-slate-400">سياسة الخصوصية</a>
+            <span>•</span>
+            <a href="#" class="hover:text-slate-400">الشروط والأحكام</a>
+            <span>•</span>
+            <a href="#" class="hover:text-slate-400">الضمان والاسترجاع</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- ============================================== -->
+  <!-- الشريط السفلي العائم شبه الحاد (Sharp Cyber Floating Dock) -->
+  <!-- ============================================== -->
+  <aside class="fixed bottom-4 sm:bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="dock-container pointer-events-auto sharp-box py-2 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-6 max-w-md w-full">
       
-      <!-- 1. الشعار والوصف التعريفي -->
-      <div class="footer-brand-box">
-        <a href="#" class="logo-container" aria-label="شعار محمد بلس">
-          <svg class="logo-svg" viewBox="0 0 320 54" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <text x="6"   y="40" class="txt-bold white-glow char-drop char-m1">M</text>
-            <text x="44"  y="40" class="txt-bold white-glow char-drop char-o">O</text>
-            <text x="80"  y="40" class="txt-bold white-glow char-drop char-h">H</text>
-            <text x="114" y="40" class="txt-bold white-glow char-drop char-d">D</text>
-
-            <text x="160" y="40" class="txt-bold cyan-glow char-drop char-p">P</text>
-            <text x="190" y="40" class="txt-bold cyan-glow char-drop char-l">L</text>
-            <text x="216" y="40" class="txt-bold cyan-glow char-drop char-u">U</text>
-            <text x="249" y="40" class="txt-bold cyan-glow char-drop char-s">S</text>
-            <text x="282" y="38" class="txt-bold cyan-glow char-drop char-plus" font-size="34px">+</text>
-          </svg>
-        </a>
-        <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
-      </div>
-
-      <div class="section-divider"></div>
-
-      <!-- 2. روابط تهمك -->
-      <div>
-        <h4 class="footer-section-title">روابط تهمك</h4>
-        <div class="footer-links-grid">
-          <div class="footer-col">
-            <a href="#" class="footer-link-badge glowing-border">من نحن</a>
-            <a href="#" class="footer-link-badge glowing-border">هدفنا</a>
-            <a href="#" class="footer-link-badge glowing-border">رؤيتنا</a>
-          </div>
-          <div class="footer-col">
-            <a href="#" class="footer-link-badge glowing-border">المدونة</a>
-            <a href="#" class="footer-link-badge glowing-border">سياسة الاستخدام</a>
-            <a href="#" class="footer-link-badge glowing-border">الشروط والأحكام</a>
-          </div>
-          <div class="footer-col">
-            <a href="#" class="footer-link-badge glowing-border">سجل معنا</a>
-            <a href="#" class="footer-link-badge glowing-border">سجل كـ مبدع</a>
-            <a href="#" class="footer-link-badge glowing-border">سجل كـ تاجر</a>
-          </div>
+      <!-- 1. الرئيسية -->
+      <a href="#hero" id="dockHome" onclick="highlightDock('home')" class="dock-btn active flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
+        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-house text-xs sm:text-sm"></i>
         </div>
-      </div>
+        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الرئيسية</span>
+      </a>
 
-      <div class="section-divider"></div>
-
-      <!-- 3. التواصل وخدمة العملاء -->
-      <div>
-        <h4 class="footer-section-title">تواصل معنا</h4>
-        <div class="social-icons">
-          <a href="#" class="social-icon-btn glowing-border" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
-          <a href="#" class="social-icon-btn glowing-border" title="إكس (تويتر)"><i class="fa-brands fa-x-twitter"></i></a>
-          <a href="#" class="social-icon-btn glowing-border" title="تيك توك"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="#" class="social-icon-btn glowing-border" title="إنستغرام"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" class="social-icon-btn glowing-border" title="تيليجرام"><i class="fa-brands fa-telegram"></i></a>
+      <!-- 2. الأقسام -->
+      <a href="#showcase" id="dockCategories" onclick="handleCategoriesClick()" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
+        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-shapes text-xs sm:text-sm"></i>
         </div>
-      </div>
+        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الأقسام</span>
+      </a>
 
-      <div class="section-divider"></div>
-
-      <!-- 4. التراخيص والاعتمادات -->
-      <div>
-        <h4 class="footer-section-title">التراخيص والاعتمادات</h4>
-        <div class="licenses-grid">
-          <div class="license-card glowing-border">
-            <div class="license-logo-box">
-              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/sbc.png" alt="موثّق" class="license-logo" loading="lazy">
-            </div>
-            <span>موثّق</span>
-          </div>
-          <div class="license-card glowing-border">
-            <div class="license-logo-box">
-              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/freelance.png" alt="وثيقة العمل الحر" class="license-logo" loading="lazy">
-            </div>
-            <span>العمل الحر</span>
-          </div>
-          <div class="license-card glowing-border">
-            <div class="license-logo-box">
-              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/moc.png" alt="السجل التجاري" class="license-logo" loading="lazy">
-            </div>
-            <span>السجل التجاري</span>
-          </div>
-          <div class="license-card glowing-border">
-            <div class="license-logo-box">
-              <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/maroof.png" alt="معتمد في معروف" class="license-logo" loading="lazy">
-            </div>
-            <span>معتمد بمعروف</span>
-          </div>
+      <!-- 3. السلة مع العداد شبه الحاد -->
+      <button onclick="toggleCartModal(); highlightDock('cart')" id="dockCart" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cyberYellow relative">
+        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5 relative">
+          <i class="fa-solid fa-basket-shopping text-xs sm:text-sm"></i>
+          <!-- عداد السلة شبه الحاد -->
+          <span class="cartCountBadge absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] px-0.5 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[9px] flex items-center justify-center">0</span>
         </div>
-      </div>
+        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">السلة</span>
+      </button>
 
-      <div class="section-divider"></div>
-
-      <!-- 5. طرق دفع آمنة ومتعددة -->
-      <div>
-        <h4 class="footer-section-title">طرق دفع آمنة ومتعددة</h4>
-        <div class="payments-grid">
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo" loading="lazy">
-          </div>
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo" loading="lazy">
-          </div>
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo" loading="lazy">
-          </div>
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo" loading="lazy">
-          </div>
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo" loading="lazy">
-          </div>
-          <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo" loading="lazy">
-          </div>
+      <!-- 4. الحساب -->
+      <button onclick="openAccountModal(); highlightDock('account')" id="dockAccount" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicPurple">
+        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-user-gear text-xs sm:text-sm"></i>
         </div>
-      </div>
+        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الحساب</span>
+      </button>
 
-    </div>
-
-    <!-- صندوق الفوتر النهائي -->
-    <div class="site-footer-box glowing-border">
-      <p>صنع بحب <span class="heart">♥</span> بواسطة محمد بلس 2026 ©</p>
-      <p>جميع الحقوق محفوظة لـ © MOHD PLUS 2026</p>
-    </div>
-  </div>
-
-  <!-- الشريط السفلي العائم للجوال بزوايا شبه حادة -->
-  <div class="bottom-nav-wrapper">
-    <nav class="bottom-nav-bar glowing-border">
-      <a href="#" class="bottom-nav-item active">
-        <i class="fa-solid fa-house"></i>
-        <span>الرئيسية</span>
-      </a>
-      <a href="#" class="bottom-nav-item">
-        <i class="fa-solid fa-list-ul"></i>
-        <span>التصنيفات</span>
-      </a>
-      <a href="#" class="bottom-nav-item">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span class="nav-badge">2</span>
-        <span>السلة</span>
-      </a>
-      <a href="#" class="bottom-nav-item">
-        <i class="fa-regular fa-user"></i>
-        <span class="nav-badge orange">1</span>
-        <span>الحساب</span>
-      </a>
     </nav>
+  </aside>
+
+  <!-- نافذة سلة المشتريات شبه الحادة (Cart Modal) مع قنوات الدفع -->
+  <div id="cartModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-5 relative shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-basket-shopping text-cyberYellow"></i> سلة طلبات محمد بلس
+        </h3>
+        <button onclick="toggleCartModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+      </div>
+
+      <div id="cartItemsList" class="py-3.5 space-y-2.5 max-h-52 overflow-y-auto pr-1">
+        <p class="text-xs text-slate-400 text-center py-6">السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!</p>
+      </div>
+
+      <div class="pt-3 border-t border-white/10 space-y-3">
+        <div class="flex justify-between items-center text-xs">
+          <span class="text-slate-300 font-medium">المجموع الإجمالي:</span>
+          <span id="modalTotal" class="text-lg font-black text-cyberYellow code-font">0 ريال</span>
+        </div>
+
+        <!-- طرق الدفع المتاحة داخل السلة -->
+        <div class="bg-obsidian-850 p-2.5 sharp-box border border-white/5">
+          <span class="text-[10px] text-slate-400 block mb-1.5 font-medium">طرق الدفع المدعومة فوريًا:</span>
+          <div class="grid grid-cols-6 gap-1.5">
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Apple Pay">
+              <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-white font-bold text-[9px]"><i class="fa-brands fa-apple"></i></span>
+            </div>
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="مدى">
+              <img src="mada.svg" alt="mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-emerald-400 font-bold text-[9px] code-font">mada</span>
+            </div>
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Visa">
+              <img src="visa.svg" alt="visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-sky-400 font-black text-[9px] code-font">VISA</span>
+            </div>
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Mastercard">
+              <img src="mastercard.svg" alt="mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-orange-400 font-bold text-[9px]"><i class="fa-brands fa-cc-mastercard"></i></span>
+            </div>
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Samsung Pay">
+              <img src="samsungpay.svg" alt="samsung pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-blue-400 font-bold text-[8px] code-font">S-Pay</span>
+            </div>
+            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="STC Bank">
+              <img src="stcbank.svg" alt="stc bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
+              <span class="hidden text-purple-400 font-black text-[9px] code-font">STC</span>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="checkoutNotice()" class="w-full py-3 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs transition-all glow-yellow-sm">
+          إتمام الطلب والدفع الفوري
+        </button>
+      </div>
+    </div>
   </div>
 
+  <!-- نافذة الحساب الموحدة شبه الحادة (Account Modal) -->
+  <div id="accountModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-6 relative shadow-2xl">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 sharp-box bg-cosmicCyan/20 text-cosmicCyan flex items-center justify-center text-xs font-bold">
+            <i class="fa-solid fa-id-card-clip"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-white leading-tight">بوابة الحساب الموحد</h3>
+            <span class="text-[10px] text-slate-400 code-font">// AUTH_SYSTEM</span>
+          </div>
+        </div>
+        <button onclick="openAccountModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+      </div>
+
+      <!-- تبديل نوع الحساب بأزرار شبه حادة -->
+      <div class="flex sharp-box bg-obsidian-850 p-1 border border-white/10 mt-4 mb-4 text-xs font-bold">
+        <button id="accTabUser" onclick="switchAccountType('user')" class="flex-1 py-1.5 sharp-badge bg-obsidian-750 text-white transition-all">أفراد ومستهلكين</button>
+        <button id="accTabB2B" onclick="switchAccountType('b2b')" class="flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all">بوابة الشركات B2B</button>
+      </div>
+
+      <form onsubmit="handleAccountLogin(event)" class="space-y-3.5 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1 text-[11px]" id="loginLabelInput">رقم الجوال أو البريد الإلكتروني</label>
+          <div class="relative">
+            <span class="absolute right-3 top-2.5 text-slate-500 text-xs"><i class="fa-regular fa-envelope"></i></span>
+            <input type="text" required placeholder="05XXXXXXXX أو name@domain.com" class="w-full pr-8 pl-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1 text-[11px]">رمز التحقق أو كلمة المرور</label>
+          <div class="relative">
+            <span class="absolute right-3 top-2.5 text-slate-500 text-xs"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" required placeholder="••••••••" class="w-full pr-8 pl-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan text-xs">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[10px] text-slate-400 pt-0.5">
+          <label class="flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cosmicCyan w-3 h-3">
+            <span>تذكر الجلسة</span>
+          </label>
+          <a href="#" class="hover:text-cosmicCyan">استرجاع الحساب؟</a>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="w-full py-2.5 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 hover:brightness-110 text-obsidian-950 font-black text-xs transition-all glow-cyan-sm">
+          تسجيل الدخول الآمن
+        </button>
+
+        <div class="pt-2.5 border-t border-white/10 text-center">
+          <p class="text-slate-400 text-[10px]">مستخدم جديد في محمد بلس؟ <a href="#" onclick="showToast('جاري فتح نموذج إنشاء حساب جديد'); return false;" class="text-cyberYellow font-bold hover:underline">إنشاء حساب فوري</a></p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- نافذة استشارة B2B شبه الحادة (Consultation Modal) -->
+  <div id="consultModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-6 relative shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-building text-emerald-400"></i> طلب حلول واستشارات الشركات B2B
+        </h3>
+        <button onclick="openConsultationModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+      </div>
+
+      <div class="space-y-3.5 py-3 text-xs">
+        <div>
+          <label class="block text-slate-300 mb-1 text-[11px]">اسم الشركة أو المؤسسة</label>
+          <input type="text" placeholder="مثال: شركة الحلول الرقمية" class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
+        </div>
+        <div>
+          <label class="block text-slate-300 mb-1 text-[11px]">البريد الإلكتروني للعمل / واتساب</label>
+          <input type="text" placeholder="name@company.com" class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
+        </div>
+        <div>
+          <label class="block text-slate-300 mb-1 text-[11px]">طبيعة الاحتياج</label>
+          <select class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
+            <option>ربط أنظمة وبطاقات رقمية API مؤتمت</option>
+            <option>بنية تحتية سحابية وخوادم خاصة NVMe</option>
+            <option>نماذج ذكاء اصطناعي وأتمتة مخصصة</option>
+            <option>أخرى</option>
+          </select>
+        </div>
+        <button onclick="submitConsultation()" class="w-full py-2.5 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black transition-all text-xs">
+          إرسال الطلب لفريق الأعمال
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- إشعار التوست السريع شبه الحاد (Toast) -->
+  <div id="toast" class="fixed bottom-24 left-6 z-50 bg-obsidian-850 border border-cyberYellow/50 text-white px-4 py-2.5 sharp-box shadow-2xl flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300">
+    <i class="fa-solid fa-circle-check text-cyberYellow text-sm"></i>
+    <span id="toastMsg" class="text-xs font-bold">تم الإجراء بنجاح!</span>
+  </div>
+
+  <!-- جافاسكربت لإدارة العمليات، التفاعل، وتنشيط الشريط العائم -->
+  <script>
+    // سلة المشتريات
+    let cart = [];
+
+    // تنشيط وتحديد أزرار الشريط العائم
+    function highlightDock(type) {
+      const dockButtons = document.querySelectorAll('.dock-btn');
+      dockButtons.forEach(btn => btn.classList.remove('active'));
+
+      if (type === 'home') document.getElementById('dockHome').classList.add('active');
+      if (type === 'categories') document.getElementById('dockCategories').classList.add('active');
+      if (type === 'cart') document.getElementById('dockCart').classList.add('active');
+      if (type === 'account') document.getElementById('dockAccount').classList.add('active');
+    }
+
+    // زر الأقسام بالشريط السفلي
+    function handleCategoriesClick() {
+      highlightDock('categories');
+      const showcaseSection = document.getElementById('showcase');
+      if (showcaseSection) {
+        showcaseSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // فلترة التبويبات الفورية
+    function filterTab(category) {
+      const cards = document.querySelectorAll('.card-item');
+      const buttons = document.querySelectorAll('.tab-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-obsidian-750', 'text-white', 'border', 'border-white/15');
+        btn.classList.add('text-slate-400');
+        if (btn.getAttribute('data-tab') === category) {
+          btn.classList.add('bg-obsidian-750', 'text-white', 'border', 'border-white/15');
+          btn.classList.remove('text-slate-400');
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // إدارة السلة وتحديث كل العدادات
+    function addToCart(title, price) {
+      cart.push({ title, price });
+      updateCartUI();
+      showToast(`تمت إضافة "${title}" إلى سلتك`);
+    }
+
+    function updateCartUI() {
+      const badges = document.querySelectorAll('.cartCountBadge');
+      badges.forEach(b => b.innerText = cart.length);
+
+      const list = document.getElementById('cartItemsList');
+      const totalEl = document.getElementById('modalTotal');
+
+      if (cart.length === 0) {
+        list.innerHTML = '<p class="text-xs text-slate-400 text-center py-6">السلة فارغة حالياً</p>';
+        totalEl.innerText = '0 ريال';
+        return;
+      }
+
+      let total = 0;
+      list.innerHTML = '';
+      cart.forEach((item, index) => {
+        total += item.price;
+        const div = document.createElement('div');
+        div.className = 'flex items-center justify-between p-2 sharp-box bg-obsidian-800 border border-white/5 text-xs';
+        div.innerHTML = `
+          <span class="text-slate-200 font-medium text-[11px]">${item.title}</span>
+          <div class="flex items-center gap-2.5">
+            <span class="text-cyberYellow code-font font-bold">${item.price} ريال</span>
+            <button onclick="removeFromCart(${index})" class="text-slate-400 hover:text-red-400 text-xs"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+
+      totalEl.innerText = total + ' ريال';
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCartUI();
+    }
+
+    function toggleCartModal() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function checkoutNotice() {
+      if (cart.length === 0) {
+        showToast('السلة فارغة، يرجى اختيار منتج أولاً');
+        return;
+      }
+      toggleCartModal();
+      showToast('جاري توجيهك لبوابة الدفع المشفرة المحددة...');
+    }
+
+    // نافذة الحساب
+    function openAccountModal() {
+      const modal = document.getElementById('accountModal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function switchAccountType(type) {
+      const btnUser = document.getElementById('accTabUser');
+      const btnB2B = document.getElementById('accTabB2B');
+      const label = document.getElementById('loginLabelInput');
+      const submitBtn = document.getElementById('loginSubmitBtn');
+
+      if (type === 'b2b') {
+        btnB2B.className = 'flex-1 py-1.5 sharp-badge bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 transition-all font-bold';
+        btnUser.className = 'flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all';
+        label.innerText = 'البريد الإلكتروني المهني أو الرقم الضريبي';
+        submitBtn.className = 'w-full py-2.5 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black text-xs transition-all';
+        submitBtn.innerText = 'دخول بوابة الأعمال B2B';
+      } else {
+        btnUser.className = 'flex-1 py-1.5 sharp-badge bg-obsidian-750 text-white transition-all font-bold';
+        btnB2B.className = 'flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all';
+        label.innerText = 'رقم الجوال أو البريد الإلكتروني';
+        submitBtn.className = 'w-full py-2.5 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 hover:brightness-110 text-obsidian-950 font-black text-xs transition-all glow-cyan-sm';
+        submitBtn.innerText = 'تسجيل الدخول الآمن';
+      }
+    }
+
+    function handleAccountLogin(e) {
+      e.preventDefault();
+      openAccountModal();
+      showToast('مرحباً بك! جاري تسجيل الدخول إلى منصة محمد بلس...');
+    }
+
+    // نافذة استشارة B2B
+    function openConsultationModal() {
+      const m = document.getElementById('consultModal');
+      m.classList.toggle('hidden');
+      m.classList.toggle('flex');
+    }
+
+    function submitConsultation() {
+      openConsultationModal();
+      showToast('تم استلام طلبك، سيتواصل معك فريق الأعمال فوراً!');
+    }
+
+    // حاسبة الموارد والأسعار التفاعلية
+    function calculateEstimate() {
+      const cpu = parseInt(document.getElementById('cpuRange').value);
+      const ram = parseInt(document.getElementById('ramRange').value);
+      const aiOpt = document.getElementById('aiTokensOpt').checked;
+      const backup = document.getElementById('backupOpt').checked;
+
+      document.getElementById('cpuVal').innerText = cpu + ' Cores';
+      document.getElementById('ramVal').innerText = ram + ' GB';
+
+      let total = (cpu * 25) + (ram * 12);
+      if (aiOpt) total += 80;
+      if (backup) total += 25;
+
+      document.getElementById('totalEstimate').innerText = total;
+    }
+
+    // إشعار التوست
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toastMsg');
+      msg.innerText = text;
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 3000);
+    }
+
+    // قائمة الجوال العلوية
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+    // تتبع التمرير لتحديث حالة الشريط العائم
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 300) {
+        highlightDock('home');
+      }
+    });
+  </script>
 </body>
 </html>
