@@ -68,7 +68,7 @@
       --primary-color: #F59E0B;
       --primary-hover: #D97706;
     }
-    /* الوضع الليلي: ليلي مناسب وغير داكن جداً (#121824) */
+    /* الوضع الليلي: ليلي مناسب غير داكن جداً (#121824) */
     body {
       background-color: #121824;
       color: #F3F4F6;
@@ -101,20 +101,12 @@
   <header class="sticky top-0 z-40 backdrop-blur-md bg-[#121824]/90 dark:bg-[#121824]/90 bg-white/90 border-b border-gray-200 dark:border-gray-800 px-4 py-3">
     <div class="max-w-2xl mx-auto flex items-center justify-between">
       
-      <!-- الشعار الكامل بدون ظلال -->
+      <!-- شعار المنصة المتغير ديناميكياً (ليلي / نهاري) -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('home')">
-        <img src="logomohdplus.svg" 
-             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg'; this.onerror=function(){this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';}" 
+        <img id="platform-logo" src="logo-black.svg" 
+             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg';" 
              alt="محمد بلس" 
              class="h-10 max-w-[170px] object-contain">
-        
-        <div id="fallback-logo" class="hidden items-center gap-2">
-          <div class="w-9 h-9 bg-primary flex items-center justify-center font-bold text-white text-lg rounded">م+</div>
-          <div>
-            <h1 class="font-bold text-base leading-tight">محمد بلس</h1>
-            <p class="text-[10px] opacity-70">المنصة الرقمية وسوق المبدعين</p>
-          </div>
-        </div>
       </div>
 
       <!-- الأيقونات العلوية بدون ظلال -->
@@ -354,7 +346,7 @@
 
   </main>
 
-  <!-- ================= الشريط العائم السفلي بدون ظلال ومتوافق مع الآيفون ================= -->
+  <!-- ================= الشريط العائم السفلي ================= -->
   <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
     
     <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-primary transition">
@@ -389,8 +381,7 @@
 
   </nav>
 
-  <!-- ================= النوافذ المنبثقة (Modals & Toast) ================= -->
-
+  <!-- ================= النوافذ المنبثقة ================= -->
   <div id="auth-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white dark:bg-[#1E293B] w-full max-w-sm rounded p-5 space-y-4 border border-gray-200 dark:border-gray-800">
       <div class="flex items-center justify-between">
@@ -435,6 +426,18 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function updateLogo() {
+      const logoImg = document.getElementById('platform-logo');
+      const isDark = document.documentElement.classList.contains('dark');
+      if (isDark) {
+        logoImg.src = 'logo-black.svg';
+        logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg'; };
+      } else {
+        logoImg.src = 'logo-light.svg';
+        logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg'; };
+      }
+    }
+
     function toggleDarkMode() {
       const html = document.documentElement;
       const themeIcon = document.getElementById('theme-icon');
@@ -450,6 +453,7 @@
         localStorage.setItem('theme', 'dark');
       }
       lucide.createIcons();
+      updateLogo();
     }
 
     function showToast(msg) {
@@ -476,6 +480,7 @@
         document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
         lucide.createIcons();
       }
+      updateLogo();
     });
   </script>
 </body>
