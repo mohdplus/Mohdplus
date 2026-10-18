@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>محمد بلس | المنصة الرقمية وسوق المبدعين</title>
 
-  <!-- ربط خط ثمانية (Thmanyah Serif Text) بوزنيه العادي والعريض مع مسارات البدائل -->
+  <!-- ربط خط ثمانية (Thmanyah Serif Text) بوزنيه العادي والعريض -->
   <style>
     @font-face {
       font-family: 'Thmanyah';
@@ -30,7 +30,7 @@
       font-weight: 400;
     }
 
-    /* تطبيق الخط العريض (Bold) للعناوين الرئيسية والفرعية بدون كشيدة */
+    /* تطبيق الخط العريض (Bold) للعناوين الرئيسية والفرعية */
     h1, h2, h3, h4, h5, h6, .font-bold {
       font-family: 'Thmanyah', 'Cairo', sans-serif !important;
       font-weight: 700 !important;
@@ -337,7 +337,7 @@
           <span class="flex items-center gap-2"><i data-lucide="headphones" class="w-4 h-4 text-primary"></i> الدعم الفني</span>
           <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
         </a>
-        <a href="#" onclick="showToast('إعدادات الأمان'); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+        <a href="#" onclick="openSupportModal(); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
           <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-primary"></i> الأمان</span>
           <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
         </a>
@@ -350,36 +350,36 @@
 
   </main>
 
-  <!-- ================= الشريط العائم السفلي ================= -->
+  <!-- ================= الشريط العائم السفلي مع الأيقونات المخصصة ================= -->
   <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
     
     <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-primary transition">
-      <i data-lucide="home" class="w-5 h-5"></i>
+      <i data-lucide="home" class="w-6 h-6"></i>
       <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
     </button>
 
     <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="users" class="w-5 h-5"></i>
+      <img src="group-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png';" alt="المجتمع" class="w-6 h-6 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
     </button>
 
     <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <img src="store-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png';" alt="المتجر" class="w-6 h-6 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المتجر</span>
     </button>
 
     <button onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="cpu" class="w-5 h-5"></i>
+      <img src="ai-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png';" alt="الأدوات" class="w-6 h-6 object-contain">
       <span class="text-[10px] mt-1 font-semibold">الأدوات</span>
     </button>
 
     <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="palette" class="w-5 h-5"></i>
+      <i data-lucide="palette" class="w-6 h-6"></i>
       <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
     </button>
 
     <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="user" class="w-5 h-5"></i>
+      <i data-lucide="user" class="w-6 h-6"></i>
       <span class="text-[10px] mt-1 font-semibold">حسابي</span>
     </button>
 
