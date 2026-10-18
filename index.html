@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl" class="scroll-smooth">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>محمد بلس | Mohamed Plus - البوابة الرقمية الشاملة</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>منصة محمد بلس الرقمية</title>
   
-  <!-- خطوط عربية تقنية حادة وحديثة مع أيقونات FontAwesome -->
+  <!-- خط عربي تقني وواضح مع أيقونات Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   
-  <!-- Tailwind CSS via CDN -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -19,50 +19,20 @@
       theme: {
         extend: {
           colors: {
+            brandYellow: '#FFE600',
+            brandBlue: '#00D2FF',
             obsidian: {
               950: '#06080D',
               900: '#0C1018',
               850: '#111622',
               800: '#171F30',
               750: '#1E283E',
-              700: '#2A3752',
-              600: '#3D4F75'
-            },
-            cyberYellow: {
-              DEFAULT: '#FFE600',
-              hover: '#E5CF00',
-              glow: 'rgba(255, 230, 0, 0.45)',
-              dim: '#332E00'
-            },
-            cosmicCyan: {
-              DEFAULT: '#00E5FF',
-              hover: '#00C8DE',
-              glow: 'rgba(0, 229, 255, 0.42)',
-              dim: '#002B33'
-            },
-            cosmicPurple: {
-              DEFAULT: '#8B5CF6',
-              hover: '#7C3AED',
-              glow: 'rgba(139, 92, 246, 0.35)'
+              700: '#2A3752'
             }
           },
           fontFamily: {
-            readex: ['"Readex Pro"', 'sans-serif'],
+            sans: ['"Readex Pro"', 'sans-serif'],
             mono: ['"Space Grotesk"', 'monospace']
-          },
-          animation: {
-            'glow-pulse': 'pulseGlow 3.5s ease-in-out infinite',
-            'float-subtle': 'floatSubtle 4s ease-in-out infinite'
-          },
-          keyframes: {
-            pulseGlow: {
-              '0%, 100%': { opacity: '0.4' },
-              '50%': { opacity: '0.85' }
-            },
-            floatSubtle: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-5px)' }
-            }
           }
         }
       }
@@ -70,1246 +40,694 @@
   </script>
 
   <style>
-    * {
+    body {
+      background-color: #06080D;
+      color: #F8FAFC;
       font-family: 'Readex Pro', sans-serif;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
+
     .code-font {
       font-family: 'Space Grotesk', monospace;
     }
 
-    /* Custom Tech Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #06080D;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #1E283E;
-      border-radius: 2px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #00E5FF;
-    }
-
-    /* Sharp Corner Cyber Aesthetics */
-    .sharp-box {
-      border-radius: 3px;
-    }
-    .sharp-badge {
-      border-radius: 2px;
-    }
-    
-    /* Cyber Chamfered Card Borders */
-    .cyber-card {
-      background: linear-gradient(145deg, rgba(17, 22, 34, 0.85) 0%, rgba(12, 16, 24, 0.95) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      position: relative;
-      border-radius: 3px;
-      transition: all 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
-    }
-    .cyber-card::before {
-      content: '';
-      position: absolute;
-      top: -1px;
-      left: 12px;
-      right: 12px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-      opacity: 0.7;
-    }
-    .cyber-card:hover {
-      border-color: rgba(0, 229, 255, 0.35);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(0, 229, 255, 0.15);
-    }
-    .cyber-card.card-yellow:hover {
-      border-color: rgba(255, 230, 0, 0.45);
-      box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.8), 0 0 25px -4px rgba(255, 230, 0, 0.2);
-    }
-
-    /* Ambient Glows */
-    .glow-yellow-sm {
-      box-shadow: 0 0 15px rgba(255, 230, 0, 0.35);
-    }
-    .glow-cyan-sm {
-      box-shadow: 0 0 15px rgba(0, 229, 255, 0.35);
-    }
-    .glow-purple-sm {
-      box-shadow: 0 0 15px rgba(139, 92, 246, 0.35);
-    }
-
-    .glass-nav {
-      background: rgba(8, 12, 18, 0.88);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .cyber-grid {
-      background-size: 36px 36px;
+    /* شبكة خفية للخلفية التقنية */
+    .cyber-grid-bg {
       background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.022) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
     }
 
-    /* Sharp Floating Dock Container */
-    .dock-container {
-      background: rgba(12, 16, 24, 0.94);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(0, 229, 255, 0.25);
-      box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.85), 0 0 22px rgba(0, 229, 255, 0.18);
+    /* حواف شبه حادة هندسية */
+    .semi-sharp {
+      border-radius: 4px;
     }
-    .dock-btn {
-      position: relative;
-      transition: all 0.22s ease;
+    .semi-sharp-sm {
       border-radius: 2px;
     }
-    .dock-btn.active {
-      color: #00E5FF;
-    }
-    .dock-btn.active .dock-icon-box {
-      background: rgba(0, 229, 255, 0.14);
-      border-color: rgba(0, 229, 255, 0.5);
-      box-shadow: 0 0 14px rgba(0, 229, 255, 0.3);
-      color: #00E5FF;
-    }
-    .dock-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -6px;
-      left: 30%;
-      right: 30%;
-      height: 2px;
-      background: #00E5FF;
-      box-shadow: 0 0 8px #00E5FF;
+
+    /* الشعار نظيف تماماً بدون توهج أو وميض */
+    .clean-logo {
+      height: 38px;
+      width: auto;
+      max-width: 170px;
+      object-fit: contain;
+      filter: none !important;
+      box-shadow: none !important;
+      animation: none !important;
+      transition: opacity 0.2s ease;
     }
 
-    /* Logo Image Style */
-    .site-logo {
+    /* بطاقات الأقسام المنسقة بنظام 3 أعمدة */
+    .section-card {
+      background: linear-gradient(180deg, rgba(17, 22, 34, 0.95) 0%, rgba(12, 16, 24, 0.98) 100%);
+      border: 1px solid rgba(0, 210, 255, 0.22);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .section-card:hover {
+      border-color: rgba(0, 210, 255, 0.6);
+      transform: translateY(-2px);
+    }
+
+    /* حل مشكلة تداخل شعارات الدفع: حاويات بمقاسات ثابتة ودعم الـ Flex */
+    .pay-badge-box {
+      width: 76px;
       height: 44px;
-      width: auto;
-      max-width: 180px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.35));
-      transition: all 0.3s ease;
-    }
-    .site-logo:hover {
-      filter: drop-shadow(0 0 18px rgba(255, 230, 0, 0.55));
-    }
-    .footer-logo {
-      height: 40px;
-      width: auto;
-      max-width: 165px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.25));
-    }
-
-    /* Payment Badge Styles */
-    .payment-badge {
+      background: rgba(17, 22, 34, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(17, 22, 34, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 3px;
-      padding: 6px 12px;
-      height: 42px;
-      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+      padding: 6px 10px;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease;
     }
-    .payment-badge:hover {
-      border-color: rgba(0, 229, 255, 0.45);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px -3px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 229, 255, 0.25);
+    .pay-badge-box:hover {
+      border-color: rgba(0, 210, 255, 0.5);
     }
-    .payment-badge img {
-      max-height: 24px;
+    .pay-badge-box img {
+      max-height: 22px;
+      max-width: 100%;
       width: auto;
-      max-width: 72px;
       object-fit: contain;
-      filter: brightness(0.95);
-      transition: all 0.25s ease;
+      display: block;
     }
-    .payment-badge:hover img {
-      filter: brightness(1.15) drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
+
+    /* بطاقات الدفع المصغرة داخل السلة */
+    .pay-badge-compact {
+      width: 48px;
+      height: 30px;
+      padding: 3px 5px;
+      background: rgba(12, 16, 24, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 3px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
-    .payment-badge-compact {
-      height: 36px;
-      padding: 4px 10px;
+    .pay-badge-compact img {
+      max-height: 16px;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
     }
-    .payment-badge-compact img {
-      max-height: 20px;
-      max-width: 58px;
+
+    /* الشريط العائم السفلي */
+    .floating-dock-bar {
+      background: rgba(12, 16, 24, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 210, 255, 0.35);
+      box-shadow: 0 16px 35px -5px rgba(0, 0, 0, 0.85);
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
   </style>
 </head>
-<body class="bg-obsidian-950 text-slate-100 min-h-screen relative overflow-x-hidden antialiased selection:bg-cosmicCyan selection:text-obsidian-950 pb-28">
+<body class="cyber-grid-bg relative min-h-screen pb-32">
 
-  <!-- خلفية الإشعاع الفضائي التقني -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-36 right-[-5%] w-[620px] h-[620px] rounded-full bg-cosmicCyan/10 blur-[130px] animate-glow-pulse"></div>
-    <div class="absolute top-[40%] -left-36 w-[560px] h-[560px] rounded-full bg-cosmicPurple/10 blur-[140px]"></div>
-    <div class="absolute bottom-16 right-1/4 w-[520px] h-[520px] rounded-full bg-cyberYellow/5 blur-[150px]"></div>
-  </div>
+  <!-- ==================== رأس الصفحة (HEADER & NAVBAR) ==================== -->
+  <!-- الشعار بالمنتصف تماماً وبدون وميض، على اليمين 3 خطوط القائمة، على اليسار أيقونة البحث -->
+  <header class="sticky top-0 z-40 bg-obsidian-950/95 backdrop-blur-md border-b border-white/10 px-4 py-3">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      
+      <!-- اليمين: قائمة الثلاث خطوط -->
+      <div class="flex items-center gap-2">
+        <button id="menuBtn" onclick="toggleSidebarMenu()" class="w-10 h-10 semi-sharp bg-obsidian-850 border border-white/15 text-slate-200 flex items-center justify-center hover:text-brandYellow hover:border-brandYellow/40 transition-colors" aria-label="القائمة">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
 
-  <div class="relative z-10 flex flex-col min-h-screen cyber-grid">
+      <!-- المنتصف: الشعار بدون أي وميض أو تأثيرات ضوئية -->
+      <div class="flex items-center justify-center">
+        <a href="#hero" class="block focus:outline-none">
+          <img 
+            src="logomohdplus.svg" 
+            alt="محمد بلس | MOHD PLUS" 
+            class="clean-logo"
+            onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'font-black text-xl tracking-wider text-white code-font\'>MOHD PLUS<span class=\'text-brandYellow\'>+</span></span>';"
+          />
+        </a>
+      </div>
 
-    <!-- شريط الإعلان العلوي السريع شبه الحاد -->
-    <div class="bg-obsidian-900/90 border-b border-white/5 py-2 px-4 text-xs">
-      <div class="max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="inline-flex items-center px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 tracking-wider">
-            SYSTEM // READY
-          </span>
-          <span class="text-slate-300 hidden sm:inline text-[11px]">
-            تسليم آلي للبطاقات والخدمات السحابية في أقل من 15 ثانية | دعم على مدار الساعة
-          </span>
-        </div>
-        <div class="flex items-center gap-4 text-slate-400 text-[11px] code-font">
-          <span class="flex items-center gap-1.5"><i class="fa-solid fa-bolt text-cyberYellow text-xs"></i> AUTO-DISPATCH</span>
-          <span class="hidden md:flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-cosmicCyan text-xs"></i> 256-BIT SECURE</span>
-        </div>
+      <!-- اليسار: أيقونة البحث -->
+      <div class="flex items-center gap-2">
+        <button onclick="openSearchModal()" class="w-10 h-10 semi-sharp bg-obsidian-850 border border-white/15 text-slate-200 flex items-center justify-center hover:text-brandBlue hover:border-brandBlue/40 transition-colors" aria-label="البحث">
+          <i class="fa-solid fa-magnifying-glass text-base"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== القائمة الجانبية المنسدلة ==================== -->
+  <div id="sideMenuOverlay" onclick="toggleSidebarMenu()" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
+  <aside id="sideMenu" class="fixed top-0 right-0 h-full w-72 bg-obsidian-900 border-l border-white/15 z-50 transform translate-x-full transition-transform duration-300 p-5 flex flex-col justify-between">
+    <div>
+      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
+        <span class="text-xs font-mono text-brandBlue">// قائمة محمد بلس</span>
+        <button onclick="toggleSidebarMenu()" class="w-8 h-8 semi-sharp bg-obsidian-800 text-slate-300 flex items-center justify-center hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <nav class="space-y-2">
+        <a href="#hero" onclick="toggleSidebarMenu()" class="flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
+          <i class="fa-solid fa-house text-brandYellow"></i> الرئيسية
+        </a>
+        <a href="#categories-section" onclick="toggleSidebarMenu()" class="flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
+          <i class="fa-solid fa-shapes text-brandBlue"></i> الأقسام والتصنيفات
+        </a>
+        <button onclick="toggleSidebarMenu(); openCartModal();" class="w-full text-right flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
+          <i class="fa-solid fa-basket-shopping text-brandYellow"></i> سلة الطلبات
+        </button>
+        <button onclick="toggleSidebarMenu(); openAccountModal();" class="w-full text-right flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
+          <i class="fa-solid fa-user-shield text-emerald-400"></i> الحساب والشركات B2B
+        </button>
+      </nav>
+    </div>
+    <div class="pt-4 border-t border-white/10 text-center text-[11px] text-slate-500 code-font">
+      MOHAMED PLUS OS © 2026
+    </div>
+  </aside>
+
+  <!-- ==================== نافذة البحث (SEARCH MODAL) ==================== -->
+  <div id="searchModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-start justify-center pt-24 px-4">
+    <div class="bg-obsidian-900 border border-brandBlue/40 w-full max-w-lg semi-sharp p-4 shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
+        <span class="text-xs code-font text-brandBlue">// محرك بحث منصة محمد بلس</span>
+        <button onclick="closeSearchModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="relative">
+        <input type="text" id="searchInput" placeholder="ابحث عن بطاقة، أداة ذكاء اصطناعي، قالب، أو خدمة..." class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-3 pr-10 pl-4 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandBlue" />
+        <i class="fa-solid fa-magnifying-glass absolute right-3 top-3.5 text-slate-400"></i>
+      </div>
+      <div class="mt-3 flex flex-wrap gap-2 text-xs">
+        <span class="text-slate-500 text-[11px]">مقترحات:</span>
+        <button onclick="quickSearch('بطاقات بلايستيشن')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-brandYellow text-[11px]">بطاقات ألعاب</button>
+        <button onclick="quickSearch('أوامر برومبت')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-brandBlue text-[11px]">أدوات ذكية</button>
+        <button onclick="quickSearch('سيرفر سحابي')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-emerald-400 text-[11px]">سحابة B2B</button>
       </div>
     </div>
-
-    <!-- شريط التنقل العلوي Navbar -->
-    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
-        <!-- الشعار الجديد logomohdplus.svg مع الفولباك شبه الحاد -->
-        <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
-          <div class="relative flex items-center">
-            <img 
-              src="logomohdplus.svg" 
-              alt="محمد بلس | Mohamed Plus" 
-              class="site-logo" 
-              onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('navbar-logo-fallback').classList.remove('hidden');"
-            >
-            <!-- Fallback الشعار البديل شبه الحاد في حال عدم توفر الصورة -->
-            <div id="navbar-logo-fallback" class="hidden flex items-center gap-2.5">
-              <div class="w-10 h-10 sharp-box bg-gradient-to-br from-cosmicCyan to-cosmicPurple p-[1.5px]">
-                <div class="w-full h-full bg-obsidian-900 sharp-box flex items-center justify-center font-mono font-bold text-base text-white">
-                  M<span class="text-cyberYellow">+</span>
-                </div>
-              </div>
-              <div class="flex items-center gap-1.5 font-bold text-lg">
-                <span class="text-white">محمد</span>
-                <span class="px-1.5 py-0.5 sharp-badge bg-cyberYellow text-obsidian-950 text-xs font-black">بلس</span>
-              </div>
-            </div>
-          </div>
-        </a>
-
-        <!-- روابط القائمة الرئيسية للشاشات الكبيرة -->
-        <nav class="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-300">
-          <a href="#hero" class="hover:text-white transition-colors">الرئيسية</a>
-          <a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-gamepad text-cyberYellow"></i> المتجر والبطاقات
-          </a>
-          <a href="#showcase" onclick="filterTab('ai')" class="hover:text-cosmicCyan transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-brain text-cosmicCyan"></i> الذكاء الاصطناعي
-          </a>
-          <a href="#showcase" onclick="filterTab('cloud')" class="hover:text-cosmicPurple transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-server text-cosmicPurple"></i> السحابة والبرمجيات
-          </a>
-          <a href="#showcase" onclick="filterTab('b2b')" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-briefcase text-emerald-400"></i> حلول الشركات B2B
-          </a>
-          <a href="#calculator" class="hover:text-cosmicCyan transition-colors flex items-center gap-1.5">
-            <i class="fa-solid fa-sliders text-slate-400"></i> حاسبة المواصفات
-          </a>
-        </nav>
-
-        <!-- أزرار الإجراء السريع ذات الحواف شبه الحادة -->
-        <div class="flex items-center gap-3">
-          <button onclick="toggleCartModal()" class="relative p-2.5 sharp-box bg-obsidian-850 border border-white/10 hover:border-cyberYellow/60 text-slate-300 hover:text-cyberYellow transition-all" title="سلة الطلبات">
-            <i class="fa-solid fa-basket-shopping text-sm"></i>
-            <span class="cartCountBadge absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[10px] flex items-center justify-center">0</span>
-          </button>
-
-          <button onclick="openAccountModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 text-obsidian-950 font-bold text-xs hover:brightness-110 transition-all glow-cyan-sm">
-            <i class="fa-solid fa-terminal text-xs"></i>
-            <span>بوابة الحساب</span>
-          </button>
-
-          <!-- زر قائمة الجوال العلوية -->
-          <button id="mobileMenuBtn" class="lg:hidden p-2.5 sharp-box bg-obsidian-850 border border-white/10 text-slate-300">
-            <i class="fa-solid fa-bars text-base"></i>
-          </button>
-        </div>
-
-      </div>
-
-      <!-- قائمة الموبايل المنسدلة شبه الحادة -->
-      <div id="mobileMenu" class="hidden lg:hidden bg-obsidian-900/98 border-b border-white/10 px-6 py-6 transition-all space-y-3 text-sm font-medium">
-        <a href="#hero" onclick="toggleMobileMenu()" class="block text-white hover:text-cosmicCyan">الرئيسية</a>
-        <a href="#showcase" onclick="filterTab('store'); toggleMobileMenu()" class="block text-slate-300 hover:text-cyberYellow">المتجر والبطاقات الرقمية</a>
-        <a href="#showcase" onclick="filterTab('ai'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicCyan">أنظمة وواجهات الذكاء الاصطناعي</a>
-        <a href="#showcase" onclick="filterTab('cloud'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicPurple">السيرفرات والخدمات السحابية</a>
-        <a href="#showcase" onclick="filterTab('b2b'); toggleMobileMenu()" class="block text-slate-300 hover:text-emerald-400">حلول وخدمات الأعمال B2B</a>
-        <a href="#calculator" onclick="toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicCyan">حاسبة المواصفات والأسعار</a>
-      </div>
-    </header>
-
-    <!-- القسم الرئيسي Hero Section -->
-    <section id="hero" class="relative pt-16 pb-16 md:pt-24 md:pb-28 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        
-        <!-- شارة فضائية سيبرانية حادة -->
-        <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 sharp-badge bg-obsidian-850/90 border border-cosmicCyan/40 text-[11px] text-cosmicCyan mb-8">
-          <span class="w-1.5 h-1.5 sharp-badge bg-cosmicCyan shadow-[0_0_8px_#00E5FF]"></span>
-          <span class="tracking-wide">البيئة الرقمية الهجينة: تجارة واشتراكات ترفيهية + بنية ذكاء اصطناعي وحلول B2B</span>
-        </div>
-
-        <!-- العنوان الرئيسي الجريء -->
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight leading-[1.25] max-w-5xl mx-auto mb-6">
-          منظومة رقمية فائقة بين <br class="hidden sm:inline">
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-cosmicCyan via-sky-300 to-cosmicPurple">ذكاء السحابة المتطور</span>
-          <span class="text-white"> و </span>
-          <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyberYellow via-amber-300 to-yellow-500">حيوية المتجر الفوري</span>
-        </h1>
-
-        <!-- الوصف -->
-        <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed mb-10 font-normal">
-          تجمع منصة <strong class="text-white font-bold">محمد بلس</strong> بين سرعة شراء بطاقات الألعاب والترفيه الرقمية المؤتمتة، وأقوى بيئات الذكاء الاصطناعي، السيرفرات السحابية الخاصة، وحلول الأتمتة المخصصة للمؤسسات مع خيارات دفع سعودية وعالمية فورية.
-        </p>
-
-        <!-- أزرار الإجراء السريع شبه الحادة -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md mx-auto">
-          <a href="#showcase" onclick="filterTab('store'); highlightDock('categories')" class="w-full sm:w-auto px-7 py-3.5 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs tracking-wider transition-all transform hover:-translate-y-0.5 glow-yellow-sm flex items-center justify-center gap-2">
-            <i class="fa-solid fa-gamepad text-sm"></i>
-            <span>تصفح المتجر والبطاقات</span>
-          </a>
-
-          <a href="#showcase" onclick="filterTab('ai'); highlightDock('categories')" class="w-full sm:w-auto px-7 py-3.5 sharp-box bg-obsidian-850 hover:bg-obsidian-800 text-cosmicCyan border border-cosmicCyan/40 font-bold text-xs transition-all transform hover:-translate-y-0.5 glow-cyan-sm flex items-center justify-center gap-2">
-            <i class="fa-solid fa-microchip text-sm"></i>
-            <span>بنية الذكاء الاصطناعي</span>
-          </a>
-        </div>
-
-        <!-- مؤشرات وبيانات رقمية شبه حادة -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mt-16 pt-8 border-t border-white/10 text-right">
-          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
-            <div class="text-2xl font-black text-cyberYellow code-font">+120,000</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">طلب وبطاقة منجزة فورياً</div>
-          </div>
-          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
-            <div class="text-2xl font-black text-cosmicCyan code-font">99.98%</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">جاهزية واستقرار السيرفرات</div>
-          </div>
-          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
-            <div class="text-2xl font-black text-cosmicPurple code-font">&lt; 15s</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">متوسط تسليم الأكواد الرقمية</div>
-          </div>
-          <div class="p-4 sharp-box bg-obsidian-900/80 border border-white/5">
-            <div class="text-2xl font-black text-emerald-400 code-font">+450</div>
-            <div class="text-[11px] text-slate-400 mt-0.5">مؤسسة معتمدة لخدمات B2B</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- شريط بوابات الدفع المعتمدة (Trust & Payments Ribbon) مع الأيقونات الجديدة -->
-    <section class="py-7 bg-obsidian-900/80 border-y border-white/10 relative z-10 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col md:flex-row items-center justify-between gap-5">
-          
-          <div class="flex items-center gap-3 text-right">
-            <div class="w-10 h-10 sharp-box bg-obsidian-850 border border-white/10 flex items-center justify-center text-cyberYellow text-lg">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <div>
-              <span class="text-xs font-bold text-white block">بوابات دفع سعودية وعالمية معتمدة ومشفرة</span>
-              <span class="text-[11px] text-slate-400">تنفيذ فوري للطلبات عبر أحدث قنوات الدفع الآمنة بنسبة حماية 100%</span>
-            </div>
-          </div>
-
-          <!-- بطاقات شعارات الدفع الست الجديدة شبه الحادة مع الـ Fallbacks -->
-          <div class="flex flex-wrap items-center justify-center gap-2.5">
-            
-            <!-- أبل باي -->
-            <div class="payment-badge" title="Apple Pay">
-              <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-white font-bold text-xs flex items-center gap-1"><i class="fa-brands fa-apple text-sm"></i> Pay</span>
-            </div>
-
-            <!-- مدى -->
-            <div class="payment-badge" title="مدى Mada">
-              <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-emerald-400 font-bold text-xs code-font">mada</span>
-            </div>
-
-            <!-- فيزا -->
-            <div class="payment-badge" title="Visa">
-              <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-sky-400 font-black text-xs code-font italic">VISA</span>
-            </div>
-
-            <!-- ماستركارد -->
-            <div class="payment-badge" title="Mastercard">
-              <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-orange-400 font-bold text-xs flex items-center gap-1"><i class="fa-brands fa-cc-mastercard"></i> Master</span>
-            </div>
-
-            <!-- سامسونج باي -->
-            <div class="payment-badge" title="Samsung Pay">
-              <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-blue-400 font-bold text-xs code-font">SAMSUNG Pay</span>
-            </div>
-
-            <!-- اس تي سي بنك -->
-            <div class="payment-badge" title="STC Bank">
-              <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-purple-400 font-black text-xs code-font">stc bank</span>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- قسم المعروضات التفاعلي مع الفلترة شبه الحادة -->
-    <section id="showcase" class="py-16 relative z-10 border-t border-white/5 bg-obsidian-900/50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <h2 class="text-2xl sm:text-3xl font-black text-white">الكتالوج الرقمي ومنظومة الخدمات</h2>
-          <p class="text-slate-400 text-xs sm:text-sm mt-2">اختر التصنيف المفضل واستعرض الباقات الفورية أو البنى التحتية المتخصصة</p>
-          
-          <!-- أزرار التبديل الحادة شبه المربعة -->
-          <div class="flex flex-wrap items-center justify-center gap-1.5 mt-6 p-1.5 sharp-box bg-obsidian-850 border border-white/10 max-w-xl mx-auto">
-            <button onclick="filterTab('all')" class="tab-btn active px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-white bg-obsidian-750 border border-white/15" data-tab="all">الكل</button>
-            <button onclick="filterTab('store')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cyberYellow" data-tab="store">
-              <i class="fa-solid fa-gamepad ml-1 text-cyberYellow"></i> المتجر والبطاقات
-            </button>
-            <button onclick="filterTab('ai')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cosmicCyan" data-tab="ai">
-              <i class="fa-solid fa-brain ml-1 text-cosmicCyan"></i> الذكاء الاصطناعي
-            </button>
-            <button onclick="filterTab('cloud')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-cosmicPurple" data-tab="cloud">
-              <i class="fa-solid fa-cloud ml-1 text-cosmicPurple"></i> سحابة وبرمجيات
-            </button>
-            <button onclick="filterTab('b2b')" class="tab-btn px-3.5 py-1.5 sharp-badge text-xs font-bold transition-all text-slate-400 hover:text-emerald-400" data-tab="b2b">
-              <i class="fa-solid fa-briefcase ml-1 text-emerald-400"></i> حلول B2B
-            </button>
-          </div>
-        </div>
-
-        <!-- شبكة البطاقات شبه الحادة Cyber Grid -->
-        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-
-          <!-- بطاقة 1: بلايستيشن (Store/Gaming) -->
-          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 flex items-center gap-1">
-                  <i class="fa-solid fa-bolt"></i> تسليم مؤتمت فوري
-                </span>
-                <span class="text-[11px] text-slate-400 code-font">ID: PS-50USD</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cyberYellow text-2xl">
-                  <i class="fa-brands fa-playstation"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">بطاقة بلايستيشن 50$ ستور</h3>
-                  <p class="text-[11px] text-slate-400">كود أصلي مباشر سعودي أو أمريكي معتمد</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>النوع:</span> <strong class="text-white">رمز تفعيل رقمي فوري</strong></div>
-                <div class="flex items-center justify-between"><span>الضمان:</span> <strong class="text-emerald-400">استرداد رسمي 100%</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">السعر النهائي</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-cyberYellow code-font">189.00</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                  <span class="text-[10px] text-slate-500 line-through code-font">210.00</span>
-                </div>
-              </div>
-              <button onclick="addToCart('بطاقة بلايستيشن 50$', 189)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 2: اشتراك الذكاء الاصطناعي (AI) -->
-          <div class="card-item ai cyber-card p-5 flex flex-col justify-between border-t-2 border-t-cosmicCyan">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-cosmicCyan/20 text-cosmicCyan border border-cosmicCyan/40 flex items-center gap-1">
-                  <i class="fa-solid fa-sparkles"></i> LLM & API HUB
-                </span>
-                <span class="text-[11px] text-cosmicCyan code-font">PLUS-AI-PRO</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cosmicCyan text-2xl">
-                  <i class="fa-solid fa-brain"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">باقة الذكاء الاصطناعي التوليدي</h3>
-                  <p class="text-[11px] text-slate-400">ربط فائق لنماذج التوليد والترميز والرؤية</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>الاستجابة:</span> <strong class="text-cosmicCyan code-font">&lt; 180ms Latency</strong></div>
-                <div class="flex items-center justify-between"><span>الرموز المضمنة:</span> <strong class="text-white code-font">10,000,000 Tokens</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">شهرياً</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-cosmicCyan code-font">299.00</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                </div>
-              </div>
-              <button onclick="addToCart('باقة الذكاء الاصطناعي Pro', 299)" class="px-3.5 py-2 sharp-box bg-cosmicCyan hover:bg-cosmicCyan-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-terminal"></i> تفعيل المفتاح
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 3: اشتراك Game Pass Ultimate (Store/Gaming) -->
-          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-amber-400/20 text-cyberYellow border border-cyberYellow/40 flex items-center gap-1">
-                  <i class="fa-solid fa-fire"></i> باقة شائعة
-                </span>
-                <span class="text-[11px] text-slate-400 code-font">XBOX-ULT-3M</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-emerald-400 text-2xl">
-                  <i class="fa-brands fa-xbox"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">Xbox Game Pass Ultimate</h3>
-                  <p class="text-[11px] text-slate-400">اشتراك لمدة 3 أشهر للكونسول والكمبيوتر</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>المنطقة:</span> <strong class="text-white">عالمي (Global Direct)</strong></div>
-                <div class="flex items-center justify-between"><span>المكتبة:</span> <strong class="text-white">+400 لعبة كاملة</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">السعر الحالي</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-cyberYellow code-font">135.00</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                  <span class="text-[10px] text-slate-500 line-through code-font">160.00</span>
-                </div>
-              </div>
-              <button onclick="addToCart('Xbox Game Pass 3 Months', 135)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 4: سيرفرات سحابية مدارة (Cloud) -->
-          <div class="card-item cloud cyber-card p-5 flex flex-col justify-between border-t-2 border-t-cosmicPurple">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-cosmicPurple/20 text-purple-300 border border-cosmicPurple/40 flex items-center gap-1">
-                  <i class="fa-solid fa-shield-virus"></i> حماية DDoS متطورة
-                </span>
-                <span class="text-[11px] text-slate-400 code-font">VPS-NVME-8</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-cosmicPurple text-2xl">
-                  <i class="fa-solid fa-server"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">سيرفر سحابي خاص NVMe Ultra</h3>
-                  <p class="text-[11px] text-slate-400">بنية سريعة للاستضافة والألعاب والأنظمة</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>المواصفات:</span> <strong class="text-white code-font">8 vCPU | 16GB RAM | 250GB NVMe</strong></div>
-                <div class="flex items-center justify-between"><span>مركز البيانات:</span> <strong class="text-emerald-400">الرياض (KSA Edge)</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">شهرياً</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-purple-300 code-font">420.00</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                </div>
-              </div>
-              <button onclick="addToCart('سيرفر سحابي NVMe Ultra', 420)" class="px-3.5 py-2 sharp-box bg-cosmicPurple hover:bg-cosmicPurple-hover text-white text-xs font-bold transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-rocket"></i> حجز السيرفر
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 5: حلول الشركات وحزم B2B (B2B) -->
-          <div class="card-item b2b cyber-card p-5 flex flex-col justify-between border-t-2 border-t-emerald-400">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-bold bg-emerald-400/20 text-emerald-300 border border-emerald-400/30 flex items-center gap-1">
-                  <i class="fa-solid fa-building-circle-check"></i> عقد خدمة SLA
-                </span>
-                <span class="text-[11px] text-slate-400 code-font">ENTERPRISE-B2B</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-emerald-400 text-2xl">
-                  <i class="fa-solid fa-network-wired"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">التحول الرقمي وأتمتة التجارة</h3>
-                  <p class="text-[11px] text-slate-400">ربط بوابات الدفع، الأكواد، ومخازن الـ APIs</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>الدعم:</span> <strong class="text-emerald-400">مدير حساب تقني مخصص 24/7</strong></div>
-                <div class="flex items-center justify-between"><span>الفوترة:</span> <strong class="text-white">فواتير ضريبية نظامية معتمدة</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">البداية من</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-emerald-400 code-font">2,500</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                </div>
-              </div>
-              <button onclick="openConsultationModal()" class="px-3.5 py-2 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-headset"></i> طلب استشارة
-              </button>
-            </div>
-          </div>
-
-          <!-- بطاقة 6: بطاقة Steam 100$ (Store/Gaming) -->
-          <div class="card-item store cyber-card card-yellow p-5 flex flex-col justify-between border-t-2 border-t-cyberYellow">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <span class="px-2 py-0.5 sharp-badge text-[10px] font-black bg-cyberYellow text-obsidian-950 flex items-center gap-1">
-                  <i class="fa-solid fa-tag"></i> تسليم تلقائي
-                </span>
-                <span class="text-[11px] text-slate-400 code-font">STEAM-100USD</span>
-              </div>
-              <div class="flex items-center gap-3.5 mb-3">
-                <div class="w-12 h-12 sharp-box bg-obsidian-800 border border-white/10 flex items-center justify-center text-slate-200 text-2xl">
-                  <i class="fa-brands fa-steam"></i>
-                </div>
-                <div>
-                  <h3 class="text-base font-bold text-white">بطاقة محفظة Steam 100$</h3>
-                  <p class="text-[11px] text-slate-400">شحن فوري مباشر لمكتبتك على الـ PC</p>
-                </div>
-              </div>
-              <div class="space-y-1.5 text-[11px] text-slate-300 my-3 bg-obsidian-900/70 p-3 sharp-box border border-white/5">
-                <div class="flex items-center justify-between"><span>المنطقة:</span> <strong class="text-white">عالمي (Global Currency)</strong></div>
-                <div class="flex items-center justify-between"><span>الإرسال:</span> <strong class="text-cyberYellow">فوري بالرسائل والإيميل</strong></div>
-              </div>
-            </div>
-            <div class="pt-3 border-t border-white/5 flex items-center justify-between">
-              <div>
-                <span class="text-[10px] text-slate-400 block">السعر الحالي</span>
-                <div class="flex items-baseline gap-1.5">
-                  <span class="text-lg font-black text-cyberYellow code-font">375.00</span>
-                  <span class="text-[10px] text-slate-400">ريال</span>
-                  <span class="text-[10px] text-slate-500 line-through code-font">405.00</span>
-                </div>
-              </div>
-              <button onclick="addToCart('بطاقة Steam 100$', 375)" class="px-3.5 py-2 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 text-xs font-black transition-all flex items-center gap-1.5">
-                <i class="fa-solid fa-cart-plus"></i> إضافة للسلة
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- حاسبة الأسعار والمواصفات التفاعلية شبه الحادة -->
-    <section id="calculator" class="py-16 relative z-10 border-t border-white/5 bg-obsidian-950">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center mb-10">
-          <span class="text-[10px] font-bold text-cosmicCyan px-3 py-1 sharp-badge bg-cosmicCyan/10 border border-cosmicCyan/30 code-font">
-            SPEC_CONFIGURATOR // V2
-          </span>
-          <h2 class="text-2xl sm:text-3xl font-black text-white mt-3">حاسبة المواصفات والموارد السحابية</h2>
-          <p class="text-slate-400 text-xs mt-1.5">خصص أنوية المعالجة، الذاكرة العشوائية، والمحركات واحسب التكلفة المباشرة</p>
-        </div>
-
-        <div class="sharp-box bg-obsidian-900 border border-white/10 p-6 sm:p-8 relative overflow-hidden">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            
-            <div class="space-y-5">
-              <!-- سلايدر الأنوية المعالجة -->
-              <div>
-                <div class="flex justify-between text-xs mb-2">
-                  <span class="text-slate-300 font-medium">أنوية المعالجة (vCPU):</span>
-                  <span id="cpuVal" class="text-cosmicCyan code-font font-bold">4 Cores</span>
-                </div>
-                <input type="range" id="cpuRange" min="2" max="32" step="2" value="4" class="w-full h-1.5 bg-obsidian-750 sharp-box appearance-none cursor-pointer accent-cosmicCyan" oninput="calculateEstimate()">
-              </div>
-
-              <!-- سلايدر الذاكرة -->
-              <div>
-                <div class="flex justify-between text-xs mb-2">
-                  <span class="text-slate-300 font-medium">الذاكرة العشوائية (RAM):</span>
-                  <span id="ramVal" class="text-cosmicPurple code-font font-bold">8 GB</span>
-                </div>
-                <input type="range" id="ramRange" min="4" max="64" step="4" value="8" class="w-full h-1.5 bg-obsidian-750 sharp-box appearance-none cursor-pointer accent-cosmicPurple" oninput="calculateEstimate()">
-              </div>
-
-              <!-- خيارات إضافية ذات مربعات شبه حادة -->
-              <div class="space-y-2.5 pt-2 border-t border-white/5">
-                <label class="flex items-center gap-2.5 cursor-pointer text-xs text-slate-300">
-                  <input type="checkbox" id="aiTokensOpt" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cosmicCyan focus:ring-0 w-3.5 h-3.5" onchange="calculateEstimate()">
-                  <span>محرك ربط واستدعاء الذكاء الاصطناعي (API Tokens)</span>
-                </label>
-                <label class="flex items-center gap-2.5 cursor-pointer text-xs text-slate-300">
-                  <input type="checkbox" id="backupOpt" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cyberYellow focus:ring-0 w-3.5 h-3.5" onchange="calculateEstimate()">
-                  <span>نسخ احتياطي يومي مؤتمت ومشفر</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- لوحة الملخص شبه الحادة -->
-            <div class="bg-obsidian-850 p-6 sharp-box border border-white/10 flex flex-col justify-between text-center md:text-right">
-              <div>
-                <span class="text-[11px] text-slate-400 font-medium code-font">ESTIMATED_MONTHLY_COST</span>
-                <div class="mt-2 flex items-baseline justify-center md:justify-start gap-2">
-                  <span id="totalEstimate" class="text-4xl font-black text-cyberYellow code-font">245</span>
-                  <span class="text-xs text-slate-300 font-bold">ريال / شهرياً</span>
-                </div>
-                <p class="text-[11px] text-slate-400 mt-2.5 leading-relaxed">
-                  تشمل الخطة حماية متقدمة من هجمات الحرمان من الخدمة (Anti-DDoS)، ولوحة تحكم حية بنسبة استقرار 99.9%.
-                </p>
-              </div>
-
-              <div class="mt-5 pt-5 border-t border-white/10">
-                <button onclick="addToCart('خطة سحابية مخصصة', parseInt(document.getElementById('totalEstimate').innerText))" class="w-full py-3 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs transition-all glow-yellow-sm">
-                  اعتماد هذه المواصفات وإضافتها للسلة
-                </button>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- الفوتر الأنيق ذو العناصر شبه الحادة وبوابات الدفع الرسمية -->
-    <footer class="bg-obsidian-950 border-t border-white/10 pt-14 pb-10 text-slate-400 text-xs">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
-          
-          <div class="space-y-3">
-            <div class="flex items-center gap-2">
-              <img 
-                src="logomohdplus.svg" 
-                alt="محمد بلس | Mohamed Plus" 
-                class="footer-logo"
-                onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('footer-logo-fallback').classList.remove('hidden');"
-              >
-              <div id="footer-logo-fallback" class="hidden flex items-center gap-2">
-                <span class="text-xl font-black text-white">محمد</span>
-                <span class="px-1.5 py-0.5 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[10px]">بلس</span>
-              </div>
-            </div>
-            <p class="text-[11px] text-slate-400 leading-relaxed">
-              المنصة السعودية الشاملة التي تدمج التجارة الرقمية السريعة مع تقنيات الذكاء الاصطناعي والحلول المؤسسية.
-            </p>
-            <div class="flex items-center gap-2 text-slate-300 pt-1">
-              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cosmicCyan hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
-              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cyberYellow hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-discord"></i></a>
-              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-emerald-400 hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
-              <a href="#" class="w-7 h-7 sharp-box bg-obsidian-850 flex items-center justify-center hover:text-cosmicPurple hover:bg-obsidian-800 transition-colors"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// PRODUCTS_AND_GAMES</h4>
-            <ul class="space-y-1.5 text-[11px]">
-              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">بطاقات بلايستيشن واكسبوكس</a></li>
-              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">شحن محفظة Steam و Epic</a></li>
-              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">اشتراكات الترفيه والبث المباشر</a></li>
-              <li><a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors">أكواد الهدايا الرقمية المؤتمتة</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// AI_AND_ENTERPRISE</h4>
-            <ul class="space-y-1.5 text-[11px]">
-              <li><a href="#showcase" onclick="filterTab('ai')" class="hover:text-cosmicCyan transition-colors">واجهات ومحركات الذكاء الاصطناعي</a></li>
-              <li><a href="#showcase" onclick="filterTab('cloud')" class="hover:text-cosmicPurple transition-colors">سيرفرات سحابية واستضافة NVMe</a></li>
-              <li><a href="#showcase" onclick="filterTab('b2b')" class="hover:text-emerald-400 transition-colors">عقود وفواتير الشركات B2B</a></li>
-              <li><a href="#calculator" class="hover:text-cosmicCyan transition-colors">حاسبة السحابة وتخصيص الموارد</a></li>
-            </ul>
-          </div>
-
-          <!-- قنوات الدفع الرسمية بالفوتر -->
-          <div>
-            <h4 class="text-white font-bold mb-3 text-[11px] tracking-wider uppercase code-font">// VERIFIED_PAYMENTS</h4>
-            <p class="text-[11px] text-slate-400 mb-3">وسائل دفع معتمدة بتشفير بنكي 256-bit.</p>
-            <div class="grid grid-cols-3 gap-2">
-              
-              <div class="payment-badge payment-badge-compact" title="Apple Pay">
-                <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-white font-bold text-[11px] flex items-center gap-1"><i class="fa-brands fa-apple text-xs"></i> Pay</span>
-              </div>
-
-              <div class="payment-badge payment-badge-compact" title="مدى Mada">
-                <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-emerald-400 font-bold text-[10px] code-font">mada</span>
-              </div>
-
-              <div class="payment-badge payment-badge-compact" title="Visa">
-                <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-sky-400 font-black text-[11px] code-font italic">VISA</span>
-              </div>
-
-              <div class="payment-badge payment-badge-compact" title="Mastercard">
-                <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-orange-400 font-bold text-[10px] flex items-center gap-1"><i class="fa-brands fa-cc-mastercard"></i> MC</span>
-              </div>
-
-              <div class="payment-badge payment-badge-compact" title="Samsung Pay">
-                <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-blue-400 font-bold text-[9px] code-font">S-Pay</span>
-              </div>
-
-              <div class="payment-badge payment-badge-compact" title="STC Bank">
-                <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-                <span class="hidden text-purple-400 font-black text-[10px] code-font">stc pay</span>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-        <div class="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-3">
-          <p>© 2026 محمد بلس (Mohamed Plus) - جميع الحقوق محفوظة.</p>
-          <div class="flex items-center gap-3">
-            <a href="#" class="hover:text-slate-400">سياسة الخصوصية</a>
-            <span>•</span>
-            <a href="#" class="hover:text-slate-400">الشروط والأحكام</a>
-            <span>•</span>
-            <a href="#" class="hover:text-slate-400">الضمان والاسترجاع</a>
-          </div>
-        </div>
-
-      </div>
-    </footer>
-
   </div>
 
-  <!-- ============================================== -->
-  <!-- الشريط السفلي العائم شبه الحاد (Sharp Cyber Floating Dock) -->
-  <!-- ============================================== -->
-  <aside class="fixed bottom-4 sm:bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
-    <nav class="dock-container pointer-events-auto sharp-box py-2 px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-6 max-w-md w-full">
+  <!-- ==================== القسم الرئيسي (HERO SECTION) ==================== -->
+  <section id="hero" class="pt-8 sm:pt-14 px-4 max-w-4xl mx-auto text-center">
+    
+    <!-- شارة تعريفية مدمجة شبه حادة -->
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-obsidian-900 border border-brandBlue/30 semi-sharp text-xs text-brandBlue code-font mb-6">
+      <span class="w-1.5 h-1.5 semi-sharp-sm bg-brandBlue"></span>
+      <span>البيئة الرقمية الشاملة // MOHD PLUS ECOSYSTEM</span>
+    </div>
+
+    <!-- العنوان الرئيسي المطلوب نصاً بدقة -->
+    <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
+      منصة محمد بلس الرقمية
+    </h1>
+
+    <!-- الوصف الجديد المطلوب نصاً بدقة -->
+    <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
+      منصة محمد بلس الرقمية تجمع بين التجارة الإلكترونية والأدوات الذكية وسوق متكامل للمبدعين
+    </p>
+
+    <!-- المربعان المطلوب وضعهما بجانب بعض بدقة متناهية -->
+    <div class="flex items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
+      <!-- مربع: تصفح المتجر والبطاقات -->
+      <a href="#categories-section" class="flex-1 semi-sharp bg-brandYellow hover:bg-yellow-400 text-obsidian-950 font-black py-3.5 px-3 text-xs sm:text-sm text-center flex items-center justify-center gap-2 border border-brandYellow transition-transform active:scale-95">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>تصفح المتجر والبطاقات</span>
+      </a>
+      
+      <!-- مربع: بنية الذكاء الاصطناعي -->
+      <a href="#categories-section" class="flex-1 semi-sharp bg-obsidian-900 hover:bg-obsidian-850 text-brandBlue hover:text-white font-bold py-3.5 px-3 text-xs sm:text-sm text-center flex items-center justify-center gap-2 border border-brandBlue/40 hover:border-brandBlue transition-transform active:scale-95">
+        <i class="fa-solid fa-microchip"></i>
+        <span>بنية الذكاء الاصطناعي</span>
+      </a>
+    </div>
+
+  </section>
+
+  <!-- ==================== شريط بوابات الدفع (PAYMENT GATEWAYS) ==================== -->
+  <!-- تم حل مشكلة التداخل بالكامل: كل شعار في بطاقة مخصصة ومستقلة تماماً -->
+  <section class="max-w-4xl mx-auto mt-12 px-4">
+    <div class="bg-obsidian-900/95 border border-white/10 semi-sharp p-4 sm:p-5">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <div class="text-center md:text-right">
+          <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-brandYellow mb-1">
+            <i class="fa-solid fa-shield-halved text-sm"></i>
+            <span>بوابات دفع سعودية وعالمية معتمدة ومشفرة</span>
+          </div>
+          <div class="text-xs text-slate-400">
+            تنفيذ فوري للطلبات عبر أحدث قنوات الدفع الآمنة بنسبة حماية 100%
+          </div>
+        </div>
+
+        <!-- أوعية الشعارات الست المستقلة غير المتداخلة إطلاقاً -->
+        <div class="flex items-center justify-center gap-2.5 flex-wrap">
+          
+          <!-- أبل باي -->
+          <div class="pay-badge-box" title="Apple Pay">
+            <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-white font-bold text-xs code-font">Pay</span>
+          </div>
+
+          <!-- مدى -->
+          <div class="pay-badge-box" title="مدى Mada">
+            <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-emerald-400 font-bold text-xs code-font">mada</span>
+          </div>
+
+          <!-- فيزا -->
+          <div class="pay-badge-box" title="Visa">
+            <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-sky-400 font-black text-xs italic code-font">VISA</span>
+          </div>
+
+          <!-- ماستركارد -->
+          <div class="pay-badge-box" title="Mastercard">
+            <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-orange-400 font-bold text-xs code-font">Mastercard</span>
+          </div>
+
+          <!-- سامسونج باي -->
+          <div class="pay-badge-box" title="Samsung Pay">
+            <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-blue-400 font-bold text-[10px] code-font">Samsung</span>
+          </div>
+
+          <!-- اس تي سي بنك -->
+          <div class="pay-badge-box" title="STC Bank">
+            <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
+            <span class="hidden text-teal-300 font-bold text-[10px] code-font">stc bank</span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== تصنيفات وأقسام المنصة (3 في كل صف) ==================== -->
+  <!-- مطابقة للصورة الرابعة: 3 أعمدة بجانب بعض بدقة، مع مساحة الرمز العلوية، والعنوان والوصف وزر استعراض -->
+  <section id="categories-section" class="max-w-4xl mx-auto mt-12 px-4">
+    
+    <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-3">
+      <div>
+        <h2 class="text-base sm:text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-shapes text-brandBlue"></i>
+          <span>أقسام وتصنيفات المنصة</span>
+        </h2>
+        <p class="text-xs text-slate-400">استعرض مسارات الأدوات، المتاجر، والخدمات السحابية</p>
+      </div>
+      <span class="text-[11px] code-font text-brandYellow bg-brandYellow/10 border border-brandYellow/30 px-2.5 py-1 semi-sharp">
+        3_COLS_GRID
+      </span>
+    </div>
+
+    <!-- شبكة الثلاثة أعمدة (الصف الواحد به 3 أقسام بالضبط) -->
+    <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
+
+      <!-- القسم 1: متجر بلس -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <!-- مساحة الأيقونة العلوية المطابقة للمرفق -->
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-gem text-xl sm:text-3xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandYellow transition-colors">
+            متجر بلس
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            منتجات وخدمات رقمية حصرية وبطاقات فورية
+          </p>
+        </div>
+        <button onclick="handleCategoryExplore('متجر بلس', 49)" class="w-full semi-sharp bg-white/10 hover:bg-brandYellow hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+      <!-- القسم 2: مختبر الأدوات -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-calculator text-xl sm:text-3xl text-brandBlue group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandBlue transition-colors">
+            مختبر الأدوات
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            حاسبات المالية، التمويل، والإنتاجية
+          </p>
+        </div>
+        <button onclick="handleCategoryExplore('مختبر الأدوات', 89)" class="w-full semi-sharp bg-white/10 hover:bg-brandBlue hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+      <!-- القسم 3: مكتبة الأوامر -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-terminal text-xl sm:text-3xl text-teal-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-teal-400 transition-colors">
+            مكتبة الأوامر
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            أوامر برومبت منسقة للتصميم والذكاء
+          </p>
+        </div>
+        <button onclick="handleCategoryExplore('مكتبة الأوامر', 35)" class="w-full semi-sharp bg-white/10 hover:bg-teal-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+      <!-- القسم 4: بطاقات الألعاب والترفيه -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-gamepad text-xl sm:text-3xl text-amber-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandYellow transition-colors">
+            بطاقات الألعاب
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            شحن أكواد بلايستيشن وإكس بوكس
+          </p>
+        </div>
+        <button onclick="handleCategoryExplore('بطاقات الألعاب والترفيه', 120)" class="w-full semi-sharp bg-white/10 hover:bg-brandYellow hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+      <!-- القسم 5: السحابة والأتمتة -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-cloud-bolt text-xl sm:text-3xl text-sky-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-sky-400 transition-colors">
+            السحابة والأتمتة
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            خوادم NVMe وبوتات متطورة
+          </p>
+        </div>
+        <button onclick="handleCategoryExplore('سيرفرات سحابية وأتمتة', 250)" class="w-full semi-sharp bg-white/10 hover:bg-sky-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+      <!-- القسم 6: حلول الشركات B2B -->
+      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
+        <div>
+          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
+            <i class="fa-solid fa-building-shield text-xl sm:text-3xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
+          </div>
+          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-indigo-400 transition-colors">
+            خدمات B2B
+          </h3>
+          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
+            عقود وفواتير ضريبية وحلول مؤسسية
+          </p>
+        </div>
+        <button onclick="openAccountModal()" class="w-full semi-sharp bg-white/10 hover:bg-indigo-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
+          استعراض
+        </button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ==================== الشريط السفلي العائم (FLOATING DOCK) ==================== -->
+  <aside class="fixed bottom-4 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
+    <nav class="floating-dock-bar pointer-events-auto semi-sharp py-2 px-3 sm:px-6 flex items-center justify-between gap-1 sm:gap-6 max-w-sm w-full">
       
       <!-- 1. الرئيسية -->
-      <a href="#hero" id="dockHome" onclick="highlightDock('home')" class="dock-btn active flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
-        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
-          <i class="fa-solid fa-house text-xs sm:text-sm"></i>
-        </div>
-        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الرئيسية</span>
+      <a href="#hero" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandYellow transition-colors group">
+        <i class="fa-solid fa-house text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+        <span class="text-[11px] font-bold">الرئيسية</span>
       </a>
 
       <!-- 2. الأقسام -->
-      <a href="#showcase" id="dockCategories" onclick="handleCategoriesClick()" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
-        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
-          <i class="fa-solid fa-shapes text-xs sm:text-sm"></i>
-        </div>
-        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الأقسام</span>
+      <a href="#categories-section" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandBlue transition-colors group">
+        <i class="fa-solid fa-shapes text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+        <span class="text-[11px] font-bold">الأقسام</span>
       </a>
 
       <!-- 3. السلة مع العداد شبه الحاد -->
-      <button onclick="toggleCartModal(); highlightDock('cart')" id="dockCart" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cyberYellow relative">
-        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5 relative">
-          <i class="fa-solid fa-basket-shopping text-xs sm:text-sm"></i>
-          <!-- عداد السلة شبه الحاد -->
-          <span class="cartCountBadge absolute -top-1.5 -right-1.5 min-w-[17px] h-[17px] px-0.5 sharp-badge bg-cyberYellow text-obsidian-950 font-black text-[9px] flex items-center justify-center">0</span>
+      <button onclick="openCartModal()" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandYellow transition-colors relative group">
+        <div class="relative">
+          <i class="fa-solid fa-basket-shopping text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+          <span id="dockCartBadge" class="absolute -top-1.5 -left-2 bg-brandYellow text-obsidian-950 font-black text-[9px] w-4 h-4 semi-sharp flex items-center justify-center">0</span>
         </div>
-        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">السلة</span>
+        <span class="text-[11px] font-bold">السلة</span>
       </button>
 
       <!-- 4. الحساب -->
-      <button onclick="openAccountModal(); highlightDock('account')" id="dockAccount" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicPurple">
-        <div class="dock-icon-box w-8 h-8 sm:w-9 sm:h-9 sharp-box flex items-center justify-center border border-transparent transition-all mb-0.5">
-          <i class="fa-solid fa-user-gear text-xs sm:text-sm"></i>
-        </div>
-        <span class="text-[10px] sm:text-[11px] font-bold tracking-tight">الحساب</span>
+      <button onclick="openAccountModal()" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandBlue transition-colors group">
+        <i class="fa-solid fa-user-shield text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
+        <span class="text-[11px] font-bold">الحساب</span>
       </button>
 
     </nav>
   </aside>
 
-  <!-- نافذة سلة المشتريات شبه الحادة (Cart Modal) مع قنوات الدفع -->
-  <div id="cartModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-5 relative shadow-2xl">
-      <div class="flex items-center justify-between pb-3 border-b border-white/10">
-        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-basket-shopping text-cyberYellow"></i> سلة طلبات محمد بلس
-        </h3>
-        <button onclick="toggleCartModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
-      </div>
-
-      <div id="cartItemsList" class="py-3.5 space-y-2.5 max-h-52 overflow-y-auto pr-1">
-        <p class="text-xs text-slate-400 text-center py-6">السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!</p>
-      </div>
-
-      <div class="pt-3 border-t border-white/10 space-y-3">
-        <div class="flex justify-between items-center text-xs">
-          <span class="text-slate-300 font-medium">المجموع الإجمالي:</span>
-          <span id="modalTotal" class="text-lg font-black text-cyberYellow code-font">0 ريال</span>
-        </div>
-
-        <!-- طرق الدفع المتاحة داخل السلة -->
-        <div class="bg-obsidian-850 p-2.5 sharp-box border border-white/5">
-          <span class="text-[10px] text-slate-400 block mb-1.5 font-medium">طرق الدفع المدعومة فوريًا:</span>
-          <div class="grid grid-cols-6 gap-1.5">
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Apple Pay">
-              <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-white font-bold text-[9px]"><i class="fa-brands fa-apple"></i></span>
-            </div>
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="مدى">
-              <img src="mada.svg" alt="mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-emerald-400 font-bold text-[9px] code-font">mada</span>
-            </div>
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Visa">
-              <img src="visa.svg" alt="visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-sky-400 font-black text-[9px] code-font">VISA</span>
-            </div>
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Mastercard">
-              <img src="mastercard.svg" alt="mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-orange-400 font-bold text-[9px]"><i class="fa-brands fa-cc-mastercard"></i></span>
-            </div>
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="Samsung Pay">
-              <img src="samsungpay.svg" alt="samsung pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-blue-400 font-bold text-[8px] code-font">S-Pay</span>
-            </div>
-            <div class="payment-badge payment-badge-compact !p-1 !h-8" title="STC Bank">
-              <img src="stcbank.svg" alt="stc bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');">
-              <span class="hidden text-purple-400 font-black text-[9px] code-font">STC</span>
-            </div>
-          </div>
-        </div>
-
-        <button onclick="checkoutNotice()" class="w-full py-3 sharp-box bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-xs transition-all glow-yellow-sm">
-          إتمام الطلب والدفع الفوري
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- نافذة الحساب الموحدة شبه الحادة (Account Modal) -->
-  <div id="accountModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-6 relative shadow-2xl">
+  <!-- ==================== نافذة سلة المشتريات (CART MODAL) ==================== -->
+  <div id="cartModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/20 w-full max-w-md semi-sharp p-5 relative shadow-2xl">
       
-      <div class="flex items-center justify-between pb-3 border-b border-white/10">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 sharp-box bg-cosmicCyan/20 text-cosmicCyan flex items-center justify-center text-xs font-bold">
-            <i class="fa-solid fa-id-card-clip"></i>
-          </div>
-          <div>
-            <h3 class="text-sm font-black text-white leading-tight">بوابة الحساب الموحد</h3>
-            <span class="text-[10px] text-slate-400 code-font">// AUTH_SYSTEM</span>
-          </div>
-        </div>
-        <button onclick="openAccountModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+      <!-- زر إغلاق -->
+      <button onclick="closeCartModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- عنوان النافذة مطابق للصورة رقم 3 -->
+      <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
+        <span class="text-brandYellow text-lg"><i class="fa-solid fa-basket-shopping"></i></span>
+        <h3 class="text-base font-bold text-white">سلة طلبات محمد بلس</h3>
       </div>
 
-      <!-- تبديل نوع الحساب بأزرار شبه حادة -->
-      <div class="flex sharp-box bg-obsidian-850 p-1 border border-white/10 mt-4 mb-4 text-xs font-bold">
-        <button id="accTabUser" onclick="switchAccountType('user')" class="flex-1 py-1.5 sharp-badge bg-obsidian-750 text-white transition-all">أفراد ومستهلكين</button>
-        <button id="accTabB2B" onclick="switchAccountType('b2b')" class="flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all">بوابة الشركات B2B</button>
+      <!-- قائمة العناصر -->
+      <div id="cartItemsContainer" class="min-h-[120px] max-h-60 overflow-y-auto no-scrollbar py-2 text-center text-xs text-slate-400">
+        السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!
       </div>
 
-      <form onsubmit="handleAccountLogin(event)" class="space-y-3.5 text-xs">
-        <div>
-          <label class="block text-slate-300 font-medium mb-1 text-[11px]" id="loginLabelInput">رقم الجوال أو البريد الإلكتروني</label>
-          <div class="relative">
-            <span class="absolute right-3 top-2.5 text-slate-500 text-xs"><i class="fa-regular fa-envelope"></i></span>
-            <input type="text" required placeholder="05XXXXXXXX أو name@domain.com" class="w-full pr-8 pl-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan text-xs">
+      <!-- الإجمالي -->
+      <div class="flex items-center justify-between pt-4 border-t border-white/10 my-3">
+        <span class="text-xs text-slate-300">المجموع الإجمالي:</span>
+        <span id="cartTotalPrice" class="text-lg font-black text-brandYellow code-font">0 ريال</span>
+      </div>
+
+      <!-- طرق الدفع المدعومة داخل السلة مع حماية تامة من التداخل -->
+      <div class="bg-obsidian-950 p-2.5 semi-sharp border border-white/5 mb-4">
+        <div class="text-[10px] text-slate-400 mb-2 code-font">طرق الدفع المدعومة فورياً:</div>
+        <div class="flex items-center justify-center gap-1.5 flex-wrap">
+          <div class="pay-badge-compact" title="Apple Pay">
+            <img src="applepay.svg" alt="Pay" onerror="this.onerror=null; this.parentElement.innerText='Pay'">
+          </div>
+          <div class="pay-badge-compact" title="mada">
+            <img src="mada.svg" alt="mada" onerror="this.onerror=null; this.parentElement.innerText='mada'">
+          </div>
+          <div class="pay-badge-compact" title="VISA">
+            <img src="visa.svg" alt="VISA" onerror="this.onerror=null; this.parentElement.innerText='VISA'">
+          </div>
+          <div class="pay-badge-compact" title="Mastercard">
+            <img src="mastercard.svg" alt="MC" onerror="this.onerror=null; this.parentElement.innerText='MC'">
+          </div>
+          <div class="pay-badge-compact" title="Samsung Pay">
+            <img src="samsungpay.svg" alt="SPay" onerror="this.onerror=null; this.parentElement.innerText='SPay'">
+          </div>
+          <div class="pay-badge-compact" title="STC Bank">
+            <img src="stcbank.svg" alt="STC" onerror="this.onerror=null; this.parentElement.innerText='STC'">
           </div>
         </div>
+      </div>
 
-        <div>
-          <label class="block text-slate-300 font-medium mb-1 text-[11px]">رمز التحقق أو كلمة المرور</label>
-          <div class="relative">
-            <span class="absolute right-3 top-2.5 text-slate-500 text-xs"><i class="fa-solid fa-lock"></i></span>
-            <input type="password" required placeholder="••••••••" class="w-full pr-8 pl-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan text-xs">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between text-[10px] text-slate-400 pt-0.5">
-          <label class="flex items-center gap-1.5 cursor-pointer">
-            <input type="checkbox" checked class="sharp-badge bg-obsidian-800 border-white/10 text-cosmicCyan w-3 h-3">
-            <span>تذكر الجلسة</span>
-          </label>
-          <a href="#" class="hover:text-cosmicCyan">استرجاع الحساب؟</a>
-        </div>
-
-        <button type="submit" id="loginSubmitBtn" class="w-full py-2.5 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 hover:brightness-110 text-obsidian-950 font-black text-xs transition-all glow-cyan-sm">
-          تسجيل الدخول الآمن
-        </button>
-
-        <div class="pt-2.5 border-t border-white/10 text-center">
-          <p class="text-slate-400 text-[10px]">مستخدم جديد في محمد بلس؟ <a href="#" onclick="showToast('جاري فتح نموذج إنشاء حساب جديد'); return false;" class="text-cyberYellow font-bold hover:underline">إنشاء حساب فوري</a></p>
-        </div>
-      </form>
+      <!-- زر إتمام الطلب الشبيه بالصورة رقم 3 -->
+      <button onclick="checkoutAction()" class="w-full bg-brandYellow hover:bg-yellow-400 text-obsidian-950 font-black py-3.5 semi-sharp text-xs sm:text-sm flex items-center justify-center gap-2 transition-transform active:scale-95">
+        <span>إتمام الطلب والدفع الفوري</span>
+      </button>
 
     </div>
   </div>
 
-  <!-- نافذة استشارة B2B شبه الحادة (Consultation Modal) -->
-  <div id="consultModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/10 sharp-box w-full max-w-md p-6 relative shadow-2xl">
-      <div class="flex items-center justify-between pb-3 border-b border-white/10">
-        <h3 class="text-sm font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-building text-emerald-400"></i> طلب حلول واستشارات الشركات B2B
-        </h3>
-        <button onclick="openConsultationModal()" class="w-7 h-7 sharp-box bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xs"></i></button>
+  <!-- ==================== نافذة الحساب الموحد (ACCOUNT MODAL) ==================== -->
+  <div id="accountModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-brandBlue/30 w-full max-w-md semi-sharp p-5 relative shadow-2xl">
+      <button onclick="closeAccountModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="text-[11px] code-font text-brandBlue mb-1">// AUTH_SYSTEM</div>
+      <h3 class="text-base font-bold text-white mb-4">بوابة تسجيل دخول محمد بلس</h3>
+
+      <div class="space-y-3 mb-4">
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">البريد الإلكتروني أو رقم الجوال</label>
+          <input type="text" placeholder="name@domain.com أو 05xxxxxxxx" class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-2.5 px-3 text-xs text-white focus:outline-none focus:border-brandBlue">
+        </div>
+        <div>
+          <label class="block text-xs text-slate-300 mb-1">كلمة المرور أو رمز التحقق</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-2.5 px-3 text-xs text-white focus:outline-none focus:border-brandBlue">
+        </div>
       </div>
 
-      <div class="space-y-3.5 py-3 text-xs">
-        <div>
-          <label class="block text-slate-300 mb-1 text-[11px]">اسم الشركة أو المؤسسة</label>
-          <input type="text" placeholder="مثال: شركة الحلول الرقمية" class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
-        </div>
-        <div>
-          <label class="block text-slate-300 mb-1 text-[11px]">البريد الإلكتروني للعمل / واتساب</label>
-          <input type="text" placeholder="name@company.com" class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
-        </div>
-        <div>
-          <label class="block text-slate-300 mb-1 text-[11px]">طبيعة الاحتياج</label>
-          <select class="w-full px-3 py-2 sharp-box bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400 text-xs">
-            <option>ربط أنظمة وبطاقات رقمية API مؤتمت</option>
-            <option>بنية تحتية سحابية وخوادم خاصة NVMe</option>
-            <option>نماذج ذكاء اصطناعي وأتمتة مخصصة</option>
-            <option>أخرى</option>
-          </select>
-        </div>
-        <button onclick="submitConsultation()" class="w-full py-2.5 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black transition-all text-xs">
-          إرسال الطلب لفريق الأعمال
-        </button>
-      </div>
+      <button onclick="triggerToast('تم إرسال رمز التحقق OTP بنجاح'); closeAccountModal();" class="w-full bg-brandBlue hover:bg-sky-400 text-obsidian-950 font-black py-3 semi-sharp text-xs transition-transform active:scale-95 mb-2">
+        دخول سريع عبر النفاذ الموحد
+      </button>
+      <button onclick="triggerToast('قسم حلول وعقود الشركات B2B متاح على مدار الساعة'); closeAccountModal();" class="w-full bg-obsidian-850 hover:bg-obsidian-800 text-slate-200 font-bold py-2.5 semi-sharp text-xs border border-white/10 transition-colors">
+        بوابة الموردين والشركات B2B
+      </button>
     </div>
   </div>
 
-  <!-- إشعار التوست السريع شبه الحاد (Toast) -->
-  <div id="toast" class="fixed bottom-24 left-6 z-50 bg-obsidian-850 border border-cyberYellow/50 text-white px-4 py-2.5 sharp-box shadow-2xl flex items-center gap-2.5 transform translate-y-24 opacity-0 transition-all duration-300">
-    <i class="fa-solid fa-circle-check text-cyberYellow text-sm"></i>
-    <span id="toastMsg" class="text-xs font-bold">تم الإجراء بنجاح!</span>
+  <!-- ==================== صندوق الإشعار السريع (TOAST) ==================== -->
+  <div id="toastNotification" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-obsidian-850 border border-brandYellow text-white px-4 py-2.5 semi-sharp shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
+    <i class="fa-solid fa-circle-check text-brandYellow text-sm"></i>
+    <span id="toastText" class="text-xs font-bold">تمت العملية بنجاح</span>
   </div>
 
-  <!-- جافاسكربت لإدارة العمليات، التفاعل، وتنشيط الشريط العائم -->
+  <!-- ==================== تفاعل وجافاسكريبت التحكم ==================== -->
   <script>
-    // سلة المشتريات
     let cart = [];
 
-    // تنشيط وتحديد أزرار الشريط العائم
-    function highlightDock(type) {
-      const dockButtons = document.querySelectorAll('.dock-btn');
-      dockButtons.forEach(btn => btn.classList.remove('active'));
-
-      if (type === 'home') document.getElementById('dockHome').classList.add('active');
-      if (type === 'categories') document.getElementById('dockCategories').classList.add('active');
-      if (type === 'cart') document.getElementById('dockCart').classList.add('active');
-      if (type === 'account') document.getElementById('dockAccount').classList.add('active');
-    }
-
-    // زر الأقسام بالشريط السفلي
-    function handleCategoriesClick() {
-      highlightDock('categories');
-      const showcaseSection = document.getElementById('showcase');
-      if (showcaseSection) {
-        showcaseSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    // فلترة التبويبات الفورية
-    function filterTab(category) {
-      const cards = document.querySelectorAll('.card-item');
-      const buttons = document.querySelectorAll('.tab-btn');
-
-      buttons.forEach(btn => {
-        btn.classList.remove('bg-obsidian-750', 'text-white', 'border', 'border-white/15');
-        btn.classList.add('text-slate-400');
-        if (btn.getAttribute('data-tab') === category) {
-          btn.classList.add('bg-obsidian-750', 'text-white', 'border', 'border-white/15');
-          btn.classList.remove('text-slate-400');
-        }
-      });
-
-      cards.forEach(card => {
-        if (category === 'all' || card.classList.contains(category)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // إدارة السلة وتحديث كل العدادات
-    function addToCart(title, price) {
+    // إضافة واستعراض بطاقات الأقسام
+    function handleCategoryExplore(title, price) {
       cart.push({ title, price });
       updateCartUI();
-      showToast(`تمت إضافة "${title}" إلى سلتك`);
-    }
-
-    function updateCartUI() {
-      const badges = document.querySelectorAll('.cartCountBadge');
-      badges.forEach(b => b.innerText = cart.length);
-
-      const list = document.getElementById('cartItemsList');
-      const totalEl = document.getElementById('modalTotal');
-
-      if (cart.length === 0) {
-        list.innerHTML = '<p class="text-xs text-slate-400 text-center py-6">السلة فارغة حالياً</p>';
-        totalEl.innerText = '0 ريال';
-        return;
-      }
-
-      let total = 0;
-      list.innerHTML = '';
-      cart.forEach((item, index) => {
-        total += item.price;
-        const div = document.createElement('div');
-        div.className = 'flex items-center justify-between p-2 sharp-box bg-obsidian-800 border border-white/5 text-xs';
-        div.innerHTML = `
-          <span class="text-slate-200 font-medium text-[11px]">${item.title}</span>
-          <div class="flex items-center gap-2.5">
-            <span class="text-cyberYellow code-font font-bold">${item.price} ريال</span>
-            <button onclick="removeFromCart(${index})" class="text-slate-400 hover:text-red-400 text-xs"><i class="fa-solid fa-trash-can"></i></button>
-          </div>
-        `;
-        list.appendChild(div);
-      });
-
-      totalEl.innerText = total + ' ريال';
+      triggerToast(`تم استعراض وإضافة "${title}" إلى السلة`);
+      openCartModal();
     }
 
     function removeFromCart(index) {
       cart.splice(index, 1);
       updateCartUI();
+      triggerToast('تم حذف العنصر من السلة');
     }
 
-    function toggleCartModal() {
-      const modal = document.getElementById('cartModal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
-    }
+    function updateCartUI() {
+      const badge = document.getElementById('dockCartBadge');
+      const container = document.getElementById('cartItemsContainer');
+      const totalEl = document.getElementById('cartTotalPrice');
 
-    function checkoutNotice() {
+      if (badge) badge.innerText = cart.length;
+
       if (cart.length === 0) {
-        showToast('السلة فارغة، يرجى اختيار منتج أولاً');
+        container.innerHTML = `<p class="py-6 text-slate-400">السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!</p>`;
+        totalEl.innerText = `0 ريال`;
         return;
       }
-      toggleCartModal();
-      showToast('جاري توجيهك لبوابة الدفع المشفرة المحددة...');
+
+      let total = 0;
+      let html = '<div class="space-y-2 text-right">';
+      cart.forEach((item, idx) => {
+        total += item.price;
+        html += `
+          <div class="flex items-center justify-between bg-obsidian-950 p-2.5 semi-sharp border border-white/5">
+            <div>
+              <div class="text-xs font-bold text-white">${item.title}</div>
+              <div class="text-[10px] text-slate-400 code-font">${item.price} ريال</div>
+            </div>
+            <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div>
+        `;
+      });
+      html += '</div>';
+
+      container.innerHTML = html;
+      totalEl.innerText = `${total} ريال`;
     }
 
-    // نافذة الحساب
+    function checkoutAction() {
+      if (cart.length === 0) {
+        triggerToast('يرجى اختيار عنصر أولاً للمتابعة للدفع');
+        return;
+      }
+      closeCartModal();
+      triggerToast('جاري توجيهك لبوابة الدفع المشفرة والآمنة 100%...');
+      cart = [];
+      updateCartUI();
+    }
+
+    // إدارة نوافذ المودال
+    function openCartModal() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeCartModal() {
+      const modal = document.getElementById('cartModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
     function openAccountModal() {
       const modal = document.getElementById('accountModal');
-      modal.classList.toggle('hidden');
-      modal.classList.toggle('flex');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    function closeAccountModal() {
+      const modal = document.getElementById('accountModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
     }
 
-    function switchAccountType(type) {
-      const btnUser = document.getElementById('accTabUser');
-      const btnB2B = document.getElementById('accTabB2B');
-      const label = document.getElementById('loginLabelInput');
-      const submitBtn = document.getElementById('loginSubmitBtn');
+    function openSearchModal() {
+      document.getElementById('searchModal').classList.remove('hidden');
+      setTimeout(() => document.getElementById('searchInput').focus(), 100);
+    }
+    function closeSearchModal() {
+      document.getElementById('searchModal').classList.add('hidden');
+    }
+    function quickSearch(val) {
+      document.getElementById('searchInput').value = val;
+      triggerToast(`جاري البحث عن: ${val}`);
+      closeSearchModal();
+    }
 
-      if (type === 'b2b') {
-        btnB2B.className = 'flex-1 py-1.5 sharp-badge bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 transition-all font-bold';
-        btnUser.className = 'flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all';
-        label.innerText = 'البريد الإلكتروني المهني أو الرقم الضريبي';
-        submitBtn.className = 'w-full py-2.5 sharp-box bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black text-xs transition-all';
-        submitBtn.innerText = 'دخول بوابة الأعمال B2B';
+    // القائمة الجانبية
+    function toggleSidebarMenu() {
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('sideMenuOverlay');
+      if (menu.classList.contains('translate-x-full')) {
+        menu.classList.remove('translate-x-full');
+        overlay.classList.remove('hidden');
       } else {
-        btnUser.className = 'flex-1 py-1.5 sharp-badge bg-obsidian-750 text-white transition-all font-bold';
-        btnB2B.className = 'flex-1 py-1.5 sharp-badge text-slate-400 hover:text-white transition-all';
-        label.innerText = 'رقم الجوال أو البريد الإلكتروني';
-        submitBtn.className = 'w-full py-2.5 sharp-box bg-gradient-to-r from-cosmicCyan to-sky-500 hover:brightness-110 text-obsidian-950 font-black text-xs transition-all glow-cyan-sm';
-        submitBtn.innerText = 'تسجيل الدخول الآمن';
+        menu.classList.add('translate-x-full');
+        overlay.classList.add('hidden');
       }
     }
 
-    function handleAccountLogin(e) {
-      e.preventDefault();
-      openAccountModal();
-      showToast('مرحباً بك! جاري تسجيل الدخول إلى منصة محمد بلس...');
-    }
-
-    // نافذة استشارة B2B
-    function openConsultationModal() {
-      const m = document.getElementById('consultModal');
-      m.classList.toggle('hidden');
-      m.classList.toggle('flex');
-    }
-
-    function submitConsultation() {
-      openConsultationModal();
-      showToast('تم استلام طلبك، سيتواصل معك فريق الأعمال فوراً!');
-    }
-
-    // حاسبة الموارد والأسعار التفاعلية
-    function calculateEstimate() {
-      const cpu = parseInt(document.getElementById('cpuRange').value);
-      const ram = parseInt(document.getElementById('ramRange').value);
-      const aiOpt = document.getElementById('aiTokensOpt').checked;
-      const backup = document.getElementById('backupOpt').checked;
-
-      document.getElementById('cpuVal').innerText = cpu + ' Cores';
-      document.getElementById('ramVal').innerText = ram + ' GB';
-
-      let total = (cpu * 25) + (ram * 12);
-      if (aiOpt) total += 80;
-      if (backup) total += 25;
-
-      document.getElementById('totalEstimate').innerText = total;
-    }
-
-    // إشعار التوست
-    function showToast(text) {
-      const toast = document.getElementById('toast');
-      const msg = document.getElementById('toastMsg');
-      msg.innerText = text;
-      toast.classList.remove('translate-y-24', 'opacity-0');
+    // إشعار Toast البديل النظيف
+    function triggerToast(message) {
+      const toast = document.getElementById('toastNotification');
+      const text = document.getElementById('toastText');
+      text.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
       toast.classList.add('translate-y-0', 'opacity-100');
 
       setTimeout(() => {
-        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.add('translate-y-20', 'opacity-0');
         toast.classList.remove('translate-y-0', 'opacity-100');
       }, 3000);
     }
-
-    // قائمة الجوال العلوية
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobileMenu');
-      menu.classList.toggle('hidden');
-    }
-    document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
-
-    // تتبع التمرير لتحديث حالة الشريط العائم
-    window.addEventListener('scroll', () => {
-      if (window.scrollY < 300) {
-        highlightDock('home');
-      }
-    });
   </script>
 </body>
 </html>
