@@ -38,7 +38,7 @@
       overflow-x: hidden;
       width: 100%;
       min-height: 100%;
-      background-color: #06070a;
+      background-color: #02050f;
     }
 
     body, h1, h2, h3, h4, p, a, button, span, div, li {
@@ -46,12 +46,12 @@
     }
 
     body {
-      background-color: #06070a;
-      /* خلفية كربونية عميقة بإضاءات صفراء ناعمة عالية الأداء */
+      background-color: #02050f;
+      /* خلفية فضائية كحلية عميقة خفيفة وسلسة جداً في التصفح */
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(255, 234, 0, 0.14) 0%, transparent 60%),
-        radial-gradient(circle at 85% 30%, rgba(255, 214, 0, 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 15% 70%, rgba(255, 193, 7, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.35) 0%, transparent 60%),
+        radial-gradient(circle at 85% 30%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 15% 70%, rgba(56, 189, 248, 0.12) 0%, transparent 50%);
       background-attachment: fixed;
       color: #ffffff;
       min-height: 100vh;
@@ -76,12 +76,12 @@
       }
     }
 
-    /* فئة الإطار التتابعي التفاعلي بالأصفر والذهبي */
+    /* فئة الإطار التتابعي الفضائي الأصلي */
     .glowing-border {
       position: relative;
       border-radius: 14px;
-      background: rgba(16, 17, 23, 0.9);
-      border: 1px solid rgba(255, 234, 0, 0.22);
+      background: rgba(9, 17, 34, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.2);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -95,9 +95,9 @@
       background: conic-gradient(
         from var(--angle),
         transparent 0%,
-        rgba(255, 234, 0, 0.05) 40%,
-        #ffd600 75%,
-        #ffea00 95%,
+        rgba(56, 189, 248, 0.05) 50%,
+        #38bdf8 80%,
+        #c084fc 95%,
         transparent 100%
       );
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -127,7 +127,7 @@
     .header-btn {
       background: none;
       border: none;
-      color: #cbd5e1;
+      color: #94a3b8;
       font-size: 20px;
       cursor: pointer;
       width: 42px;
@@ -140,8 +140,8 @@
     }
 
     .header-btn:hover {
-      color: #ffea00;
-      background: rgba(255, 234, 0, 0.12);
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
     }
 
     .logo-box img {
@@ -164,12 +164,12 @@
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 14px;
-      text-shadow: 0 0 25px rgba(255, 234, 0, 0.45);
+      text-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
       line-height: 1.3;
     }
 
     .hero p {
-      color: #cbd5e1;
+      color: #a5b8d0;
       font-size: clamp(12px, 2vw, 15px);
       max-width: 650px;
       margin: 0 auto 24px;
@@ -184,26 +184,25 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #ffd600 0%, #ffea00 100%);
-      color: #06070a;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 30%, #7c3aed 100%);
+      color: #ffffff;
       padding: 11px 32px;
       border-radius: 10px;
       font-size: 14px;
       text-decoration: none;
-      font-weight: 800;
-      border: 1px solid rgba(255, 234, 0, 0.5);
-      box-shadow: 0 4px 20px rgba(255, 234, 0, 0.3);
+      font-weight: 600;
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
       transition: all 0.3s ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      background: #ffffff;
-      box-shadow: 0 6px 25px rgba(255, 255, 255, 0.35);
+      box-shadow: 0 6px 25px rgba(59, 130, 246, 0.6);
     }
 
     .btn-secondary {
-      background: rgba(16, 17, 23, 0.85);
+      background: rgba(10, 18, 38, 0.85);
       color: #cbd5e1;
       padding: 11px 32px;
       border-radius: 10px;
@@ -214,9 +213,9 @@
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 234, 0, 0.1);
-      border-color: rgba(255, 234, 0, 0.4);
-      color: #ffea00;
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #ffffff;
     }
 
     /* شبكة البطاقات - متجاوبة ديناميكياً */
@@ -238,13 +237,13 @@
 
     .card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 18px rgba(255, 234, 0, 0.25);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 0 0 18px rgba(56, 189, 248, 0.25);
     }
 
     .card-preview {
       width: 100%;
       height: 90px;
-      background: rgba(9, 10, 15, 0.92);
+      background: rgba(4, 8, 18, 0.92);
       border: 1px solid rgba(255, 255, 255, 0.06);
       border-radius: 10px;
       display: flex;
@@ -257,15 +256,15 @@
       font-size: 32px;
     }
 
-    .icon-cyan { color: #ffea00; filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.7)); }
-    .icon-teal { color: #ffd600; filter: drop-shadow(0 0 10px rgba(255, 214, 0, 0.7)); }
-    .icon-indigo { color: #fbbf24; filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.7)); }
-    .icon-purple { color: #f59e0b; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.7)); }
-    .icon-amber { color: #ffea00; filter: drop-shadow(0 0 10px rgba(255, 234, 0, 0.7)); }
-    .icon-blue { color: #facc15; filter: drop-shadow(0 0 10px rgba(250, 204, 21, 0.7)); }
-    .icon-violet { color: #eab308; filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.7)); }
-    .icon-emerald { color: #fef08a; filter: drop-shadow(0 0 10px rgba(254, 240, 138, 0.7)); }
-    .icon-rose { color: #ca8a04; filter: drop-shadow(0 0 10px rgba(202, 138, 4, 0.7)); }
+    .icon-cyan { color: #00f2fe; filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.7)); }
+    .icon-teal { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-indigo { color: #818cf8; filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.7)); }
+    .icon-purple { color: #c084fc; filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.7)); }
+    .icon-amber { color: #38bdf8; filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.7)); }
+    .icon-blue { color: #60a5fa; filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.7)); }
+    .icon-violet { color: #a78bfa; filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.7)); }
+    .icon-emerald { color: #34d399; filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.7)); }
+    .icon-rose { color: #f472b6; filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.7)); }
 
     .card h3 {
       font-size: clamp(12.5px, 1.4vw, 15px);
@@ -295,10 +294,9 @@
     }
 
     .card:hover .btn-card {
-      background: #ffea00;
-      border-color: #ffea00;
-      color: #06070a;
-      font-weight: 700;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(56, 189, 248, 0.95));
+      border-color: #38bdf8;
+      color: #ffffff;
     }
 
     /* ما قبل الفوتر */
@@ -319,7 +317,7 @@
       margin-bottom: 12px;
     }
     .footer-brand-box p {
-      color: #cbd5e1;
+      color: #94a3b8;
       font-size: clamp(11.5px, 1.2vw, 13px);
       max-width: 620px;
       margin: 0 auto;
@@ -332,7 +330,7 @@
       text-align: center;
     }
     .footer-links-group h4 {
-      color: #ffea00;
+      color: #38bdf8;
       font-size: 14.5px;
       margin-bottom: 16px;
       font-weight: 700;
@@ -359,9 +357,9 @@
       text-align: center;
     }
     .footer-link-badge:hover {
-      color: #ffea00;
+      color: #38bdf8;
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(255, 234, 0, 0.25);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6), 0 0 10px rgba(56, 189, 248, 0.2);
     }
 
     /* التواصل */
@@ -370,7 +368,7 @@
       text-align: center;
     }
     .footer-social-group h4 {
-      color: #ffea00;
+      color: #38bdf8;
       font-size: 14.5px;
       margin-bottom: 14px;
       font-weight: 700;
@@ -394,9 +392,7 @@
       transition: all 0.3s ease;
     }
     .social-icon-btn:hover {
-      color: #06070a;
-      background: #ffea00;
-      border-color: #ffea00;
+      color: #38bdf8;
       transform: translateY(-3px);
     }
 
@@ -406,7 +402,7 @@
       text-align: center;
     }
     .footer-licenses-group h4 {
-      color: #ffea00;
+      color: #38bdf8;
       font-size: 14.5px;
       margin-bottom: 14px;
       font-weight: 700;
@@ -431,7 +427,7 @@
     }
     .license-card:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(255, 234, 0, 0.25);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), 0 0 12px rgba(56, 189, 248, 0.2);
     }
     .license-logo-box {
       width: 100%;
@@ -454,7 +450,7 @@
       text-align: center;
     }
     .footer-payments-group h4 {
-      color: #ffea00;
+      color: #38bdf8;
       font-size: 14.5px;
       margin-bottom: 14px;
       font-weight: 700;
@@ -474,7 +470,7 @@
     }
     .payment-card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(255, 234, 0, 0.25);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7), 0 0 10px rgba(56, 189, 248, 0.2);
     }
     .payment-logo {
       height: 20px;
@@ -499,7 +495,7 @@
       margin-bottom: 4px;
     }
     .site-footer-box .heart {
-      color: #ffea00;
+      color: #ef4444;
       display: inline-block;
       margin: 0 2px;
     }
@@ -520,7 +516,7 @@
       align-items: center;
       justify-content: space-around;
       padding: 7px 12px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 234, 0, 0.2);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.22);
     }
 
     .bottom-nav-item {
@@ -544,15 +540,15 @@
     }
 
     .bottom-nav-item.active, .bottom-nav-item:hover {
-      color: #ffea00;
+      color: #38bdf8;
     }
 
     .nav-badge {
       position: absolute;
       top: 0;
       right: 14px;
-      background: #ffea00;
-      color: #06070a;
+      background: #38bdf8;
+      color: #02050f;
       font-size: 9.5px;
       font-weight: bold;
       width: 16px;
@@ -563,7 +559,7 @@
       justify-content: center;
     }
 
-    .nav-badge.orange { background: #f59e0b; color: #ffffff; }
+    .nav-badge.orange { background: #f59e0b; }
 
     /* ========================================================= */
     /* قواعد التوافق والاستجابة لجميع مقاسات الشاشات (RESPONSIVE) */
@@ -894,22 +890,22 @@
         <h4>طرق دفع آمنة ومتعددة</h4>
         <div class="payments-grid">
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo">
           </div>
         </div>
       </div>
