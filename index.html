@@ -29,7 +29,7 @@
       --text-muted: #94a3b8;
       --text-dim: #64748b;
       
-      /* زوايا شبه حادة موحدة للمنصة بالكامل */
+      /* زوايا شبه حادة موحدة للمنصة */
       --radius-sharp: 4px;
       --radius-box: 6px;
     }
@@ -62,7 +62,7 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* خلفية المجرة المحدثة مع طبقة دمج مريحة وعالية السرعة */
+    /* خلفية المجرة المحدثة وطبقة الدمج السريعة */
     .galaxy-bg {
       position: fixed;
       top: 0;
@@ -98,12 +98,12 @@
       z-index: 5;
     }
 
-    /* حركة دوران الشعاع الضوئي المسرعة بالهاردوير */
+    /* حركة دوران الشعاع الضوئي */
     @keyframes rotateLight {
       to { --angle: 360deg; }
     }
 
-    /* الإطار الفضائي التفاعلي المضيء بزوايا شبه حادة */
+    /* الإطار الفضائي المضيء بزوايا شبه حادة */
     .glowing-border {
       position: relative;
       border-radius: var(--radius-box);
@@ -141,6 +141,99 @@
       margin: 20px 0;
     }
 
+    /* ================================================= */
+    /* مؤثرات وحركات الشعار الرقمي المتطور (LOGO ANIMATION) */
+    /* ================================================= */
+    
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+        filter: drop-shadow(0 0 0 rgba(56, 189, 248, 0));
+      }
+      50% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.9));
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.45));
+      }
+    }
+
+    @keyframes logoPulseGlow {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.35));
+      }
+      50% {
+        filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 25px rgba(192, 132, 252, 0.4));
+      }
+    }
+
+    @keyframes lightSweep {
+      0% {
+        transform: translateX(120%) skewX(-25deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.85;
+      }
+      40%, 100% {
+        transform: translateX(-140%) skewX(-25deg);
+        opacity: 0;
+      }
+    }
+
+    .logo-box {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 4px 8px;
+      border-radius: var(--radius-sharp);
+    }
+
+    .logo-box img {
+      height: 46px;
+      width: auto;
+      max-width: 170px;
+      object-fit: contain;
+      display: block;
+      position: relative;
+      z-index: 2;
+      animation: logoEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, logoPulseGlow 4s ease-in-out infinite 1.2s;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    /* شعاع المسح الضوئي المار فوق الشعار */
+    .logo-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.2) 30%,
+        rgba(56, 189, 248, 0.75) 50%,
+        rgba(255, 255, 255, 0.9) 60%,
+        transparent 100%
+      );
+      pointer-events: none;
+      z-index: 3;
+      mix-blend-mode: overlay;
+      animation: lightSweep 4.5s ease-in-out infinite 0.5s;
+    }
+
+    .logo-box:hover img {
+      transform: scale(1.04);
+      filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.9));
+    }
+
     /* رأس الصفحة (Header) */
     header {
       display: flex;
@@ -170,14 +263,6 @@
     .header-btn:hover {
       color: var(--cyan-neon);
       background: rgba(56, 189, 248, 0.1);
-    }
-
-    .logo-box img {
-      height: 46px;
-      width: auto;
-      max-width: 170px;
-      object-fit: contain;
-      display: block;
     }
 
     /* القسم الترحيبي (Hero) */
@@ -364,6 +449,10 @@
       width: auto;
       object-fit: contain;
       margin-bottom: 10px;
+      transition: filter 0.25s ease;
+    }
+    .footer-brand-box img:hover {
+      filter: drop-shadow(0 0 10px var(--cyan-neon));
     }
     .footer-brand-box p {
       color: var(--text-muted);
@@ -467,7 +556,7 @@
       object-fit: contain;
     }
 
-    /* بوابات الدفع */
+    /* طرق الدفع المعتمدة */
     .payments-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -505,7 +594,7 @@
       margin: 0 2px;
     }
 
-    /* شريط الملاحة السفلي للجوال (زوايا شبه حادة أنيقة) */
+    /* شريط الملاحة السفلي للجوال (Floating Dock) */
     .bottom-nav-wrapper {
       position: fixed;
       bottom: calc(10px + env(safe-area-inset-bottom, 0px));
@@ -598,6 +687,7 @@
         height: 38px;
       }
 
+      /* تحويل شبكة البطاقات إلى عمودين مريحين جداً لمنع الازدحام */
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -684,7 +774,7 @@
   <div class="bg-overlay"></div>
 
   <div class="container">
-    <!-- رأس الصفحة -->
+    <!-- رأس الصفحة مع حركة الشعار النيون المتطورة -->
     <header class="glowing-border">
       <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
       <div class="logo-box">
@@ -852,7 +942,7 @@
 
       <div class="section-divider"></div>
 
-      <!-- 5. طرق دفع آمنة ومتعددة بالأسماء والمصادر الجديدة -->
+      <!-- 5. طرق دفع آمنة ومتعددة -->
       <div>
         <h4 class="footer-section-title">طرق دفع آمنة ومتعددة</h4>
         <div class="payments-grid">
