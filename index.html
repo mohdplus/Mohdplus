@@ -1,1110 +1,509 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>محمد بلس | المنصة الرقمية للأدوات الذكية وسوق المبدعين</title>
-  
-  <!-- Tailwind CSS CDN -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>محمد بلس | المنصة الرقمية وسوق المبدعين</title>
+
+  <!-- خط ثمانية (Thmanyah Serif Text) الرسمي -->
+  <style>
+    @font-face {
+      font-family: 'Thmanyah';
+      src: url('thmanyahseriftext-Regular.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Thmanyah';
+      src: url('thmanyahseriftext-Bold.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    * {
+      font-family: 'Thmanyah', 'Cairo', sans-serif !important;
+    }
+  </style>
+
+  <!-- Tailwind CSS & Lucide Icons -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
-          fontFamily: {
-            thmanyah: ['ThmanyahSerif', 'Cairo', 'Tajawal', 'sans-serif'],
+          colors: {
+            primary: {
+              DEFAULT: 'var(--primary-color, #F59E0B)',
+              hover: 'var(--primary-hover, #D97706)',
+              light: 'var(--primary-light, #FEF3C7)',
+              dark: 'var(--primary-dark, #B45309)'
+            }
+          },
+          borderRadius: {
+            'none': '0px',
+            'sm': '3px',
+            DEFAULT: '4px',
+            'md': '5px',
+            'lg': '6px',
+            'xl': '8px',
+            '2xl': '10px',
+            '3xl': '12px',
           }
         }
       }
     }
   </script>
-
-  <!-- Google Fonts Fallback: Cairo & Tajawal -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
   <style>
-    /* ================= 1. Thmanyah Serif Font Definition ================= */
-    @font-face {
-      font-family: 'ThmanyahSerif';
-      src: url('./thmanyahseriftext-Regular.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    @font-face {
-      font-family: 'ThmanyahSerif';
-      src: url('./thmanyahseriftext-Bold.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Bold.otf') format('opentype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
-
-    * {
-      font-family: 'ThmanyahSerif', 'Cairo', 'Tajawal', sans-serif !important;
-      -webkit-tap-highlight-color: transparent;
-      transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
-    }
-
-    /* ================= 2. Dynamic CSS Variables & Themes ================= */
-    /* DEFAULT THEME: Golden Amber (الذهبي الكهرماني الأساسي) */
-    :root, [data-theme="amber"] {
+    :root {
       --primary-color: #F59E0B;
       --primary-hover: #D97706;
-      --primary-gradient: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-      --primary-glow: rgba(245, 158, 11, 0.28);
-      --primary-text-contrast: #0f172a;
-      --primary-badge-bg: rgba(245, 158, 11, 0.15);
-      --primary-border: rgba(245, 158, 11, 0.35);
-      --logo-glow-filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.45));
+      --primary-light: #FEF3C7;
+      --primary-dark: #B45309;
     }
-
-    /* THEME: Cyan (الأزرق السيان التقني) */
-    [data-theme="cyan"] {
-      --primary-color: #06B6D4;
-      --primary-hover: #0891B2;
-      --primary-gradient: linear-gradient(135deg, #06B6D4 0%, #2563EB 100%);
-      --primary-glow: rgba(6, 182, 212, 0.28);
-      --primary-text-contrast: #030712;
-      --primary-badge-bg: rgba(6, 182, 212, 0.15);
-      --primary-border: rgba(6, 182, 212, 0.35);
-      --logo-glow-filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.45));
+    body {
+      background-color: #0B0F17;
+      color: #F3F4F6;
+      transition: background-color 0.3s, color 0.3s;
     }
-
-    /* THEME: Violet (البنفسجي الإبداعي الملكي) */
-    [data-theme="violet"] {
-      --primary-color: #8B5CF6;
-      --primary-hover: #7C3AED;
-      --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%);
-      --primary-glow: rgba(139, 92, 246, 0.28);
-      --primary-text-contrast: #ffffff;
-      --primary-badge-bg: rgba(139, 92, 246, 0.15);
-      --primary-border: rgba(139, 92, 246, 0.35);
-      --logo-glow-filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.45));
+    .light body {
+      background-color: #F8FAFC;
+      color: #0F172A;
     }
-
-    /* THEME: Emerald (الأخضر النيون التجاري) */
-    [data-theme="emerald"] {
-      --primary-color: #10B981;
-      --primary-hover: #059669;
-      --primary-gradient: linear-gradient(135deg, #10B981 0%, #059669 100%);
-      --primary-glow: rgba(16, 185, 129, 0.28);
-      --primary-text-contrast: #022c22;
-      --primary-badge-bg: rgba(16, 185, 129, 0.15);
-      --primary-border: rgba(16, 185, 129, 0.35);
-      --logo-glow-filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.45));
-    }
-
-    /* Utility Mapping */
-    .theme-bg {
-      background-color: var(--primary-color) !important;
-    }
-    .theme-bg-gradient {
-      background: var(--primary-gradient) !important;
-    }
-    .theme-color {
-      color: var(--primary-color) !important;
-    }
-    .theme-border {
-      border-color: var(--primary-border) !important;
-    }
-    .theme-badge {
-      background-color: var(--primary-badge-bg) !important;
-      color: var(--primary-color) !important;
-    }
-    .theme-contrast-text {
-      color: var(--primary-text-contrast) !important;
-    }
-    .theme-shadow {
-      box-shadow: 0 10px 25px -5px var(--primary-glow) !important;
-    }
-    .brand-logo-img {
-      filter: var(--logo-glow-filter);
-      transition: filter 0.3s ease, transform 0.2s ease;
-    }
-    .brand-logo-img:hover {
-      transform: scale(1.05);
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    .bottom-nav-active {
-      color: var(--primary-color) !important;
-    }
-    .bottom-nav-active .indicator-dot {
-      display: block !important;
-      background-color: var(--primary-color) !important;
-    }
+    /* تخصيص إخفاء شريط التمرير */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   </style>
 </head>
-<body class="bg-[#F8FAFC] dark:bg-[#0B0F19] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col select-none pb-28">
+<body class="min-h-screen pb-24 selection:bg-primary selection:text-white">
 
-  <!-- Mobile App Frame Container -->
-  <div class="w-full max-w-md mx-auto min-h-screen flex flex-col relative shadow-2xl bg-white dark:bg-[#121824] border-x border-gray-200 dark:border-gray-800">
-
-    <!-- Top App Header -->
-    <header class="sticky top-0 z-40 bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-gray-100 dark:border-gray-800/80">
+  <!-- ================= الترويسة العلَوية (Top Header Bar) ================= -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-[#0F172A]/85 border-b border-gray-200 dark:border-gray-800 px-4 py-3">
+    <div class="max-w-md mx-auto flex items-center justify-between">
       
-      <!-- Right: Logo Image with Dynamic Glow & Brand Title -->
-      <div class="flex items-center gap-2.5 cursor-pointer" onclick="openTab('home')">
-        <div class="w-10 h-10 rounded-2xl theme-badge theme-border border flex items-center justify-center p-1.5 shadow-sm overflow-hidden relative group">
-          <!-- Logo Image icon.svg from GitHub with fallback inline SVG -->
-          <img 
-            id="headerLogoImg"
-            src="icon.svg" 
-            alt="شعار محمد بلس" 
-            class="w-full h-full object-contain brand-logo-img"
-            onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.classList.add('hidden'); document.getElementById('headerLogoFallback').classList.remove('hidden');}"
-          >
-          <!-- Fallback SVG if image is unreachable -->
-          <div id="headerLogoFallback" class="hidden w-full h-full flex items-center justify-center font-black text-sm theme-color">
-            <span>M+</span>
+      <!-- الشعار الكامل الجديد -->
+      <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('home')">
+        <img src="logomohdplus.svg" 
+             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg'; this.onerror=function(){this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';}" 
+             alt="محمد بلس" 
+             class="h-10 max-w-[170px] object-contain">
+        
+        <!-- بديل في حال لم يتوفر ملف الشعار -->
+        <div id="fallback-logo" class="hidden items-center gap-2">
+          <div class="w-9 h-9 bg-primary flex items-center justify-center font-bold text-white text-lg rounded">م+</div>
+          <div>
+            <h1 class="font-bold text-base leading-tight">محمد بلس</h1>
+            <p class="text-[10px] opacity-70">المنصة الرقمية وسوق المبدعين</p>
           </div>
+        </div>
+      </div>
+
+      <!-- الأيقونات العلوية (الدعم الفني، الإشعارات، تبديل الوضع) -->
+      <div class="flex items-center gap-2">
+        <!-- زر الدعم الفني -->
+        <button onclick="openSupportModal()" class="p-2 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
+          <i data-lucide="headphones" class="w-5 h-5"></i>
+        </button>
+
+        <!-- زر الإشعارات -->
+        <button onclick="openNotificationsModal()" class="p-2 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition relative" title="الإشعارات">
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full animate-ping"></span>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
+          <i data-lucide="bell" class="w-5 h-5"></i>
+        </button>
+
+        <!-- زر تبديل الوضع (ليلي / نهاري) -->
+        <button onclick="toggleDarkMode()" class="p-2 rounded bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="تبديل الوضع">
+          <i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- شريط سريع لاختيار الألوان حسب رغبة العميل -->
+    <div class="max-w-md mx-auto mt-2 pt-2 border-t border-gray-100 dark:border-gray-800/60 flex items-center justify-between text-xs">
+      <span class="opacity-70 font-semibold">لون المنصة:</span>
+      <div class="flex items-center gap-1.5">
+        <button onclick="setThemeColor('#F59E0B', '#D97706')" class="w-4 h-4 rounded-full bg-amber-500 ring-2 ring-offset-1 ring-amber-500/50" title="الذهبي الكهرماني"></button>
+        <button onclick="setThemeColor('#06B6D4', '#0891B2')" class="w-4 h-4 rounded-full bg-cyan-500" title="الأزرق السيان"></button>
+        <button onclick="setThemeColor('#8B5CF6', '#7C3AED')" class="w-4 h-4 rounded-full bg-purple-500" title="البنفسجي الإبداعي"></button>
+        <button onclick="setThemeColor('#10B981', '#059669')" class="w-4 h-4 rounded-full bg-emerald-500" title="الأخضر التجاري"></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= المحتوى الرئيسي للمنصة ================= -->
+  <main class="max-w-md mx-auto p-4 space-y-5">
+
+    <!-- 1. قسم الرئيسية (Home) -->
+    <div id="tab-home" class="tab-content space-y-4">
+      <!-- بطاقة ترحيبية كاروسيل -->
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-4 rounded border border-primary/30 relative overflow-hidden">
+        <div class="absolute -left-6 -bottom-6 w-24 h-24 bg-primary/10 rounded-full blur-xl"></div>
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">الأحدث اليوم</span>
+            <h2 class="text-lg font-bold mt-1">مرحباً بك في محمد بلس!</h2>
+            <p class="text-xs opacity-80 mt-0.5">منصتك المتكاملة للتجارة الرقمية والأدوات الذكية وسوق المبدعين.</p>
+          </div>
+          <button onclick="switchTab('store')" class="bg-primary text-white px-3 py-2 rounded text-xs font-bold hover:bg-primary-hover transition shadow">استكشف المتجر</button>
+        </div>
+      </div>
+
+      <!-- إحصائيات سريعة -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800">
+          <span class="text-xs opacity-75">إجمالي المبدعين</span>
+          <h3 class="text-xl font-bold mt-1 text-primary">+1,420</h3>
+          <span class="text-[10px] text-emerald-500 font-semibold">↑ نمو مستمر 12%</span>
+        </div>
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800">
+          <span class="text-xs opacity-75">الأدوات الذكية</span>
+          <h3 class="text-xl font-bold mt-1 text-primary">18 أداة</h3>
+          <span class="text-[10px] text-cyan-500 font-semibold">جاهزة للاستخدام</span>
+        </div>
+      </div>
+
+      <!-- شبكة الأدوات والخدمات -->
+      <div>
+        <h3 class="font-bold text-sm mb-3 flex items-center justify-between">
+          <span>أبرز الخدمات والأدوات الذكية</span>
+          <span class="text-xs text-primary cursor-pointer" onclick="switchTab('tools')">عرض الكل</span>
+        </h3>
+        <div class="grid grid-cols-1 gap-3">
+          <div onclick="switchTab('tools')" class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+            <div class="p-2.5 rounded bg-primary/10 text-primary">
+              <i data-lucide="bot" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-sm">محلل المتاجر بالذكاء الاصطناعي</h4>
+              <p class="text-xs opacity-70">فحص وتحليل المتاجر الرقمية ورفع نسبة المبيعات.</p>
+            </div>
+            <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
+          </div>
+
+          <div onclick="switchTab('creators')" class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+            <div class="p-2.5 rounded bg-primary/10 text-primary">
+              <i data-lucide="palette" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-sm">سوق المبدعين الرقميين</h4>
+              <p class="text-xs opacity-70">اعرض تصاميمك، قوالبك، وخدماتك للبيع فوراً.</p>
+            </div>
+            <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. قسم المجتمع (Community) -->
+    <div id="tab-community" class="tab-content hidden space-y-3">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-base">مجتمع المبدعين والرواد</h3>
+        <button onclick="showToast('تم فتح نافذة إنشاء منشور جديد')" class="bg-primary text-white px-3 py-1.5 rounded text-xs font-bold">انشر فكرتك</button>
+      </div>
+
+      <!-- منشور تجريبي -->
+      <div class="bg-white dark:bg-[#111827] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-9 h-9 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">م</div>
+            <div>
+              <h4 class="font-bold text-xs">محمد العتيبي</h4>
+              <span class="text-[10px] opacity-60">قبل 15 دقيقة</span>
+            </div>
+          </div>
+          <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded font-semibold">مبدع مميز</span>
+        </div>
+        <p class="text-xs leading-relaxed">أطلقت اليوم قالب متجر إلكتروني جديد مخصص للمتاجر الرقمية، يمكنكم معاينته من قسم المتجر وتطويره عبر أدوات محمد بلس الذكية! 🚀</p>
+        <div class="flex items-center gap-4 pt-2 border-t border-gray-100 dark:border-gray-800 text-xs opacity-75">
+          <button onclick="showToast('تم الإعجاب بالمنشور')" class="flex items-center gap-1 hover:text-primary"><i data-lucide="heart" class="w-4 h-4"></i> 42</button>
+          <button onclick="showToast('عرض التعليقات')" class="flex items-center gap-1 hover:text-primary"><i data-lucide="message-square" class="w-4 h-4"></i> 8 تعليقات</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. قسم المتجر (Store) -->
+    <div id="tab-store" class="tab-content hidden space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-base">سوق الأصول الرقمية</h3>
+        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">أفضل المنتجات</span>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">قالب رقمي</div>
+            <h4 class="font-bold text-xs line-clamp-1">لوحة تحكم SaaS متكاملة</h4>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط مع بوابات الدفع.</p>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs font-bold text-primary">$49</span>
+            <button onclick="showToast('تمت إضافة المنتج للسلة')" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
+          </div>
+        </div>
+
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">أدوات ذكية</div>
+            <h4 class="font-bold text-xs line-clamp-1">مساعد توليد المحتوى الذكي</h4>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات سوشيال ميديا.</p>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs font-bold text-primary">$29</span>
+            <button onclick="showToast('تمت إضافة المنتج للسلة')" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. قسم الأدوات (Tools) -->
+    <div id="tab-tools" class="tab-content hidden space-y-3">
+      <h3 class="font-bold text-base">الأدوات الذكية والحلول</h3>
+      
+      <div class="bg-white dark:bg-[#111827] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded bg-primary/10 text-primary">
+            <i data-lucide="radar" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm">رادار صفقات التجارة الرقمية</h4>
+            <p class="text-xs opacity-70">مسح السوق واكتشاف الفرص الحصرية.</p>
+          </div>
+        </div>
+        <button onclick="showToast('جاري تشغيل الرادار الذكي...')" class="w-full bg-primary text-white py-2 rounded text-xs font-bold mt-2">تشغيل الآن</button>
+      </div>
+
+      <div class="bg-white dark:bg-[#111827] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 rounded bg-primary/10 text-primary">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-sm">صانع الاستراتيجيات الرقمية</h4>
+            <p class="text-xs opacity-70">استراتيجية متكاملة مكتوبة لتنفيذها فوراً.</p>
+          </div>
+        </div>
+        <button onclick="showToast('تم فتح صانع الاستراتيجيات')" class="w-full bg-primary text-white py-2 rounded text-xs font-bold mt-2">ابدأ الآن</button>
+      </div>
+    </div>
+
+    <!-- 5. قسم المبدعين (Creators Showcase) -->
+    <div id="tab-creators" class="tab-content hidden space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-base">دليل المبدعين الرقميين</h3>
+        <span class="text-xs text-primary font-semibold cursor-pointer" onclick="showToast('انضم للمبدعين')">انضم إلينا</span>
+      </div>
+
+      <div class="space-y-2">
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">س</div>
+            <div>
+              <h4 class="font-bold text-sm">سارة للتصميم الرقمي</h4>
+              <p class="text-[10px] opacity-70">UI/UX Designer & Frontend</p>
+            </div>
+          </div>
+          <button onclick="showToast('تمت متابعة المبدعة')" class="bg-primary/10 text-primary px-3 py-1.5 rounded text-xs font-bold hover:bg-primary hover:text-white transition">متابعة</button>
+        </div>
+
+        <div class="bg-white dark:bg-[#111827] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">خ</div>
+            <div>
+              <h4 class="font-bold text-sm">خالد الرقمي</h4>
+              <p class="text-[10px] opacity-70">مبرمج حلول ومتاجر</p>
+            </div>
+          </div>
+          <button onclick="showToast('تمت متابعة المبدع')" class="bg-primary/10 text-primary px-3 py-1.5 rounded text-xs font-bold hover:bg-primary hover:text-white transition">متابعة</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. قسم حسابي (My Account) -->
+    <div id="tab-account" class="tab-content hidden space-y-3">
+      <div class="bg-white dark:bg-[#111827] p-4 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-primary/20 text-primary font-bold rounded flex items-center justify-center text-lg">م+</div>
+          <div>
+            <h4 class="font-bold text-sm">محمد بلس برو</h4>
+            <p class="text-xs text-primary font-semibold mt-0.5">الباقة الحالية: غير مشترك</p>
+          </div>
+        </div>
+        <button onclick="openAuthModal()" class="bg-primary text-white px-3 py-1.5 rounded text-xs font-bold">دخول</button>
+      </div>
+
+      <div class="bg-white dark:bg-[#111827] rounded border border-gray-200 dark:border-gray-800 overflow-hidden text-xs">
+        <a href="#" onclick="showToast('الاشتراكات والباقات'); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+          <span class="flex items-center gap-2"><i data-lucide="credit-card" class="w-4 h-4 text-primary"></i> الاشتراك والباقات</span>
+          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="#" onclick="openSupportModal(); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+          <span class="flex items-center gap-2"><i data-lucide="headphones" class="w-4 h-4 text-primary"></i> الدعم الفني</span>
+          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="#" onclick="showToast('إعدادات الأمان'); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+          <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-primary"></i> الأمان</span>
+          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
+        </a>
+        <a href="#" onclick="showToast('الإعدادات العامة'); return false;" class="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50">
+          <span class="flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4 text-primary"></i> الإعدادات</span>
+          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ================= الشريط العائم السفلي (Bottom Floating Navigation) ================= -->
+  <nav class="fixed bottom-3 left-4 right-4 z-40 max-w-md mx-auto bg-white/90 dark:bg-[#0F172A]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded shadow-lg p-1.5 flex items-center justify-around">
+    
+    <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-primary transition">
+      <i data-lucide="home" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
+    </button>
+
+    <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="users" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
+    </button>
+
+    <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-semibold">المتجر</span>
+    </button>
+
+    <button onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="cpu" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-semibold">الأدوات</span>
+    </button>
+
+    <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="palette" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
+    </button>
+
+    <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1.5 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="user" class="w-5 h-5"></i>
+      <span class="text-[10px] mt-1 font-semibold">حسابي</span>
+    </button>
+
+  </nav>
+
+  <!-- ================= النوافذ المنبثقة (Modals & Toast) ================= -->
+
+  <!-- نافذة تسجيل الدخول -->
+  <div id="auth-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-[#111827] w-full max-w-sm rounded p-5 space-y-4 border border-gray-200 dark:border-gray-800">
+      <div class="flex items-center justify-between">
+        <h3 class="font-bold text-base">تسجيل الدخول إلى محمد بلس</h3>
+        <button onclick="closeAuthModal()" class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block mb-1 opacity-75">البريد الإلكتروني</label>
+          <input type="email" placeholder="name@example.com" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-2.5 outline-none focus:border-primary">
         </div>
         <div>
-          <h1 class="text-base font-extrabold tracking-tight leading-none text-gray-900 dark:text-white flex items-center gap-1">
-            <span>محمد</span>
-            <span class="theme-color text-lg font-black leading-none">+</span>
-          </h1>
-          <span class="text-[10px] theme-color font-bold block mt-0.5">المنصة الرقمية وسوق المبدعين</span>
+          <label class="block mb-1 opacity-75">كلمة المرور</label>
+          <input type="password" placeholder="••••••••" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-2.5 outline-none focus:border-primary">
         </div>
-      </div>
-
-      <!-- Left: Support, Notifications, Dark/Light Mode -->
-      <div class="flex items-center gap-1.5">
-        <!-- 1. Technical Support -->
-        <button onclick="openSupportModal()" title="الدعم الفني المباشر" class="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition active:scale-95">
-          <i data-lucide="headphones" class="w-4 h-4"></i>
-        </button>
-
-        <!-- 2. Notifications -->
-        <button onclick="openNotificationsModal()" title="الإشعارات" class="relative p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition active:scale-95">
-          <i data-lucide="bell" class="w-4 h-4"></i>
-          <span id="unreadNotifDot" class="absolute top-1.5 right-1.5 w-2 h-2 theme-bg rounded-full animate-pulse"></span>
-        </button>
-
-        <!-- 3. Dark/Light Mode Toggle -->
-        <button id="themeToggleBtn" onclick="toggleTheme()" title="تبديل الوضع (نهاري / ليلي)" class="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition active:scale-95">
-          <i data-lucide="sun" id="sunIcon" class="w-4 h-4 hidden"></i>
-          <i data-lucide="moon" id="moonIcon" class="w-4 h-4"></i>
-        </button>
-      </div>
-    </header>
-
-    <!-- PALETTE SWITCHER BAR (اختيار الألوان حسب رغبة العميل - الافتراضي الذهبي) -->
-    <div class="px-4 py-2 bg-gray-50/90 dark:bg-[#161F2E]/90 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between text-xs">
-      <div class="flex items-center gap-1.5">
-        <i data-lucide="palette" class="w-3.5 h-3.5 theme-color"></i>
-        <span class="font-bold text-[11px] text-gray-600 dark:text-gray-300">اللون الأساسي المفضل:</span>
-      </div>
-      <div class="flex items-center gap-2">
-        <!-- Amber: الذهبي الكهرماني (الافتراضي) -->
-        <button onclick="setTheme('amber')" title="الذهبي الكهرماني (الأساسي)" class="theme-picker-btn w-6 h-6 rounded-full bg-[#F59E0B] ring-2 ring-offset-2 ring-transparent hover:scale-110 transition active:scale-95" data-color="amber"></button>
-        <!-- Cyan: الأزرق السيان التقني -->
-        <button onclick="setTheme('cyan')" title="الأزرق السيان التقني" class="theme-picker-btn w-6 h-6 rounded-full bg-[#06B6D4] ring-2 ring-offset-2 ring-transparent hover:scale-110 transition active:scale-95" data-color="cyan"></button>
-        <!-- Violet: البنفسجي الملكي الإبداعي -->
-        <button onclick="setTheme('violet')" title="البنفسجي الملكي الإبداعي" class="theme-picker-btn w-6 h-6 rounded-full bg-[#8B5CF6] ring-2 ring-offset-2 ring-transparent hover:scale-110 transition active:scale-95" data-color="violet"></button>
-        <!-- Emerald: الأخضر النيون التجاري -->
-        <button onclick="setTheme('emerald')" title="الأخضر التجاري النيون" class="theme-picker-btn w-6 h-6 rounded-full bg-[#10B981] ring-2 ring-offset-2 ring-transparent hover:scale-110 transition active:scale-95" data-color="emerald"></button>
+        <button onclick="showToast('تم تسجيل الدخول بنجاح!'); closeAuthModal();" class="w-full bg-primary text-white py-2.5 rounded font-bold text-xs">دخول</button>
       </div>
     </div>
-
-    <!-- MAIN APP VIEWPORT -->
-    <main id="appMain" class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
-      
-      <!-- ================= TAB 1: HOME (الرئيسية) ================= -->
-      <section id="tab-home" class="tab-pane space-y-4 block">
-        
-        <!-- Welcome Card -->
-        <div class="bg-gradient-to-br from-gray-50 to-gray-100 dark:from-[#171E2E] dark:to-[#1a2334] p-4 rounded-2xl border border-gray-200/80 dark:border-gray-800 relative overflow-hidden shadow-sm">
-          <div class="relative z-10">
-            <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400 bg-white/80 dark:bg-black/30 px-2.5 py-0.5 rounded-lg mb-2">
-              <i data-lucide="calendar" class="w-3 h-3 theme-color"></i>
-              <span id="currentDateDisplay">الأحد، 18 أكتوبر</span>
-            </span>
-            <h2 class="text-xl font-extrabold text-gray-900 dark:text-white leading-tight">
-              مساء الخير ✨<br>
-              <span class="theme-color">توصياتك ومشاريعك جاهزة للبدء</span>
-            </h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 font-normal">منصة محمد بلس تجمع لك أقوى الأدوات الذكية وسوق المبدعين في شاشة واحدة.</p>
-          </div>
-          <div class="absolute -left-6 -bottom-6 w-32 h-32 theme-bg opacity-15 rounded-full blur-2xl"></div>
-        </div>
-
-        <!-- Hero Promotional Banner -->
-        <div class="relative rounded-2xl overflow-hidden p-5 bg-gradient-to-r from-slate-950 via-slate-900 to-gray-900 text-white shadow-lg border border-gray-800">
-          <div class="flex items-center justify-between">
-            <div class="space-y-2 max-w-[65%]">
-              <span class="theme-bg theme-contrast-text text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider inline-block">
-                حصري منصة محمد بلس
-              </span>
-              <h3 class="text-lg font-extrabold leading-tight">ابدأ التجارة الرقمية بـ $10 فقط</h3>
-              <p class="text-[11px] text-gray-300 font-normal">أكثر من 350+ أصل وقالب رقمي جاهز لإعادة البيع وتحقيق العوائد الفورية.</p>
-              <button onclick="openAuthModal('register')" class="theme-bg-gradient theme-contrast-text inline-flex items-center gap-1.5 font-extrabold text-xs px-4 py-2 rounded-xl shadow-md transition transform active:scale-95">
-                <span>اضغط هنا - سجل مجاناً</span>
-                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            
-            <div class="flex flex-col items-center">
-              <div class="w-16 h-16 rounded-2xl theme-badge theme-border border flex items-center justify-center p-2 shadow-inner">
-                <img 
-                  src="icon.svg" 
-                  alt="محمد بلس" 
-                  class="w-10 h-10 object-contain brand-logo-img"
-                  onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/80x80/161F2E/F59E0B?text=M+';}"
-                >
-              </div>
-              <span class="text-[11px] theme-color font-bold mt-1.5">$10 فقط</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Live Metrics Bar -->
-        <div class="grid grid-cols-2 gap-3">
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between shadow-sm">
-            <div>
-              <span class="text-[11px] text-gray-500 dark:text-gray-400 block font-medium">متداولون ومبدعون</span>
-              <div class="flex items-center gap-1.5 mt-0.5">
-                <span class="w-2 h-2 rounded-full theme-bg animate-ping"></span>
-                <span class="font-extrabold text-base text-gray-900 dark:text-white">1,480+</span>
-              </div>
-            </div>
-            <div class="w-9 h-9 rounded-xl theme-badge flex items-center justify-center">
-              <i data-lucide="users" class="w-5 h-5 theme-color"></i>
-            </div>
-          </div>
-
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between shadow-sm">
-            <div>
-              <span class="text-[11px] text-gray-500 dark:text-gray-400 block font-medium">مزاج السوق الرقمي</span>
-              <div class="flex items-center gap-1 mt-0.5 theme-color font-bold text-sm">
-                <i data-lucide="trending-up" class="w-4 h-4"></i>
-                <span>نشط متصاعد</span>
-              </div>
-            </div>
-            <div class="w-9 h-9 rounded-xl theme-badge flex items-center justify-center">
-              <i data-lucide="activity" class="w-5 h-5 theme-color"></i>
-            </div>
-          </div>
-        </div>
-
-        <!-- Call To Action Free Trial Banner -->
-        <div onclick="openAuthModal('register')" class="cursor-pointer theme-bg-gradient theme-contrast-text p-4 rounded-2xl flex items-center justify-between theme-shadow transition transform active:scale-98">
-          <div>
-            <span class="text-[10px] font-black uppercase tracking-wider bg-black/20 text-white px-2 py-0.5 rounded-md inline-block mb-1">تجربة مجانية متاحة</span>
-            <h4 class="font-extrabold text-base">جرّب أدوات محمد بلس 51 ساعة مجاناً</h4>
-            <p class="text-xs opacity-90 font-medium">استفد من تحليلات الذكاء الاصطناعي ورادار الصفقات الرقمية</p>
-          </div>
-          <div class="w-10 h-10 rounded-xl bg-black/20 flex items-center justify-center shadow-md">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i>
-          </div>
-        </div>
-
-        <!-- Featured AI Tools Spotlight -->
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between px-1">
-            <h3 class="font-extrabold text-sm text-gray-800 dark:text-gray-200">الخدمات والأدوات الذكية</h3>
-            <button onclick="openTab('tools')" class="text-xs theme-color font-bold hover:underline">عرض الكل</button>
-          </div>
-
-          <!-- Tool 1 -->
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between hover:border-gray-300 dark:hover:border-gray-700 transition">
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl theme-badge flex items-center justify-center">
-                <i data-lucide="line-chart" class="w-6 h-6 theme-color"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-xs text-gray-900 dark:text-white">تحليل الرسم البياني الذكي</h4>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400">استغل قوة الذكاء الاصطناعي في تحليل الشارتات</p>
-              </div>
-            </div>
-            <button onclick="openTab('tools')" class="px-3.5 py-1.5 theme-bg-gradient theme-contrast-text rounded-xl text-xs font-bold transition shadow-sm">افتح الآن</button>
-          </div>
-
-          <!-- Tool 2 -->
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between hover:border-gray-300 dark:hover:border-gray-700 transition">
-            <div class="flex items-center gap-3">
-              <div class="w-11 h-11 rounded-2xl theme-badge flex items-center justify-center">
-                <i data-lucide="radar" class="w-6 h-6 theme-color"></i>
-              </div>
-              <div>
-                <h4 class="font-bold text-xs text-gray-900 dark:text-white">رادار الصفقات الرقمية</h4>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400">امسح السوق لحظياً واكتشف الفرص قبل غيرك</p>
-              </div>
-            </div>
-            <button onclick="openTab('tools')" class="px-3.5 py-1.5 theme-bg-gradient theme-contrast-text rounded-xl text-xs font-bold transition shadow-sm">افتح الآن</button>
-          </div>
-        </div>
-
-        <!-- Quick Hub Grid -->
-        <div class="space-y-2 pt-1">
-          <div class="flex items-center justify-between px-1">
-            <h3 class="font-extrabold text-sm text-gray-800 dark:text-gray-200 flex items-center gap-1.5">
-              <i data-lucide="layout-grid" class="w-4 h-4 theme-color"></i>
-              <span>المزيد من الأدوات والأقسام</span>
-            </h3>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div onclick="openTab('creators')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
-              <div class="w-12 h-12 mx-auto rounded-2xl theme-badge flex items-center justify-center mb-2">
-                <i data-lucide="palette" class="w-6 h-6 theme-color"></i>
-              </div>
-              <h5 class="font-extrabold text-xs text-gray-900 dark:text-white">سوق المبدعين</h5>
-              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">خدمات حصرية من المبدعين</p>
-            </div>
-
-            <div onclick="openTab('store')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
-              <div class="w-12 h-12 mx-auto rounded-2xl theme-badge flex items-center justify-center mb-2">
-                <i data-lucide="shopping-bag" class="w-6 h-6 theme-color"></i>
-              </div>
-              <h5 class="font-extrabold text-xs text-gray-900 dark:text-white">المتجر الرقمي</h5>
-              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">أصول وقوالب جاهزة للبيع</p>
-            </div>
-
-            <div onclick="showPricingModal()" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
-              <div class="w-12 h-12 mx-auto rounded-2xl theme-badge flex items-center justify-center mb-2">
-                <i data-lucide="gem" class="w-6 h-6 theme-color"></i>
-              </div>
-              <h5 class="font-extrabold text-xs text-gray-900 dark:text-white">الاشتراكات والباقات</h5>
-              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">طوّر باقتك وافتح كل المزايا</p>
-            </div>
-
-            <a href="https://t.me" target="_blank" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm block">
-              <div class="w-12 h-12 mx-auto rounded-2xl theme-badge flex items-center justify-center mb-2">
-                <i data-lucide="send" class="w-6 h-6 theme-color"></i>
-              </div>
-              <h5 class="font-extrabold text-xs text-gray-900 dark:text-white">قناتنا على تيليجرام</h5>
-              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">تحديثات المنصة والأخبار أولاً بأول</p>
-            </a>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ================= TAB 2: COMMUNITY (المجتمع) ================= -->
-      <section id="tab-community" class="tab-pane space-y-4 hidden">
-        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
-          <h2 class="text-lg font-black text-gray-900 dark:text-white">المجتمع</h2>
-          <div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800/80 p-1 rounded-xl text-xs font-bold">
-            <button onclick="filterCommunity('all', this)" class="comm-tab px-3 py-1 rounded-lg theme-bg theme-contrast-text">الرئيسية</button>
-            <button onclick="filterCommunity('following', this)" class="comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400">متابعون</button>
-            <button onclick="filterCommunity('explore', this)" class="comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400">استكشاف</button>
-          </div>
-        </div>
-
-        <!-- Post Creation Card -->
-        <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-2">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl theme-bg theme-contrast-text flex items-center justify-center font-bold text-xs">م+</div>
-            <input type="text" id="postInput" placeholder="شارك استفسارك أو تجربتك في التجارة الرقمية..." class="w-full bg-gray-50 dark:bg-gray-900/60 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none theme-border text-gray-900 dark:text-white">
-          </div>
-          <div class="flex items-center justify-between pt-1">
-            <span class="text-[10px] text-gray-400">انضم للمناقشات وتبادل الخبرات</span>
-            <button onclick="createMockPost()" class="theme-bg theme-contrast-text text-xs font-bold px-3.5 py-1.5 rounded-xl transition shadow-sm">نشر بالمجتمع</button>
-          </div>
-        </div>
-
-        <!-- Community Feed -->
-        <div id="communityPosts" class="space-y-3">
-          <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-2xl theme-bg-gradient theme-contrast-text font-black flex items-center justify-center text-xs">
-                  ع.س
-                </div>
-                <div>
-                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white flex items-center gap-1">
-                    عبدالله السالم
-                    <span class="text-[9px] theme-badge px-1.5 py-0.2 rounded font-normal">تاجر معتمد</span>
-                  </h4>
-                  <span class="text-[10px] text-gray-400">منذ 25 دقيقة • استراتيجيات المبيعات</span>
-                </div>
-              </div>
-              <button class="text-gray-400"><i data-lucide="more-horizontal" class="w-4 h-4"></i></button>
-            </div>
-            <p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-normal">
-              تفعيل الردود الآلية عبر أدوات منصة محمد بلس مع ربط بوابة الدفع السريع ساعدني في زيادة مبيعات المنتجات الرقمية بنسبة 38% خلال أسبوعين فقط!
-            </p>
-            <div class="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-800 text-xs text-gray-500">
-              <button onclick="toggleLike(this)" class="flex items-center gap-1.5 hover:theme-color transition">
-                <i data-lucide="heart" class="w-4 h-4"></i>
-                <span class="like-count">64</span>
-              </button>
-              <button class="flex items-center gap-1.5 hover:theme-color transition">
-                <i data-lucide="message-square" class="w-4 h-4"></i>
-                <span>18 تعليق</span>
-              </button>
-              <button onclick="showToast('تم نسخ رابط المنشور')" class="flex items-center gap-1.5 hover:theme-color transition">
-                <i data-lucide="share" class="w-4 h-4"></i>
-                <span>مشاركة</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= TAB 3: STORE (المتجر) ================= -->
-      <section id="tab-store" class="tab-pane space-y-4 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-black text-gray-900 dark:text-white">المتجر الرقمي</h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400">أصول رقمية وقوالب جاهزة للبيع المباشر</p>
-          </div>
-          <div class="w-8 h-8 rounded-full theme-badge flex items-center justify-center">
-            <i data-lucide="shopping-bag" class="w-4 h-4 theme-color"></i>
-          </div>
-        </div>
-
-        <div class="space-y-3">
-          <!-- Item 1 -->
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex gap-3 shadow-sm hover:theme-border transition">
-            <div class="w-20 h-20 rounded-xl theme-bg-gradient theme-contrast-text flex items-center justify-center shrink-0 shadow-md">
-              <i data-lucide="code" class="w-8 h-8"></i>
-            </div>
-            <div class="flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">حزمة أتمتة الواتساب المتكاملة</h4>
-                  <span class="theme-color font-black text-xs">$29</span>
-                </div>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">إرسال المفاتيح والأصول الرقمية للعملاء فور إتمام الدفع بشكل آلي 100%.</p>
-              </div>
-              <div class="flex items-center justify-between mt-2 pt-1 border-t border-gray-100 dark:border-gray-800">
-                <span class="text-[10px] text-gray-400">بواسطة: محمد بلس</span>
-                <button onclick="addToCart('حزمة أتمتة الواتساب', 29)" class="theme-bg theme-contrast-text text-[11px] font-bold px-3 py-1 rounded-lg transition shadow-sm">شراء فوري</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex gap-3 shadow-sm hover:theme-border transition">
-            <div class="w-20 h-20 rounded-xl bg-gray-900 border border-gray-700 flex items-center justify-center shrink-0 shadow-md">
-              <i data-lucide="book-open" class="w-8 h-8 theme-color"></i>
-            </div>
-            <div class="flex-1 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between">
-                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">دليل الـ 10K$ الأول في التجارة</h4>
-                  <span class="theme-color font-black text-xs">$19</span>
-                </div>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">حقوق إعادة بيع كاملة (PLR) مع استراتيجيات الحملات الرقمية المربحة.</p>
-              </div>
-              <div class="flex items-center justify-between mt-2 pt-1 border-t border-gray-100 dark:border-gray-800">
-                <span class="text-[10px] text-gray-400">بواسطة: أكاديمية المبدعين</span>
-                <button onclick="addToCart('دليل الـ 10K$', 19)" class="theme-bg theme-contrast-text text-[11px] font-bold px-3 py-1 rounded-lg transition shadow-sm">شراء فوري</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= TAB 4: TOOLS (الأدوات) ================= -->
-      <section id="tab-tools" class="tab-pane space-y-4 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-black text-gray-900 dark:text-white">الأدوات الذكية</h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400">ذكاء اصطناعي فوري لتطوير وتحليل تجارتك</p>
-          </div>
-          <span class="text-xs font-bold theme-badge px-2.5 py-1 rounded-full border theme-border">3 أدوات نشطة</span>
-        </div>
-
-        <!-- AI Store Auditor -->
-        <div class="bg-gradient-to-br from-[#1E2536] to-[#161C2B] p-4 rounded-2xl border border-gray-800 text-white relative overflow-hidden shadow-lg">
-          <div class="flex items-start justify-between relative z-10">
-            <div class="space-y-1 max-w-[70%]">
-              <span class="theme-badge text-[10px] font-bold px-2 py-0.5 rounded-md inline-block">محدّث لحظياً</span>
-              <h3 class="font-extrabold text-base">محلل المتاجر بالذكاء الاصطناعي</h3>
-              <p class="text-xs text-gray-300">أدخل رابط متجرك الرقمي واحصل على تدقيق ذكي لمعدل التحويل وسرعة الاستجابة.</p>
-            </div>
-            <div class="w-12 h-12 rounded-2xl theme-badge theme-border border flex items-center justify-center">
-              <i data-lucide="bot" class="w-7 h-7 theme-color"></i>
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-gray-800 flex items-center gap-2">
-            <input type="text" id="storeUrlInput" placeholder="https://store.example.com..." class="flex-1 bg-black/40 text-xs text-white px-3 py-2 rounded-xl border border-gray-700 focus:outline-none theme-border">
-            <button onclick="runAiAnalysis()" class="theme-bg theme-contrast-text font-extrabold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1 shadow-sm">
-              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              <span>افحص</span>
-            </button>
-          </div>
-          <div id="aiAnalysisResult" class="hidden mt-3 p-3 bg-white/5 border theme-border rounded-xl text-xs space-y-1">
-            <div class="font-bold theme-color flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4"></i> نتيجة الفحص الذكي: المتجر جاهز بنسبة 93%</div>
-            <p class="text-[11px] text-gray-300">سرعة الاستجابة ممتازة، ننصح بإضافة منتج رقمي مكمّل عند صفحة الدفع لرفع متوسط قيمة الطلب.</p>
-          </div>
-        </div>
-
-        <!-- Strategy Creator & Radar -->
-        <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-2xl theme-badge flex items-center justify-center">
-                <i data-lucide="compass" class="w-5 h-5 theme-color"></i>
-              </div>
-              <div>
-                <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">رادار الفرص الرقمية الرابحة</h4>
-                <p class="text-[11px] text-gray-500 dark:text-gray-400">تحليل التصنيفات والمنتجات الأكثر طلباً اليوم</p>
-              </div>
-            </div>
-            <span class="text-[10px] theme-bg theme-contrast-text font-black px-2 py-0.5 rounded-full">حي</span>
-          </div>
-
-          <div class="bg-gray-50 dark:bg-black/30 p-3 rounded-xl border border-gray-100 dark:border-gray-800 space-y-2">
-            <div class="flex items-center justify-between text-xs">
-              <span class="font-semibold text-gray-600 dark:text-gray-300">الفرصة: قوالب إدارة الأعمال والأتمتة</span>
-              <span class="theme-color font-bold">+280% طلب</span>
-            </div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden">
-              <div class="theme-bg h-full w-[85%]"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= TAB 5: CREATORS (المبدعين) ================= -->
-      <section id="tab-creators" class="tab-pane space-y-4 hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <h2 class="text-lg font-black text-gray-900 dark:text-white">سوق المبدعين</h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400">تواصل مع أفضل الخبراء وصنّاع الأصول الرقمية</p>
-          </div>
-          <button onclick="openAuthModal('register')" class="text-xs font-bold theme-bg theme-contrast-text px-3 py-1.5 rounded-xl transition shadow-sm">
-            انضم كمبدع
-          </button>
-        </div>
-
-        <div class="space-y-3">
-          <!-- Creator 1 -->
-          <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="relative">
-                  <div class="w-12 h-12 rounded-2xl theme-bg-gradient theme-contrast-text font-black text-sm flex items-center justify-center shadow-md">
-                    م.ن
-                  </div>
-                  <span class="absolute -bottom-1 -left-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-[#1A2232] rounded-full"></span>
-                </div>
-                <div>
-                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white flex items-center gap-1.5">
-                    مروان النجدي
-                    <i data-lucide="badge-check" class="w-4 h-4 theme-color"></i>
-                  </h4>
-                  <p class="text-[11px] text-gray-500 dark:text-gray-400">مطور بوتات تيليجرام وأتمتة مبيعات المتاجر</p>
-                  <div class="flex items-center gap-2 mt-1 text-[10px] text-gray-400">
-                    <span class="theme-color font-bold flex items-center gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i> 4.9 (42 تقييم)</span>
-                    <span>• 120 طلب منجز</span>
-                  </div>
-                </div>
-              </div>
-              <button onclick="toggleFollow(this)" class="follow-btn text-xs font-bold px-3 py-1.5 rounded-xl border theme-border theme-color hover:theme-bg hover:theme-contrast-text transition">
-                متابعة
-              </button>
-            </div>
-            
-            <div class="bg-gray-50 dark:bg-black/20 p-2.5 rounded-xl flex items-center justify-between text-xs">
-              <span class="text-gray-600 dark:text-gray-300 text-[11px]">الخدمة: ربط متجر سلة مع واتساب للأكواد الآلية</span>
-              <button onclick="showToast('طلب خدمة من مروان النجدي')" class="theme-bg theme-contrast-text font-extrabold text-[10px] px-2.5 py-1 rounded-lg">طلب $45</button>
-            </div>
-          </div>
-
-          <!-- Creator 2 -->
-          <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="relative">
-                  <div class="w-12 h-12 rounded-2xl bg-gray-900 border border-gray-700 text-white font-black text-sm flex items-center justify-center shadow-md">
-                    س.ع
-                  </div>
-                  <span class="absolute -bottom-1 -left-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-[#1A2232] rounded-full"></span>
-                </div>
-                <div>
-                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white flex items-center gap-1.5">
-                    سارة علي
-                    <i data-lucide="badge-check" class="w-4 h-4 theme-color"></i>
-                  </h4>
-                  <p class="text-[11px] text-gray-500 dark:text-gray-400">مصممة هويات تجارية وقوالب كانفا حصرية</p>
-                  <div class="flex items-center gap-2 mt-1 text-[10px] text-gray-400">
-                    <span class="theme-color font-bold flex items-center gap-0.5"><i data-lucide="star" class="w-3 h-3 fill-current"></i> 5.0 (68 تقييم)</span>
-                    <span>• 240 أصل رقمي</span>
-                  </div>
-                </div>
-              </div>
-              <button onclick="toggleFollow(this)" class="follow-btn text-xs font-bold px-3 py-1.5 rounded-xl border theme-border theme-color hover:theme-bg hover:theme-contrast-text transition">
-                متابعة
-              </button>
-            </div>
-            
-            <div class="bg-gray-50 dark:bg-black/20 p-2.5 rounded-xl flex items-center justify-between text-xs">
-              <span class="text-gray-600 dark:text-gray-300 text-[11px]">الخدمة: 20 قالب تسويقي مخصص للمنتجات الرقمية</span>
-              <button onclick="showToast('طلب خدمة من سارة علي')" class="theme-bg theme-contrast-text font-extrabold text-[10px] px-2.5 py-1 rounded-lg">طلب $25</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= TAB 6: ACCOUNT (حسابي) ================= -->
-      <section id="tab-account" class="tab-pane space-y-4 hidden">
-        <div class="theme-badge p-4 rounded-2xl border theme-border flex items-center justify-between">
-          <div class="flex-1 pr-1">
-            <span class="text-[10px] font-bold theme-color block">وضع التصفح</span>
-            <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">أنت تتصفح كزائر</h3>
-            <p class="text-[11px] text-gray-500 dark:text-gray-400">سجّل الدخول أو أنشئ حساباً لفتح جميع المزايا</p>
-          </div>
-          <button onclick="openAuthModal('login')" class="theme-bg theme-contrast-text font-extrabold text-xs px-4 py-2 rounded-xl shadow-md transition">
-            دخول
-          </button>
-        </div>
-
-        <!-- User Profile Card -->
-        <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl theme-badge theme-border border flex items-center justify-center p-2 shadow-sm overflow-hidden">
-              <img 
-                src="icon.svg" 
-                alt="محمد بلس" 
-                class="w-full h-full object-contain brand-logo-img"
-                onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/60x60/161F2E/F59E0B?text=M+';}"
-              >
-            </div>
-            <div>
-              <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">عضو جديد (محمد بلس)</h3>
-              <div class="flex items-center gap-1.5 mt-0.5">
-                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
-                <span class="text-[11px] text-gray-500 dark:text-gray-400">باقتك الحالية: غير مشترك</span>
-              </div>
-            </div>
-          </div>
-          <button onclick="openAuthModal('login')" class="p-2 text-gray-400 hover:theme-color">
-            <i data-lucide="edit-3" class="w-4 h-4"></i>
-          </button>
-        </div>
-
-        <!-- Account Options (Matched to Video) -->
-        <div class="bg-white dark:bg-[#1A2232] rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden divide-y divide-gray-100 dark:divide-gray-800 shadow-sm">
-          <button onclick="showPricingModal()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-                <i data-lucide="credit-card" class="w-4 h-4 theme-color"></i>
-              </div>
-              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الاشتراك والباقات</span>
-            </div>
-            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
-          </button>
-
-          <button onclick="openSupportModal()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-                <i data-lucide="headphones" class="w-4 h-4 theme-color"></i>
-              </div>
-              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الدعم الفني والمساعدة</span>
-            </div>
-            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
-          </button>
-
-          <button onclick="openNotificationsModal()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-                <i data-lucide="bell" class="w-4 h-4 theme-color"></i>
-              </div>
-              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الإشعارات والتنبيهات</span>
-            </div>
-            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
-          </button>
-
-          <button onclick="toggleTheme()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-                <i data-lucide="moon" class="w-4 h-4 theme-color"></i>
-              </div>
-              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">تبديل الوضع (نهاري / ليلي)</span>
-            </div>
-            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
-          </button>
-        </div>
-      </section>
-
-    </main>
-
-    <!-- FLOATING BOTTOM NAVIGATION BAR (Exact 6 Sections) -->
-    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 z-50 px-1 py-2 shadow-2xl">
-      <div class="grid grid-cols-6 items-center text-center">
-        
-        <!-- 1: الرئيسية -->
-        <button onclick="openTab('home')" id="nav-home" class="nav-btn bottom-nav-active flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="home" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">الرئيسية</span>
-          <span class="indicator-dot w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-        <!-- 2: المجتمع -->
-        <button onclick="openTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="users" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">المجتمع</span>
-          <span class="indicator-dot hidden w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-        <!-- 3: المتجر -->
-        <button onclick="openTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="shopping-bag" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">المتجر</span>
-          <span class="indicator-dot hidden w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-        <!-- 4: الأدوات -->
-        <button onclick="openTab('tools')" id="nav-tools" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="sparkles" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">الأدوات</span>
-          <span class="indicator-dot hidden w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-        <!-- 5: المبدعين -->
-        <button onclick="openTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="palette" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">المبدعين</span>
-          <span class="indicator-dot hidden w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-        <!-- 6: حسابي -->
-        <button onclick="openTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
-          <i data-lucide="user" class="w-5 h-5 mb-1"></i>
-          <span class="text-[10px] font-bold">حسابي</span>
-          <span class="indicator-dot hidden w-1.5 h-1.5 rounded-full mt-0.5"></span>
-        </button>
-
-      </div>
-    </nav>
-
-    <!-- ================= MODALS & POPUPS ================= -->
-
-    <!-- Modal: Support -->
-    <div id="supportModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4">
-        <div class="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-              <i data-lucide="headphones" class="w-5 h-5 theme-color"></i>
-            </div>
-            <div>
-              <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">الدعم الفني المباشر</h3>
-              <span class="text-[10px] theme-color font-bold">فريق محمد بلس في خدمتك</span>
-            </div>
-          </div>
-          <button onclick="closeSupportModal()" class="p-1 rounded-full text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-        <p class="text-xs text-gray-500 dark:text-gray-400 font-normal">هل لديك استفسار حول الأدوات الذكية، شحن الأصول، أو الانضمام كمبدع؟ تواصل معنا فوراً.</p>
-        <div class="space-y-2">
-          <a href="https://wa.me" target="_blank" class="w-full theme-bg theme-contrast-text font-extrabold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md">
-            <i data-lucide="message-square" class="w-4 h-4"></i>
-            <span>محادثة واتساب مباشرة</span>
-          </a>
-          <a href="https://t.me" target="_blank" class="w-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 font-extrabold text-xs py-3 px-4 rounded-xl flex items-center justify-center gap-2">
-            <i data-lucide="send" class="w-4 h-4"></i>
-            <span>تواصل عبر تيليجرام</span>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal: Notifications -->
-    <div id="notificationsModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4">
-        <div class="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl theme-badge flex items-center justify-center">
-              <i data-lucide="bell" class="w-5 h-5 theme-color"></i>
-            </div>
-            <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">الإشعارات والتنبيهات</h3>
-          </div>
-          <button onclick="closeNotificationsModal()" class="p-1 rounded-full text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-        <div class="space-y-2">
-          <div class="p-3 rounded-xl bg-gray-50 dark:bg-black/20 flex items-start gap-2.5">
-            <span class="w-2 h-2 rounded-full theme-bg mt-1.5 shrink-0"></span>
-            <div>
-              <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">تم اعتماد الشعار والخط الجديد!</h4>
-              <p class="text-[11px] text-gray-500 dark:text-gray-400 font-normal">تم بنجاح تفعيل خط ثمانية الشهير وربط شعار محمد بلس مع نظام تخصيص الألوان.</p>
-              <span class="text-[9px] text-gray-400 mt-1 block">الآن</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal: Pricing -->
-    <div id="pricingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
-        <div class="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
-          <h3 class="font-extrabold text-base text-gray-900 dark:text-white">باقات عضوية محمد بلس</h3>
-          <button onclick="closePricingModal()" class="p-1 rounded-full text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-        <div class="space-y-3">
-          <div class="p-4 rounded-2xl border theme-border theme-badge space-y-2">
-            <div class="flex justify-between items-center">
-              <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">عضوية VIP الاحترافية</h4>
-              <span class="theme-color font-black text-sm">$149 <span class="text-[10px] text-gray-400">/ سنوياً</span></span>
-            </div>
-            <p class="text-xs text-gray-600 dark:text-gray-300 font-normal">وصول غير محدود لجميع أدوات الذكاء الاصطناعي، شارات المبدعين المعتمدة، وتخفيضات المتجر.</p>
-            <button onclick="subscribePlan('عضوية VIP')" class="w-full theme-bg theme-contrast-text font-black text-xs py-2.5 rounded-xl shadow-md transition">تفعيل العضوية</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal: Auth -->
-    <div id="authModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
-      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4">
-        <div class="flex items-center justify-between pb-2 border-b border-gray-100 dark:border-gray-800">
-          <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl theme-badge theme-border border flex items-center justify-center p-1">
-              <img 
-                src="icon.svg" 
-                alt="شعار محمد بلس" 
-                class="w-full h-full object-contain brand-logo-img"
-                onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/40x40/161F2E/F59E0B?text=M+';}"
-              >
-            </div>
-            <span class="font-extrabold text-sm">محمد بلس</span>
-          </div>
-          <button onclick="closeAuthModal()" class="p-1 rounded-full text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-        <div class="text-center space-y-1">
-          <h3 id="authTitle" class="text-xl font-extrabold text-gray-900 dark:text-white">ابدأ الآن وسجّل حسابك</h3>
-          <p class="text-xs text-gray-500 dark:text-gray-400 font-normal">بوابتك للتجارة الرقمية، الأدوات الذكية، وسوق المبدعين</p>
-        </div>
-        <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
-          <input type="email" id="authEmail" required placeholder="البريد الإلكتروني" class="w-full bg-gray-50 dark:bg-[#1A2232] text-xs px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none theme-border text-gray-900 dark:text-white">
-          <input type="password" required placeholder="كلمة المرور" class="w-full bg-gray-50 dark:bg-[#1A2232] text-xs px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none theme-border text-gray-900 dark:text-white">
-          <button type="submit" class="w-full theme-bg theme-contrast-text font-extrabold py-3 rounded-xl text-xs shadow-lg transition">تأكيد ومتابعة</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-extrabold flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-3">
-      <i data-lucide="info" class="w-4 h-4 theme-color"></i>
-      <span id="toastMessage">رسالة</span>
-    </div>
-
   </div>
 
+  <!-- إشعار Toast عائم -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-gray-900 text-white dark:bg-white dark:text-gray-900 px-4 py-2 rounded shadow-lg text-xs font-bold transition-all duration-300 opacity-0 pointer-events-none">
+    تم الإجراء بنجاح
+  </div>
+
+  <!-- جافاسكريبت التحكم -->
   <script>
+    // تفعيل أيقونات Lucide
     lucide.createIcons();
 
-    // 1. THEME & COLOR PALETTE SWITCHER (Default: Amber)
-    const THEME_NAMES = {
-      amber: 'الذهبي الكهرماني الكلاسيكي (الأساسي)',
-      cyan: 'الأزرق السيان التقني (Cyber Cyan)',
-      violet: 'البنفسجي الإبداعي الملكي (Royal Violet)',
-      emerald: 'الأخضر النيون التجاري (Cyber Emerald)'
-    };
+    // تبديل التبويبات
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById('tab-' + tabId).classList.remove('hidden');
 
-    function setTheme(themeName, silent = false) {
-      const root = document.documentElement;
-      
-      // Apply theme attribute
-      root.setAttribute('data-theme', themeName);
-      localStorage.setItem('mohdplus_color_theme', themeName);
-
-      // Highlight active picker button
-      document.querySelectorAll('.theme-picker-btn').forEach(btn => {
-        if (btn.getAttribute('data-color') === themeName) {
-          btn.classList.add('ring-gray-900', 'dark:ring-white', 'scale-110');
-        } else {
-          btn.classList.remove('ring-gray-900', 'dark:ring-white', 'scale-110');
-        }
-      });
-
-      if (!silent) {
-        showToast(`تم تفعيل: ${THEME_NAMES[themeName] || themeName}`);
-      }
-      lucide.createIcons();
-    }
-
-    // Initialize Saved Theme or default to 'amber'
-    const savedTheme = localStorage.getItem('mohdplus_color_theme') || 'amber';
-    setTheme(savedTheme, true);
-
-    // 2. TAB SWITCHING (Home - Community - Store - Tools - Creators - Account)
-    function openTab(tabName) {
-      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.remove('bottom-nav-active');
-        const dot = btn.querySelector('.indicator-dot');
-        if (dot) dot.classList.add('hidden');
+        btn.classList.remove('text-primary');
+        btn.classList.add('text-gray-500', 'dark:text-gray-400');
       });
-
-      const targetTab = document.getElementById('tab-' + tabName);
-      if (targetTab) targetTab.classList.remove('hidden');
-
-      const activeNav = document.getElementById('nav-' + tabName);
-      if (activeNav) {
-        activeNav.classList.add('bottom-nav-active');
-        const dot = activeNav.querySelector('.indicator-dot');
-        if (dot) dot.classList.remove('hidden');
+      const activeBtn = document.getElementById('nav-' + tabId);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-gray-500', 'dark:text-gray-400');
+        activeBtn.classList.add('text-primary');
       }
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      lucide.createIcons();
     }
 
-    // 3. DARK / LIGHT MODE LOGIC
-    function toggleTheme() {
+    // تبديل الوضع (ليلي / نهاري)
+    function toggleDarkMode() {
       const html = document.documentElement;
-      const sun = document.getElementById('sunIcon');
-      const moon = document.getElementById('moonIcon');
-      
+      const themeIcon = document.getElementById('theme-icon');
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
-        sun.classList.remove('hidden');
-        moon.classList.add('hidden');
-        localStorage.setItem('mohdplus_dark_mode', 'light');
-        showToast('تم تفعيل الوضع النهاري');
+        html.classList.add('light');
+        themeIcon.setAttribute('data-lucide', 'moon');
+        localStorage.setItem('theme', 'light');
       } else {
+        html.classList.remove('light');
         html.classList.add('dark');
-        sun.classList.add('hidden');
-        moon.classList.remove('hidden');
-        localStorage.setItem('mohdplus_dark_mode', 'dark');
-        showToast('تم تفعيل الوضع الليلي');
+        themeIcon.setAttribute('data-lucide', 'sun');
+        localStorage.setItem('theme', 'dark');
       }
       lucide.createIcons();
     }
 
-    // Initialize Dark Mode Preference
-    const savedDarkMode = localStorage.getItem('mohdplus_dark_mode');
-    if (savedDarkMode === 'light') {
-      document.documentElement.classList.remove('dark');
-      document.getElementById('sunIcon').classList.remove('hidden');
-      document.getElementById('moonIcon').classList.add('hidden');
+    // تغيير الثيم اللوني
+    function setThemeColor(mainColor, hoverColor) {
+      document.documentElement.style.setProperty('--primary-color', mainColor);
+      document.documentElement.style.setProperty('--primary-hover', hoverColor);
+      localStorage.setItem('primaryColor', mainColor);
+      localStorage.setItem('primaryHover', hoverColor);
+      showToast('تم تغيير لون المنصة بنجاح');
     }
 
-    // Modals Handlers
-    function openSupportModal() { document.getElementById('supportModal').classList.remove('hidden'); }
-    function closeSupportModal() { document.getElementById('supportModal').classList.add('hidden'); }
-    function openNotificationsModal() { 
-      document.getElementById('notificationsModal').classList.remove('hidden');
-      const dot = document.getElementById('unreadNotifDot');
-      if (dot) dot.style.display = 'none';
-    }
-    function closeNotificationsModal() { document.getElementById('notificationsModal').classList.add('hidden'); }
-    function openAuthModal(mode) { document.getElementById('authModal').classList.remove('hidden'); }
-    function closeAuthModal() { document.getElementById('authModal').classList.add('hidden'); }
-    function showPricingModal() { document.getElementById('pricingModal').classList.remove('hidden'); }
-    function closePricingModal() { document.getElementById('pricingModal').classList.add('hidden'); }
-
-    function handleAuthSubmit(e) {
-      e.preventDefault();
-      closeAuthModal();
-      showToast('تم تسجيل الدخول بنجاح! مرحباً بك في محمد بلس');
-    }
-
-    function subscribePlan(plan) {
-      closePricingModal();
-      showToast(`تم اختيار ${plan}! جاري نقلك لبوابة الدفع...`);
-    }
-
-    // Toast Notifications
-    let toastTimeout;
-    function showToast(message) {
+    // إظهار رسالة Toast
+    function showToast(msg) {
       const toast = document.getElementById('toast');
-      const toastMsg = document.getElementById('toastMessage');
-      toastMsg.textContent = message;
-      
-      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-3');
-      toast.classList.add('opacity-100', 'translate-y-0');
-
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-3');
-        toast.classList.remove('opacity-100', 'translate-y-0');
-      }, 2800);
-      lucide.createIcons();
-    }
-
-    function filterCommunity(type, btn) {
-      document.querySelectorAll('.comm-tab').forEach(b => {
-        b.className = 'comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400';
-      });
-      btn.className = 'comm-tab px-3 py-1 rounded-lg theme-bg theme-contrast-text font-bold';
-      showToast(`تصفية: ${btn.textContent}`);
-    }
-
-    function createMockPost() {
-      const input = document.getElementById('postInput');
-      if (!input.value.trim()) return showToast('اكتب نص المشاركة أولاً');
-      const container = document.getElementById('communityPosts');
-      const newPost = document.createElement('div');
-      newPost.className = 'bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm';
-      newPost.innerHTML = `
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-2xl theme-bg theme-contrast-text font-black flex items-center justify-center text-xs">أنت</div>
-          <div>
-            <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">أنت</h4>
-            <span class="text-[10px] text-gray-400">الآن</span>
-          </div>
-        </div>
-        <p class="text-xs text-gray-700 dark:text-gray-300 font-normal">${input.value}</p>
-      `;
-      container.prepend(newPost);
-      input.value = '';
-      showToast('تم النشر في المجتمع بنجاح');
-    }
-
-    function toggleLike(btn) {
-      const countEl = btn.querySelector('.like-count');
-      let count = parseInt(countEl.textContent, 10);
-      if (btn.classList.contains('theme-color')) {
-        btn.classList.remove('theme-color');
-        countEl.textContent = count - 1;
-      } else {
-        btn.classList.add('theme-color');
-        countEl.textContent = count + 1;
-      }
-    }
-
-    function toggleFollow(btn) {
-      if (btn.textContent.trim() === 'متابعة') {
-        btn.textContent = 'متابَع ✓';
-        btn.classList.add('theme-bg', 'theme-contrast-text');
-        showToast('تمت متابعة المبدع بنجاح');
-      } else {
-        btn.textContent = 'متابعة';
-        btn.classList.remove('theme-bg', 'theme-contrast-text');
-      }
-    }
-
-    function runAiAnalysis() {
-      const val = document.getElementById('storeUrlInput').value.trim();
-      if (!val) return showToast('أدخل رابط المتجر أولاً');
-      showToast('جاري الفحص بالذكاء الاصطناعي...');
+      toast.innerText = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
       setTimeout(() => {
-        document.getElementById('aiAnalysisResult').classList.remove('hidden');
-        showToast('اكتمل الفحص بنجاح!');
-      }, 1000);
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 2500);
     }
 
-    function addToCart(title, price) {
-      showToast(`تمت إضافة "${title}" بسعر $${price} إلى السلة`);
-    }
+    // النوافذ المنبثقة
+    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); document.getElementById('auth-modal').classList.add('flex'); }
+    function closeAuthModal() { document.getElementById('auth-modal').classList.remove('flex'); document.getElementById('auth-modal').classList.add('hidden'); }
+    function openSupportModal() { showToast('جارٍ فتح خدمة الدعم الفني المباشر...'); }
+    function openNotificationsModal() { showToast('لا توجد إشعارات جديدة حالياً'); }
 
-    window.addEventListener('load', () => {
-      openTab('home');
+    // تحميل الإعدادات المحفوظة مسبقاً
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedColor = localStorage.getItem('primaryColor');
+      const savedHover = localStorage.getItem('primaryHover');
+      if (savedColor && savedHover) {
+        document.documentElement.style.setProperty('--primary-color', savedColor);
+        document.documentElement.style.setProperty('--primary-hover', savedHover);
+      }
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+        document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
+        lucide.createIcons();
+      }
     });
   </script>
 </body>
