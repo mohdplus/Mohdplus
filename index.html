@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>محمد بلس | المنصة الرقمية وسوق المبدعين</title>
 
-  <!-- ربط خط ثمانية (Thmanyah Serif Text) بوزنيه العادي والعريض -->
+  <!-- خط ثمانية (Thmanyah Serif Text) الرسمي -->
   <style>
     @font-face {
       font-family: 'Thmanyah';
@@ -24,13 +24,11 @@
       font-display: swap;
     }
     
-    /* تطبيق الخط العادي للنصوص والفقرات الفرعية */
-    body, p, span, a, input, button {
+    body, p, span, a, input, button, select {
       font-family: 'Thmanyah', 'Cairo', sans-serif !important;
       font-weight: 400;
     }
 
-    /* تطبيق الخط العريض (Bold) للعناوين الرئيسية والفرعية */
     h1, h2, h3, h4, h5, h6, .font-bold {
       font-family: 'Thmanyah', 'Cairo', sans-serif !important;
       font-weight: 700 !important;
@@ -71,23 +69,22 @@
     :root {
       --primary-color: #F59E0B;
       --primary-hover: #D97706;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --input-bg: #0B0F17;
     }
-    /* الوضع الليلي: ليلي مناسب وغير داكن جداً (#121824) */
     body {
       background-color: #121824;
       color: #F3F4F6;
       transition: background-color 0.3s, color 0.3s;
     }
-    /* الوضع النهاري: سكري وأبيض مناسب ونظيف (#F8FAFC) */
     .light body {
       background-color: #F8FAFC;
       color: #0F172A;
     }
-    /* إزالة الظلال نهائياً لتكون العناصر مسطحة ونظيفة */
     .shadow-sm, .shadow, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl {
       box-shadow: none !important;
     }
-    /* التوافق التام مع الشاشات الحساسة ومنطقة الآيفون السفلية (Safe Area) */
     .safe-bottom-nav {
       position: fixed;
       bottom: max(12px, env(safe-area-inset-bottom));
@@ -97,15 +94,54 @@
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* حاسبة الميزانية الأنماط المدمجة */
+    .view-section { display: none; }
+    .view-section.active { display: block; }
+    .month-toolbar { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--card-border); border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .month-tabs { display: flex; gap: 0.5rem; overflow-x: auto; max-width: 100%; }
+    .month-tab-btn { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); color: #94a3b8; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 700; font-size: 0.85rem; cursor: pointer; white-space: nowrap; }
+    .month-tab-btn.active { background: #F59E0B; color: white; border-color: #D97706; }
+    .btn-month-action { background: rgba(245, 158, 11, 0.15); border: 1px solid #F59E0B; color: #F59E0B; padding: 0.4rem 0.8rem; border-radius: 4px; font-size: 0.8rem; font-weight: 700; cursor: pointer; }
+    
+    .hero-budget { background: rgba(30, 41, 59, 0.85); border: 1px solid var(--card-border); padding: 1.5rem; border-radius: 8px; text-align: center; margin-bottom: 1.5rem; }
+    .income-control-box { display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; background: rgba(0, 0, 0, 0.3); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid rgba(245, 158, 11, 0.3); flex-wrap: wrap; margin-bottom: 1rem; }
+    .income-select { background: var(--input-bg); border: 1px solid #F59E0B; color: #F59E0B; font-size: 0.9rem; font-weight: 700; padding: 0.3rem 0.6rem; border-radius: 4px; outline: none; }
+    .income-input-box { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--input-bg); border: 1px solid #F59E0B; border-radius: 4px; padding: 0.1rem 0.4rem; }
+    .income-input-box input { background: transparent; border: none; color: #38bdf8; font-size: 1.1rem; font-weight: 800; width: 90px; text-align: center; outline: none; }
+    .btn-add-income { background: #F59E0B; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 700; cursor: pointer; font-size: 0.85rem; }
+    .income-list-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 1rem; }
+    .income-item-tag { background: #0B0F17; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 4px; padding: 0.3rem 0.6rem; display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; }
+    .income-item-tag strong { color: #F59E0B; }
+    .btn-del-income { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: none; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; cursor: pointer; }
+
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+    .summary-card { background: rgba(30, 41, 59, 0.8); padding: 1rem; border-radius: 6px; border: 1px solid var(--card-border); display: flex; justify-content: space-between; align-items: center; }
+    .section-block { background: rgba(30, 41, 59, 0.8); border-radius: 6px; border: 1px solid var(--card-border); margin-bottom: 1.5rem; overflow: hidden; }
+    .section-header { padding: 0.8rem 1rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    
+    table { width: 100%; border-collapse: collapse; text-align: right; }
+    th, td { padding: 0.6rem; font-size: 0.85rem; }
+    th { background-color: rgba(0,0,0,0.2); color: #94a3b8; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    td { border-bottom: 1px solid rgba(255,255,255,0.04); }
+    input.table-input, select.table-select { width: 100%; padding: 0.35rem 0.4rem; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: 4px; font-size: 0.85rem; outline: none; }
+    .btn-del { background: rgba(220, 38, 38, 0.2); color: #fca5a5; border: none; padding: 0.25rem 0.5rem; border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+    .add-row-form { padding: 0.8rem; background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .add-row-form input, .add-row-form select { padding: 0.4rem; background: var(--input-bg); border: 1px solid rgba(255,255,255,0.15); color: #fff; border-radius: 4px; font-size: 0.8rem; flex: 1; min-width: 90px; }
+    .btn-add-item { background: #334155; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; font-weight: 600; cursor: pointer; font-size: 0.8rem; }
+    .total-banner { background: #1E293B; color: white; padding: 1rem; border-radius: 6px; border: 1px solid #F59E0B; display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; }
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 1rem; }
+    .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
+    .modal-card label { display: block; font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 0.2rem; }
+    .modal-card input, .modal-card select { width: 100%; padding: 0.5rem; background: #0B0F17; border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px; font-size: 0.85rem; }
   </style>
 </head>
 <body class="min-h-screen pb-32 selection:bg-primary selection:text-white">
 
-  <!-- ================= الترويسة العلَوية (Top Header Bar) ================= -->
+  <!-- ================= الترويسة العلَوية ================= -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-[#121824]/90 dark:bg-[#121824]/90 bg-white/90 border-b border-gray-200 dark:border-gray-800 px-4 py-3">
     <div class="max-w-2xl mx-auto flex items-center justify-between">
       
-      <!-- شعار المنصة المتغير ديناميكياً (ليلي / نهاري) -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('home')">
         <img id="platform-logo" src="logo-black.svg" 
              onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg';" 
@@ -113,7 +149,6 @@
              class="h-10 max-w-[170px] object-contain">
       </div>
 
-      <!-- الأيقونات العلوية بدون ظلال -->
       <div class="flex items-center gap-2">
         <button onclick="openSupportModal()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
           <i data-lucide="headphones" class="w-5 h-5 text-primary"></i>
@@ -142,49 +177,47 @@
           <div>
             <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">الأحدث اليوم</span>
             <h2 class="text-lg font-bold mt-1">مرحباً بك في محمد بلس!</h2>
-            <p class="text-xs opacity-80 mt-0.5">منصتك المتكاملة للتجارة الرقمية والأدوات الذكية وسوق المبدعين.</p>
+            <p class="text-xs opacity-80 mt-0.5">منصتك الشخصية التجارية لعرض ابتكاراتك، أدواتك الذكية، وسوق المبدعين.</p>
           </div>
           <button onclick="switchTab('store')" class="bg-primary text-white px-3 py-2 rounded text-xs font-bold hover:bg-primary-hover transition">استكشف المتجر</button>
         </div>
       </div>
 
       <div class="grid grid-cols-2 gap-3">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-xs opacity-75">إجمالي المبدعين</span>
-          <h3 class="text-xl font-bold mt-1 text-primary">+1,420</h3>
-          <span class="text-[10px] text-emerald-500 font-semibold">↑ نمو مستمر 12%</span>
+        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 cursor-pointer" onclick="switchTab('budget')">
+          <span class="text-xs opacity-75">أدوات مالية مجتمعية</span>
+          <h3 class="text-base font-bold mt-1 text-primary">حاسبة الميزانية 📊</h3>
+          <span class="text-[10px] text-emerald-500 font-semibold">إدارة الدخل والالتزامات</span>
         </div>
         <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-xs opacity-75">الأدوات الذكية</span>
-          <h3 class="text-xl font-bold mt-1 text-primary">18 أداة</h3>
-          <span class="text-[10px] text-cyan-500 font-semibold">جاهزة للاستخدام</span>
+          <span class="text-xs opacity-75">سوق المبدعين (التجار)</span>
+          حاسبة المعاش والتمويل
+          <h3 class="text-base font-bold mt-1 text-primary">تراخيص معتمدة</h3>
+          <span class="text-[10px] text-cyan-500 font-semibold">بوابة التجار الموثوقة</span>
         </div>
       </div>
 
       <div>
-        <h3 class="font-bold text-sm mb-3 flex items-center justify-between">
-          <span>أبرز الخدمات والأدوات الذكية</span>
-          <span class="text-xs text-primary cursor-pointer" onclick="switchTab('tools')">عرض الكل</span>
-        </h3>
+        <h3 class="font-bold text-sm mb-3">أبرز ابتكارات وأدوات محمد بلس</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-          <div onclick="switchTab('tools')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+          <div onclick="switchTab('budget')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
-              <i data-lucide="bot" class="w-6 h-6"></i>
+              <i data-lucide="calculator" class="w-6 h-6"></i>
             </div>
             <div class="flex-1">
-              <h4 class="font-bold text-sm">محلل المتاجر بالذكاء الاصطناعي</h4>
-              <p class="text-xs opacity-70">فحص وتحليل المتاجر الرقمية ورفع نسبة المبيعات.</p>
+              <h4 class="font-bold text-sm">حاسبة الميزانية الشهرية</h4>
+              <p class="text-xs opacity-70">تتبع دقيق للمصروفات والدخل وتعدد الشهور.</p>
             </div>
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
 
-          <div onclick="switchTab('creators')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+          <div onclick="switchTab('store')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
-              <i data-lucide="palette" class="w-6 h-6"></i>
+              <img src="store-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png'" class="w-6 h-6 object-contain" alt="">
             </div>
             <div class="flex-1">
-              <h4 class="font-bold text-sm">سوق المبدعين الرقميين</h4>
-              <p class="text-xs opacity-70">اعرض تصاميمك، قوالبك، وخدماتك للبيع فوراً.</p>
+              <h4 class="font-bold text-sm">سوق المبدعين والأصول الرقمية</h4>
+              <p class="text-xs opacity-70">شراء سريع كزائر أو تسجيل حساب تاجر مرخص.</p>
             </div>
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
@@ -204,25 +237,21 @@
           <div class="flex items-center gap-2">
             <div class="w-9 h-9 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">م</div>
             <div>
-              <h4 class="font-bold text-xs">محمد العتيبي</h4>
-              <span class="text-[10px] opacity-60">قبل 15 دقيقة</span>
+              <h4 class="font-bold text-xs">محمد بلس</h4>
+              <span class="text-[10px] opacity-60">المالك والمؤسس</span>
             </div>
           </div>
-          <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded font-semibold">مبدع مميز</span>
+          <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded font-semibold">إعلان رسمي</span>
         </div>
-        <p class="text-xs leading-relaxed">أطلقت اليوم قالب متجر إلكتروني جديد مخصص للمتاجر الرقمية، يمكنكم معاينته من قسم المتجر وتطويره عبر أدوات محمد بلس الذكية! 🚀</p>
-        <div class="flex items-center gap-4 pt-2 border-t border-gray-100 dark:border-gray-800 text-xs opacity-75">
-          <button onclick="showToast('تم الإعجاب بالمنشور')" class="flex items-center gap-1 hover:text-primary"><i data-lucide="heart" class="w-4 h-4"></i> 42</button>
-          <button onclick="showToast('عرض التعليقات')" class="flex items-center gap-1 hover:text-primary"><i data-lucide="message-square" class="w-4 h-4"></i> 8 تعليقات</button>
-        </div>
+        <p class="text-xs leading-relaxed">أهلاً بكم في مجتمع محمد بلس! شاركوني آراءكم حول حاسبة الميزانية الجديدة وكيف استفدتم من تنظيم التزاماتكم المالية.</p>
       </div>
     </div>
 
     <!-- 3. قسم المتجر (Store) -->
     <div id="tab-store" class="tab-content hidden space-y-3">
       <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">سوق الأصول الرقمية</h3>
-        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">أفضل المنتجات</span>
+        <h3 class="font-bold text-base">سوق الأصول الرقمية للمبدعين</h3>
+        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">متاجر مرخصة</span>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
@@ -230,11 +259,11 @@
           <div>
             <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">قالب رقمي</div>
             <h4 class="font-bold text-xs line-clamp-1">لوحة تحكم SaaS متكاملة</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط مع بوابات الدفع.</p>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط.</p>
           </div>
           <div class="flex items-center justify-between pt-2">
             <span class="text-xs font-bold text-primary">$49</span>
-            <button onclick="showToast('تمت إضافة المنتج للسلة')" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
+            <button onclick="promptGuestCheckout('لوحة تحكم SaaS متكاملة', 49)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
           </div>
         </div>
 
@@ -242,75 +271,93 @@
           <div>
             <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">أدوات ذكية</div>
             <h4 class="font-bold text-xs line-clamp-1">مساعد توليد المحتوى الذكي</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات سوشيال ميديا.</p>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات.</p>
           </div>
           <div class="flex items-center justify-between pt-2">
             <span class="text-xs font-bold text-primary">$29</span>
-            <button onclick="showToast('تمت إضافة المنتج للسلة')" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
+            <button onclick="promptGuestCheckout('مساعد توليد المحتوى الذكي', 29)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4. قسم الأدوات (Tools) -->
+    <!-- 4. قسم الأدوات (Tools - شامل حاسبة الميزانية المدمجة) -->
+    <div id="tab-budget" class="tab-content hidden space-y-3">
+      <div class="month-toolbar">
+        <div>
+          <span style="font-size:0.75rem; color:#94a3b8; display:block; margin-bottom:0.1rem;">تاريخ الميزانية الحالية:</span>
+          <div class="month-tabs" id="monthTabsContainer"></div>
+        </div>
+        <div class="flex gap-1 flex-wrap">
+          <button class="btn-month-action" onclick="openNewMonthModal()">+ شهر جديد</button>
+          <button class="btn-month-action" onclick="duplicateCurrentMonth()">📋 نسخ الميزانية</button>
+        </div>
+      </div>
+
+      <header class="hero-budget">
+        <h3 class="font-bold text-sm mb-1 text-primary">📊 خطة الميزانية التفاعلية (<span id="currentMonthTitleText">سبتمبر 2026</span>)</h3>
+        <p class="text-xs opacity-75 mb-3">إدارة الدخل والالتزامات بدقة تامة</p>
+        
+        <div class="income-control-box">
+          <label style="font-size:0.8rem; font-weight:700;">الدخل:</label>
+          <select id="incomeTypeSelect" class="income-select">
+            <option value="راتب">راتب</option>
+            <option value="أرباح">أرباح</option>
+            <option value="استثمارات">استثمارات</option>
+            <option value="إيجارات">إيجارات</option>
+          </select>
+          <div class="income-input-box">
+            <input type="number" id="incomeAmountInput" placeholder="5000">
+            <span style="color:#6ee7b7; font-weight:800; font-size:0.75rem;">ر.س</span>
+          </div>
+          <button class="btn-add-income" onclick="addIncomeSource()">+ إضافة</button>
+        </div>
+
+        <div class="income-list-container" id="incomeListContainer"></div>
+
+        <div style="font-size:0.9rem; font-weight:800; color:#4ade80; background:rgba(6, 78, 59, 0.4); padding:0.3rem 1rem; border-radius:4px; display:inline-block;">
+          إجمالي الدخل: <span id="totalIncomeText">0</span> ر.س
+        </div>
+      </header>
+
+      <div class="flex justify-between items-center bg-[#1E293B] p-3 rounded border border-gray-800">
+        <span class="text-xs font-bold">إدارة الأقسام المالية:</span>
+        <button onclick="openCategoryModal()" class="bg-primary text-white px-3 py-1 rounded text-xs font-bold">+ إضافة قسم جديد</button>
+      </div>
+
+      <div class="summary-grid" id="summaryGrid"></div>
+      <div id="categoriesContainer"></div>
+
+      <div class="total-banner">
+        <div>
+          <h3 style="color:#6ee7b7; font-size:1rem;">إجمالي التوزيع المالي</h3>
+        </div>
+        <div style="font-size:1.2rem; font-weight:800; color:#4ade80;">
+          <span id="grandTotalText">0</span> ر.س <span id="grandTotalPct" style="font-size:0.8rem; color:#94a3b8;">(0%)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- أقسام أخرى (Tools عامة، المبدعين، وحسابي) -->
     <div id="tab-tools" class="tab-content hidden space-y-3">
       <h3 class="font-bold text-base">الأدوات الذكية والحلول</h3>
-      
       <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
-        <div class="flex items-center gap-3">
-          <div class="p-2.5 rounded bg-primary/10 text-primary">
-            <i data-lucide="radar" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h4 class="font-bold text-sm">رادار صفقات التجارة الرقمية</h4>
-            <p class="text-xs opacity-70">مسح السوق واكتشاف الفرص الحصرية.</p>
-          </div>
-        </div>
-        <button onclick="showToast('جاري تشغيل الرادار الذكي...')" class="w-full bg-primary text-white py-2 rounded text-xs font-bold mt-2">تشغيل الآن</button>
-      </div>
-
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
-        <div class="flex items-center gap-3">
-          <div class="p-2.5 rounded bg-primary/10 text-primary">
-            <i data-lucide="cpu" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <h4 class="font-bold text-sm">صانع الاستراتيجيات الرقمية</h4>
-            <p class="text-xs opacity-70">استراتيجية متكاملة مكتوبة لتنفيذها فوراً.</p>
-          </div>
-        </div>
-        <button onclick="showToast('تم فتح صانع الاستراتيجيات')" class="w-full bg-primary text-white py-2 rounded text-xs font-bold mt-2">ابدأ الآن</button>
+        <h4 class="font-bold text-sm">حاسبة التمويل والمعاش التقاعدي</h4>
+        <p class="text-xs opacity-70">أدوات إضافية مقترحة لإضافتها قريباً لمجتمع محمد بلس.</p>
       </div>
     </div>
 
-    <!-- 5. قسم المبدعين (Creators Showcase) -->
+    <!-- 5. قسم المبدعين (Creators Showcase & License Request) -->
     <div id="tab-creators" class="tab-content hidden space-y-3">
       <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">دليل المبدعين الرقميين</h3>
-        <span class="text-xs text-primary font-semibold cursor-pointer" onclick="showToast('انضم للمبدعين')">انضم إلينا</span>
+        <h3 class="font-bold text-base">سوق المبدعين والتجار (بوابة التراخيص)</h3>
       </div>
-
-      <div class="space-y-2">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">س</div>
-            <div>
-              <h4 class="font-bold text-sm">سارة للتصميم الرقمي</h4>
-              <p class="text-[10px] opacity-70">UI/UX Designer & Frontend</p>
-            </div>
-          </div>
-          <button onclick="showToast('تمت متابعة المبدعة')" class="bg-primary/10 text-primary px-3 py-1.5 rounded text-xs font-bold hover:bg-primary hover:text-white transition">متابعة</button>
-        </div>
-
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded bg-primary/20 text-primary font-bold flex items-center justify-center">خ</div>
-            <div>
-              <h4 class="font-bold text-sm">خالد الرقمي</h4>
-              <p class="text-[10px] opacity-70">مبرمج حلول ومتاجر</p>
-            </div>
-          </div>
-          <button onclick="showToast('تمت متابعة المبدع')" class="bg-primary/10 text-primary px-3 py-1.5 rounded text-xs font-bold hover:bg-primary hover:text-white transition">متابعة</button>
+      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-3 text-xs">
+        <p class="opacity-80">التسجيل في سوق المبدعين مخصص حصرياً للتجار الحقيقيين بعد إرفاق التراخيص الرسمية ومراجعتها من قبل الإدارة.</p>
+        <div class="space-y-2">
+          <input type="text" placeholder="اسم النشاط التجاري / التاجر" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
+          <input type="text" placeholder="رقم السجل التجاري / التراخيص الرسمية" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
+          <button onclick="showToast('تم إرسال طلب التراخيص بنجاح، سيتم مراجعته والرد قريباً!')" class="w-full bg-primary text-white py-2 rounded font-bold">تقديم طلب اعتماد تاجر</button>
         </div>
       </div>
     </div>
@@ -319,30 +366,18 @@
     <div id="tab-account" class="tab-content hidden space-y-3">
       <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
-          <div class="w-12 h-12 bg-primary/20 text-primary font-bold rounded flex items-center justify-center text-lg">م+</div>
+          <div class="w-10 h-10 bg-primary/20 text-primary font-bold rounded flex items-center justify-center">م+</div>
           <div>
-            <h4 class="font-bold text-sm">محمد بلس برو</h4>
-            <p class="text-xs text-primary font-semibold mt-0.5">الباقة الحالية: غير مشترك</p>
+            <h4 class="font-bold text-sm">حساب العميل / الزائر</h4>
+            <p class="text-xs text-primary font-semibold">غير مسجل دخول</p>
           </div>
         </div>
-        <button onclick="openAuthModal()" class="bg-primary text-white px-3 py-1.5 rounded text-xs font-bold">دخول</button>
+        <button onclick="openAuthModal()" class="bg-primary text-white px-3 py-1.5 rounded text-xs font-bold">تسجيل / دخول</button>
       </div>
 
       <div class="bg-white dark:bg-[#1E293B] rounded border border-gray-200 dark:border-gray-800 overflow-hidden text-xs">
-        <a href="#" onclick="showToast('الاشتراكات والباقات'); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-          <span class="flex items-center gap-2"><i data-lucide="credit-card" class="w-4 h-4 text-primary"></i> الاشتراك والباقات</span>
-          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
-        </a>
-        <a href="#" onclick="openSupportModal(); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-          <span class="flex items-center gap-2"><i data-lucide="headphones" class="w-4 h-4 text-primary"></i> الدعم الفني</span>
-          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
-        </a>
-        <a href="#" onclick="openSupportModal(); return false;" class="flex items-center justify-between p-3 border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-          <span class="flex items-center gap-2"><i data-lucide="shield" class="w-4 h-4 text-primary"></i> الأمان</span>
-          <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
-        </a>
-        <a href="#" onclick="showToast('الإعدادات العامة'); return false;" class="flex items-center justify-between p-3 hover:bg-gray-50 dark:hover:bg-gray-800/50">
-          <span class="flex items-center gap-2"><i data-lucide="settings" class="w-4 h-4 text-primary"></i> الإعدادات</span>
+        <a href="#" onclick="showToast('الدعم الفني'); return false;" class="flex items-center justify-between p-3 border-b border-gray-800">
+          <span>الدعم الفني ومراسلة الإدارة</span>
           <i data-lucide="chevron-left" class="w-4 h-4 opacity-50"></i>
         </a>
       </div>
@@ -350,58 +385,97 @@
 
   </main>
 
-  <!-- ================= الشريط العائم السفلي مع الأيقونات المخصصة ================= -->
+  <!-- ================= الشريط العائم السفلي ================= -->
   <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
     
-    <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-primary transition">
-      <i data-lucide="home" class="w-6 h-6"></i>
+    <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
+      <i data-lucide="home" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
     </button>
 
-    <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="group-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png';" alt="المجتمع" class="w-6 h-6 object-contain">
+    <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <img src="group-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png'" alt="" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
     </button>
 
-    <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="store-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png';" alt="المتجر" class="w-6 h-6 object-contain">
+    <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <img src="store-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png'" alt="" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المتجر</span>
     </button>
 
-    <button onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="ai-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png';" alt="الأدوات" class="w-6 h-6 object-contain">
-      <span class="text-[10px] mt-1 font-semibold">الأدوات</span>
+    <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <img src="ai-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
     </button>
 
-    <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="palette" class="w-6 h-6"></i>
+    <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="palette" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
     </button>
 
-    <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1.5 px-3 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="user" class="w-6 h-6"></i>
+    <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+      <i data-lucide="user" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">حسابي</span>
     </button>
 
   </nav>
 
-  <!-- ================= النوافذ المنبثقة ================= -->
-  <div id="auth-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white dark:bg-[#1E293B] w-full max-w-sm rounded p-5 space-y-4 border border-gray-200 dark:border-gray-800">
-      <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">تسجيل الدخول إلى محمد بلس</h3>
-        <button onclick="closeAuthModal()" class="p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800"><i data-lucide="x" class="w-5 h-5"></i></button>
+  <!-- نافذة الشراء كزائر أو تسجيل جديد -->
+  <div id="guestCheckoutModal" class="modal-overlay">
+    <div class="modal-card">
+      <h3 class="font-bold text-sm mb-2 text-primary">إتمام عملية الشراء</h3>
+      <p id="checkoutItemDesc" class="text-xs mb-3 opacity-80"></p>
+      <div class="space-y-2">
+        <button onclick="completeCheckout('guest')" class="w-full bg-[#334155] text-white py-2 rounded text-xs font-bold">الإكمال كعميل زائر</button>
+        <button onclick="completeCheckout('register')" class="w-full bg-primary text-white py-2 rounded text-xs font-bold">تسجيل حساب جديد</button>
+        <button onclick="document.getElementById('guestCheckoutModal').style.display='none'" class="w-full bg-transparent text-gray-400 py-1 text-xs">إلغاء</button>
       </div>
-      <div class="space-y-3 text-xs">
-        <div>
-          <label class="block mb-1 opacity-75">البريد الإلكتروني</label>
-          <input type="email" placeholder="name@example.com" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-2.5 outline-none focus:border-primary">
-        </div>
-        <div>
-          <label class="block mb-1 opacity-75">كلمة المرور</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded p-2.5 outline-none focus:border-primary">
-        </div>
-        <button onclick="showToast('تم تسجيل الدخول بنجاح!'); closeAuthModal();" class="w-full bg-primary text-white py-2.5 rounded font-bold text-xs">دخول</button>
+    </div>
+  </div>
+
+  <!-- نافذة إضافة قسم للميزانية -->
+  <div class="modal-overlay" id="categoryModal">
+    <div class="modal-card">
+      <h3 class="font-bold text-sm mb-2 text-primary">إضافة قسم رئيسي جديد</h3>
+      <label>اسم القسم:</label>
+      <input type="text" id="newCatTitle" placeholder="مثال: الاستثمارات">
+      <label>لون القسم:</label>
+      <select id="newCatColor">
+        <option value="green">أخضر</option>
+        <option value="red">أحمر</option>
+        <option value="blue">أزرق</option>
+        <option value="gold">ذهبي</option>
+      </select>
+      <div class="flex gap-2 mt-3">
+        <button onclick="saveNewCategory()" class="bg-primary text-white py-1.5 px-3 rounded text-xs font-bold flex-1">حفظ</button>
+        <button onclick="closeCategoryModal()" class="bg-gray-700 text-white py-1.5 px-3 rounded text-xs flex-1">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- نافذة إضافة شهر جديد -->
+  <div class="modal-overlay" id="newMonthModal">
+    <div class="modal-card">
+      <h3 class="font-bold text-sm mb-2 text-primary">إنشاء ميزانية شهر جديد</h3>
+      <label>اسم الشهر / التاريخ:</label>
+      <input type="text" id="newMonthTitleInput" placeholder="أكتوبر 2026">
+      <div class="flex gap-2 mt-3">
+        <button onclick="saveNewMonth()" class="bg-primary text-white py-1.5 px-3 rounded text-xs font-bold flex-1">إنشاء</button>
+        <button onclick="closeNewMonthModal()" class="bg-gray-700 text-white py-1.5 px-3 rounded text-xs flex-1">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="auth-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="flex items-center justify-between mb-2">
+        <h3 class="font-bold text-sm">تسجيل الدخول / إنشاء حساب</h3>
+        <button onclick="closeAuthModal()"><i data-lucide="x" class="w-4 h-4"></i></button>
+      </div>
+      <div class="space-y-2 text-xs">
+        <input type="email" placeholder="البريد الإلكتروني" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
+        <input type="password" placeholder="كلمة المرور" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
+        <button onclick="showToast('تم تسجيل الدخول بنجاح!'); closeAuthModal();" class="w-full bg-primary text-white py-2 rounded font-bold">دخول</button>
       </div>
     </div>
   </div>
@@ -410,7 +484,7 @@
     تم الإجراء بنجاح
   </div>
 
-  <!-- جافاسكريبت التحكم -->
+  <!-- جافاسكريبت التحكم والتشغيل المدمج -->
   <script>
     lucide.createIcons();
 
@@ -428,6 +502,201 @@
         activeBtn.classList.add('text-primary');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function promptGuestCheckout(itemName, price) {
+      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: $${price}`;
+      document.getElementById('guestCheckoutModal').style.display = 'flex';
+    }
+
+    function completeCheckout(type) {
+      document.getElementById('guestCheckoutModal').style.display = 'none';
+      if (type === 'guest') {
+        showToast('تم إتمام الطلب بنجاح كعميل زائر!');
+      } else {
+        openAuthModal();
+      }
+    }
+
+    /* بيانات حاسبة الميزانية التفاعلية */
+    let currentMonthIndex = 0;
+    let monthlyBudgets = [
+      {
+        id: 1,
+        title: "سبتمبر 2026",
+        incomeSources: [{ id: 1, type: "راتب", amount: 5000 }],
+        categories: [
+          {
+            id: 1,
+            title: "الالتزامات الثابتة",
+            color: "red",
+            items: [{ id: 101, name: "إيجار البيت", amount: 1200, status: "مسدد" }]
+          },
+          {
+            id: 2,
+            title: "المعاشات والمصاريف اليومية",
+            color: "blue",
+            items: [{ id: 201, name: "الأكل والشرب", amount: 1000, status: "غير مسدد" }]
+          }
+        ]
+      }
+    ];
+
+    function getCurrentBudget() { return monthlyBudgets[currentMonthIndex]; }
+
+    function switchMonth(idx) { currentMonthIndex = idx; renderBudgetApp(); }
+
+    function openNewMonthModal() { document.getElementById("newMonthModal").style.display = "flex"; }
+    function closeNewMonthModal() { document.getElementById("newMonthModal").style.display = "none"; }
+    function saveNewMonth() {
+      const val = document.getElementById("newMonthTitleInput").value.trim();
+      if (!val) return;
+      monthlyBudgets.push({ id: Date.now(), title: val, incomeSources: [{ id: Date.now(), type: "راتب", amount: 5000 }], categories: [] });
+      currentMonthIndex = monthlyBudgets.length - 1;
+      closeNewMonthModal();
+      renderBudgetApp();
+    }
+
+    function duplicateCurrentMonth() {
+      const curr = getCurrentBudget();
+      const newTitle = prompt("أدخل اسم الشهر الجديد:", "أكتوبر 2026");
+      if (!newTitle) return;
+      const dup = JSON.parse(JSON.stringify(curr));
+      dup.id = Date.now();
+      dup.title = newTitle;
+      monthlyBudgets.push(dup);
+      currentMonthIndex = monthlyBudgets.length - 1;
+      renderBudgetApp();
+      showToast('تم نسخ الميزانية بنجاح!');
+    }
+
+    function addIncomeSource() {
+      const type = document.getElementById("incomeTypeSelect").value;
+      const amt = parseFloat(document.getElementById("incomeAmountInput").value);
+      if (isNaN(amt) || amt <= 0) return;
+      getCurrentBudget().incomeSources.push({ id: Date.now(), type, amount: amt });
+      document.getElementById("incomeAmountInput").value = "";
+      renderBudgetApp();
+    }
+
+    function deleteIncomeSource(id) {
+      let b = getCurrentBudget();
+      b.incomeSources = b.incomeSources.filter(i => i.id !== id);
+      renderBudgetApp();
+    }
+
+    function openCategoryModal() { document.getElementById("categoryModal").style.display = "flex"; }
+    function closeCategoryModal() { document.getElementById("categoryModal").style.display = "none"; }
+    function saveNewCategory() {
+      const title = document.getElementById("newCatTitle").value.trim();
+      const color = document.getElementById("newCatColor").value;
+      if (!title) return;
+      getCurrentBudget().categories.push({ id: Date.now(), title, color, items: [] });
+      closeCategoryModal();
+      renderBudgetApp();
+    }
+
+    function deleteCategory(catId) {
+      let b = getCurrentBudget();
+      b.categories = b.categories.filter(c => c.id !== catId);
+      renderBudgetApp();
+    }
+
+    function addNewItem(catId) {
+      const name = prompt("اسم البند الجديد:");
+      const amt = parseFloat(prompt("مبلغ البند:"));
+      if (!name || isNaN(amt) || amt <= 0) return;
+      let cat = getCurrentBudget().categories.find(c => c.id === catId);
+      if (cat) {
+        cat.items.push({ id: Date.now(), name, amount: amt, status: "غير مسدد" });
+        renderBudgetApp();
+      }
+    }
+
+    function deleteItem(catId, itemId) {
+      let cat = getCurrentBudget().categories.find(c => c.id === catId);
+      if (cat) {
+        cat.items = cat.items.filter(i => i.id !== itemId);
+        renderBudgetApp();
+      }
+    }
+
+    function renderBudgetApp() {
+      const curr = getCurrentBudget();
+      document.getElementById("currentMonthTitleText").innerText = curr.title;
+
+      const tabsContainer = document.getElementById("monthTabsContainer");
+      tabsContainer.innerHTML = "";
+      monthlyBudgets.forEach((m, idx) => {
+        const btn = document.createElement("button");
+        btn.className = `month-tab-btn ${idx === currentMonthIndex ? 'active' : ''}`;
+        btn.innerText = m.title;
+        btn.onclick = () => switchMonth(idx);
+        tabsContainer.appendChild(btn);
+      });
+
+      const totalIncome = curr.incomeSources.reduce((s, i) => s + i.amount, 0);
+      document.getElementById("totalIncomeText").innerText = totalIncome.toLocaleString();
+
+      const incList = document.getElementById("incomeListContainer");
+      incList.innerHTML = "";
+      curr.incomeSources.forEach(inc => {
+        const tag = document.createElement("div");
+        tag.className = "income-item-tag";
+        tag.innerHTML = `<strong>${inc.type}:</strong> <span>${inc.amount.toLocaleString()} ر.س</span> <button class="btn-del-income" onclick="deleteIncomeSource(${inc.id})">✕</button>`;
+        incList.appendChild(tag);
+      });
+
+      const container = document.getElementById("categoriesContainer");
+      const summaryGrid = document.getElementById("summaryGrid");
+      container.innerHTML = "";
+      summaryGrid.innerHTML = "";
+      let grandTotal = 0;
+
+      curr.categories.forEach((cat, index) => {
+        let catTotal = cat.items.reduce((s, i) => s + i.amount, 0);
+        grandTotal += catTotal;
+        let catPct = totalIncome > 0 ? ((catTotal / totalIncome) * 100).toFixed(1) : 0;
+
+        const card = document.createElement("div");
+        card.className = "summary-card";
+        card.innerHTML = `<div><p class="text-xs opacity-75">${cat.title}</p><h3 class="text-base font-bold">${catTotal.toLocaleString()} ر.س</h3></div><span class="text-xs font-bold text-primary">${catPct}%</span>`;
+        summaryGrid.appendChild(card);
+
+        const section = document.createElement("div");
+        section.className = "section-block text-xs";
+
+        let rowsHTML = "";
+        cat.items.forEach(item => {
+          rowsHTML += `
+            <tr>
+              <td><strong>${item.name}</strong></td>
+              <td>${item.amount.toLocaleString()} ر.س</td>
+              <td>${item.status}</td>
+              <td><button class="btn-del" onclick="deleteItem(${cat.id}, ${item.id})">حذف</button></td>
+            </tr>
+          `;
+        });
+
+        section.innerHTML = `
+          <div class="section-header">
+            <span class="font-bold text-primary">${index + 1}. ${cat.title} (${catTotal.toLocaleString()} ر.س)</span>
+            <div class="flex gap-2">
+              <button onclick="addNewItem(${cat.id})" class="text-primary font-bold">+ بند</button>
+              <button onclick="deleteCategory(${cat.id})" class="text-red-400">حذف القسم</button>
+            </div>
+          </div>
+          <table>
+            <thead><tr><th>البند</th><th>المبلغ</th><th>الحالة</th><th>حذف</th></tr></thead>
+            <tbody>${rowsHTML || '<tr><td colspan="4" class="text-center opacity-50 py-2">لا توجد بنود</td></tr>'}</tbody>
+          </table>
+        `;
+        container.appendChild(section);
+      });
+
+      let grandPct = totalIncome > 0 ? ((grandTotal / totalIncome) * 100).toFixed(1) : 0;
+      document.getElementById("grandTotalText").innerText = grandTotal.toLocaleString();
+      document.getElementById("grandTotalPct").innerText = `(${grandPct}%)`;
     }
 
     function updateLogo() {
@@ -471,10 +740,10 @@
       }, 2500);
     }
 
-    function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); document.getElementById('auth-modal').classList.add('flex'); }
-    function closeAuthModal() { document.getElementById('auth-modal').classList.remove('flex'); document.getElementById('auth-modal').classList.add('hidden'); }
-    function openSupportModal() { showToast('جارٍ فتح خدمة الدعم الفني المباشر...'); }
-    function openNotificationsModal() { showToast('لا توجد إشعارات جديدة حالياً'); }
+    function openAuthModal() { document.getElementById('auth-modal').style.display = 'flex'; }
+    function closeAuthModal() { document.getElementById('auth-modal').style.display = 'none'; }
+    function openSupportModal() { showToast('جارٍ فتح الدعم الفني...'); }
+    function openNotificationsModal() { showToast('لا توجد إشعارات جديدة'); }
 
     window.addEventListener('DOMContentLoaded', () => {
       const savedTheme = localStorage.getItem('theme');
@@ -485,6 +754,7 @@
         lucide.createIcons();
       }
       updateLogo();
+      renderBudgetApp();
     });
   </script>
 </body>
