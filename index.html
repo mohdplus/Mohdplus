@@ -28,6 +28,10 @@
       --text-main: #ffffff;
       --text-muted: #94a3b8;
       --text-dim: #64748b;
+      
+      /* زوايا شبه حادة موحدة للمنصة بالكامل */
+      --radius-sharp: 4px;
+      --radius-box: 6px;
     }
 
     * {
@@ -47,12 +51,6 @@
 
     body {
       background-color: var(--bg-space);
-      /* خلفية بأطياف المجرة الكحلية والفضائية خفيفة جداً وعالية السرعة */
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(30, 58, 138, 0.32) 0%, transparent 60%),
-        radial-gradient(circle at 90% 25%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 10% 75%, rgba(56, 189, 248, 0.12) 0%, transparent 50%);
-      background-attachment: fixed;
       color: var(--text-main);
       font-family: 'Cairo', 'Tajawal', sans-serif;
       min-height: 100vh;
@@ -62,6 +60,34 @@
       position: relative;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* خلفية المجرة المحدثة مع طبقة دمج مريحة وعالية السرعة */
+    .galaxy-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('https://raw.githubusercontent.com/mohdplus/Mohdplus/main/galaxy.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.35;
+      mix-blend-mode: screen;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 50% 15%, rgba(13, 24, 60, 0.4) 0%, rgba(2, 5, 15, 0.94) 75%);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .container {
@@ -77,10 +103,10 @@
       to { --angle: 360deg; }
     }
 
-    /* الإطار الفضائي التفاعلي المضيء */
+    /* الإطار الفضائي التفاعلي المضيء بزوايا شبه حادة */
     .glowing-border {
       position: relative;
-      border-radius: 14px;
+      border-radius: var(--radius-box);
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
       contain: layout style;
@@ -123,6 +149,7 @@
       padding: 10px 18px;
       margin-bottom: 25px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+      border-radius: var(--radius-box);
     }
 
     .header-btn {
@@ -133,7 +160,7 @@
       cursor: pointer;
       width: 40px;
       height: 40px;
-      border-radius: 10px;
+      border-radius: var(--radius-sharp);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -170,7 +197,7 @@
       font-size: 12px;
       font-weight: 700;
       padding: 4px 14px;
-      border-radius: 50px;
+      border-radius: var(--radius-sharp);
       margin-bottom: 14px;
     }
 
@@ -202,7 +229,7 @@
       background: linear-gradient(135deg, #2563eb 0%, #3b82f6 40%, #7c3aed 100%);
       color: #ffffff;
       padding: 10px 28px;
-      border-radius: 10px;
+      border-radius: var(--radius-sharp);
       font-size: 14px;
       text-decoration: none;
       font-weight: 700;
@@ -220,7 +247,7 @@
       background: rgba(10, 18, 38, 0.85);
       color: #cbd5e1;
       padding: 10px 28px;
-      border-radius: 10px;
+      border-radius: var(--radius-sharp);
       font-size: 14px;
       text-decoration: none;
       font-weight: 600;
@@ -234,7 +261,7 @@
       color: #ffffff;
     }
 
-    /* شبكة البطاقات */
+    /* شبكة البطاقات بزوايا شبه حادة */
     .cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -248,6 +275,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      border-radius: var(--radius-box);
       transition: transform 0.25s ease, border-color 0.25s ease;
     }
 
@@ -262,7 +290,7 @@
       height: 75px;
       background: rgba(4, 8, 18, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 10px;
+      border-radius: var(--radius-sharp);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -273,7 +301,7 @@
       font-size: 28px;
     }
 
-    /* ألوان الأيقونات الفضائية المتناسقة */
+    /* ألوان الأيقونات الفضائية */
     .icon-cyan { color: #00f2fe; filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6)); }
     .icon-teal { color: #38bdf8; filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6)); }
     .icon-indigo { color: #818cf8; filter: drop-shadow(0 0 8px rgba(129, 140, 248, 0.6)); }
@@ -301,7 +329,7 @@
 
     .btn-card {
       padding: 6px 18px;
-      border-radius: 8px;
+      border-radius: var(--radius-sharp);
       font-size: 12px;
       font-weight: 600;
       color: #cbd5e1;
@@ -323,6 +351,7 @@
     .pre-footer-section {
       padding: 26px 20px;
       margin-top: 30px;
+      border-radius: var(--radius-box);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
@@ -366,7 +395,7 @@
     .footer-link-badge {
       display: block;
       padding: 8px 10px;
-      border-radius: 8px;
+      border-radius: var(--radius-sharp);
       color: #cbd5e1;
       text-decoration: none;
       font-size: 12px;
@@ -390,7 +419,7 @@
     .social-icon-btn {
       width: 38px;
       height: 38px;
-      border-radius: 9px;
+      border-radius: var(--radius-sharp);
       color: #cbd5e1;
       display: flex;
       align-items: center;
@@ -415,6 +444,7 @@
       padding: 10px 6px;
       font-size: 11.5px;
       color: #cbd5e1;
+      border-radius: var(--radius-sharp);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -437,7 +467,7 @@
       object-fit: contain;
     }
 
-    /* طرق الدفع */
+    /* بوابات الدفع */
     .payments-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -446,6 +476,7 @@
     .payment-card {
       padding: 6px 4px;
       height: 38px;
+      border-radius: var(--radius-sharp);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -461,6 +492,7 @@
     .site-footer-box {
       padding: 18px 12px;
       margin-top: 20px;
+      border-radius: var(--radius-box);
       text-align: center;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
       color: var(--text-muted);
@@ -473,7 +505,7 @@
       margin: 0 2px;
     }
 
-    /* شريط الملاحة السفلي للجوال (Floating Dock) */
+    /* شريط الملاحة السفلي للجوال (زوايا شبه حادة أنيقة) */
     .bottom-nav-wrapper {
       position: fixed;
       bottom: calc(10px + env(safe-area-inset-bottom, 0px));
@@ -489,10 +521,10 @@
       align-items: center;
       justify-content: space-around;
       padding: 6px 10px;
-      background: rgba(9, 17, 34, 0.9);
+      background: rgba(9, 17, 34, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border-radius: 50px;
+      border-radius: var(--radius-box);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 16px rgba(56, 189, 248, 0.2);
     }
 
@@ -530,7 +562,7 @@
       font-weight: 800;
       width: 15px;
       height: 15px;
-      border-radius: 50%;
+      border-radius: var(--radius-sharp);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -542,7 +574,6 @@
     /* قواعد التوافق والاستجابة الذكية لجميع الأجهزة (RESPONSIVE) */
     /* ========================================================= */
 
-    /* الشاشات اللوحية والآيباد (768px - 1024px) */
     @media (max-width: 1024px) {
       .cards-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -553,7 +584,6 @@
       }
     }
 
-    /* الهواتف الذكية (أقل من 768px) */
     @media (max-width: 768px) {
       body {
         padding: 12px 10px calc(85px + env(safe-area-inset-bottom, 15px));
@@ -568,7 +598,6 @@
         height: 38px;
       }
 
-      /* تحويل شبكة البطاقات إلى عمودين مريحين جداً لمنع الازدحام */
       .cards-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
@@ -577,7 +606,6 @@
 
       .card {
         padding: 12px 8px 14px;
-        border-radius: 12px;
       }
 
       .card-preview {
@@ -639,7 +667,6 @@
       }
     }
 
-    /* الهواتف فائقة الصغر */
     @media (max-width: 360px) {
       .hero h1 { font-size: 20px; }
       .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
@@ -651,6 +678,10 @@
   </style>
 </head>
 <body>
+
+  <!-- صورة الخلفية المحدثة وطبقة الدمج السريعة -->
+  <div class="galaxy-bg"></div>
+  <div class="bg-overlay"></div>
 
   <div class="container">
     <!-- رأس الصفحة -->
@@ -673,7 +704,7 @@
       </div>
     </section>
 
-    <!-- شبكة البطاقات المتجاوبة -->
+    <!-- شبكة البطاقات المتجاوبة بزوايا شبه حادة -->
     <section class="cards-grid">
       <div class="card glowing-border">
         <div class="card-preview"><i class="fa-solid fa-gem icon-cyan"></i></div>
@@ -821,27 +852,27 @@
 
       <div class="section-divider"></div>
 
-      <!-- 5. طرق دفع آمنة ومتعددة -->
+      <!-- 5. طرق دفع آمنة ومتعددة بالأسماء والمصادر الجديدة -->
       <div>
         <h4 class="footer-section-title">طرق دفع آمنة ومتعددة</h4>
         <div class="payments-grid">
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mada.svg" alt="mada" class="payment-logo" loading="lazy">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/visa.svg" alt="Visa" class="payment-logo" loading="lazy">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/mastercard.svg" alt="Mastercard" class="payment-logo" loading="lazy">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/stcbank.svg" alt="STC Bank" class="payment-logo" loading="lazy">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/applepay.svg" alt="Apple Pay" class="payment-logo" loading="lazy">
           </div>
           <div class="payment-card glowing-border">
-            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo" loading="lazy">[cite: 9]
+            <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/samsungpay.svg" alt="Samsung Pay" class="payment-logo" loading="lazy">
           </div>
         </div>
       </div>
@@ -855,7 +886,7 @@
     </div>
   </div>
 
-  <!-- الشريط السفلي العائم للجوال -->
+  <!-- الشريط السفلي العائم للجوال بزوايا شبه حادة -->
   <div class="bottom-nav-wrapper">
     <nav class="bottom-nav-bar glowing-border">
       <a href="#" class="bottom-nav-item active">
