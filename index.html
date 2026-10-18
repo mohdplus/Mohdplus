@@ -104,7 +104,7 @@
     }
 
     .glass-nav {
-      background: rgba(11, 14, 20, 0.78);
+      background: rgba(11, 14, 20, 0.82);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -123,7 +123,7 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     }
 
-    /* تأثيرات خاصة بالشعار logomohdplus.svg */
+    /* تأثيرات الشعار الرسمي logomohdplus.svg */
     .site-logo {
       height: 48px;
       width: auto;
@@ -147,9 +147,30 @@
     .footer-logo:hover {
       filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.5));
     }
+
+    /* الشريط العائم السفلي Floating Dock */
+    .floating-dock-container {
+      box-shadow: 0 16px 45px -8px rgba(0, 0, 0, 0.75), 0 0 24px -2px rgba(0, 229, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(11, 14, 20, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .dock-btn {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dock-btn.active {
+      color: #00E5FF;
+      transform: translateY(-2px);
+    }
+    .dock-btn.active .dock-icon-wrapper {
+      background: rgba(0, 229, 255, 0.15);
+      border-color: rgba(0, 229, 255, 0.4);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.35);
+    }
   </style>
 </head>
-<body class="bg-obsidian-950 text-slate-100 min-h-screen relative overflow-x-hidden antialiased selection:bg-cosmicCyan selection:text-obsidian-950">
+<body class="bg-obsidian-950 text-slate-100 min-h-screen relative overflow-x-hidden antialiased selection:bg-cosmicCyan selection:text-obsidian-950 pb-24 md:pb-28">
 
   <!-- خلفيات الإشعاع الفضائي النيوني -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
@@ -175,11 +196,11 @@
     </div>
 
     <!-- شريط التنقل العلوي (Navbar Glassmorphism) -->
-    <header class="sticky top-0 z-50 glass-nav transition-all duration-300">
+    <header class="sticky top-0 z-40 glass-nav transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         
-        <!-- الشعار المحدث مع الفولباك الذكي -->
-        <a href="#" class="flex items-center gap-3 group focus:outline-none">
+        <!-- الشعار مع نظام الفولباك الذكي -->
+        <a href="#hero" class="flex items-center gap-3 group focus:outline-none">
           <div class="relative flex items-center">
             <img 
               src="logomohdplus.svg" 
@@ -187,7 +208,7 @@
               class="site-logo" 
               onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('navbar-logo-fallback').classList.remove('hidden');"
             >
-            <!-- Fallback الاحتياطي في حال تأخر أو تعذر تحميل ملف الـ SVG -->
+            <!-- Fallback الاحتياطي -->
             <div id="navbar-logo-fallback" class="hidden flex items-center gap-2.5">
               <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cosmicCyan to-cosmicPurple p-[2px]">
                 <div class="w-full h-full bg-obsidian-900 rounded-[10px] flex items-center justify-center font-mono font-bold text-base text-white">
@@ -202,7 +223,7 @@
           </div>
         </a>
 
-        <!-- روابط القائمة الرئيسية -->
+        <!-- روابط القائمة الرئيسية للشاشات الكبيرة -->
         <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-300">
           <a href="#hero" class="text-white hover:text-cosmicCyan transition-colors">الرئيسية</a>
           <a href="#showcase" onclick="filterTab('store')" class="hover:text-cyberYellow transition-colors flex items-center gap-1.5">
@@ -220,19 +241,19 @@
           <a href="#calculator" class="hover:text-cosmicCyan transition-colors">حاسبة الأسعار</a>
         </nav>
 
-        <!-- أزرار الإجراء والتحويل السريع -->
+        <!-- أزرار الإجراء السريع -->
         <div class="flex items-center gap-3">
-          <button id="cartBtn" class="relative p-2.5 rounded-xl bg-obsidian-800 border border-white/10 hover:border-cyberYellow/60 text-slate-300 hover:text-cyberYellow transition-all">
+          <button onclick="toggleCartModal()" class="relative p-2.5 rounded-xl bg-obsidian-800 border border-white/10 hover:border-cyberYellow/60 text-slate-300 hover:text-cyberYellow transition-all" title="سلة الطلبات">
             <i class="fa-solid fa-basket-shopping text-base"></i>
-            <span id="cartCount" class="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-cyberYellow text-obsidian-950 font-bold text-xs flex items-center justify-center">0</span>
+            <span class="cartCountBadge absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-cyberYellow text-obsidian-950 font-bold text-xs flex items-center justify-center">0</span>
           </button>
 
-          <a href="#showcase" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cosmicCyan to-cosmicPurple text-obsidian-950 font-bold text-xs hover:opacity-95 transition-all shadow-lg glow-cyan">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>دخول المنصة</span>
-          </a>
+          <button onclick="openAccountModal()" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cosmicCyan to-cosmicPurple text-obsidian-950 font-bold text-xs hover:opacity-95 transition-all shadow-lg glow-cyan">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span>حسابي / الدخول</span>
+          </button>
 
-          <!-- زر الموبايل -->
+          <!-- زر قائمة الجوال العلوية -->
           <button id="mobileMenuBtn" class="lg:hidden p-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-slate-300">
             <i class="fa-solid fa-bars text-lg"></i>
           </button>
@@ -242,7 +263,7 @@
 
       <!-- قائمة الموبايل المنسدلة -->
       <div id="mobileMenu" class="hidden lg:hidden bg-obsidian-900/95 border-b border-white/10 px-6 py-6 transition-all space-y-4 text-sm font-medium">
-        <a href="#hero" class="block text-white hover:text-cosmicCyan">الرئيسية</a>
+        <a href="#hero" onclick="toggleMobileMenu()" class="block text-white hover:text-cosmicCyan">الرئيسية</a>
         <a href="#showcase" onclick="filterTab('store'); toggleMobileMenu()" class="block text-slate-300 hover:text-cyberYellow">المتجر والبطاقات الرقمية</a>
         <a href="#showcase" onclick="filterTab('ai'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicCyan">أنظمة وواجهات الذكاء الاصطناعي</a>
         <a href="#showcase" onclick="filterTab('cloud'); toggleMobileMenu()" class="block text-slate-300 hover:text-cosmicPurple">السيرفرات والخدمات السحابية</a>
@@ -274,16 +295,14 @@
           منصة <strong class="text-white font-bold">محمد بلس</strong> توحد كل ما تحتاجه في فضاء واحد: بطاقات واشتراكات الألعاب والترفيه الفورية، بجانب بنية تحتية فائقة السرعة للذكاء الاصطناعي، السيرفرات السحابية، وخدمات التحول الرقمي للشركات.
         </p>
 
-        <!-- أزرار النداء للعمل المزدوجة (Dual Core CTAs) -->
+        <!-- أزرار النداء للعمل المزدوجة -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <!-- زر المتجر (أصفر كهربائي) -->
-          <a href="#showcase" onclick="filterTab('store')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-sm tracking-wide transition-all transform hover:-translate-y-1 glow-yellow-hover flex items-center justify-center gap-2">
+          <a href="#showcase" onclick="filterTab('store'); highlightDock('categories')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-sm tracking-wide transition-all transform hover:-translate-y-1 glow-yellow-hover flex items-center justify-center gap-2">
             <i class="fa-solid fa-gamepad text-base"></i>
             <span>تصفح المتجر والبطاقات</span>
           </a>
 
-          <!-- زر التقنية والذكاء (أزرق سيان كوني) -->
-          <a href="#showcase" onclick="filterTab('ai')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-cosmicCyan border border-cosmicCyan/40 font-bold text-sm transition-all transform hover:-translate-y-1 glow-cyan-hover flex items-center justify-center gap-2">
+          <a href="#showcase" onclick="filterTab('ai'); highlightDock('categories')" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-obsidian-850 hover:bg-obsidian-800 text-cosmicCyan border border-cosmicCyan/40 font-bold text-sm transition-all transform hover:-translate-y-1 glow-cyan-hover flex items-center justify-center gap-2">
             <i class="fa-solid fa-microchip text-base"></i>
             <span>حلول التقنية والـ AI</span>
           </a>
@@ -692,7 +711,7 @@
     </section>
 
     <!-- الفوتر الأنيق (Footer) -->
-    <footer class="bg-obsidian-950 border-t border-white/10 pt-16 pb-10 text-slate-400 text-sm">
+    <footer class="bg-obsidian-950 border-t border-white/10 pt-16 pb-12 text-slate-400 text-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
@@ -744,7 +763,7 @@
             </ul>
           </div>
 
-          <!-- معلومات التواصل والأمان -->
+          <!-- وسائل الدفع -->
           <div>
             <h4 class="text-white font-bold mb-4 text-xs tracking-wider uppercase">وسائل الدفع والاعتماد</h4>
             <p class="text-xs text-slate-400 mb-3">جميع المعاملات المالية محمية بتقنية تشفير 256-bit SSL القياسية العالمية.</p>
@@ -774,61 +793,164 @@
 
   </div>
 
+  <!-- ============================================== -->
+  <!-- الشريط العائم السفلي الفاخر (Floating Bottom Dock) -->
+  <!-- ============================================== -->
+  <aside class="fixed bottom-4 sm:bottom-6 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+    <nav class="floating-dock-container pointer-events-auto rounded-full py-2 px-3 sm:px-6 flex items-center justify-between gap-3 sm:gap-8 max-w-md w-full transition-transform duration-300">
+      
+      <!-- 1. الرئيسية -->
+      <a href="#hero" id="dockHome" onclick="highlightDock('home')" class="dock-btn active flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
+        <div class="dock-icon-wrapper w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-house text-sm sm:text-base"></i>
+        </div>
+        <span class="text-[11px] font-bold tracking-tight">الرئيسية</span>
+      </a>
+
+      <!-- 2. الأقسام والخدمات -->
+      <a href="#showcase" id="dockCategories" onclick="handleCategoriesClick()" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicCyan">
+        <div class="dock-icon-wrapper w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-shapes text-sm sm:text-base"></i>
+        </div>
+        <span class="text-[11px] font-bold tracking-tight">الأقسام</span>
+      </a>
+
+      <!-- 3. السلة مع العداد التفاعلي -->
+      <button onclick="toggleCartModal(); highlightDock('cart')" id="dockCart" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cyberYellow relative">
+        <div class="dock-icon-wrapper w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-transparent transition-all mb-0.5 relative">
+          <i class="fa-solid fa-basket-shopping text-sm sm:text-base"></i>
+          <!-- عداد السلة النيوني -->
+          <span class="cartCountBadge absolute -top-1 -right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-cyberYellow text-obsidian-950 font-black text-[10px] flex items-center justify-center shadow-lg">0</span>
+        </div>
+        <span class="text-[11px] font-bold tracking-tight">السلة</span>
+      </button>
+
+      <!-- 4. الحساب / الدخول -->
+      <button onclick="openAccountModal(); highlightDock('account')" id="dockAccount" class="dock-btn flex-1 flex flex-col items-center justify-center py-1 group text-slate-400 hover:text-cosmicPurple">
+        <div class="dock-icon-wrapper w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center border border-transparent transition-all mb-0.5">
+          <i class="fa-solid fa-user-gear text-sm sm:text-base"></i>
+        </div>
+        <span class="text-[11px] font-bold tracking-tight">الحساب</span>
+      </button>
+
+    </nav>
+  </aside>
+
   <!-- نافذة سلة المشتريات التفاعلية (Cart Modal) -->
-  <div id="cartModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/10 rounded-3xl w-full max-w-md p-6 relative">
+  <div id="cartModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 rounded-3xl w-full max-w-md p-6 relative shadow-2xl">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
         <h3 class="text-lg font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-basket-shopping text-cyberYellow"></i> سلة طلباتك في محمد بلس
         </h3>
-        <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="toggleCartModal()" class="w-8 h-8 rounded-lg bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
       </div>
 
-      <div id="cartItemsList" class="py-4 space-y-3 max-h-60 overflow-y-auto">
+      <div id="cartItemsList" class="py-4 space-y-3 max-h-64 overflow-y-auto pr-1">
         <p class="text-xs text-slate-400 text-center py-6">السلة فارغة حالياً، أضف خدماتك المفضلة!</p>
       </div>
 
       <div class="pt-4 border-t border-white/10 space-y-3">
         <div class="flex justify-between items-center text-sm">
-          <span class="text-slate-300">المجموع الكلي:</span>
-          <span id="modalTotal" class="text-xl font-black text-cyberYellow font-mono">0 ريال</span>
+          <span class="text-slate-300 font-medium">المجموع الكلي:</span>
+          <span id="modalTotal" class="text-2xl font-black text-cyberYellow font-mono">0 ريال</span>
         </div>
-        <button onclick="checkoutNotice()" class="w-full py-3 rounded-xl bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-sm transition-all">
+        <button onclick="checkoutNotice()" class="w-full py-3.5 rounded-xl bg-cyberYellow hover:bg-cyberYellow-hover text-obsidian-950 font-black text-sm transition-all shadow glow-yellow-hover">
           إتمام الطلب والدفع الفوري
         </button>
       </div>
     </div>
   </div>
 
+  <!-- نافذة الحساب وتسجيل الدخول المتطورة (Account Modal) -->
+  <div id="accountModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 rounded-3xl w-full max-w-md p-6 relative shadow-2xl">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-white/10">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-cosmicCyan/20 text-cosmicCyan flex items-center justify-center font-bold">
+            <i class="fa-solid fa-fingerprint"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-black text-white leading-tight">بوابة الحساب الرقمي</h3>
+            <span class="text-[11px] text-slate-400">محمد بلس الموحدة</span>
+          </div>
+        </div>
+        <button onclick="openAccountModal()" class="w-8 h-8 rounded-lg bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
+      </div>
+
+      <!-- تبديل نوع الحساب (أفراد / شركات) -->
+      <div class="flex rounded-xl bg-obsidian-850 p-1 border border-white/10 mt-5 mb-5 text-xs font-bold">
+        <button id="accTabUser" onclick="switchAccountType('user')" class="flex-1 py-2 rounded-lg bg-obsidian-700 text-white transition-all">عميل أفراد</button>
+        <button id="accTabB2B" onclick="switchAccountType('b2b')" class="flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all">حساب مؤسسات B2B</button>
+      </div>
+
+      <form onsubmit="handleAccountLogin(event)" class="space-y-4 text-xs">
+        <div>
+          <label class="block text-slate-300 font-medium mb-1.5" id="loginLabelInput">رقم الجوال أو البريد الإلكتروني</label>
+          <div class="relative">
+            <span class="absolute right-3.5 top-2.5 text-slate-500"><i class="fa-regular fa-envelope"></i></span>
+            <input type="text" required placeholder="05XXXXXXXX أو name@domain.com" class="w-full pr-10 pl-3 py-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-medium mb-1.5">كلمة المرور أو رمز التحقق</label>
+          <div class="relative">
+            <span class="absolute right-3.5 top-2.5 text-slate-500"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" required placeholder="••••••••" class="w-full pr-10 pl-3 py-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cosmicCyan">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-[11px] text-slate-400 pt-1">
+          <label class="flex items-center gap-1.5 cursor-pointer">
+            <input type="checkbox" checked class="rounded bg-obsidian-800 border-white/10 text-cosmicCyan">
+            <span>تذكر بياناتي</span>
+          </label>
+          <a href="#" class="hover:text-cosmicCyan">استعادة الحساب؟</a>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cosmicCyan to-sky-500 hover:opacity-95 text-obsidian-950 font-black text-xs transition-all shadow-lg glow-cyan">
+          تسجيل الدخول الآمن
+        </button>
+
+        <div class="pt-3 border-t border-white/10 text-center">
+          <p class="text-slate-400 text-[11px]">جديد في محمد بلس؟ <a href="#" onclick="showToast('جاري تحويلك لإنشاء حساب جديد'); return false;" class="text-cyberYellow font-bold hover:underline">إنشاء حساب فوري</a></p>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
   <!-- نافذة طلب استشارة B2B (Consultation Modal) -->
-  <div id="consultModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/10 rounded-3xl w-full max-w-md p-6 relative">
+  <div id="consultModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-obsidian-900 border border-white/10 rounded-3xl w-full max-w-md p-6 relative shadow-2xl">
       <div class="flex items-center justify-between pb-4 border-b border-white/10">
         <h3 class="text-lg font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-building text-emerald-400"></i> طلب استشارة أو حلول B2B
         </h3>
-        <button onclick="openConsultationModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="openConsultationModal()" class="w-8 h-8 rounded-lg bg-obsidian-800 flex items-center justify-center text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-base"></i></button>
       </div>
 
       <div class="space-y-4 py-4 text-xs">
         <div>
           <label class="block text-slate-300 mb-1">اسم المؤسسة أو الشركة</label>
-          <input type="text" placeholder="مثال: شركة الحلول الرقمية" class="w-full px-3 py-2 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
+          <input type="text" placeholder="مثال: شركة الحلول الرقمية" class="w-full px-3 py-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
         </div>
         <div>
           <label class="block text-slate-300 mb-1">البريد الإلكتروني للعمل / واتساب</label>
-          <input type="text" placeholder="name@company.com" class="w-full px-3 py-2 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
+          <input type="text" placeholder="name@company.com" class="w-full px-3 py-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
         </div>
         <div>
           <label class="block text-slate-300 mb-1">نوع الخدمة المطلوبة</label>
-          <select class="w-full px-3 py-2 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
+          <select class="w-full px-3 py-2.5 rounded-xl bg-obsidian-800 border border-white/10 text-white focus:outline-none focus:border-emerald-400">
             <option>ربط أنظمة وبطاقات رقمية API</option>
             <option>بنية تحتية سحابية مخصصة</option>
             <option>نماذج ذكاء اصطناعي داخلية للشركات</option>
             <option>أخرى</option>
           </select>
         </div>
-        <button onclick="submitConsultation()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black transition-all">
+        <button onclick="submitConsultation()" class="w-full py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-obsidian-950 font-black transition-all">
           إرسال طلب الاستشارة وسيتواصل معك مدير الحساب
         </button>
       </div>
@@ -836,15 +958,36 @@
   </div>
 
   <!-- صندوق الإشعارات السريعة (Toast Notification) -->
-  <div id="toast" class="fixed bottom-6 left-6 z-50 bg-obsidian-800 border border-cyberYellow/50 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300">
+  <div id="toast" class="fixed bottom-24 left-6 z-50 bg-obsidian-800 border border-cyberYellow/50 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 transform translate-y-24 opacity-0 transition-all duration-300">
     <i class="fa-solid fa-circle-check text-cyberYellow text-lg"></i>
     <span id="toastMsg" class="text-xs font-bold">تمت الإضافة بنجاح!</span>
   </div>
 
-  <!-- جافاسكربت لإدارة العمليات والتفاعل -->
+  <!-- جافاسكربت لإدارة العمليات والتفاعل والشريط العائم -->
   <script>
     // حالة السلة
     let cart = [];
+
+    // تمييز الزر النشط في الشريط العائم (Dock Highlight)
+    function highlightDock(type) {
+      const dockButtons = document.querySelectorAll('.dock-btn');
+      dockButtons.forEach(btn => btn.classList.remove('active'));
+
+      if (type === 'home') document.getElementById('dockHome').classList.add('active');
+      if (type === 'categories') document.getElementById('dockCategories').classList.add('active');
+      if (type === 'cart') document.getElementById('dockCart').classList.add('active');
+      if (type === 'account') document.getElementById('dockAccount').classList.add('active');
+    }
+
+    // زر الأقسام بالشريط السفلي
+    function handleCategoriesClick() {
+      highlightDock('categories');
+      // التمرير لقسم المعروضات
+      const showcaseSection = document.getElementById('showcase');
+      if (showcaseSection) {
+        showcaseSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
     // التبديل بين التبويبات وتصفية البطاقات
     function filterTab(category) {
@@ -869,7 +1012,7 @@
       });
     }
 
-    // إدارة السلة
+    // إدارة السلة وتحديث كل العدادات التفاعلية (Navbar + Dock)
     function addToCart(title, price) {
       cart.push({ title, price });
       updateCartUI();
@@ -877,8 +1020,8 @@
     }
 
     function updateCartUI() {
-      const countBadge = document.getElementById('cartCount');
-      countBadge.innerText = cart.length;
+      const badges = document.querySelectorAll('.cartCountBadge');
+      badges.forEach(b => b.innerText = cart.length);
 
       const list = document.getElementById('cartItemsList');
       const totalEl = document.getElementById('modalTotal');
@@ -919,8 +1062,6 @@
       modal.classList.toggle('flex');
     }
 
-    document.getElementById('cartBtn').addEventListener('click', toggleCartModal);
-
     function checkoutNotice() {
       if (cart.length === 0) {
         showToast('السلة فارغة، يرجى اختيار منتج أولاً');
@@ -930,7 +1071,41 @@
       showToast('جاري توجيهك لبوابة الدفع السريع والآمن...');
     }
 
-    // نافذة الاستشارة B2B
+    // نافذة الحساب
+    function openAccountModal() {
+      const modal = document.getElementById('accountModal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function switchAccountType(type) {
+      const btnUser = document.getElementById('accTabUser');
+      const btnB2B = document.getElementById('accTabB2B');
+      const label = document.getElementById('loginLabelInput');
+      const submitBtn = document.getElementById('loginSubmitBtn');
+
+      if (type === 'b2b') {
+        btnB2B.className = 'flex-1 py-2 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 transition-all font-bold';
+        btnUser.className = 'flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
+        label.innerText = 'البريد الإلكتروني للشركة أو الرقم الضريبي';
+        submitBtn.className = 'w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-400 hover:opacity-95 text-obsidian-950 font-black text-xs transition-all shadow-lg';
+        submitBtn.innerText = 'دخول بوابة الشركات B2B';
+      } else {
+        btnUser.className = 'flex-1 py-2 rounded-lg bg-obsidian-700 text-white transition-all font-bold';
+        btnB2B.className = 'flex-1 py-2 rounded-lg text-slate-400 hover:text-white transition-all';
+        label.innerText = 'رقم الجوال أو البريد الإلكتروني';
+        submitBtn.className = 'w-full py-3.5 rounded-xl bg-gradient-to-r from-cosmicCyan to-sky-500 hover:opacity-95 text-obsidian-950 font-black text-xs transition-all shadow-lg glow-cyan';
+        submitBtn.innerText = 'تسجيل الدخول الآمن';
+      }
+    }
+
+    function handleAccountLogin(e) {
+      e.preventDefault();
+      openAccountModal();
+      showToast('مرحباً بك! جاري تسجيل الدخول إلى منصة محمد بلس...');
+    }
+
+    // نافذة استشارة B2B
     function openConsultationModal() {
       const m = document.getElementById('consultModal');
       m.classList.toggle('hidden');
@@ -942,7 +1117,7 @@
       showToast('تم استلام طلبك، سيتواصل معك فريق الأعمال فوراً!');
     }
 
-    // حاسبة الأسعار المخصصة
+    // حاسبة الأسعار التفاعلية
     function calculateEstimate() {
       const cpu = parseInt(document.getElementById('cpuRange').value);
       const ram = parseInt(document.getElementById('ramRange').value);
@@ -959,7 +1134,7 @@
       document.getElementById('totalEstimate').innerText = total;
     }
 
-    // إشعار التوست المنبثق
+    // إشعار التوست
     function showToast(text) {
       const toast = document.getElementById('toast');
       const msg = document.getElementById('toastMsg');
@@ -973,12 +1148,19 @@
       }, 3000);
     }
 
-    // قائمة الجوال
+    // قائمة الجوال العلوية
     function toggleMobileMenu() {
       const menu = document.getElementById('mobileMenu');
       menu.classList.toggle('hidden');
     }
     document.getElementById('mobileMenuBtn').addEventListener('click', toggleMobileMenu);
+
+    // تتبع التمرير لتحديث زر الرئيسية في الشريط العائم
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < 300) {
+        highlightDock('home');
+      }
+    });
   </script>
 </body>
 </html>
