@@ -142,97 +142,64 @@
     }
 
     /* ================================================= */
-    /* مؤثرات وحركات الشعار الرقمي المتطور (LOGO ANIMATION) */
+    /* أنيميشن نزول حروف الشعار حرفاً حرفاً (Kinetic Drop) */
     /* ================================================= */
-    
-    @keyframes logoEntrance {
+
+    @keyframes dropIn {
       0% {
         opacity: 0;
-        transform: scale(0.85);
-        filter: drop-shadow(0 0 0 rgba(56, 189, 248, 0));
+        transform: translateY(-32px);
       }
-      50% {
-        opacity: 0.8;
-        filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.9));
+      60% {
+        opacity: 1;
+        transform: translateY(3px);
+      }
+      80% {
+        transform: translateY(-1px);
       }
       100% {
         opacity: 1;
-        transform: scale(1);
-        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.45));
+        transform: translateY(0);
       }
     }
 
-    @keyframes logoPulseGlow {
-      0%, 100% {
-        filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.35));
-      }
-      50% {
-        filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.75)) drop-shadow(0 0 25px rgba(192, 132, 252, 0.4));
-      }
-    }
-
-    @keyframes lightSweep {
-      0% {
-        transform: translateX(120%) skewX(-25deg);
-        opacity: 0;
-      }
-      20% {
-        opacity: 0.85;
-      }
-      40%, 100% {
-        transform: translateX(-140%) skewX(-25deg);
-        opacity: 0;
-      }
-    }
-
-    .logo-box {
-      position: relative;
+    .logo-container {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      padding: 4px 8px;
-      border-radius: var(--radius-sharp);
+      text-decoration: none;
+      user-select: none;
+      height: 44px;
+      padding: 0 4px;
     }
 
-    .logo-box img {
-      height: 46px;
+    .logo-svg {
+      height: 38px;
       width: auto;
-      max-width: 170px;
-      object-fit: contain;
+      overflow: visible;
       display: block;
-      position: relative;
-      z-index: 2;
-      animation: logoEntrance 1s cubic-bezier(0.16, 1, 0.3, 1) forwards, logoPulseGlow 4s ease-in-out infinite 1.2s;
-      transition: transform 0.25s ease, filter 0.25s ease;
     }
 
-    /* شعاع المسح الضوئي المار فوق الشعار */
-    .logo-box::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.2) 30%,
-        rgba(56, 189, 248, 0.75) 50%,
-        rgba(255, 255, 255, 0.9) 60%,
-        transparent 100%
-      );
-      pointer-events: none;
-      z-index: 3;
-      mix-blend-mode: overlay;
-      animation: lightSweep 4.5s ease-in-out infinite 0.5s;
+    /* تطبيق حركة النزول على كل حرف */
+    .char-drop {
+      opacity: 0;
+      animation: dropIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation-iteration-count: infinite;
+      /* يعيد الحركة كل 8 ثوانٍ */
+      animation-duration: 8s;
+      transform-origin: center top;
     }
 
-    .logo-box:hover img {
-      transform: scale(1.04);
-      filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.9));
-    }
+    /* تأخير زمني مخصص لكل حرف بالتسلسل */
+    .char-m1 { animation-delay: 0.10s; }
+    .char-o  { animation-delay: 0.20s; }
+    .char-h  { animation-delay: 0.30s; }
+    .char-d  { animation-delay: 0.40s; }
+    .char-p  { animation-delay: 0.55s; }
+    .char-l  { animation-delay: 0.65s; }
+    .char-u  { animation-delay: 0.75s; }
+    .char-s  { animation-delay: 0.85s; }
+    .char-plus { animation-delay: 1.00s; }
 
     /* رأس الصفحة (Header) */
     header {
@@ -444,21 +411,11 @@
       text-align: center;
       margin-bottom: 16px;
     }
-    .footer-brand-box img {
-      height: 44px;
-      width: auto;
-      object-fit: contain;
-      margin-bottom: 10px;
-      transition: filter 0.25s ease;
-    }
-    .footer-brand-box img:hover {
-      filter: drop-shadow(0 0 10px var(--cyan-neon));
-    }
     .footer-brand-box p {
       color: var(--text-muted);
       font-size: 13px;
       max-width: 600px;
-      margin: 0 auto;
+      margin: 12px auto 0;
       line-height: 1.7;
     }
 
@@ -556,7 +513,7 @@
       object-fit: contain;
     }
 
-    /* طرق الدفع المعتمدة */
+    /* بوابات الدفع المعتمدة */
     .payments-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -683,8 +640,8 @@
         margin-bottom: 20px;
       }
 
-      .logo-box img {
-        height: 38px;
+      .logo-svg {
+        height: 32px;
       }
 
       /* تحويل شبكة البطاقات إلى عمودين مريحين جداً لمنع الازدحام */
@@ -769,17 +726,50 @@
 </head>
 <body>
 
-  <!-- صورة الخلفية المحدثة وطبقة الدمج السريعة -->
+  <!-- صورة الخلفية وطبقة الدمج السريعة -->
   <div class="galaxy-bg"></div>
   <div class="bg-overlay"></div>
 
   <div class="container">
-    <!-- رأس الصفحة مع حركة الشعار النيون المتطورة -->
+    <!-- رأس الصفحة مع حركة الشعار التايبوغرافي حرفاً حرفاً -->
     <header class="glowing-border">
       <button class="header-btn" aria-label="القائمة"><i class="fa-solid fa-bars"></i></button>
-      <div class="logo-box">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/logomohdplus.svg" alt="MohdPlus Logo">
-      </div>
+      
+      <!-- شعار فيكتور حركي مدمج ينزل حرفاً حرفاً بتتابع انسيابي -->
+      <a href="#" class="logo-container" aria-label="شعار محمد بلس">
+        <svg class="logo-svg" viewBox="0 0 320 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <style>
+            .txt-bold {
+              font-family: 'Cairo', 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+              font-weight: 900;
+              font-size: 36px;
+              letter-spacing: 2px;
+            }
+            .white-glow {
+              fill: #ffffff;
+              filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.45));
+            }
+            .cyan-glow {
+              fill: #38bdf8;
+              filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.75));
+            }
+          </style>
+
+          <!-- كلمة MOHD: بيضاء ناصعة تسقط حرفاً حرفاً -->
+          <text x="6"   y="40" class="txt-bold white-glow char-drop char-m1">M</text>
+          <text x="44"  y="40" class="txt-bold white-glow char-drop char-o">O</text>
+          <text x="80"  y="40" class="txt-bold white-glow char-drop char-h">H</text>
+          <text x="114" y="40" class="txt-bold white-glow char-drop char-d">D</text>
+
+          <!-- كلمة PLUS⁺: سماوية نيون تسقط تباعاً -->
+          <text x="160" y="40" class="txt-bold cyan-glow char-drop char-p">P</text>
+          <text x="190" y="40" class="txt-bold cyan-glow char-drop char-l">L</text>
+          <text x="216" y="40" class="txt-bold cyan-glow char-drop char-u">U</text>
+          <text x="249" y="40" class="txt-bold cyan-glow char-drop char-s">S</text>
+          <text x="282" y="38" class="txt-bold cyan-glow char-drop char-plus" font-size="34px">+</text>
+        </svg>
+      </a>
+
       <button class="header-btn" aria-label="بحث"><i class="fa-solid fa-magnifying-glass"></i></button>
     </header>
 
@@ -865,7 +855,20 @@
       
       <!-- 1. الشعار والوصف التعريفي -->
       <div class="footer-brand-box">
-        <img src="https://raw.githubusercontent.com/mohdplus/Mohdplus/main/logomohdplus.svg" alt="MohdPlus Logo" loading="lazy">
+        <a href="#" class="logo-container" aria-label="شعار محمد بلس">
+          <svg class="logo-svg" viewBox="0 0 320 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="6"   y="40" class="txt-bold white-glow char-drop char-m1">M</text>
+            <text x="44"  y="40" class="txt-bold white-glow char-drop char-o">O</text>
+            <text x="80"  y="40" class="txt-bold white-glow char-drop char-h">H</text>
+            <text x="114" y="40" class="txt-bold white-glow char-drop char-d">D</text>
+
+            <text x="160" y="40" class="txt-bold cyan-glow char-drop char-p">P</text>
+            <text x="190" y="40" class="txt-bold cyan-glow char-drop char-l">L</text>
+            <text x="216" y="40" class="txt-bold cyan-glow char-drop char-u">U</text>
+            <text x="249" y="40" class="txt-bold cyan-glow char-drop char-s">S</text>
+            <text x="282" y="38" class="txt-bold cyan-glow char-drop char-plus" font-size="34px">+</text>
+          </svg>
+        </a>
         <p>محمد بلس منظومة رقمية متكاملة تدمج بين الأدوات الذكية، المنتجات الرقمية، وسوق متكامل لدعم المبدعين والشركاء الموثوقين.</p>
       </div>
 
