@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="dark">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>منصة محمد بلس الرقمية</title>
-  
-  <!-- خط عربي تقني وواضح مع أيقونات Font Awesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>محمد بلس | المنصة الرقمية للتجارة والأدوات الذكية وسوق المبدعين</title>
   
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -19,133 +13,38 @@
       theme: {
         extend: {
           colors: {
-            brandYellow: '#FFE600',
-            brandBlue: '#00D2FF',
-            obsidian: {
-              950: '#06080D',
-              900: '#0C1018',
-              850: '#111622',
-              800: '#171F30',
-              750: '#1E283E',
-              700: '#2A3752'
+            brand: {
+              yellow: '#F5A623',
+              gold: '#E59819',
+              dark: '#111827',
+              cardDark: '#1E232F',
+              accent: '#3B82F6',
+              green: '#10B981',
+              cyan: '#06B6D4'
             }
           },
           fontFamily: {
-            sans: ['"Readex Pro"', 'sans-serif'],
-            mono: ['"Space Grotesk"', 'monospace']
+            cairo: ['Cairo', 'sans-serif'],
           }
         }
       }
     }
   </script>
 
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
   <style>
-    body {
-      background-color: #06080D;
-      color: #F8FAFC;
-      font-family: 'Readex Pro', sans-serif;
-      overflow-x: hidden;
+    * {
+      font-family: 'Cairo', sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
-
-    .code-font {
-      font-family: 'Space Grotesk', monospace;
-    }
-
-    /* شبكة خفية للخلفية التقنية */
-    .cyber-grid-bg {
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    /* حواف شبه حادة هندسية */
-    .semi-sharp {
-      border-radius: 4px;
-    }
-    .semi-sharp-sm {
-      border-radius: 2px;
-    }
-
-    /* الشعار نظيف تماماً بدون توهج أو وميض */
-    .clean-logo {
-      height: 38px;
-      width: auto;
-      max-width: 170px;
-      object-fit: contain;
-      filter: none !important;
-      box-shadow: none !important;
-      animation: none !important;
-      transition: opacity 0.2s ease;
-    }
-
-    /* بطاقات الأقسام المنسقة بنظام 3 أعمدة */
-    .section-card {
-      background: linear-gradient(180deg, rgba(17, 22, 34, 0.95) 0%, rgba(12, 16, 24, 0.98) 100%);
-      border: 1px solid rgba(0, 210, 255, 0.22);
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-    .section-card:hover {
-      border-color: rgba(0, 210, 255, 0.6);
-      transform: translateY(-2px);
-    }
-
-    /* حل مشكلة تداخل شعارات الدفع: حاويات بمقاسات ثابتة ودعم الـ Flex */
-    .pay-badge-box {
-      width: 76px;
-      height: 44px;
-      background: rgba(17, 22, 34, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 4px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 6px 10px;
-      flex-shrink: 0;
-      box-sizing: border-box;
-      transition: border-color 0.2s ease;
-    }
-    .pay-badge-box:hover {
-      border-color: rgba(0, 210, 255, 0.5);
-    }
-    .pay-badge-box img {
-      max-height: 22px;
-      max-width: 100%;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* بطاقات الدفع المصغرة داخل السلة */
-    .pay-badge-compact {
-      width: 48px;
-      height: 30px;
-      padding: 3px 5px;
-      background: rgba(12, 16, 24, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 3px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .pay-badge-compact img {
-      max-height: 16px;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* الشريط العائم السفلي */
-    .floating-dock-bar {
-      background: rgba(12, 16, 24, 0.96);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(0, 210, 255, 0.35);
-      box-shadow: 0 16px 35px -5px rgba(0, 0, 0, 0.85);
-    }
-
+    /* Hide scrollbars for slick look */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -153,581 +52,1140 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+    .bottom-nav-active {
+      color: #F5A623 !important;
+    }
+    .bottom-nav-active .indicator-dot {
+      display: block;
+    }
   </style>
 </head>
-<body class="cyber-grid-bg relative min-h-screen pb-32">
+<body class="bg-[#F8FAFC] dark:bg-[#0B0F19] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300 select-none pb-24">
 
-  <!-- ==================== رأس الصفحة (HEADER & NAVBAR) ==================== -->
-  <!-- الشعار بالمنتصف تماماً وبدون وميض، على اليمين 3 خطوط القائمة، على اليسار أيقونة البحث -->
-  <header class="sticky top-0 z-40 bg-obsidian-950/95 backdrop-blur-md border-b border-white/10 px-4 py-3">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      
-      <!-- اليمين: قائمة الثلاث خطوط -->
+  <!-- Container for App Style (Max width on desktop to mimic modern app experience) -->
+  <div class="w-full max-w-md mx-auto min-h-screen flex flex-col relative shadow-2xl bg-white dark:bg-[#121824] border-x border-gray-200 dark:border-gray-800">
+
+    <!-- Top App Header -->
+    <header class="sticky top-0 z-40 bg-white/90 dark:bg-[#121824]/90 backdrop-blur-md px-4 py-3 flex items-center justify-between border-b border-gray-100 dark:border-gray-800/80">
+      <!-- Right Side: Logo & Brand -->
       <div class="flex items-center gap-2">
-        <button id="menuBtn" onclick="toggleSidebarMenu()" class="w-10 h-10 semi-sharp bg-obsidian-850 border border-white/15 text-slate-200 flex items-center justify-center hover:text-brandYellow hover:border-brandYellow/40 transition-colors" aria-label="القائمة">
-          <i class="fa-solid fa-bars text-lg"></i>
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#F5A623] to-amber-500 flex items-center justify-center text-slate-950 font-black text-xl shadow-md">
+          M+
+        </div>
+        <div>
+          <h1 class="text-base font-extrabold tracking-tight leading-none text-gray-900 dark:text-white">محمد بلس</h1>
+          <span class="text-[10px] text-amber-500 font-bold block mt-0.5">سوق المبدعين والأدوات</span>
+        </div>
+      </div>
+
+      <!-- Left Side Action Icons (Language, Theme, Support, Notifications) -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <!-- Support/Audio -->
+        <button onclick="showToast('مركز المساعدة والدعم الفني مباشر!')" class="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i data-lucide="headphones" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Dark/Light Mode -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i data-lucide="sun" id="sunIcon" class="w-4 h-4 hidden"></i>
+          <i data-lucide="moon" id="moonIcon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Notifications -->
+        <button onclick="showToast('لا توجد إشعارات جديدة حالياً')" class="relative p-2 rounded-xl text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-amber-500 rounded-full animate-pulse"></span>
+        </button>
+
+        <!-- Academy Badge -->
+        <button onclick="openTab('services')" class="flex items-center gap-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-full text-xs font-bold hover:bg-amber-500/20 transition">
+          <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+          <span>الأكاديمية</span>
         </button>
       </div>
+    </header>
 
-      <!-- المنتصف: الشعار بدون أي وميض أو تأثيرات ضوئية -->
-      <div class="flex items-center justify-center">
-        <a href="#hero" class="block focus:outline-none">
-          <img 
-            src="logomohdplus.svg" 
-            alt="محمد بلس | MOHD PLUS" 
-            class="clean-logo"
-            onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\'font-black text-xl tracking-wider text-white code-font\'>MOHD PLUS<span class=\'text-brandYellow\'>+</span></span>';"
-          />
-        </a>
-      </div>
-
-      <!-- اليسار: أيقونة البحث -->
-      <div class="flex items-center gap-2">
-        <button onclick="openSearchModal()" class="w-10 h-10 semi-sharp bg-obsidian-850 border border-white/15 text-slate-200 flex items-center justify-center hover:text-brandBlue hover:border-brandBlue/40 transition-colors" aria-label="البحث">
-          <i class="fa-solid fa-magnifying-glass text-base"></i>
-        </button>
-      </div>
-
-    </div>
-  </header>
-
-  <!-- ==================== القائمة الجانبية المنسدلة ==================== -->
-  <div id="sideMenuOverlay" onclick="toggleSidebarMenu()" class="fixed inset-0 bg-black/75 backdrop-blur-sm z-50 hidden transition-opacity"></div>
-  <aside id="sideMenu" class="fixed top-0 right-0 h-full w-72 bg-obsidian-900 border-l border-white/15 z-50 transform translate-x-full transition-transform duration-300 p-5 flex flex-col justify-between">
-    <div>
-      <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-5">
-        <span class="text-xs font-mono text-brandBlue">// قائمة محمد بلس</span>
-        <button onclick="toggleSidebarMenu()" class="w-8 h-8 semi-sharp bg-obsidian-800 text-slate-300 flex items-center justify-center hover:text-white">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <nav class="space-y-2">
-        <a href="#hero" onclick="toggleSidebarMenu()" class="flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
-          <i class="fa-solid fa-house text-brandYellow"></i> الرئيسية
-        </a>
-        <a href="#categories-section" onclick="toggleSidebarMenu()" class="flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
-          <i class="fa-solid fa-shapes text-brandBlue"></i> الأقسام والتصنيفات
-        </a>
-        <button onclick="toggleSidebarMenu(); openCartModal();" class="w-full text-right flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
-          <i class="fa-solid fa-basket-shopping text-brandYellow"></i> سلة الطلبات
-        </button>
-        <button onclick="toggleSidebarMenu(); openAccountModal();" class="w-full text-right flex items-center gap-3 px-3.5 py-2.5 semi-sharp bg-obsidian-850 hover:bg-obsidian-800 text-sm font-semibold text-white">
-          <i class="fa-solid fa-user-shield text-emerald-400"></i> الحساب والشركات B2B
-        </button>
-      </nav>
-    </div>
-    <div class="pt-4 border-t border-white/10 text-center text-[11px] text-slate-500 code-font">
-      MOHAMED PLUS OS © 2026
-    </div>
-  </aside>
-
-  <!-- ==================== نافذة البحث (SEARCH MODAL) ==================== -->
-  <div id="searchModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-start justify-center pt-24 px-4">
-    <div class="bg-obsidian-900 border border-brandBlue/40 w-full max-w-lg semi-sharp p-4 shadow-2xl">
-      <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-3">
-        <span class="text-xs code-font text-brandBlue">// محرك بحث منصة محمد بلس</span>
-        <button onclick="closeSearchModal()" class="text-slate-400 hover:text-white">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="relative">
-        <input type="text" id="searchInput" placeholder="ابحث عن بطاقة، أداة ذكاء اصطناعي، قالب، أو خدمة..." class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-3 pr-10 pl-4 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-brandBlue" />
-        <i class="fa-solid fa-magnifying-glass absolute right-3 top-3.5 text-slate-400"></i>
-      </div>
-      <div class="mt-3 flex flex-wrap gap-2 text-xs">
-        <span class="text-slate-500 text-[11px]">مقترحات:</span>
-        <button onclick="quickSearch('بطاقات بلايستيشن')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-brandYellow text-[11px]">بطاقات ألعاب</button>
-        <button onclick="quickSearch('أوامر برومبت')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-brandBlue text-[11px]">أدوات ذكية</button>
-        <button onclick="quickSearch('سيرفر سحابي')" class="semi-sharp bg-obsidian-800 px-2.5 py-1 text-slate-300 hover:text-emerald-400 text-[11px]">سحابة B2B</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==================== القسم الرئيسي (HERO SECTION) ==================== -->
-  <section id="hero" class="pt-8 sm:pt-14 px-4 max-w-4xl mx-auto text-center">
-    
-    <!-- شارة تعريفية مدمجة شبه حادة -->
-    <div class="inline-flex items-center gap-2 px-3 py-1 bg-obsidian-900 border border-brandBlue/30 semi-sharp text-xs text-brandBlue code-font mb-6">
-      <span class="w-1.5 h-1.5 semi-sharp-sm bg-brandBlue"></span>
-      <span>البيئة الرقمية الشاملة // MOHD PLUS ECOSYSTEM</span>
-    </div>
-
-    <!-- العنوان الرئيسي المطلوب نصاً بدقة -->
-    <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight mb-4 tracking-tight">
-      منصة محمد بلس الرقمية
-    </h1>
-
-    <!-- الوصف الجديد المطلوب نصاً بدقة -->
-    <p class="text-sm sm:text-base md:text-lg text-slate-300 max-w-2xl mx-auto mb-8 font-normal leading-relaxed">
-      منصة محمد بلس الرقمية تجمع بين التجارة الإلكترونية والأدوات الذكية وسوق متكامل للمبدعين
-    </p>
-
-    <!-- المربعان المطلوب وضعهما بجانب بعض بدقة متناهية -->
-    <div class="flex items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto">
-      <!-- مربع: تصفح المتجر والبطاقات -->
-      <a href="#categories-section" class="flex-1 semi-sharp bg-brandYellow hover:bg-yellow-400 text-obsidian-950 font-black py-3.5 px-3 text-xs sm:text-sm text-center flex items-center justify-center gap-2 border border-brandYellow transition-transform active:scale-95">
-        <i class="fa-solid fa-bag-shopping"></i>
-        <span>تصفح المتجر والبطاقات</span>
-      </a>
+    <!-- MAIN SCROLLABLE CONTENT (Controlled by Tabs) -->
+    <main id="appMain" class="flex-1 overflow-y-auto px-4 py-4 space-y-4">
       
-      <!-- مربع: بنية الذكاء الاصطناعي -->
-      <a href="#categories-section" class="flex-1 semi-sharp bg-obsidian-900 hover:bg-obsidian-850 text-brandBlue hover:text-white font-bold py-3.5 px-3 text-xs sm:text-sm text-center flex items-center justify-center gap-2 border border-brandBlue/40 hover:border-brandBlue transition-transform active:scale-95">
-        <i class="fa-solid fa-microchip"></i>
-        <span>بنية الذكاء الاصطناعي</span>
-      </a>
-    </div>
-
-  </section>
-
-  <!-- ==================== شريط بوابات الدفع (PAYMENT GATEWAYS) ==================== -->
-  <!-- تم حل مشكلة التداخل بالكامل: كل شعار في بطاقة مخصصة ومستقلة تماماً -->
-  <section class="max-w-4xl mx-auto mt-12 px-4">
-    <div class="bg-obsidian-900/95 border border-white/10 semi-sharp p-4 sm:p-5">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <!-- ================= 1. TAB: HOME (الرئيسية) ================= -->
+      <section id="tab-home" class="tab-pane space-y-4 block">
         
-        <div class="text-center md:text-right">
-          <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-bold text-brandYellow mb-1">
-            <i class="fa-solid fa-shield-halved text-sm"></i>
-            <span>بوابات دفع سعودية وعالمية معتمدة ومشفرة</span>
+        <!-- Welcome Card -->
+        <div class="bg-gradient-to-br from-gray-50 to-amber-50/30 dark:from-[#171E2E] dark:to-[#1a2334] p-4 rounded-2xl border border-gray-200/80 dark:border-gray-800 relative overflow-hidden shadow-sm">
+          <div class="relative z-10">
+            <span class="inline-flex items-center gap-1 text-[11px] font-semibold text-gray-500 dark:text-gray-400 bg-white/70 dark:bg-black/30 px-2 py-0.5 rounded-md mb-2">
+              <i data-lucide="calendar" class="w-3 h-3 text-amber-500"></i>
+              <span id="currentDateDisplay">اليوم، 18 أكتوبر</span>
+            </span>
+            <h2 class="text-xl font-black text-gray-900 dark:text-white leading-tight">
+              مساء الخير ✨<br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-l from-amber-500 to-yellow-400">مشاريعك الرقمية بانتظارك</span>
+            </h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">هل أنت مستعد لإطلاق منتجك أو تعزيز مبيعاتك اليوم؟</p>
           </div>
-          <div class="text-xs text-slate-400">
-            تنفيذ فوري للطلبات عبر أحدث قنوات الدفع الآمنة بنسبة حماية 100%
-          </div>
+          <div class="absolute -left-6 -bottom-6 w-24 h-24 bg-amber-500/10 rounded-full blur-xl"></div>
         </div>
 
-        <!-- أوعية الشعارات الست المستقلة غير المتداخلة إطلاقاً -->
-        <div class="flex items-center justify-center gap-2.5 flex-wrap">
-          
-          <!-- أبل باي -->
-          <div class="pay-badge-box" title="Apple Pay">
-            <img src="applepay.svg" alt="Apple Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-white font-bold text-xs code-font">Pay</span>
-          </div>
-
-          <!-- مدى -->
-          <div class="pay-badge-box" title="مدى Mada">
-            <img src="mada.svg" alt="Mada" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-emerald-400 font-bold text-xs code-font">mada</span>
-          </div>
-
-          <!-- فيزا -->
-          <div class="pay-badge-box" title="Visa">
-            <img src="visa.svg" alt="Visa" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-sky-400 font-black text-xs italic code-font">VISA</span>
-          </div>
-
-          <!-- ماستركارد -->
-          <div class="pay-badge-box" title="Mastercard">
-            <img src="mastercard.svg" alt="Mastercard" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-orange-400 font-bold text-xs code-font">Mastercard</span>
-          </div>
-
-          <!-- سامسونج باي -->
-          <div class="pay-badge-box" title="Samsung Pay">
-            <img src="samsungpay.svg" alt="Samsung Pay" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-blue-400 font-bold text-[10px] code-font">Samsung</span>
-          </div>
-
-          <!-- اس تي سي بنك -->
-          <div class="pay-badge-box" title="STC Bank">
-            <img src="stcbank.svg" alt="STC Bank" onerror="this.onerror=null; this.classList.add('hidden'); this.nextElementSibling.classList.remove('hidden');" />
-            <span class="hidden text-teal-300 font-bold text-[10px] code-font">stc bank</span>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== تصنيفات وأقسام المنصة (3 في كل صف) ==================== -->
-  <!-- مطابقة للصورة الرابعة: 3 أعمدة بجانب بعض بدقة، مع مساحة الرمز العلوية، والعنوان والوصف وزر استعراض -->
-  <section id="categories-section" class="max-w-4xl mx-auto mt-12 px-4">
-    
-    <div class="flex items-center justify-between mb-5 border-b border-white/10 pb-3">
-      <div>
-        <h2 class="text-base sm:text-xl font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-shapes text-brandBlue"></i>
-          <span>أقسام وتصنيفات المنصة</span>
-        </h2>
-        <p class="text-xs text-slate-400">استعرض مسارات الأدوات، المتاجر، والخدمات السحابية</p>
-      </div>
-      <span class="text-[11px] code-font text-brandYellow bg-brandYellow/10 border border-brandYellow/30 px-2.5 py-1 semi-sharp">
-        3_COLS_GRID
-      </span>
-    </div>
-
-    <!-- شبكة الثلاثة أعمدة (الصف الواحد به 3 أقسام بالضبط) -->
-    <div class="grid grid-cols-3 gap-2.5 sm:gap-4">
-
-      <!-- القسم 1: متجر بلس -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <!-- مساحة الأيقونة العلوية المطابقة للمرفق -->
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-gem text-xl sm:text-3xl text-cyan-400 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandYellow transition-colors">
-            متجر بلس
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            منتجات وخدمات رقمية حصرية وبطاقات فورية
-          </p>
-        </div>
-        <button onclick="handleCategoryExplore('متجر بلس', 49)" class="w-full semi-sharp bg-white/10 hover:bg-brandYellow hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-      <!-- القسم 2: مختبر الأدوات -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-calculator text-xl sm:text-3xl text-brandBlue group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandBlue transition-colors">
-            مختبر الأدوات
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            حاسبات المالية، التمويل، والإنتاجية
-          </p>
-        </div>
-        <button onclick="handleCategoryExplore('مختبر الأدوات', 89)" class="w-full semi-sharp bg-white/10 hover:bg-brandBlue hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-      <!-- القسم 3: مكتبة الأوامر -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-terminal text-xl sm:text-3xl text-teal-400 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-teal-400 transition-colors">
-            مكتبة الأوامر
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            أوامر برومبت منسقة للتصميم والذكاء
-          </p>
-        </div>
-        <button onclick="handleCategoryExplore('مكتبة الأوامر', 35)" class="w-full semi-sharp bg-white/10 hover:bg-teal-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-      <!-- القسم 4: بطاقات الألعاب والترفيه -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-gamepad text-xl sm:text-3xl text-amber-400 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-brandYellow transition-colors">
-            بطاقات الألعاب
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            شحن أكواد بلايستيشن وإكس بوكس
-          </p>
-        </div>
-        <button onclick="handleCategoryExplore('بطاقات الألعاب والترفيه', 120)" class="w-full semi-sharp bg-white/10 hover:bg-brandYellow hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-      <!-- القسم 5: السحابة والأتمتة -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-cloud-bolt text-xl sm:text-3xl text-sky-400 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-sky-400 transition-colors">
-            السحابة والأتمتة
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            خوادم NVMe وبوتات متطورة
-          </p>
-        </div>
-        <button onclick="handleCategoryExplore('سيرفرات سحابية وأتمتة', 250)" class="w-full semi-sharp bg-white/10 hover:bg-sky-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-      <!-- القسم 6: حلول الشركات B2B -->
-      <div class="section-card semi-sharp p-2.5 sm:p-4 flex flex-col justify-between text-center group">
-        <div>
-          <div class="w-full aspect-[4/3] bg-obsidian-950 border border-white/10 semi-sharp flex items-center justify-center mb-2.5">
-            <i class="fa-solid fa-building-shield text-xl sm:text-3xl text-indigo-400 group-hover:scale-110 transition-transform"></i>
-          </div>
-          <h3 class="text-xs sm:text-base font-black text-white mb-1 group-hover:text-indigo-400 transition-colors">
-            خدمات B2B
-          </h3>
-          <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-2 mb-3 leading-snug">
-            عقود وفواتير ضريبية وحلول مؤسسية
-          </p>
-        </div>
-        <button onclick="openAccountModal()" class="w-full semi-sharp bg-white/10 hover:bg-indigo-400 hover:text-obsidian-950 text-slate-200 text-[10px] sm:text-xs font-bold py-2 px-1 transition-colors border border-white/15">
-          استعراض
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- ==================== الشريط السفلي العائم (FLOATING DOCK) ==================== -->
-  <aside class="fixed bottom-4 inset-x-0 z-40 flex justify-center px-4 pointer-events-none">
-    <nav class="floating-dock-bar pointer-events-auto semi-sharp py-2 px-3 sm:px-6 flex items-center justify-between gap-1 sm:gap-6 max-w-sm w-full">
-      
-      <!-- 1. الرئيسية -->
-      <a href="#hero" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandYellow transition-colors group">
-        <i class="fa-solid fa-house text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
-        <span class="text-[11px] font-bold">الرئيسية</span>
-      </a>
-
-      <!-- 2. الأقسام -->
-      <a href="#categories-section" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandBlue transition-colors group">
-        <i class="fa-solid fa-shapes text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
-        <span class="text-[11px] font-bold">الأقسام</span>
-      </a>
-
-      <!-- 3. السلة مع العداد شبه الحاد -->
-      <button onclick="openCartModal()" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandYellow transition-colors relative group">
-        <div class="relative">
-          <i class="fa-solid fa-basket-shopping text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
-          <span id="dockCartBadge" class="absolute -top-1.5 -left-2 bg-brandYellow text-obsidian-950 font-black text-[9px] w-4 h-4 semi-sharp flex items-center justify-center">0</span>
-        </div>
-        <span class="text-[11px] font-bold">السلة</span>
-      </button>
-
-      <!-- 4. الحساب -->
-      <button onclick="openAccountModal()" class="flex-1 flex flex-col items-center py-1 text-slate-300 hover:text-brandBlue transition-colors group">
-        <i class="fa-solid fa-user-shield text-base sm:text-lg mb-1 group-hover:scale-110 transition-transform"></i>
-        <span class="text-[11px] font-bold">الحساب</span>
-      </button>
-
-    </nav>
-  </aside>
-
-  <!-- ==================== نافذة سلة المشتريات (CART MODAL) ==================== -->
-  <div id="cartModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-white/20 w-full max-w-md semi-sharp p-5 relative shadow-2xl">
-      
-      <!-- زر إغلاق -->
-      <button onclick="closeCartModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-
-      <!-- عنوان النافذة مطابق للصورة رقم 3 -->
-      <div class="flex items-center gap-2 mb-4 pb-3 border-b border-white/10">
-        <span class="text-brandYellow text-lg"><i class="fa-solid fa-basket-shopping"></i></span>
-        <h3 class="text-base font-bold text-white">سلة طلبات محمد بلس</h3>
-      </div>
-
-      <!-- قائمة العناصر -->
-      <div id="cartItemsContainer" class="min-h-[120px] max-h-60 overflow-y-auto no-scrollbar py-2 text-center text-xs text-slate-400">
-        السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!
-      </div>
-
-      <!-- الإجمالي -->
-      <div class="flex items-center justify-between pt-4 border-t border-white/10 my-3">
-        <span class="text-xs text-slate-300">المجموع الإجمالي:</span>
-        <span id="cartTotalPrice" class="text-lg font-black text-brandYellow code-font">0 ريال</span>
-      </div>
-
-      <!-- طرق الدفع المدعومة داخل السلة مع حماية تامة من التداخل -->
-      <div class="bg-obsidian-950 p-2.5 semi-sharp border border-white/5 mb-4">
-        <div class="text-[10px] text-slate-400 mb-2 code-font">طرق الدفع المدعومة فورياً:</div>
-        <div class="flex items-center justify-center gap-1.5 flex-wrap">
-          <div class="pay-badge-compact" title="Apple Pay">
-            <img src="applepay.svg" alt="Pay" onerror="this.onerror=null; this.parentElement.innerText='Pay'">
-          </div>
-          <div class="pay-badge-compact" title="mada">
-            <img src="mada.svg" alt="mada" onerror="this.onerror=null; this.parentElement.innerText='mada'">
-          </div>
-          <div class="pay-badge-compact" title="VISA">
-            <img src="visa.svg" alt="VISA" onerror="this.onerror=null; this.parentElement.innerText='VISA'">
-          </div>
-          <div class="pay-badge-compact" title="Mastercard">
-            <img src="mastercard.svg" alt="MC" onerror="this.onerror=null; this.parentElement.innerText='MC'">
-          </div>
-          <div class="pay-badge-compact" title="Samsung Pay">
-            <img src="samsungpay.svg" alt="SPay" onerror="this.onerror=null; this.parentElement.innerText='SPay'">
-          </div>
-          <div class="pay-badge-compact" title="STC Bank">
-            <img src="stcbank.svg" alt="STC" onerror="this.onerror=null; this.parentElement.innerText='STC'">
-          </div>
-        </div>
-      </div>
-
-      <!-- زر إتمام الطلب الشبيه بالصورة رقم 3 -->
-      <button onclick="checkoutAction()" class="w-full bg-brandYellow hover:bg-yellow-400 text-obsidian-950 font-black py-3.5 semi-sharp text-xs sm:text-sm flex items-center justify-center gap-2 transition-transform active:scale-95">
-        <span>إتمام الطلب والدفع الفوري</span>
-      </button>
-
-    </div>
-  </div>
-
-  <!-- ==================== نافذة الحساب الموحد (ACCOUNT MODAL) ==================== -->
-  <div id="accountModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
-    <div class="bg-obsidian-900 border border-brandBlue/30 w-full max-w-md semi-sharp p-5 relative shadow-2xl">
-      <button onclick="closeAccountModal()" class="absolute top-4 left-4 text-slate-400 hover:text-white">
-        <i class="fa-solid fa-xmark text-lg"></i>
-      </button>
-
-      <div class="text-[11px] code-font text-brandBlue mb-1">// AUTH_SYSTEM</div>
-      <h3 class="text-base font-bold text-white mb-4">بوابة تسجيل دخول محمد بلس</h3>
-
-      <div class="space-y-3 mb-4">
-        <div>
-          <label class="block text-xs text-slate-300 mb-1">البريد الإلكتروني أو رقم الجوال</label>
-          <input type="text" placeholder="name@domain.com أو 05xxxxxxxx" class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-2.5 px-3 text-xs text-white focus:outline-none focus:border-brandBlue">
-        </div>
-        <div>
-          <label class="block text-xs text-slate-300 mb-1">كلمة المرور أو رمز التحقق</label>
-          <input type="password" placeholder="••••••••" class="w-full bg-obsidian-950 border border-white/20 semi-sharp py-2.5 px-3 text-xs text-white focus:outline-none focus:border-brandBlue">
-        </div>
-      </div>
-
-      <button onclick="triggerToast('تم إرسال رمز التحقق OTP بنجاح'); closeAccountModal();" class="w-full bg-brandBlue hover:bg-sky-400 text-obsidian-950 font-black py-3 semi-sharp text-xs transition-transform active:scale-95 mb-2">
-        دخول سريع عبر النفاذ الموحد
-      </button>
-      <button onclick="triggerToast('قسم حلول وعقود الشركات B2B متاح على مدار الساعة'); closeAccountModal();" class="w-full bg-obsidian-850 hover:bg-obsidian-800 text-slate-200 font-bold py-2.5 semi-sharp text-xs border border-white/10 transition-colors">
-        بوابة الموردين والشركات B2B
-      </button>
-    </div>
-  </div>
-
-  <!-- ==================== صندوق الإشعار السريع (TOAST) ==================== -->
-  <div id="toastNotification" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-obsidian-850 border border-brandYellow text-white px-4 py-2.5 semi-sharp shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none">
-    <i class="fa-solid fa-circle-check text-brandYellow text-sm"></i>
-    <span id="toastText" class="text-xs font-bold">تمت العملية بنجاح</span>
-  </div>
-
-  <!-- ==================== تفاعل وجافاسكريبت التحكم ==================== -->
-  <script>
-    let cart = [];
-
-    // إضافة واستعراض بطاقات الأقسام
-    function handleCategoryExplore(title, price) {
-      cart.push({ title, price });
-      updateCartUI();
-      triggerToast(`تم استعراض وإضافة "${title}" إلى السلة`);
-      openCartModal();
-    }
-
-    function removeFromCart(index) {
-      cart.splice(index, 1);
-      updateCartUI();
-      triggerToast('تم حذف العنصر من السلة');
-    }
-
-    function updateCartUI() {
-      const badge = document.getElementById('dockCartBadge');
-      const container = document.getElementById('cartItemsContainer');
-      const totalEl = document.getElementById('cartTotalPrice');
-
-      if (badge) badge.innerText = cart.length;
-
-      if (cart.length === 0) {
-        container.innerHTML = `<p class="py-6 text-slate-400">السلة فارغة حالياً، أضف خدماتك أو بطاقاتك المفضلة!</p>`;
-        totalEl.innerText = `0 ريال`;
-        return;
-      }
-
-      let total = 0;
-      let html = '<div class="space-y-2 text-right">';
-      cart.forEach((item, idx) => {
-        total += item.price;
-        html += `
-          <div class="flex items-center justify-between bg-obsidian-950 p-2.5 semi-sharp border border-white/5">
-            <div>
-              <div class="text-xs font-bold text-white">${item.title}</div>
-              <div class="text-[10px] text-slate-400 code-font">${item.price} ريال</div>
+        <!-- Hero Promotional Banner (Carousel Style) -->
+        <div class="relative rounded-2xl overflow-hidden p-5 bg-gradient-to-r from-blue-950 via-slate-900 to-indigo-950 text-white shadow-lg border border-blue-900/40">
+          <div class="flex items-center justify-between">
+            <div class="space-y-2 max-w-[65%]">
+              <span class="bg-amber-500 text-black text-[10px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider">حصري محمد بلس</span>
+              <h3 class="text-lg font-extrabold leading-tight">ابدأ متجرك الرقمي واستلم أول أرباحك</h3>
+              <p class="text-[11px] text-gray-300">أكثر من 350+ أصل وقالب رقمي جاهز لإعادة البيع بالكامل.</p>
+              <button onclick="openAuthModal('register')" class="inline-flex items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95">
+                <span>انضم الآن وابدأ مجاناً</span>
+                <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+              </button>
             </div>
-            <button onclick="removeFromCart(${idx})" class="text-red-400 hover:text-red-300 text-xs px-2 py-1">
-              <i class="fa-solid fa-trash-can"></i>
+            <div class="flex flex-col items-center">
+              <div class="w-16 h-16 rounded-2xl bg-amber-400/20 border border-amber-400/30 flex items-center justify-center text-amber-400 font-black text-2xl shadow-inner">
+                <i data-lucide="sparkles" class="w-9 h-9"></i>
+              </div>
+              <span class="text-[10px] text-amber-300 font-bold mt-1">عضوية VIP</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Live Indicators -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between shadow-sm">
+            <div>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400 block font-medium">مبدعون نشطون</span>
+              <div class="flex items-center gap-1.5 mt-0.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="font-extrabold text-base text-gray-900 dark:text-white">1,428</span>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+          </div>
+
+          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between shadow-sm">
+            <div>
+              <span class="text-[11px] text-gray-500 dark:text-gray-400 block font-medium">مؤشر التجارة الرقمية</span>
+              <div class="flex items-center gap-1 mt-0.5 text-emerald-500 font-bold text-sm">
+                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                <span>نشط جداً (+18%)</span>
+              </div>
+            </div>
+            <div class="w-9 h-9 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
+              <i data-lucide="activity" class="w-5 h-5"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Call To Action Yellow Banner (As seen in video) -->
+        <div onclick="openAuthModal('register')" class="cursor-pointer bg-gradient-to-r from-[#F5A623] to-amber-500 hover:to-amber-400 text-slate-950 p-4 rounded-2xl flex items-center justify-between shadow-lg shadow-amber-500/20 transition transform active:scale-98">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider bg-black/15 px-2 py-0.5 rounded-md inline-block mb-1">تجربة مجانية كاملة</span>
+            <h4 class="font-black text-base">جرّب أدوات محمد بلس 48 ساعة مجاناً</h4>
+            <p class="text-xs text-black/80 font-medium">تصفح رادار المنتجات، المبيعات الآلية وأفكار المحتوى</p>
+          </div>
+          <div class="w-10 h-10 rounded-xl bg-black text-amber-400 flex items-center justify-center shadow-md">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </div>
+        </div>
+
+        <!-- Featured AI Tools preview -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between px-1">
+            <h3 class="font-extrabold text-sm text-gray-800 dark:text-gray-200">الأدوات الذكية الأحدث</h3>
+            <button onclick="openTab('tools')" class="text-xs text-amber-500 font-bold hover:underline">عرض الكل</button>
+          </div>
+
+          <div class="space-y-2.5">
+            <!-- Tool 1 -->
+            <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between hover:border-amber-500/40 transition">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                  <i data-lucide="radar" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-gray-900 dark:text-white">رادار المنتجات الأكثر طلباً</h4>
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400">يكتشف المنتجات الرقمية الرابحة فورياً</p>
+                </div>
+              </div>
+              <button onclick="openTab('tools')" class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 hover:bg-amber-500 hover:text-black dark:hover:bg-amber-500 dark:hover:text-black rounded-xl text-xs font-bold transition">فتح</button>
+            </div>
+
+            <!-- Tool 2 -->
+            <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between hover:border-amber-500/40 transition">
+              <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center">
+                  <i data-lucide="sparkles" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-sm text-gray-900 dark:text-white">صانع الاستراتيجيات والمحتوى</h4>
+                  <p class="text-[11px] text-gray-500 dark:text-gray-400">خطة تسويق ونشر جاهزة لمشروعك</p>
+                </div>
+              </div>
+              <button onclick="openTab('tools')" class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 hover:bg-amber-500 hover:text-black dark:hover:bg-amber-500 dark:hover:text-black rounded-xl text-xs font-bold transition">فتح</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Platform Features Grid (As in Video: المزيد من الأدوات) -->
+        <div class="space-y-2 pt-2">
+          <div class="flex items-center justify-between px-1">
+            <h3 class="font-extrabold text-sm text-gray-800 dark:text-gray-200 flex items-center gap-1.5">
+              <i data-lucide="layout-grid" class="w-4 h-4 text-amber-500"></i>
+              <span>المزيد من أقسام المنصة</span>
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <!-- Item 1: التسويق بالعمولة -->
+            <div onclick="showToast('نظام العمولة: اربح حتى 40% عند دعوة زملائك')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-pink-500/10 text-pink-500 flex items-center justify-center mb-2">
+                <i data-lucide="share-2" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">التسويق بالعمولة</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">اربح بعمولة لدعوة أصدقائك</p>
+            </div>
+
+            <!-- Item 2: الاشتراكات والباقات -->
+            <div onclick="openTab('account')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-indigo-500/10 text-indigo-500 flex items-center justify-center mb-2">
+                <i data-lucide="gem" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">الاشتراكات والباقات</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">طور باقتك وافتح كل المزايا</p>
+            </div>
+
+            <!-- Item 3: التقارير -->
+            <div onclick="openTab('results')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mb-2">
+                <i data-lucide="bar-chart-2" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">التقارير والنتائج</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">أداء المبيعات والمؤشرات</p>
+            </div>
+
+            <!-- Item 4: الأدوات والمحاكاة -->
+            <div onclick="openTab('tools')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center mb-2">
+                <i data-lucide="calculator" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">حاسبة الأرباح الذكية</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">احسب عوائدك المتوقعة</p>
+            </div>
+
+            <!-- Item 5: الأكاديمية -->
+            <div onclick="showToast('دورات متخصصة في التجارة الرقمية قريباً!')" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-amber-500/10 text-amber-500 flex items-center justify-center mb-2">
+                <i data-lucide="book-open" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">الأكاديمية</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">كل ما تحتاج لمعرفته بالتجارة</p>
+            </div>
+
+            <!-- Item 6: قناة تيليجرام -->
+            <a href="https://t.me" target="_blank" class="cursor-pointer bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 text-center hover:scale-[1.02] transition shadow-sm block">
+              <div class="w-12 h-12 mx-auto rounded-2xl bg-sky-500/10 text-sky-400 flex items-center justify-center mb-2">
+                <i data-lucide="send" class="w-6 h-6"></i>
+              </div>
+              <h5 class="font-bold text-xs text-gray-900 dark:text-white">تيليجرام محمد بلس</h5>
+              <p class="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">تحديثات يومية وأخبار حصرية</p>
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ================= 2. TAB: COMMUNITY (المجتمع وسوق المبدعين) ================= -->
+      <section id="tab-community" class="tab-pane space-y-4 hidden">
+        <!-- Sub tabs navigation (الرئيسية، يتابعون، استكشاف) -->
+        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
+          <h2 class="text-lg font-black text-gray-900 dark:text-white">المجتمع والمبدعين</h2>
+          <div class="flex items-center gap-1 bg-gray-100 dark:bg-gray-800/80 p-1 rounded-xl text-xs font-bold">
+            <button onclick="filterCommunity('all', this)" class="comm-tab px-3 py-1 rounded-lg bg-amber-500 text-black">الرئيسية</button>
+            <button onclick="filterCommunity('following', this)" class="comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400 hover:text-white">متابعون</button>
+            <button onclick="filterCommunity('explore', this)" class="comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400 hover:text-white">استكشاف</button>
+          </div>
+        </div>
+
+        <!-- Feed Creator Box -->
+        <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-2">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center font-bold text-black text-xs">م</div>
+            <input type="text" id="postInput" placeholder="شارك أصل رقمي، استفسار، أو فكرة جديدة..." class="w-full bg-gray-50 dark:bg-gray-900/60 text-xs px-3 py-2 rounded-xl border border-gray-200 dark:border-gray-700/60 focus:outline-none focus:border-amber-500 text-gray-900 dark:text-gray-100">
+          </div>
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[10px] text-gray-400">شارك مع أكثر من 12,000 مبدع</span>
+            <button onclick="createMockPost()" class="bg-amber-500 hover:bg-amber-600 text-black text-xs font-bold px-3 py-1.5 rounded-xl transition">نشر بالمجتمع</button>
+          </div>
+        </div>
+
+        <!-- Posts List -->
+        <div id="communityPosts" class="space-y-3">
+          <!-- Post 1 -->
+          <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-900 font-black flex items-center justify-center text-xs">
+                  ع.س
+                </div>
+                <div>
+                  <h4 class="font-bold text-xs text-gray-900 dark:text-white flex items-center gap-1">
+                    عبدالله السالم
+                    <span class="text-[9px] bg-blue-500/10 text-blue-400 px-1.5 py-0.2 rounded font-normal">مبدع موثوق</span>
+                  </h4>
+                  <span class="text-[10px] text-gray-400">منذ 35 دقيقة • تجارة رقمية</span>
+                </div>
+              </div>
+              <button class="text-gray-400 hover:text-amber-500"><i data-lucide="more-horizontal" class="w-4 h-4"></i></button>
+            </div>
+            <p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+              أطلقت اليوم قالب صفحات الهبوط الأكثر تحويلاً على شوبيفاي ومنصات سلة. متوافق 100% مع الجوال وسرعة البرق ⚡ متوفر الآن للجميع في المتجر الرقمي!
+            </p>
+            <div class="bg-gradient-to-r from-amber-500/10 to-transparent p-2.5 rounded-xl border border-amber-500/20 flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i data-lucide="layout" class="w-4 h-4 text-amber-500"></i>
+                <span class="text-xs font-bold">قالب: UltraLaunch v2.0</span>
+              </div>
+              <button onclick="openTab('services')" class="bg-amber-500 text-black font-bold text-[11px] px-2.5 py-1 rounded-lg">معاينة</button>
+            </div>
+            <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-gray-800/60 text-xs text-gray-500">
+              <button onclick="toggleLike(this)" class="flex items-center gap-1.5 hover:text-amber-500 transition">
+                <i data-lucide="heart" class="w-4 h-4"></i>
+                <span class="like-count">48</span>
+              </button>
+              <button class="flex items-center gap-1.5 hover:text-amber-500 transition">
+                <i data-lucide="message-square" class="w-4 h-4"></i>
+                <span>12 تعليق</span>
+              </button>
+              <button onclick="showToast('تم نسخ رابط المنشور')" class="flex items-center gap-1.5 hover:text-amber-500 transition">
+                <i data-lucide="share" class="w-4 h-4"></i>
+                <span>مشاركة</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Post 2: Restricted / Member Only Box (Like in Video) -->
+          <div class="relative bg-white dark:bg-[#1A2232] p-5 rounded-2xl border border-gray-100 dark:border-gray-800 text-center space-y-3 overflow-hidden shadow-sm">
+            <div class="w-12 h-12 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
+              <i data-lucide="lock" class="w-6 h-6"></i>
+            </div>
+            <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">انضم إلى مجتمع محمد بلس الحصري</h4>
+            <p class="text-xs text-gray-500 dark:text-gray-400 max-w-xs mx-auto">
+              سجّل الدخول لعرض جميع تحليلات المبدعين، استراتيجيات التسويق الرابحة، وتحميل الملفات المجانية المرفقة.
+            </p>
+            <button onclick="openAuthModal('login')" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-bold py-2.5 rounded-xl text-xs transition shadow-md">
+              تسجيل الدخول / إنشاء حساب مجاناً
             </button>
           </div>
-        `;
-      });
-      html += '</div>';
+        </div>
+      </section>
 
-      container.innerHTML = html;
-      totalEl.innerText = `${total} ريال`;
+      <!-- ================= 3. TAB: SMART TOOLS & INSIGHTS (التوصيات والأدوات) ================= -->
+      <section id="tab-tools" class="tab-pane space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-black text-gray-900 dark:text-white">الأدوات الذكية</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">ذكاء اصطناعي وأدوات فورية لإدارة تجارتك</p>
+          </div>
+          <span class="text-xs font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">3 أدوات نشطة</span>
+        </div>
+
+        <!-- Tool Card 1: تحليل المتاجر الذكي -->
+        <div class="bg-gradient-to-br from-[#1E2536] to-[#161C2B] p-4 rounded-2xl border border-gray-800 text-white relative overflow-hidden shadow-lg">
+          <div class="flex items-start justify-between relative z-10">
+            <div class="space-y-1 max-w-[70%]">
+              <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded-md">محدّث اليوم</span>
+              <h3 class="font-black text-base">محلل المتاجر بالذكاء الاصطناعي</h3>
+              <p class="text-xs text-gray-300">أدخل رابط متجرك أو منتجك الرقمي واحصل على تدقيق فوري للتحويلات ونقاط القوة.</p>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400">
+              <i data-lucide="bot" class="w-7 h-7"></i>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-gray-800/80 flex items-center gap-2">
+            <input type="text" id="storeUrlInput" placeholder="https://yourstore.com..." class="flex-1 bg-black/40 text-xs text-white px-3 py-2 rounded-xl border border-gray-700 focus:outline-none focus:border-amber-500">
+            <button onclick="runAiAnalysis()" class="bg-amber-500 hover:bg-amber-600 text-black font-extrabold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>افحص الآن</span>
+            </button>
+          </div>
+          <!-- Result Container -->
+          <div id="aiAnalysisResult" class="hidden mt-3 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-xs space-y-1 text-emerald-200">
+            <div class="font-bold flex items-center gap-1"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> نتيجة الفحص الذكي: المتجر جاهز بنسبة 89%</div>
+            <p class="text-[11px] text-gray-300">سرعة التحميل ممتازة، يُقترح تحسين زر الطلب لتأكيد الدفع الرقمي الفوري.</p>
+          </div>
+        </div>
+
+        <!-- Tool Card 2: رادار الصفقات الرقمية -->
+        <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+                <i data-lucide="compass" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-gray-900 dark:text-white">رادار الصفقات الرقمية</h4>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400">يمسح منصات بيع المنتجات الرقمية لحظياً</p>
+              </div>
+            </div>
+            <span class="text-[10px] bg-amber-500 text-black font-black px-2 py-0.5 rounded-full">جديد</span>
+          </div>
+
+          <!-- Radar simulation box -->
+          <div class="bg-gray-50 dark:bg-black/30 p-3 rounded-xl border border-gray-100 dark:border-gray-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-semibold text-gray-600 dark:text-gray-300">الفرصة الحالية: قوالب Notion لإدارة المشاريع</span>
+              <span class="text-emerald-500 font-bold">+240% طلب</span>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 h-1.5 rounded-full overflow-hidden">
+              <div class="bg-gradient-to-r from-amber-500 to-emerald-400 h-full w-[82%]"></div>
+            </div>
+            <div class="flex items-center justify-between text-[10px] text-gray-400">
+              <span>معدل المنافسة: منخفض</span>
+              <span>سعر البيع المقترح: 19$ - 35$</span>
+            </div>
+          </div>
+          <button onclick="showToast('جاري تحديث الرادار المباشر...')" class="w-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-750 text-xs font-bold py-2 rounded-xl transition">
+            تحديث المؤشرات الآن
+          </button>
+        </div>
+
+        <!-- Locked Card for Premium features (as shown in video) -->
+        <div class="p-4 rounded-2xl border-2 border-dashed border-amber-500/30 bg-amber-500/5 text-center space-y-2">
+          <i data-lucide="shield-check" class="w-8 h-8 text-amber-500 mx-auto"></i>
+          <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">هل ترغب بإنشاء أداتك المخصصة؟</h4>
+          <p class="text-xs text-gray-500 dark:text-gray-400">فريق محمد بلس يبرمج لك بوتات الأتمتة والذكاء الاصطناعي لمتجرك.</p>
+          <button onclick="openTab('account')" class="bg-amber-500 text-black text-xs font-extrabold px-4 py-2 rounded-xl shadow-md">اطلب خدمتك الخاصة</button>
+        </div>
+      </section>
+
+      <!-- ================= 4. TAB: RESULTS (النتائج والتقارير) ================= -->
+      <section id="tab-results" class="tab-pane space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <h2 class="text-lg font-black text-gray-900 dark:text-white">النتائج والتقارير</h2>
+          <span class="text-xs text-gray-400">محدثة لحظياً</span>
+        </div>
+
+        <!-- Lock banner (Similar to video: نتائجك تظهر هنا) -->
+        <div class="bg-white dark:bg-[#1A2232] p-6 rounded-2xl border border-gray-100 dark:border-gray-800 text-center space-y-3 shadow-sm">
+          <div class="w-14 h-14 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center mx-auto">
+            <i data-lucide="lock" class="w-7 h-7"></i>
+          </div>
+          <h3 class="font-extrabold text-base text-gray-900 dark:text-white">تقارير حسابك التفصيلية</h3>
+          <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">
+            فعّل اشتراكك أو سجّل الدخول لعرض تفاصيل مبيعات منتجاتك، زوار رابطك الترويجي، والعمولات المستحقة فورياً.
+          </p>
+          <button onclick="openAuthModal('register')" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-extrabold py-3 rounded-xl text-xs transition shadow-md">
+            فعّل باقتك الآن
+          </button>
+        </div>
+
+        <!-- Demo Public Platform Stats -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider px-1">إحصائيات مجتمع محمد بلس (هذا الشهر)</h4>
+          
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800">
+              <span class="text-[11px] text-gray-400">إجمالي مبيعات المبدعين</span>
+              <p class="text-base font-extrabold text-emerald-500 mt-1">$48,920</p>
+              <span class="text-[10px] text-gray-400">+31% مقارنة بالشهر السابق</span>
+            </div>
+
+            <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800">
+              <span class="text-[11px] text-gray-400">الأصول المباعة</span>
+              <p class="text-base font-extrabold text-amber-500 mt-1">2,840 أصل</p>
+              <span class="text-[10px] text-gray-400">قوالب، تصاميم، وبرمجيات</span>
+            </div>
+          </div>
+
+          <!-- Chart Visual Simulation -->
+          <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold">مؤشر نمو التجارة الرقمية</span>
+              <span class="text-emerald-500 font-bold">مستقر وصاعد ↗</span>
+            </div>
+            <div class="flex items-end justify-between h-24 pt-4 px-2 gap-2">
+              <div class="flex-1 bg-amber-500/20 hover:bg-amber-500 rounded-t h-[40%] transition"></div>
+              <div class="flex-1 bg-amber-500/30 hover:bg-amber-500 rounded-t h-[60%] transition"></div>
+              <div class="flex-1 bg-amber-500/40 hover:bg-amber-500 rounded-t h-[50%] transition"></div>
+              <div class="flex-1 bg-amber-500/60 hover:bg-amber-500 rounded-t h-[75%] transition"></div>
+              <div class="flex-1 bg-amber-500/80 hover:bg-amber-500 rounded-t h-[90%] transition"></div>
+              <div class="flex-1 bg-amber-500 hover:bg-amber-400 rounded-t h-[100%] transition shadow-lg"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-gray-400 px-1 pt-1">
+              <span>مايو</span>
+              <span>يونيو</span>
+              <span>يوليو</span>
+              <span>أغسطس</span>
+              <span>سبتمبر</span>
+              <span>أكتوبر</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. TAB: SERVICES & DIGITAL MARKET (الخدمات والمتجر) ================= -->
+      <section id="tab-services" class="tab-pane space-y-4 hidden">
+        <div class="flex items-center justify-between">
+          <div>
+            <h2 class="text-lg font-black text-gray-900 dark:text-white">سوق المبدعين الرقمي</h2>
+            <p class="text-xs text-gray-500 dark:text-gray-400">أصول رقمية جاهزة للإطلاق وإعادة البيع</p>
+          </div>
+          <div class="w-8 h-8 rounded-full bg-amber-500/10 text-amber-500 flex items-center justify-center">
+            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          </div>
+        </div>
+
+        <!-- Filter Tags -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 text-xs">
+          <button class="bg-amber-500 text-black font-extrabold px-3 py-1 rounded-xl whitespace-nowrap">الكل</button>
+          <button class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-bold px-3 py-1 rounded-xl whitespace-nowrap">كتب وأدلة</button>
+          <button class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-bold px-3 py-1 rounded-xl whitespace-nowrap">قوالب Notion</button>
+          <button class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-bold px-3 py-1 rounded-xl whitespace-nowrap">أكواد وبوتات</button>
+          <button class="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 font-bold px-3 py-1 rounded-xl whitespace-nowrap">برومبت AI</button>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="space-y-3">
+          <!-- Product Item 1 -->
+          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex gap-3 shadow-sm hover:border-amber-500/40 transition">
+            <div class="w-20 h-20 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shrink-0 shadow-md">
+              <i data-lucide="file-code" class="w-8 h-8"></i>
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">حزمة أتمتة تيليجرام وواتساب</h4>
+                  <span class="text-amber-500 font-black text-xs">$29</span>
+                </div>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">بوت متكامل لاستقبال طلبات الزبائن وإرسال الكود الرقمي آلياً دون تدخل بشري.</p>
+              </div>
+              <div class="flex items-center justify-between mt-2 pt-1 border-t border-gray-100 dark:border-gray-800">
+                <span class="text-[10px] text-gray-400">بواسطة: محمد بلس</span>
+                <button onclick="addToCart('حزمة أتمتة تيليجرام', 29)" class="bg-amber-500 text-black text-[11px] font-bold px-3 py-1 rounded-lg hover:bg-amber-600 transition">شراء فوري</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Item 2 -->
+          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex gap-3 shadow-sm hover:border-amber-500/40 transition">
+            <div class="w-20 h-20 rounded-xl bg-gradient-to-tr from-amber-500 to-orange-500 flex items-center justify-center text-white shrink-0 shadow-md">
+              <i data-lucide="book-open" class="w-8 h-8"></i>
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">دليل الـ 10K$ الأول في التجارة الرقمية</h4>
+                  <span class="text-amber-500 font-black text-xs">$14</span>
+                </div>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">دليل شامل مع ملفات PLR لإعادة البيع، خطوات اختيار المنتج والتسويق بدون إعلانات مدفوعة.</p>
+              </div>
+              <div class="flex items-center justify-between mt-2 pt-1 border-t border-gray-100 dark:border-gray-800">
+                <span class="text-[10px] text-gray-400">بواسطة: أكاديمية محمد بلس</span>
+                <button onclick="addToCart('دليل الـ 10K$ الأول', 14)" class="bg-amber-500 text-black text-[11px] font-bold px-3 py-1 rounded-lg hover:bg-amber-600 transition">شراء فوري</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product Item 3 -->
+          <div class="bg-white dark:bg-[#1A2232] p-3.5 rounded-2xl border border-gray-100 dark:border-gray-800 flex gap-3 shadow-sm hover:border-amber-500/40 transition">
+            <div class="w-20 h-20 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-500 flex items-center justify-center text-white shrink-0 shadow-md">
+              <i data-lucide="layers" class="w-8 h-8"></i>
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between">
+                  <h4 class="font-extrabold text-xs text-gray-900 dark:text-white">مكتبة 1000+ برومبت Midjourney ذكي</h4>
+                  <span class="text-amber-500 font-black text-xs">$9</span>
+                </div>
+                <p class="text-[11px] text-gray-500 dark:text-gray-400 mt-1 line-clamp-2">أوامر نصية لتوليد تصاميم تيشرتات، شعارات، وكتب تلوين جاهزة للرفع على Amazon KDP.</p>
+              </div>
+              <div class="flex items-center justify-between mt-2 pt-1 border-t border-gray-100 dark:border-gray-800">
+                <span class="text-[10px] text-gray-400">بواسطة: سارة كريتيف</span>
+                <button onclick="addToCart('مكتبة 1000+ برومبت', 9)" class="bg-amber-500 text-black text-[11px] font-bold px-3 py-1 rounded-lg hover:bg-amber-600 transition">شراء فوري</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sell Your Product Banner -->
+        <div class="bg-gradient-to-r from-gray-900 to-[#1A2232] text-white p-4 rounded-2xl border border-gray-800 flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-xs">هل أنت صانع محتوى أو مبرمج؟</h4>
+            <p class="text-[10px] text-gray-400">ارفع منتجك الرقمي وابدأ البيع لآلاف المهتمين الآن.</p>
+          </div>
+          <button onclick="showToast('افتح حساب بائع لبدء إضافة منتجاتك')" class="bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-xl border border-white/20 transition">
+            كن بائعاً
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 6. TAB: ACCOUNT (حسابي) ================= -->
+      <section id="tab-account" class="tab-pane space-y-4 hidden">
+        <!-- Top Guest Banner (As Seen in Video: أنت تتصفح كزائر) -->
+        <div class="bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent p-4 rounded-2xl border border-amber-500/30 flex items-center justify-between">
+          <div class="flex-1 pr-1">
+            <span class="text-[10px] font-bold text-amber-500 block">وضع التصفح</span>
+            <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">أنت تتصفح كزائر</h3>
+            <p class="text-[11px] text-gray-500 dark:text-gray-400">سجّل الدخول أو أنشئ حساباً لفتح كل المزايا</p>
+          </div>
+          <button onclick="openAuthModal('login')" class="bg-amber-500 hover:bg-amber-600 text-black font-extrabold text-xs px-4 py-2 rounded-xl shadow-md transition">
+            دخول
+          </button>
+        </div>
+
+        <!-- User Profile Card -->
+        <div class="bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-black font-black text-xl flex items-center justify-center shadow-md">
+              م+
+            </div>
+            <div>
+              <h3 class="font-extrabold text-sm text-gray-900 dark:text-white">عضو جديد (محمد بلس)</h3>
+              <div class="flex items-center gap-1.5 mt-0.5">
+                <span class="w-2 h-2 rounded-full bg-gray-400"></span>
+                <span class="text-[11px] text-gray-500 dark:text-gray-400">باقتك الحالية: غير مشترك</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openAuthModal('login')" class="p-2 text-gray-400 hover:text-amber-500">
+            <i data-lucide="edit-3" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <!-- Account Options List (Strictly matching video list) -->
+        <div class="bg-white dark:bg-[#1A2232] rounded-2xl border border-gray-100 dark:border-gray-800 overflow-hidden divide-y divide-gray-100 dark:divide-gray-800 shadow-sm">
+          
+          <!-- الاشتراك والباقات -->
+          <button onclick="showPricingModal()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                <i data-lucide="credit-card" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الاشتراك والباقات</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+
+          <!-- الدعم الفني -->
+          <button onclick="showToast('فريق الدعم متاح 24/7 عبر المحادثة المباشرة')" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center">
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الدعم الفني والمساعدة</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+
+          <!-- الأمان -->
+          <button onclick="openAuthModal('login')" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center">
+                <i data-lucide="shield" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الأمان وكلمة المرور</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+
+          <!-- الإشعارات -->
+          <button onclick="showToast('تم تفعيل التنبيهات لأهم الصفقات')" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-sky-500/10 text-sky-400 flex items-center justify-center">
+                <i data-lucide="bell" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الإشعارات والتنبيهات</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+
+          <!-- الإعدادات -->
+          <button onclick="toggleTheme()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-slate-500/10 text-slate-400 flex items-center justify-center">
+                <i data-lucide="settings" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">الإعدادات والمظهر</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+
+          <!-- عن محمد بلس -->
+          <button onclick="showAboutModal()" class="w-full p-3.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-800/50 transition text-right">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center">
+                <i data-lucide="info" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-gray-800 dark:text-gray-200">عن منصة محمد بلس</span>
+            </div>
+            <i data-lucide="chevron-left" class="w-4 h-4 text-gray-400"></i>
+          </button>
+        </div>
+
+        <!-- Telegram Channel Card (Bottom of Account as in Video) -->
+        <div class="bg-[#1D2733] text-white p-3.5 rounded-2xl flex items-center justify-between shadow-md">
+          <div class="flex items-center gap-2.5">
+            <div class="w-10 h-10 rounded-xl bg-sky-500 flex items-center justify-center text-white">
+              <i data-lucide="send" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-xs">قناتنا على تيليجرام</h4>
+              <p class="text-[10px] text-gray-300">تحديثات المنصة وأخبار السوق أولاً بأول</p>
+            </div>
+          </div>
+          <a href="https://t.me" target="_blank" class="bg-amber-500 text-black text-xs font-extrabold px-3 py-1.5 rounded-xl hover:bg-amber-400 transition">انضم</a>
+        </div>
+
+        <!-- Legal Links Footer -->
+        <div class="pt-2 text-center text-[10px] text-gray-400 space-x-2 space-x-reverse">
+          <button onclick="showToast('سياسة الخصوصية متوافقة مع الأنظمة')" class="hover:underline">سياسة الخصوصية</button>
+          <span>•</span>
+          <button onclick="showToast('شروط الخدمة والاستخدام العادل')" class="hover:underline">الشروط والأحكام</button>
+          <span>•</span>
+          <button onclick="showToast('سياسة الاسترداد خلال 14 يوماً')" class="hover:underline">سياسة الاسترداد</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FLOATING BOTTOM NAVIGATION BAR (Exact 6 tabs from video) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-lg border-t border-gray-200 dark:border-gray-800 z-50 px-2 py-2 shadow-2xl">
+      <div class="grid grid-cols-6 items-center text-center">
+        
+        <!-- Tab 1: الرئيسية -->
+        <button onclick="openTab('home')" id="nav-home" class="nav-btn bottom-nav-active flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="home" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">الرئيسية</span>
+          <span class="indicator-dot w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+        <!-- Tab 2: المجتمع -->
+        <button onclick="openTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="users" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">المجتمع</span>
+          <span class="indicator-dot hidden w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+        <!-- Tab 3: الأدوات والتوصيات -->
+        <button onclick="openTab('tools')" id="nav-tools" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="sparkles" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">الأدوات</span>
+          <span class="indicator-dot hidden w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+        <!-- Tab 4: النتائج -->
+        <button onclick="openTab('results')" id="nav-results" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="line-chart" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">النتائج</span>
+          <span class="indicator-dot hidden w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+        <!-- Tab 5: الخدمات -->
+        <button onclick="openTab('services')" id="nav-services" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="layout-grid" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">الخدمات</span>
+          <span class="indicator-dot hidden w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+        <!-- Tab 6: حسابي -->
+        <button onclick="openTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 text-gray-500 dark:text-gray-400 transition">
+          <i data-lucide="user" class="w-5 h-5 mb-1"></i>
+          <span class="text-[10px] font-bold">حسابي</span>
+          <span class="indicator-dot hidden w-1.5 h-1.5 bg-amber-500 rounded-full mt-0.5"></span>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- ================= MODALS & POPUPS ================= -->
+
+    <!-- 1. Authentication Modal (Register / Login - Exact replica from video) -->
+    <div id="authModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity">
+      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+        
+        <!-- Modal Top Bar -->
+        <div class="flex items-center justify-between pb-2 border-b border-gray-100 dark:border-gray-800">
+          <div class="flex items-center gap-2">
+            <div class="w-8 h-8 rounded-xl bg-amber-500 flex items-center justify-center text-black font-black text-sm">
+              M+
+            </div>
+            <span class="font-extrabold text-sm">محمد بلس</span>
+          </div>
+          <button onclick="closeAuthModal()" class="p-1 rounded-full text-gray-400 hover:text-white hover:bg-gray-800">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Auth Header Title -->
+        <div class="text-center space-y-1">
+          <h3 id="authTitle" class="text-xl font-black text-gray-900 dark:text-white">ابدأ الآن وسجّل حسابك</h3>
+          <p id="authSubtitle" class="text-xs text-gray-500 dark:text-gray-400">بوابتك لعالم التجارة الرقمية والأدوات الذكية</p>
+        </div>
+
+        <!-- Auth Switch Buttons -->
+        <div class="grid grid-cols-2 gap-2 bg-gray-100 dark:bg-gray-800/80 p-1 rounded-xl text-xs font-bold">
+          <button id="switchRegisterBtn" onclick="switchAuthMode('register')" class="py-2 rounded-lg bg-amber-500 text-black transition">إنشاء حساب جديد</button>
+          <button id="switchLoginBtn" onclick="switchAuthMode('login')" class="py-2 rounded-lg text-gray-500 dark:text-gray-400 transition">تسجيل الدخول</button>
+        </div>
+
+        <!-- Form Fields -->
+        <form id="authForm" onsubmit="handleAuthSubmit(event)" class="space-y-3 pt-1">
+          <!-- Name Field (Only in register) -->
+          <div id="authNameField">
+            <label class="text-[11px] font-bold text-gray-700 dark:text-gray-300 block mb-1">اسمك الكامل</label>
+            <input type="text" id="authName" placeholder="محمد السعدي" class="w-full bg-gray-50 dark:bg-[#1A2232] text-xs px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-amber-500 text-gray-900 dark:text-white">
+          </div>
+
+          <!-- Email Field -->
+          <div>
+            <label class="text-[11px] font-bold text-gray-700 dark:text-gray-300 block mb-1">البريد الإلكتروني</label>
+            <input type="email" id="authEmail" required placeholder="name@example.com" class="w-full bg-gray-50 dark:bg-[#1A2232] text-xs px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-amber-500 text-gray-900 dark:text-white">
+          </div>
+
+          <!-- Password Field -->
+          <div class="relative">
+            <label class="text-[11px] font-bold text-gray-700 dark:text-gray-300 block mb-1">كلمة المرور</label>
+            <input type="password" id="authPassword" required placeholder="••••••••" class="w-full bg-gray-50 dark:bg-[#1A2232] text-xs px-3.5 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-amber-500 text-gray-900 dark:text-white pl-9">
+            <button type="button" onclick="togglePasswordVisibility()" class="absolute left-3 top-8 text-gray-400 hover:text-white">
+              <i data-lucide="eye" id="pwdEye" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Password hints (as shown in video) -->
+          <div id="passwordHints" class="space-y-1 text-[10px] text-gray-400 pr-1">
+            <p class="flex items-center gap-1.5"><i data-lucide="check" class="w-3 h-3 text-amber-500"></i> 8 أحرف على الأقل</p>
+            <p class="flex items-center gap-1.5"><i data-lucide="check" class="w-3 h-3 text-amber-500"></i> حروف وأرقام معاً</p>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="authSubmitBtn" class="w-full bg-gradient-to-r from-[#F5A623] to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black font-extrabold py-3 rounded-xl text-xs shadow-lg transition mt-2">
+            إنشاء حساب
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="flex items-center gap-2 my-2">
+          <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+          <span class="text-[10px] text-gray-400">أو المتابعة عبر</span>
+          <div class="flex-1 h-px bg-gray-200 dark:bg-gray-800"></div>
+        </div>
+
+        <!-- Social Logins (Google & Apple) -->
+        <div class="space-y-2">
+          <button onclick="handleSocialAuth('Google')" class="w-full bg-white dark:bg-[#1A2232] border border-gray-200 dark:border-gray-700 hover:border-amber-500 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition text-gray-800 dark:text-gray-200">
+            <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+            <span>التسجيل باستخدام Google</span>
+          </button>
+          
+          <button onclick="handleSocialAuth('Apple')" class="w-full bg-black text-white hover:bg-gray-900 py-2.5 px-3 rounded-xl text-xs font-bold flex items-center justify-center gap-2 transition">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-2 .6-2.65 1.35-.58.66-1.09 1.73-.95 2.76 1.01.08 2.06-.51 2.68-1.26z"/></svg>
+            <span>المتابعة باستخدام Apple</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2. Pricing Modal (الاشتراك والباقات) -->
+    <div id="pricingModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white dark:bg-[#121824] w-full max-w-md rounded-t-3xl sm:rounded-3xl p-6 border-t sm:border border-gray-200 dark:border-gray-800 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
+          <h3 class="font-black text-base text-gray-900 dark:text-white">باقات عضوية محمد بلس</h3>
+          <button onclick="closePricingModal()" class="p-1 rounded-full text-gray-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Plan 1 -->
+          <div class="p-4 rounded-2xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-[#1A2232] space-y-2">
+            <div class="flex justify-between items-center">
+              <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">الباقة الشهرية للمبتدئين</h4>
+              <span class="text-amber-500 font-black text-sm">$19 <span class="text-[10px] text-gray-400">/ شهرياً</span></span>
+            </div>
+            <p class="text-xs text-gray-500 dark:text-gray-400">وصول كامل لكافة الأدوات الذكية، و5 قوالب جاهزة للتحميل شهرياً.</p>
+            <button onclick="subscribePlan('الباقة الشهرية')" class="w-full bg-amber-500 hover:bg-amber-600 text-black font-extrabold text-xs py-2 rounded-xl transition">اشترك الآن</button>
+          </div>
+
+          <!-- Plan 2: Best Value -->
+          <div class="p-4 rounded-2xl border-2 border-amber-500 bg-amber-500/10 space-y-2 relative">
+            <span class="absolute -top-2.5 left-4 bg-amber-500 text-black text-[9px] font-black px-2 py-0.5 rounded-full">الأكثر طلباً</span>
+            <div class="flex justify-between items-center">
+              <h4 class="font-extrabold text-sm text-gray-900 dark:text-white">عضوية VIP السنوية</h4>
+              <span class="text-amber-500 font-black text-sm">$149 <span class="text-[10px] text-gray-400">/ سنوياً</span></span>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">وصول غير محدود لجميع المنتجات، استشارات خاصة، ودعم عبر تيليجرام VIP.</p>
+            <button onclick="subscribePlan('عضوية VIP')" class="w-full bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-black font-black text-xs py-2.5 rounded-xl shadow-md transition">تفعيل العضوية السنوية</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. About Modal -->
+    <div id="aboutModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white dark:bg-[#121824] w-full max-w-sm rounded-3xl p-6 border border-gray-200 dark:border-gray-800 space-y-3 text-center">
+        <div class="w-14 h-14 rounded-2xl bg-amber-500 text-black font-black text-2xl flex items-center justify-center mx-auto shadow-lg">
+          M+
+        </div>
+        <h3 class="font-black text-base text-gray-900 dark:text-white">محمد بلس | Mohamed Plus</h3>
+        <p class="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
+          المنصة الرائدة في تمكين رواد الأعمال والمبدعين الرقميين في العالم العربي بأدوات الذكاء الاصطناعي، استراتيجيات التجارة الإلكترونية، والأصول الرقمية القابلة للربح الفوري.
+        </p>
+        <span class="text-[10px] text-amber-500 font-bold block">الإصدار 3.2.0 • 2026</span>
+        <button onclick="closeAboutModal()" class="w-full bg-gray-100 dark:bg-gray-800 text-xs font-bold py-2 rounded-xl text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700">إغلاق</button>
+      </div>
+    </div>
+
+    <!-- Toast Notification Element -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white dark:bg-white dark:text-slate-900 px-4 py-2.5 rounded-2xl shadow-2xl text-xs font-extrabold flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-3">
+      <i data-lucide="info" class="w-4 h-4 text-amber-500"></i>
+      <span id="toastMessage">رسالة المنصة</span>
+    </div>
+
+  </div>
+
+  <!-- JavaScript Logic & App Functionality -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Set Arabic Date format
+    try {
+      const today = new Date();
+      const options = { weekday: 'long', month: 'long', day: 'numeric' };
+      document.getElementById('currentDateDisplay').textContent = today.toLocaleDateString('ar-SA', options);
+    } catch(e) {}
+
+    // TAB SWITCHING FUNCTIONALITY
+    function openTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      
+      // Remove active states from bottom nav
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bottom-nav-active');
+        const dot = btn.querySelector('.indicator-dot');
+        if (dot) dot.classList.add('hidden');
+      });
+
+      // Show selected tab
+      const targetTab = document.getElementById('tab-' + tabName);
+      if (targetTab) {
+        targetTab.classList.remove('hidden');
+      }
+
+      // Activate nav button
+      const activeNav = document.getElementById('nav-' + tabName);
+      if (activeNav) {
+        activeNav.classList.add('bottom-nav-active');
+        const dot = activeNav.querySelector('.indicator-dot');
+        if (dot) dot.classList.remove('hidden');
+      }
+
+      // Scroll top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      lucide.createIcons();
     }
 
-    function checkoutAction() {
-      if (cart.length === 0) {
-        triggerToast('يرجى اختيار عنصر أولاً للمتابعة للدفع');
+    // THEME TOGGLE (Dark / Light)
+    function toggleTheme() {
+      const html = document.documentElement;
+      const sun = document.getElementById('sunIcon');
+      const moon = document.getElementById('moonIcon');
+      
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        sun.classList.remove('hidden');
+        moon.classList.add('hidden');
+        showToast('تم التحويل إلى الوضع النهاري');
+      } else {
+        html.classList.add('dark');
+        sun.classList.add('hidden');
+        moon.classList.remove('hidden');
+        showToast('تم التحويل إلى الوضع الليلي');
+      }
+      lucide.createIcons();
+    }
+
+    // AUTH MODAL FUNCTIONS
+    let currentAuthMode = 'register';
+
+    function openAuthModal(mode = 'register') {
+      switchAuthMode(mode);
+      const modal = document.getElementById('authModal');
+      modal.classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('authModal').classList.add('hidden');
+    }
+
+    function switchAuthMode(mode) {
+      currentAuthMode = mode;
+      const title = document.getElementById('authTitle');
+      const subtitle = document.getElementById('authSubtitle');
+      const nameField = document.getElementById('authNameField');
+      const pwdHints = document.getElementById('passwordHints');
+      const submitBtn = document.getElementById('authSubmitBtn');
+      const regBtn = document.getElementById('switchRegisterBtn');
+      const loginBtn = document.getElementById('switchLoginBtn');
+
+      if (mode === 'login') {
+        title.textContent = 'مرحباً بعودتك! 👋';
+        subtitle.textContent = 'أدخل بياناتك للمتابعة والوصول لحسابك';
+        nameField.classList.add('hidden');
+        pwdHints.classList.add('hidden');
+        submitBtn.textContent = 'تسجيل الدخول';
+        
+        loginBtn.className = 'py-2 rounded-lg bg-amber-500 text-black transition font-bold';
+        regBtn.className = 'py-2 rounded-lg text-gray-500 dark:text-gray-400 transition font-bold';
+      } else {
+        title.textContent = 'ابدأ الآن وسجّل حسابك';
+        subtitle.textContent = 'بوابتك لعالم التجارة الرقمية والأدوات الذكية';
+        nameField.classList.remove('hidden');
+        pwdHints.classList.remove('hidden');
+        submitBtn.textContent = 'إنشاء حساب جديد';
+
+        regBtn.className = 'py-2 rounded-lg bg-amber-500 text-black transition font-bold';
+        loginBtn.className = 'py-2 rounded-lg text-gray-500 dark:text-gray-400 transition font-bold';
+      }
+      lucide.createIcons();
+    }
+
+    function handleAuthSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('authEmail').value;
+      closeAuthModal();
+      showToast(`تم ${currentAuthMode === 'login' ? 'تسجيل دخولك' : 'إنشاء حسابك'} بنجاح: ${email}`);
+    }
+
+    function handleSocialAuth(provider) {
+      closeAuthModal();
+      showToast(`جاري المصادقة السريعة عبر ${provider}... أهلاً بك!`);
+    }
+
+    function togglePasswordVisibility() {
+      const pwd = document.getElementById('authPassword');
+      const eye = document.getElementById('pwdEye');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+      } else {
+        pwd.type = 'password';
+      }
+    }
+
+    // PRICING MODAL
+    function showPricingModal() {
+      document.getElementById('pricingModal').classList.remove('hidden');
+    }
+    function closePricingModal() {
+      document.getElementById('pricingModal').classList.add('hidden');
+    }
+    function subscribePlan(planName) {
+      closePricingModal();
+      showToast(`تم اختيار ${planName}! جاري نقلك لبوابة الدفع الآمنة...`);
+    }
+
+    // ABOUT MODAL
+    function showAboutModal() {
+      document.getElementById('aboutModal').classList.remove('hidden');
+    }
+    function closeAboutModal() {
+      document.getElementById('aboutModal').classList.add('hidden');
+    }
+
+    // TOAST NOTIFICATION UTILITY
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMessage');
+      toastMsg.textContent = message;
+      
+      toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-3');
+      toast.classList.add('opacity-100', 'translate-y-0');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-3');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 3200);
+      lucide.createIcons();
+    }
+
+    // COMMUNITY INTERACTIONS
+    function filterCommunity(type, btn) {
+      document.querySelectorAll('.comm-tab').forEach(b => {
+        b.className = 'comm-tab px-3 py-1 rounded-lg text-gray-600 dark:text-gray-400 hover:text-white';
+      });
+      btn.className = 'comm-tab px-3 py-1 rounded-lg bg-amber-500 text-black font-bold';
+      showToast(`عرض قسم: ${btn.textContent}`);
+    }
+
+    function createMockPost() {
+      const input = document.getElementById('postInput');
+      if (!input.value.trim()) {
+        showToast('يرجى كتابة نص المنشور أولاً');
         return;
       }
-      closeCartModal();
-      triggerToast('جاري توجيهك لبوابة الدفع المشفرة والآمنة 100%...');
-      cart = [];
-      updateCartUI();
+      const container = document.getElementById('communityPosts');
+      const newPost = document.createElement('div');
+      newPost.className = 'bg-white dark:bg-[#1A2232] p-4 rounded-2xl border border-gray-100 dark:border-gray-800 space-y-3 shadow-sm animate-fade-in';
+      newPost.innerHTML = `
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-amber-500 text-black font-black flex items-center justify-center text-xs">أنت</div>
+            <div>
+              <h4 class="font-bold text-xs text-gray-900 dark:text-white">أنت (صانع محتوى)</h4>
+              <span class="text-[10px] text-gray-400">الآن • مجتمع محمد بلس</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-xs text-gray-700 dark:text-gray-300">${input.value}</p>
+        <div class="flex items-center justify-between pt-1 border-t border-gray-100 dark:border-gray-800/60 text-xs text-gray-500">
+          <button onclick="toggleLike(this)" class="flex items-center gap-1.5 hover:text-amber-500 transition"><i data-lucide="heart" class="w-4 h-4"></i> <span class="like-count">1</span></button>
+          <span class="text-[11px]">منشورك قيد التفاعل الآن</span>
+        </div>
+      `;
+      container.prepend(newPost);
+      input.value = '';
+      showToast('تم نشر مشاركتك بنجاح في مجتمع المبدعين!');
+      lucide.createIcons();
     }
 
-    // إدارة نوافذ المودال
-    function openCartModal() {
-      const modal = document.getElementById('cartModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-    function closeCartModal() {
-      const modal = document.getElementById('cartModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function openAccountModal() {
-      const modal = document.getElementById('accountModal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-    function closeAccountModal() {
-      const modal = document.getElementById('accountModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    function openSearchModal() {
-      document.getElementById('searchModal').classList.remove('hidden');
-      setTimeout(() => document.getElementById('searchInput').focus(), 100);
-    }
-    function closeSearchModal() {
-      document.getElementById('searchModal').classList.add('hidden');
-    }
-    function quickSearch(val) {
-      document.getElementById('searchInput').value = val;
-      triggerToast(`جاري البحث عن: ${val}`);
-      closeSearchModal();
-    }
-
-    // القائمة الجانبية
-    function toggleSidebarMenu() {
-      const menu = document.getElementById('sideMenu');
-      const overlay = document.getElementById('sideMenuOverlay');
-      if (menu.classList.contains('translate-x-full')) {
-        menu.classList.remove('translate-x-full');
-        overlay.classList.remove('hidden');
+    function toggleLike(btn) {
+      const countEl = btn.querySelector('.like-count');
+      let count = parseInt(countEl.textContent, 10);
+      if (btn.classList.contains('text-amber-500')) {
+        btn.classList.remove('text-amber-500');
+        countEl.textContent = count - 1;
       } else {
-        menu.classList.add('translate-x-full');
-        overlay.classList.add('hidden');
+        btn.classList.add('text-amber-500');
+        countEl.textContent = count + 1;
       }
     }
 
-    // إشعار Toast البديل النظيف
-    function triggerToast(message) {
-      const toast = document.getElementById('toastNotification');
-      const text = document.getElementById('toastText');
-      text.innerText = message;
-      toast.classList.remove('translate-y-20', 'opacity-0');
-      toast.classList.add('translate-y-0', 'opacity-100');
-
+    // AI TOOL RUNNER
+    function runAiAnalysis() {
+      const val = document.getElementById('storeUrlInput').value.trim();
+      if (!val) {
+        showToast('يرجى إدخال رابط المتجر للتحليل');
+        return;
+      }
+      showToast('جاري الفحص الذكي للرابط ومعدلات التحويل...');
       setTimeout(() => {
-        toast.classList.add('translate-y-20', 'opacity-0');
-        toast.classList.remove('translate-y-0', 'opacity-100');
-      }, 3000);
+        document.getElementById('aiAnalysisResult').classList.remove('hidden');
+        showToast('اكتمل التحليل الذكي!');
+      }, 1200);
     }
+
+    // SHOPPING CART ACTION
+    function addToCart(title, price) {
+      showToast(`تمت إضافة "${title}" بسعر $${price} لسلة المشتريات`);
+    }
+
+    // Start with home tab
+    window.addEventListener('load', () => {
+      openTab('home');
+    });
   </script>
 </body>
 </html>
