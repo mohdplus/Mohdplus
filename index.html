@@ -32,7 +32,9 @@
     /* ================= 1. Thmanyah Serif Font Definition ================= */
     @font-face {
       font-family: 'ThmanyahSerif';
-      src: url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
+      src: url('./thmanyahseriftext-Regular.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Regular.otf') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -40,14 +42,16 @@
 
     @font-face {
       font-family: 'ThmanyahSerif';
-      src: url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Bold.otf') format('opentype');
+      src: url('./thmanyahseriftext-Bold.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf') format('opentype'),
+           url('https://cdn.jsdelivr.net/gh/mohdhook/my-fonts@main/thmanyahseriftext-Bold.otf') format('opentype');
       font-weight: 700;
       font-style: normal;
       font-display: swap;
     }
 
     * {
-      font-family: 'ThmanyahSerif', 'Cairo', 'Tajawal', sans-serif;
+      font-family: 'ThmanyahSerif', 'Cairo', 'Tajawal', sans-serif !important;
       -webkit-tap-highlight-color: transparent;
       transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
     }
@@ -160,13 +164,13 @@
       <!-- Right: Logo Image with Dynamic Glow & Brand Title -->
       <div class="flex items-center gap-2.5 cursor-pointer" onclick="openTab('home')">
         <div class="w-10 h-10 rounded-2xl theme-badge theme-border border flex items-center justify-center p-1.5 shadow-sm overflow-hidden relative group">
-          <!-- Logo Image from GitHub with fallback inline SVG -->
+          <!-- Logo Image icon.svg from GitHub with fallback inline SVG -->
           <img 
             id="headerLogoImg"
-            src="https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg" 
+            src="icon.svg" 
             alt="شعار محمد بلس" 
             class="w-full h-full object-contain brand-logo-img"
-            onerror="this.onerror=null; this.classList.add('hidden'); document.getElementById('headerLogoFallback').classList.remove('hidden');"
+            onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.classList.add('hidden'); document.getElementById('headerLogoFallback').classList.remove('hidden');}"
           >
           <!-- Fallback SVG if image is unreachable -->
           <div id="headerLogoFallback" class="hidden w-full h-full flex items-center justify-center font-black text-sm theme-color">
@@ -261,10 +265,10 @@
             <div class="flex flex-col items-center">
               <div class="w-16 h-16 rounded-2xl theme-badge theme-border border flex items-center justify-center p-2 shadow-inner">
                 <img 
-                  src="https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg" 
+                  src="icon.svg" 
                   alt="محمد بلس" 
                   class="w-10 h-10 object-contain brand-logo-img"
-                  onerror="this.onerror=null; this.src='https://placehold.co/80x80/161F2E/F59E0B?text=M+';"
+                  onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/80x80/161F2E/F59E0B?text=M+';}"
                 >
               </div>
               <span class="text-[11px] theme-color font-bold mt-1.5">$10 فقط</span>
@@ -673,10 +677,10 @@
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-2xl theme-badge theme-border border flex items-center justify-center p-2 shadow-sm overflow-hidden">
               <img 
-                src="https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg" 
+                src="icon.svg" 
                 alt="محمد بلس" 
                 class="w-full h-full object-contain brand-logo-img"
-                onerror="this.onerror=null; this.src='https://placehold.co/60x60/161F2E/F59E0B?text=M+';"
+                onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/60x60/161F2E/F59E0B?text=M+';}"
               >
             </div>
             <div>
@@ -870,10 +874,10 @@
           <div class="flex items-center gap-2">
             <div class="w-8 h-8 rounded-xl theme-badge theme-border border flex items-center justify-center p-1">
               <img 
-                src="https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logomohdplus.svg" 
+                src="icon.svg" 
                 alt="شعار محمد بلس" 
                 class="w-full h-full object-contain brand-logo-img"
-                onerror="this.onerror=null; this.src='https://placehold.co/40x40/161F2E/F59E0B?text=M+';"
+                onerror="if(this.src!=='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg'){this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/icon.svg';}else{this.src='https://placehold.co/40x40/161F2E/F59E0B?text=M+';}"
               >
             </div>
             <span class="font-extrabold text-sm">محمد بلس</span>
