@@ -10,7 +10,7 @@
     @font-face {
       font-family: 'Thmanyah';
       src: url('thmanyahseriftext-Regular.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf') format('opentype');
+           url('[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Regular.otf)') format('opentype');
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -18,7 +18,7 @@
     @font-face {
       font-family: 'Thmanyah';
       src: url('thmanyahseriftext-Bold.otf') format('opentype'),
-           url('https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf') format('opentype');
+           url('[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/thmanyahseriftext-Bold.otf)') format('opentype');
       font-weight: 700;
       font-style: normal;
       font-display: swap;
@@ -42,8 +42,8 @@
   </style>
 
   <!-- Tailwind CSS & Lucide Icons -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+  <script src="[https://unpkg.com/lucide@latest](https://unpkg.com/lucide@latest)"></script>
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -140,6 +140,12 @@
     .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
     .modal-card label { display: block; font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 0.2rem; }
     .modal-card input, .modal-card select { width: 100%; padding: 0.5rem; background: #0B0F17; border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px; font-size: 0.85rem; }
+
+    /* تنسيق بطاقات أقسام المتجر */
+    .store-cat-card.active {
+      border-color: #F59E0B !important;
+      background-color: rgba(245, 158, 11, 0.12) !important;
+    }
   </style>
 </head>
 <body class="min-h-screen pb-32 selection:bg-primary selection:text-white">
@@ -150,7 +156,7 @@
       
       <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('home')">
         <img id="platform-logo" src="logo-black.svg" 
-             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg';" 
+             onerror="this.onerror=null; this.src='[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg)';" 
              alt="محمد بلس" 
              class="h-10 max-w-[170px] object-contain">
       </div>
@@ -273,38 +279,126 @@
       </div>
     </div>
 
-    <!-- 3. قسم المتجر (Store) -->
-    <div id="tab-store" class="tab-content hidden space-y-3">
-      <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">سوق الأصول الرقمية للمبدعين</h3>
-        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">متاجر مرخصة</span>
+    <!-- 3. قسم المتجر (Store) - البانرات + الأقسام الثلاثية + المنتجات -->
+    <div id="tab-store" class="tab-content hidden space-y-4">
+      
+      <!-- أ) البانر الترحيبي الرئيسي للمتجر -->
+      <div class="relative overflow-hidden rounded-lg bg-gradient-to-l from-primary/25 via-[#1E293B] to-[#0B0F17] border border-primary/40 p-5 text-center space-y-2">
+        <div class="inline-flex items-center gap-1.5 bg-primary/20 text-primary px-2.5 py-0.5 rounded text-[11px] font-bold">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          <span>متجر محمد بلس الرسمي</span>
+        </div>
+        <h2 class="text-lg font-bold text-white">بوابتك للمنتجات الرقمية والاشتراكات الفورية</h2>
+        <p class="text-xs text-gray-300 max-w-md mx-auto leading-relaxed">
+          احصل على أقوى الاشتراكات الترفيهية، البرامج، والبطاقات الرقمية بتسليم فوري وضمان ذهبي طوال مدة الاشتراك.
+        </p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">قالب رقمي</div>
-            <h4 class="font-bold text-xs line-clamp-1">لوحة تحكم SaaS متكاملة</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط.</p>
+      <!-- ب) بانر طرق الدفع المعتمدة والأمان -->
+      <div class="bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <div class="p-1.5 rounded bg-emerald-500/10 text-emerald-400">
+            <i data-lucide="shield-check" class="w-4 h-4"></i>
           </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$49</span>
-            <button onclick="promptGuestCheckout('لوحة تحكم SaaS متكاملة', 49)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
-          </div>
+          <span class="text-xs font-bold">طرق دفع آمنة ومعتمدة 100%:</span>
         </div>
-
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">أدوات ذكية</div>
-            <h4 class="font-bold text-xs line-clamp-1">مساعد توليد المحتوى الذكي</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات.</p>
-          </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$29</span>
-            <button onclick="promptGuestCheckout('مساعد توليد المحتوى الذكي', 29)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
-          </div>
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-[10px] font-bold">
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-emerald-400">مدى Mada</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-white">Apple Pay</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-blue-400">Visa / Master</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-purple-400">STC Pay</span>
         </div>
       </div>
+
+      <!-- ج) الأقسام والتصنيفات (3 أعمدة في كل صف) -->
+      <div class="space-y-2.5">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm flex items-center gap-1.5">
+            <i data-lucide="layout-grid" class="w-4 h-4 text-primary"></i>
+            <span>أقسام وتصنيفات المتجر</span>
+          </h3>
+          <button onclick="filterStoreByCategory('all')" id="reset-cat-btn" class="text-[11px] text-primary font-bold hover:underline">
+            عرض الكل
+          </button>
+        </div>
+
+        <!-- شبكة الأقسام: 3 أقسام في كل صف (grid-cols-3) -->
+        <div class="grid grid-cols-3 gap-2.5" id="storeCategoriesGrid">
+          
+          <!-- القسم 1: الاشتراكات الترفيهية (شاهد، نتفليكس، إلخ) -->
+          <div onclick="filterStoreByCategory('entertainment')" id="cat-btn-entertainment" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center">
+              <i data-lucide="tv" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">الاشتراكات الترفيهية</h4>
+            <span class="text-[10px] opacity-60">شاهد • نتفليكس • OSN</span>
+          </div>
+
+          <!-- القسم 2: البرامج والتطبيقات -->
+          <div onclick="filterStoreByCategory('software')" id="cat-btn-software" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">برامج وتطبيقات بلس</h4>
+            <span class="text-[10px] opacity-60">أوفيس • كانفا • أدوبي</span>
+          </div>
+
+          <!-- القسم 3: الألعاب وبطاقات الشحن -->
+          <div onclick="filterStoreByCategory('gaming')" id="cat-btn-gaming" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
+              <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">الألعاب والبطاقات</h4>
+            <span class="text-[10px] opacity-60">ستور • بلايستيشن • شدات</span>
+          </div>
+
+          <!-- الصف الثاني من الأقسام (أيضاً 3 أقسام بجانب بعض) -->
+          <!-- القسم 4: أدوات الذكاء الاصطناعي -->
+          <div onclick="filterStoreByCategory('ai')" id="cat-btn-ai" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-amber-500/10 text-amber-400 flex items-center justify-center">
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">خدمات الذكاء Ai</h4>
+            <span class="text-[10px] opacity-60">ChatGPT • Midjourney</span>
+          </div>
+
+          <!-- القسم 5: القوالب والأصول الرقمية -->
+          <div onclick="filterStoreByCategory('templates')" id="cat-btn-templates" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center">
+              <i data-lucide="file-code" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">القوالب والأصول</h4>
+            <span class="text-[10px] opacity-60">قوالب جاهزة • ملفات</span>
+          </div>
+
+          <!-- القسم 6: خدمات التواصل والتسويق -->
+          <div onclick="filterStoreByCategory('social')" id="cat-btn-social" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-10 h-10 rounded-full bg-cyan-500/10 text-cyan-400 flex items-center justify-center">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-xs leading-tight">خدمات السوشيال</h4>
+            <span class="text-[10px] opacity-60">توثيق • دعم حسابات</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- د) عرض المنتجات حسب القسم المختار -->
+      <div class="space-y-3 pt-2">
+        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-800 pb-2">
+          <div class="flex items-center gap-2">
+            <h3 class="font-bold text-sm" id="selectedCategoryTitle">جميع المنتجات المميزة</h3>
+            <span id="productCountBadge" class="text-[10px] bg-primary/20 text-primary px-2 py-0.5 rounded font-bold">0 منتج</span>
+          </div>
+          <span class="text-[11px] opacity-70">تسليم فوري آلي ⚡</span>
+        </div>
+
+        <!-- شبكة المنتجات (3 أعمدة في الشاشات المتوسطة و2 في الجوال لوضوح السعر والشراء) -->
+        <div id="storeProductsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <!-- يتم تعبئتها ديناميكياً عبر الجافاسكريبت -->
+        </div>
+      </div>
+
     </div>
 
     <!-- 4. قسم الأدوات (Tools - حاسبة الميزانية المدمجة) -->
@@ -411,17 +505,17 @@
     </button>
 
     <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="group-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="group-icon.png" onerror="this.src='[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png)'" alt="" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
     </button>
 
     <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="store-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="store-icon.png" onerror="this.src='[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png)'" alt="" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المتجر</span>
     </button>
 
     <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="ai-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="ai-icon.png" onerror="this.src='[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png)'" alt="" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
     </button>
 
@@ -505,6 +599,155 @@
   <script>
     lucide.createIcons();
 
+    /* ================= بيانات المتجر والأقسام (Store Data) ================= */
+    const categoryNames = {
+      all: 'جميع المنتجات المميزة',
+      entertainment: 'الاشتراكات الترفيهية (شاهد • نتفليكس)',
+      software: 'برامج وتطبيقات بلس',
+      gaming: 'الألعاب وبطاقات الشحن',
+      ai: 'خدمات الذكاء الاصطناعي Ai',
+      templates: 'القوالب والأصول الرقمية',
+      social: 'خدمات السوشيال والتسويق'
+    };
+
+    const storeProducts = [
+      {
+        id: 1,
+        cat: 'entertainment',
+        badge: 'شاهد VIP',
+        badgeColor: 'bg-emerald-500/20 text-emerald-400',
+        title: 'اشتراك شاهد VIP شامل (شهري)',
+        desc: 'ملف خاص، جودة Full HD/4K، ضمان كامل المدة.',
+        price: 25
+      },
+      {
+        id: 2,
+        cat: 'entertainment',
+        badge: 'نتفليكس',
+        badgeColor: 'bg-red-500/20 text-red-400',
+        title: 'اشتراك نتفليكس بريميوم 4K (شهري)',
+        desc: 'ملف خاص برقم سري، يدعم جميع الأجهزة.',
+        price: 29
+      },
+      {
+        id: 3,
+        cat: 'entertainment',
+        badge: 'شاهد الرياضية',
+        badgeColor: 'bg-emerald-500/20 text-emerald-400',
+        title: 'باقة شاهد VIP + الرياضية (3 أشهر)',
+        desc: 'متابعة الدوري السعودي والبطولات بأعلى دقة.',
+        price: 99
+      },
+      {
+        id: 4,
+        cat: 'entertainment',
+        badge: 'يوتيوب بريميوم',
+        badgeColor: 'bg-red-500/20 text-red-400',
+        title: 'يوتيوب بريميوم (سنة كاملة)',
+        desc: 'تفعيل رسمي على إيميلك الشخصي بدون إعلانات.',
+        price: 119
+      },
+      {
+        id: 5,
+        cat: 'software',
+        badge: 'كانفا برو',
+        badgeColor: 'bg-blue-500/20 text-blue-400',
+        title: 'اشتراك Canva Pro (سنة)',
+        desc: 'تفعيل على إيميلك الشخصي مع كافة المزايا والخطوط.',
+        price: 45
+      },
+      {
+        id: 6,
+        cat: 'ai',
+        badge: 'ChatGPT Plus',
+        badgeColor: 'bg-amber-500/20 text-amber-400',
+        title: 'حساب ChatGPT Plus 4o (شهري)',
+        desc: 'وصول كامل لأحدث نماذج الذكاء الاصطناعي وتوليد الصور.',
+        price: 55
+      },
+      {
+        id: 7,
+        cat: 'gaming',
+        badge: 'بلايستيشن',
+        badgeColor: 'bg-indigo-500/20 text-indigo-400',
+        title: 'بطاقة ستور سعودي 20 دولار',
+        desc: 'كود رقمي فوري يظهر مباشرة بعد الدفع.',
+        price: 75
+      },
+      {
+        id: 8,
+        cat: 'templates',
+        badge: 'قالب رقمي',
+        badgeColor: 'bg-purple-500/20 text-purple-400',
+        title: 'لوحة تحكم SaaS متكاملة',
+        desc: 'كود نظيف جاهز للربط والاستخدام التجاري.',
+        price: 180
+      },
+      {
+        id: 9,
+        cat: 'social',
+        badge: 'سوشيال',
+        badgeColor: 'bg-cyan-500/20 text-cyan-400',
+        title: 'باقة تصميم هوية متجر إلكتروني',
+        desc: 'بنرات احترافية + أيقونات أقسام متناسقة.',
+        price: 150
+      }
+    ];
+
+    let activeStoreCategory = 'all';
+
+    function filterStoreByCategory(catKey) {
+      activeStoreCategory = catKey;
+
+      // تحديث تمييز البطاقات
+      document.querySelectorAll('.store-cat-card').forEach(card => {
+        card.classList.remove('active');
+      });
+      const activeCard = document.getElementById('cat-btn-' + catKey);
+      if (activeCard) {
+        activeCard.classList.add('active');
+      }
+
+      // تحديث العنوان
+      document.getElementById('selectedCategoryTitle').innerText = categoryNames[catKey] || 'جميع المنتجات';
+
+      renderStoreProducts();
+    }
+
+    function renderStoreProducts() {
+      const grid = document.getElementById('storeProductsGrid');
+      if (!grid) return;
+
+      const filtered = activeStoreCategory === 'all'
+        ? storeProducts
+        : storeProducts.filter(p => p.cat === activeStoreCategory);
+
+      document.getElementById('productCountBadge').innerText = `${filtered.length} منتج`;
+
+      grid.innerHTML = '';
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-[#1E293B] p-3 rounded-lg border border-gray-200 dark:border-gray-800 flex flex-col justify-between hover:border-primary transition';
+        card.innerHTML = `
+          <div>
+            <div class="h-24 rounded bg-gradient-to-b from-gray-100 to-gray-200 dark:from-[#0B0F17] dark:to-[#162032] border border-gray-200 dark:border-gray-800 mb-2.5 flex flex-col items-center justify-center p-2 text-center">
+              <span class="text-[11px] font-bold px-2.5 py-1 rounded ${item.badgeColor}">${item.badge}</span>
+            </div>
+            <h4 class="font-bold text-xs line-clamp-1">${item.title}</h4>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1 leading-relaxed">${item.desc}</p>
+          </div>
+          <div class="flex items-center justify-between pt-3 mt-2 border-t border-gray-100 dark:border-gray-800/80">
+            <span class="text-xs font-bold text-primary">${item.price} ر.س</span>
+            <button onclick="promptGuestCheckout('${item.title}', ${item.price})" class="bg-primary hover:bg-primary-hover text-white px-3 py-1 rounded text-[11px] font-bold transition">
+              شراء فوري
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById('tab-' + tabId).classList.remove('hidden');
@@ -522,7 +765,7 @@
     }
 
     function promptGuestCheckout(itemName, price) {
-      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: $${price}`;
+      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} — السعر: ${price} ر.س`;
       document.getElementById('guestCheckoutModal').style.display = 'flex';
     }
 
@@ -721,10 +964,10 @@
       const isDark = document.documentElement.classList.contains('dark');
       if (isDark) {
         logoImg.src = 'logo-black.svg';
-        logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg'; };
+        logoImg.onerror = function() { this.src = '[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg)'; };
       } else {
         logoImg.src = 'logo-light.svg';
-        logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg'; };
+        logoImg.onerror = function() { this.src = '[https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg](https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg)'; };
       }
     }
 
@@ -772,6 +1015,7 @@
       }
       updateLogo();
       renderBudgetApp();
+      renderStoreProducts();
     });
   </script>
 </body>
