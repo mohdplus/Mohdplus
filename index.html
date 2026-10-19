@@ -140,6 +140,12 @@
     .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
     .modal-card label { display: block; font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 0.2rem; }
     .modal-card input, .modal-card select { width: 100%; padding: 0.5rem; background: #0B0F17; border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px; font-size: 0.85rem; }
+
+    /* تمييز القسم المختار */
+    .store-cat-card.active {
+      border-color: #F59E0B !important;
+      background-color: rgba(245, 158, 11, 0.12) !important;
+    }
   </style>
 </head>
 <body class="min-h-screen pb-32 selection:bg-primary selection:text-white">
@@ -156,20 +162,17 @@
       </div>
 
       <div class="flex items-center gap-2">
-        <!-- أيقونة الدعم الفني (support-icon.png) -->
         <button onclick="openSupportModal()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
-          <img src="support-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/support-icon.png';" alt="الدعم الفني" class="w-5 h-5 object-contain">
+          <i data-lucide="headphones" class="w-5 h-5 text-primary"></i>
         </button>
 
-        <!-- أيقونة الإشعارات (notification-icon.png) -->
         <button onclick="openNotificationsModal()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition relative" title="الإشعارات">
           <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
-          <img src="notification-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/notification-icon.png';" alt="الإشعارات" class="w-5 h-5 object-contain">
+          <i data-lucide="bell" class="w-5 h-5 text-primary"></i>
         </button>
 
-        <!-- أيقونة تبديل الوضع النهاري والليلي (daytime-icon.png / Night-icon.png) -->
         <button onclick="toggleDarkMode()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="تبديل الوضع">
-          <img id="theme-icon-img" src="daytime-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/daytime-icon.png';" alt="تبديل الوضع" class="w-5 h-5 object-contain">
+          <i id="theme-icon" data-lucide="sun" class="w-5 h-5 text-primary"></i>
         </button>
       </div>
 
@@ -182,7 +185,7 @@
     <!-- 1. قسم الرئيسية (Home) -->
     <div id="tab-home" class="tab-content space-y-4">
       
-      <!-- الصورة الأولى: الترحيب المنتصف مع الكشيدة -->
+      <!-- الترحيب المنتصف مع الكشيدة -->
       <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
         <h1 class="text-xl font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
         <p class="text-xs opacity-90 leading-relaxed">منصة محمد بلس للتجارة الإلكترونية والمنتجات الرقمية وأدوات صنع بواسطة محمد بلس Ai</p>
@@ -191,7 +194,7 @@
         </div>
       </div>
 
-      <!-- الصورة الثانية: ثلاثة أعمدة (نشاط المنصة، النشطون، المسجلون والتجار) -->
+      <!-- ثلاثة أعمدة (نشاط المنصة، النشطون، المسجلون والتجار) -->
       <div class="grid grid-cols-3 gap-2 text-center">
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
           <span class="text-[10px] opacity-75 block">نشاط المنصة</span>
@@ -207,14 +210,13 @@
         </div>
       </div>
 
-      <!-- الصورة الثالثة: بنر الأحدث وحاسبة الميزانية، التمويل، والمعاش التقاعدي -->
+      <!-- الحاسبات والأدوات -->
       <div>
         <div class="flex items-center justify-between mb-3">
           <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">آخر التحديثات / الأحدث</span>
         </div>
         
         <div class="grid grid-cols-1 gap-3">
-          <!-- حاسبة الميزانية الشهرية -->
           <div onclick="switchTab('budget')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
               <i data-lucide="calculator" class="w-6 h-6"></i>
@@ -226,7 +228,6 @@
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
 
-          <!-- حاسبة التمويل -->
           <div onclick="showToast('تم فتح حاسبة التمويل الذكية')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
               <i data-lucide="landmark" class="w-6 h-6"></i>
@@ -238,7 +239,6 @@
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
 
-          <!-- حاسبة المعاش التقاعدي -->
           <div onclick="showToast('تم فتح حاسبة المعاش التقاعدي')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
               <i data-lucide="award" class="w-6 h-6"></i>
@@ -276,47 +276,89 @@
       </div>
     </div>
 
-    <!-- 3. قسم المتجر (Store) -->
-    <div id="tab-store" class="tab-content hidden space-y-3">
+    <!-- 3. قسم المتجر (Store) - الهيكل والأقسام الثلاثية -->
+    <div id="tab-store" class="tab-content hidden space-y-4">
       
-      <!-- بانر واجهة المتجر (panar-store.png) -->
-      <div class="w-full overflow-hidden rounded border border-gray-200 dark:border-gray-800">
-        <img src="panar-store.png" 
-             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/panar-store.png';" 
-             alt="بانر المتجر" 
-             class="w-full h-auto object-cover block">
+      <!-- إطار مرن للبانر (يُدار لاحقاً من لوحة التحكم) -->
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
+        <span class="text-xs bg-primary text-white px-2.5 py-0.5 rounded font-bold">بانر المتجر (قيد الإدارة السحابية)</span>
+        <h2 class="text-base font-bold text-primary">سوق المنتجات الرقمية والاشتراكات الفورية</h2>
       </div>
 
-      <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">سوق الأصول الرقمية للمبدعين</h3>
-        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">متاجر مرخصة</span>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">قالب رقمي</div>
-            <h4 class="font-bold text-xs line-clamp-1">لوحة تحكم SaaS متكاملة</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط.</p>
-          </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$49</span>
-            <button onclick="promptGuestCheckout('لوحة تحكم SaaS متكاملة', 49)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
-          </div>
+      <!-- شبكة الأقسام (3 أعمدة في كل صف - grid-cols-3) -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm">أقسام وتصنيفات المتجر</h3>
+          <button onclick="filterStoreByCategory('all')" class="text-xs text-primary font-bold hover:underline">عرض الكل</button>
         </div>
 
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">أدوات ذكية</div>
-            <h4 class="font-bold text-xs line-clamp-1">مساعد توليد المحتوى الذكي</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات.</p>
+        <div class="grid grid-cols-3 gap-2.5">
+          <!-- القسم 1: الاشتراكات الترفيهية -->
+          <div onclick="filterStoreByCategory('entertainment')" id="cat-btn-entertainment" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="tv" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">الاشتراكات الترفيهية</h4>
+            <span class="text-[9px] opacity-65">شاهد • نتفليكس</span>
           </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$29</span>
-            <button onclick="promptGuestCheckout('مساعد توليد المحتوى الذكي', 29)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
+
+          <!-- القسم 2: البرامج والتطبيقات -->
+          <div onclick="filterStoreByCategory('software')" id="cat-btn-software" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">البرامج والتطبيقات</h4>
+            <span class="text-[9px] opacity-65">كانفا • أوفيس</span>
+          </div>
+
+          <!-- القسم 3: البطاقات والألعاب -->
+          <div onclick="filterStoreByCategory('gaming')" id="cat-btn-gaming" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">البطاقات والألعاب</h4>
+            <span class="text-[9px] opacity-65">ستور • بلايستيشن</span>
+          </div>
+
+          <!-- القسم 4: أدوات الذكاء الاصطناعي -->
+          <div onclick="filterStoreByCategory('ai')" id="cat-btn-ai" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">أدوات الذكاء Ai</h4>
+            <span class="text-[9px] opacity-65">ChatGPT • مساعد</span>
+          </div>
+
+          <!-- القسم 5: القوالب والأصول الرقمية -->
+          <div onclick="filterStoreByCategory('templates')" id="cat-btn-templates" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="file-code" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">القوالب والأصول</h4>
+            <span class="text-[9px] opacity-65">أكواد • قوالب</span>
+          </div>
+
+          <!-- القسم 6: الخدمات الرقمية -->
+          <div onclick="filterStoreByCategory('social')" id="cat-btn-social" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px]">الخدمات الرقمية</h4>
+            <span class="text-[9px] opacity-65">تصميم • دعم</span>
           </div>
         </div>
       </div>
+
+      <!-- عرض المنتجات الديناميكي -->
+      <div class="space-y-2.5 pt-2">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-primary" id="selectedCategoryTitle">جميع منتجات المتجر</h3>
+          <span id="productCountBadge" class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-bold">0 منتج</span>
+        </div>
+
+        <div id="storeProductsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3"></div>
+      </div>
+
     </div>
 
     <!-- 4. قسم الأدوات (Tools - حاسبة الميزانية المدمجة) -->
@@ -417,24 +459,23 @@
   <!-- ================= الشريط العائم السفلي ================= -->
   <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
     
-    <!-- أيقونة الرئيسية (house-icon.png) -->
     <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
-      <img src="house-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/house-icon.png';" alt="الرئيسية" class="w-5 h-5 object-contain">
+      <i data-lucide="home" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
     </button>
 
     <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="group-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png';" alt="المجتمع" class="w-5 h-5 object-contain">
+      <i data-lucide="users" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
     </button>
 
     <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="store-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png';" alt="المتجر" class="w-5 h-5 object-contain">
+      <i data-lucide="store" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">المتجر</span>
     </button>
 
     <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="ai-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png';" alt="الميزانية" class="w-5 h-5 object-contain">
+      <i data-lucide="calculator" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
     </button>
 
@@ -443,15 +484,13 @@
       <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
     </button>
 
-    <!-- أيقونة حسابي (account-icon.png) -->
     <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="account-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/account-icon.png';" alt="حسابي" class="w-5 h-5 object-contain">
+      <i data-lucide="user" class="w-5 h-5"></i>
       <span class="text-[10px] mt-1 font-semibold">حسابي</span>
     </button>
-
   </nav>
 
-  <!-- نافذة الشراء كزائر أو تسجيل جديد -->
+  <!-- نوافذ الحوار والتحكم -->
   <div id="guestCheckoutModal" class="modal-overlay">
     <div class="modal-card">
       <h3 class="font-bold text-sm mb-2 text-primary">إتمام عملية الشراء</h3>
@@ -464,7 +503,6 @@
     </div>
   </div>
 
-  <!-- نافذة إضافة قسم للميزانية -->
   <div class="modal-overlay" id="categoryModal">
     <div class="modal-card">
       <h3 class="font-bold text-sm mb-2 text-primary">إضافة قسم رئيسي جديد</h3>
@@ -484,7 +522,6 @@
     </div>
   </div>
 
-  <!-- نافذة إضافة شهر جديد -->
   <div class="modal-overlay" id="newMonthModal">
     <div class="modal-card">
       <h3 class="font-bold text-sm mb-2 text-primary">إنشاء ميزانية شهر جديد</h3>
@@ -515,9 +552,67 @@
     تم الإجراء بنجاح
   </div>
 
-  <!-- جافاسكريبت التحكم والتشغيل المدمج -->
+  <!-- جافاسكريبت التحكم والتشغيل -->
   <script>
     lucide.createIcons();
+
+    const storeCategoryTitles = {
+      all: 'جميع منتجات المتجر',
+      entertainment: 'الاشتراكات الترفيهية',
+      software: 'البرامج والتطبيقات',
+      gaming: 'البطاقات والألعاب',
+      ai: 'أدوات الذكاء الاصطناعي',
+      templates: 'القوالب والأصول',
+      social: 'الخدمات الرقمية'
+    };
+
+    const storeProductsList = [
+      { id: 1, cat: 'entertainment', badge: 'شاهد VIP', title: 'اشتراك شاهد VIP شامل (شهري)', desc: 'ملف خاص، دقة Full HD، ضمان طوال المدة.', price: 25 },
+      { id: 2, cat: 'entertainment', badge: 'نتفليكس 4K', title: 'اشتراك نتفليكس بريميوم (شهري)', desc: 'حساب رسمي دقة 4K مع ضمان.', price: 29 },
+      { id: 3, cat: 'software', badge: 'كانفا برو', title: 'اشتراك Canva Pro (سنة كاملة)', desc: 'تفعيل رسمي على إيميلك الشخصي.', price: 45 },
+      { id: 4, cat: 'gaming', badge: 'بلايستيشن', title: 'بطاقة ستور سعودي 20$', desc: 'كود رقمي فوري يظهر بعد الطلب.', price: 75 }
+    ];
+
+    let currentStoreCategory = 'all';
+
+    function filterStoreByCategory(catKey) {
+      currentStoreCategory = catKey;
+      document.querySelectorAll('.store-cat-card').forEach(el => el.classList.remove('active'));
+      const activeCard = document.getElementById('cat-btn-' + catKey);
+      if (activeCard) activeCard.classList.add('active');
+
+      document.getElementById('selectedCategoryTitle').innerText = storeCategoryTitles[catKey] || 'جميع منتجات المتجر';
+      renderStoreItems();
+    }
+
+    function renderStoreItems() {
+      const grid = document.getElementById('storeProductsGrid');
+      if (!grid) return;
+
+      const filtered = currentStoreCategory === 'all'
+        ? storeProductsList
+        : storeProductsList.filter(item => item.cat === currentStoreCategory);
+
+      document.getElementById('productCountBadge').innerText = `${filtered.length} منتج`;
+      grid.innerHTML = '';
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between hover:border-primary transition';
+        card.innerHTML = `
+          <div>
+            <div class="h-24 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold text-xs">${item.badge}</div>
+            <h4 class="font-bold text-xs line-clamp-1">${item.title}</h4>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">${item.desc}</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-800">
+            <span class="text-xs font-bold text-primary">${item.price} ر.س</span>
+            <button onclick="promptGuestCheckout('${item.title}', ${item.price})" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold hover:bg-primary-hover transition">شراء</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
 
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
@@ -536,7 +631,7 @@
     }
 
     function promptGuestCheckout(itemName, price) {
-      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: $${price}`;
+      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: ${price} ر.س`;
       document.getElementById('guestCheckoutModal').style.display = 'flex';
     }
 
@@ -549,7 +644,6 @@
       }
     }
 
-    /* بيانات حاسبة الميزانية التفاعلية */
     let currentMonthIndex = 0;
     let monthlyBudgets = [
       {
@@ -574,11 +668,10 @@
     ];
 
     function getCurrentBudget() { return monthlyBudgets[currentMonthIndex]; }
-
     function switchMonth(idx) { currentMonthIndex = idx; renderBudgetApp(); }
-
     function openNewMonthModal() { document.getElementById("newMonthModal").style.display = "flex"; }
     function closeNewMonthModal() { document.getElementById("newMonthModal").style.display = "none"; }
+    
     function saveNewMonth() {
       const val = document.getElementById("newMonthTitleInput").value.trim();
       if (!val) return;
@@ -618,6 +711,7 @@
 
     function openCategoryModal() { document.getElementById("categoryModal").style.display = "flex"; }
     function closeCategoryModal() { document.getElementById("categoryModal").style.display = "none"; }
+    
     function saveNewCategory() {
       const title = document.getElementById("newCatTitle").value.trim();
       const color = document.getElementById("newCatColor").value;
@@ -732,34 +826,28 @@
 
     function updateLogo() {
       const logoImg = document.getElementById('platform-logo');
-      const themeIconImg = document.getElementById('theme-icon-img');
       const isDark = document.documentElement.classList.contains('dark');
       if (isDark) {
         logoImg.src = 'logo-black.svg';
         logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg'; };
-        if (themeIconImg) {
-          themeIconImg.src = 'daytime-icon.png';
-          themeIconImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/daytime-icon.png'; };
-        }
       } else {
         logoImg.src = 'logo-light.svg';
         logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg'; };
-        if (themeIconImg) {
-          themeIconImg.src = 'Night-icon.png';
-          themeIconImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/Night-icon.png'; };
-        }
       }
     }
 
     function toggleDarkMode() {
       const html = document.documentElement;
+      const themeIcon = document.getElementById('theme-icon');
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         html.classList.add('light');
+        themeIcon.setAttribute('data-lucide', 'moon');
         localStorage.setItem('theme', 'light');
       } else {
         html.classList.remove('light');
         html.classList.add('dark');
+        themeIcon.setAttribute('data-lucide', 'sun');
         localStorage.setItem('theme', 'dark');
       }
       lucide.createIcons();
@@ -787,10 +875,12 @@
       if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
         document.documentElement.classList.add('light');
+        document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
         lucide.createIcons();
       }
       updateLogo();
       renderBudgetApp();
+      renderStoreItems();
     });
   </script>
 </body>
