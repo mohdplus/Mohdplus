@@ -140,6 +140,12 @@
     .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
     .modal-card label { display: block; font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 0.2rem; }
     .modal-card input, .modal-card select { width: 100%; padding: 0.5rem; background: #0B0F17; border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px; font-size: 0.85rem; }
+
+    /* تمييز القسم المختار في المتجر */
+    .store-cat-card.active {
+      border-color: #F59E0B !important;
+      background-color: rgba(245, 158, 11, 0.12) !important;
+    }
   </style>
 </head>
 <body class="min-h-screen pb-32 selection:bg-primary selection:text-white">
@@ -273,38 +279,110 @@
       </div>
     </div>
 
-    <!-- 3. قسم المتجر (Store) -->
-    <div id="tab-store" class="tab-content hidden space-y-3">
-      <div class="flex items-center justify-between">
-        <h3 class="font-bold text-base">سوق الأصول الرقمية للمبدعين</h3>
-        <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">متاجر مرخصة</span>
+    <!-- 3. قسم المتجر (Store) - البانرات + الأقسام الثلاثية + المنتجات -->
+    <div id="tab-store" class="tab-content hidden space-y-4">
+      
+      <!-- 1) البانر الترحيبي للمتجر -->
+      <div class="relative overflow-hidden rounded-lg bg-gradient-to-r from-primary/20 via-primary/10 to-transparent border border-primary/30 p-5 text-center space-y-2">
+        <!-- إذا صممت صورة بانر PNG يمكنك وضع رابطها هنا بدلاً من النص أو كخلفية -->
+        <span class="inline-block text-[10px] bg-primary text-white px-2.5 py-0.5 rounded font-bold">متجر محمد بلس الرسمي</span>
+        <h2 class="text-lg font-bold text-primary">أقوى المنتجات الرقمية والاشتراكات الفورية</h2>
+        <p class="text-xs opacity-85 leading-relaxed">اختر قسمك المفضل واستمتع بتسليم فوري وضمان ذهبي على كافة الاشتراكات والمنتجات الرقمية.</p>
       </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">قالب رقمي</div>
-            <h4 class="font-bold text-xs line-clamp-1">لوحة تحكم SaaS متكاملة</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">كود نظيف جاهز للربط.</p>
-          </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$49</span>
-            <button onclick="promptGuestCheckout('لوحة تحكم SaaS متكاملة', 49)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
-          </div>
+      <!-- 2) بانر طرق الدفع المعتمدة -->
+      <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5">
+          <i data-lucide="shield-check" class="w-4 h-4 text-primary"></i>
+          <span class="text-xs font-bold">وسائل الدفع المتاحة والآمنة:</span>
         </div>
-
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between">
-          <div>
-            <div class="h-28 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold">أدوات ذكية</div>
-            <h4 class="font-bold text-xs line-clamp-1">مساعد توليد المحتوى الذكي</h4>
-            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">مولد إعلانات ومنشورات.</p>
-          </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs font-bold text-primary">$29</span>
-            <button onclick="promptGuestCheckout('مساعد توليد المحتوى الذكي', 29)" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold">شراء</button>
-          </div>
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-[10px] font-bold">
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-emerald-400">مدى Mada</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700">Apple Pay</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-blue-400">Visa / MasterCard</span>
+          <span class="px-2 py-1 rounded bg-gray-100 dark:bg-[#0B0F17] border border-gray-300 dark:border-gray-700 text-purple-400">STC Pay</span>
         </div>
       </div>
+
+      <!-- 3) الأقسام والتصنيفات (3 أعمدة في كل صف) -->
+      <div class="space-y-2">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm">أقسام وتصنيفات المتجر</h3>
+          <button onclick="filterStoreByCategory('all')" class="text-xs text-primary font-bold hover:underline">عرض الكل</button>
+        </div>
+
+        <!-- تقسيمة 3 أقسام في كل صف (grid-cols-3) -->
+        <div class="grid grid-cols-3 gap-2.5">
+          
+          <!-- القسم 1: الاشتراكات الترفيهية -->
+          <div onclick="filterStoreByCategory('entertainment')" id="cat-btn-entertainment" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="tv" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">الاشتراكات الترفيهية</h4>
+            <span class="text-[9px] opacity-65">شاهد • نتفليكس • يوتيوب</span>
+          </div>
+
+          <!-- القسم 2: البرامج والتطبيقات -->
+          <div onclick="filterStoreByCategory('software')" id="cat-btn-software" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">البرامج والتطبيقات</h4>
+            <span class="text-[9px] opacity-65">كانفا • أوفيس • أدوبي</span>
+          </div>
+
+          <!-- القسم 3: البطاقات والألعاب -->
+          <div onclick="filterStoreByCategory('gaming')" id="cat-btn-gaming" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="gamepad-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">البطاقات والألعاب</h4>
+            <span class="text-[9px] opacity-65">ستور • بلايستيشن • شحن</span>
+          </div>
+
+          <!-- القسم 4: أدوات الذكاء الاصطناعي -->
+          <div onclick="filterStoreByCategory('ai')" id="cat-btn-ai" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="bot" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">أدوات الذكاء Ai</h4>
+            <span class="text-[9px] opacity-65">ChatGPT • Midjourney</span>
+          </div>
+
+          <!-- القسم 5: القوالب والأصول الرقمية -->
+          <div onclick="filterStoreByCategory('templates')" id="cat-btn-templates" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="file-code" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">القوالب والأصول</h4>
+            <span class="text-[9px] opacity-65">أكواد جاهزة • قوالب</span>
+          </div>
+
+          <!-- القسم 6: خدمات المتاجر والسوشيال -->
+          <div onclick="filterStoreByCategory('social')" id="cat-btn-social" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
+            <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
+              <i data-lucide="share-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-[11px] sm:text-xs">خدمات الرقمية</h4>
+            <span class="text-[9px] opacity-65">تصميم • دعم حسابات</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 4) قائمة المنتجات التابعة للقسم المختار -->
+      <div class="space-y-2.5 pt-2">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-primary" id="selectedCategoryTitle">جميع منتجات المتجر</h3>
+          <span id="productCountBadge" class="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded font-bold">0 منتج</span>
+        </div>
+
+        <div id="storeProductsGrid" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- تظهر المنتجات هنا تلقائياً -->
+        </div>
+      </div>
+
     </div>
 
     <!-- 4. قسم الأدوات (Tools - حاسبة الميزانية المدمجة) -->
@@ -505,6 +583,69 @@
   <script>
     lucide.createIcons();
 
+    /* ================= بيانات المتجر والأقسام الثلاثية ================= */
+    const storeCategoryTitles = {
+      all: 'جميع منتجات المتجر',
+      entertainment: 'الاشتراكات الترفيهية (شاهد • نتفليكس)',
+      software: 'البرامج والتطبيقات',
+      gaming: 'البطاقات والألعاب',
+      ai: 'أدوات الذكاء الاصطناعي Ai',
+      templates: 'القوالب والأصول الرقمية',
+      social: 'الخدمات الرقمية والسوشيال'
+    };
+
+    const storeProductsList = [
+      { id: 1, cat: 'entertainment', badge: 'شاهد VIP', title: 'اشتراك شاهد VIP شامل (شهري)', desc: 'ملف خاص، دقة Full HD، ضمان طوال المدة.', price: 25 },
+      { id: 2, cat: 'entertainment', badge: 'نتفليكس 4K', title: 'اشتراك نتفليكس بريميوم (شهري)', desc: 'حساب رسمي دقة 4K Ultra HD مع ضمان.', price: 29 },
+      { id: 3, cat: 'entertainment', badge: 'شاهد رياضي', title: 'باقة شاهد VIP + الرياضية (3 أشهر)', desc: 'شامل الدوري السعودي وكافة البطولات.', price: 95 },
+      { id: 4, cat: 'software', badge: 'كانفا برو', title: 'اشتراك Canva Pro (سنة كاملة)', desc: 'تفعيل رسمي على إيميلك الشخصي.', price: 45 },
+      { id: 5, cat: 'gaming', badge: 'بلايستيشن', title: 'بطاقة ستور سعودي 20$', desc: 'كود رقمي فوري يظهر بعد إتمام الطلب.', price: 75 },
+      { id: 6, cat: 'ai', badge: 'أدوات ذكية', title: 'مساعد توليد المحتوى الذكي', desc: 'مولد إعلانات ومنشورات بالذكاء الاصطناعي.', price: 29 },
+      { id: 7, cat: 'templates', badge: 'قالب رقمي', title: 'لوحة تحكم SaaS متكاملة', desc: 'كود نظيف جاهز للربط والاستخدام.', price: 49 },
+      { id: 8, cat: 'social', badge: 'خدمات متاجر', title: 'تصميم بنرات متجر احترافية', desc: 'طقم بنرات متجاوبة مع الهوية البصرية.', price: 120 }
+    ];
+
+    let currentStoreCategory = 'all';
+
+    function filterStoreByCategory(catKey) {
+      currentStoreCategory = catKey;
+      document.querySelectorAll('.store-cat-card').forEach(el => el.classList.remove('active'));
+      const activeCard = document.getElementById('cat-btn-' + catKey);
+      if (activeCard) activeCard.classList.add('active');
+
+      document.getElementById('selectedCategoryTitle').innerText = storeCategoryTitles[catKey] || 'جميع منتجات المتجر';
+      renderStoreItems();
+    }
+
+    function renderStoreItems() {
+      const grid = document.getElementById('storeProductsGrid');
+      if (!grid) return;
+
+      const filtered = currentStoreCategory === 'all'
+        ? storeProductsList
+        : storeProductsList.filter(item => item.cat === currentStoreCategory);
+
+      document.getElementById('productCountBadge').innerText = `${filtered.length} منتج`;
+      grid.innerHTML = '';
+
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 space-y-2 flex flex-col justify-between hover:border-primary transition';
+        card.innerHTML = `
+          <div>
+            <div class="h-24 bg-primary/10 rounded mb-2 flex items-center justify-center text-primary font-bold text-xs">${item.badge}</div>
+            <h4 class="font-bold text-xs line-clamp-1">${item.title}</h4>
+            <p class="text-[10px] opacity-70 line-clamp-2 mt-1">${item.desc}</p>
+          </div>
+          <div class="flex items-center justify-between pt-2 border-t border-gray-100 dark:border-gray-800">
+            <span class="text-xs font-bold text-primary">${item.price} ر.س</span>
+            <button onclick="promptGuestCheckout('${item.title}', ${item.price})" class="bg-primary text-white px-2.5 py-1 rounded text-[11px] font-bold hover:bg-primary-hover transition">شراء</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
       document.getElementById('tab-' + tabId).classList.remove('hidden');
@@ -522,7 +663,7 @@
     }
 
     function promptGuestCheckout(itemName, price) {
-      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: $${price}`;
+      document.getElementById('checkoutItemDesc').innerText = `المنتج: ${itemName} - السعر: ${price} ر.س`;
       document.getElementById('guestCheckoutModal').style.display = 'flex';
     }
 
@@ -772,6 +913,7 @@
       }
       updateLogo();
       renderBudgetApp();
+      renderStoreItems();
     });
   </script>
 </body>
