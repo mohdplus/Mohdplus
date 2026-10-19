@@ -192,14 +192,14 @@
     <!-- 1. قسم الرئيسية (Home) -->
     <div id="tab-home" class="tab-content space-y-4">
       
-      <!-- البانر (مكان مخصص يضاف لاحقاً) -->
-      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
-        <span class="text-xs bg-primary text-white px-2.5 py-0.5 rounded font-bold">بانر المنصة (يُدار مستقبلاً)</span>
-        <h1 class="text-xl font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
-        <p class="text-xs opacity-90 leading-relaxed">منصة محمد بلس للتجارة الإلكترونية والمنتجات الرقمية وأدوات صنع بواسطة محمد بلس Ai</p>
-        <div class="pt-2">
-          <button onclick="switchTab('store')" class="bg-primary text-white px-4 py-2 rounded text-xs font-bold hover:bg-primary-hover transition">استكشف المتجر</button>
+      <!-- بانر مستطيل نحيف (Slim Banner) -->
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-4 py-3 rounded border border-primary/30 flex items-center justify-between gap-3">
+        <div class="space-y-0.5">
+          <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold inline-block mb-0.5">بانر المنصة</span>
+          <h1 class="text-sm font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
+          <p class="text-[11px] opacity-80 leading-tight">للتجارة الإلكترونية والمنتجات الرقمية وأدوات الذكاء الاصطناعي</p>
         </div>
+        <button onclick="switchTab('store')" class="bg-primary text-white px-3 py-1.5 rounded text-xs font-bold hover:bg-primary-hover transition whitespace-nowrap">استكشف</button>
       </div>
 
       <!-- إحصائيات المنصة الحقيقية (تبدأ من الصفر وتتحدث تفاعلياً) -->
@@ -293,9 +293,11 @@
     <!-- 3. قسم المتجر (Store) - الأقسام الثلاثية -->
     <div id="tab-store" class="tab-content hidden space-y-4">
       
-      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-4 rounded border border-primary/30 text-center space-y-1">
-        <span class="text-[11px] bg-primary text-white px-2.5 py-0.5 rounded font-bold">سوق المنتجات الرقمية</span>
-        <h2 class="text-sm font-bold text-primary">تصفح الأقسام والمنتجات الفورية</h2>
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-4 py-3 rounded border border-primary/30 flex items-center justify-between">
+        <div>
+          <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">سوق المنتجات</span>
+          <h2 class="text-sm font-bold text-primary mt-1">تصفح الأقسام والمنتجات الرقمية</h2>
+        </div>
       </div>
 
       <!-- الأقسام (3 أعمدة في كل صف) -->
@@ -564,7 +566,6 @@
   <script>
     lucide.createIcons();
 
-    // نظام العدادات الحية الحقيقية (تبدأ من الصفر وتزيد مع كل عميل أو طلب)
     let platformStats = {
       clients: localStorage.getItem('mohd_clients') ? parseInt(localStorage.getItem('mohd_clients')) : 0,
       orders: localStorage.getItem('mohd_orders') ? parseInt(localStorage.getItem('mohd_orders')) : 0,
@@ -577,7 +578,6 @@
       document.getElementById('statsRating').innerText = platformStats.rating;
     }
 
-    // محاكاة تسجيل عميل جديد لزيادة العداد حياً
     function simulateNewClientRegistration() {
       platformStats.clients += 1;
       localStorage.setItem('mohd_clients', platformStats.clients);
@@ -586,7 +586,6 @@
       closeAuthModal();
     }
 
-    // محاكاة إتمام طلب جديد لزيادة العداد حياً
     function simulateNewOrder() {
       platformStats.orders += 1;
       localStorage.setItem('mohd_orders', platformStats.orders);
@@ -674,7 +673,7 @@
 
     function completeCheckout(type) {
       document.getElementById('guestCheckoutModal').style.display = 'none';
-      simulateNewOrder(); // زيادة عداد الطلبات تلقائياً مع كل عملية شراء
+      simulateNewOrder();
       if (type === 'guest') {
         showToast('تم إتمام الطلب بنجاح كعميل زائر! (زاد عداد الطلبات)');
       } else {
