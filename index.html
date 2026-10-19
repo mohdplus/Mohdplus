@@ -93,10 +93,18 @@
     }
     .safe-bottom-nav {
       position: fixed;
-      bottom: max(12px, env(safe-area-inset-bottom));
-      left: 16px;
-      right: 16px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(18, 24, 36, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 50;
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .light .safe-bottom-nav {
+      background: rgba(248, 250, 252, 0.95);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -141,7 +149,6 @@
     .modal-card label { display: block; font-size: 0.85rem; color: #94a3b8; margin-top: 0.5rem; margin-bottom: 0.2rem; }
     .modal-card input, .modal-card select { width: 100%; padding: 0.5rem; background: #0B0F17; border: 1px solid rgba(255,255,255,0.2); color: #fff; border-radius: 4px; font-size: 0.85rem; }
 
-    /* تمييز القسم المختار */
     .store-cat-card.active {
       border-color: #F59E0B !important;
       background-color: rgba(245, 158, 11, 0.12) !important;
@@ -185,8 +192,9 @@
     <!-- 1. قسم الرئيسية (Home) -->
     <div id="tab-home" class="tab-content space-y-4">
       
-      <!-- الترحيب المنتصف مع الكشيدة -->
+      <!-- البانر (مكان مخصص يضاف لاحقاً) -->
       <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
+        <span class="text-xs bg-primary text-white px-2.5 py-0.5 rounded font-bold">بانر المنصة (يُدار مستقبلاً)</span>
         <h1 class="text-xl font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
         <p class="text-xs opacity-90 leading-relaxed">منصة محمد بلس للتجارة الإلكترونية والمنتجات الرقمية وأدوات صنع بواسطة محمد بلس Ai</p>
         <div class="pt-2">
@@ -194,23 +202,29 @@
         </div>
       </div>
 
-      <!-- ثلاثة أعمدة (نشاط المنصة، النشطون، المسجلون والتجار) -->
+      <!-- إحصائيات المنصة الحقيقية (تبدأ من الصفر وتتحدث تفاعلياً) -->
       <div class="grid grid-cols-3 gap-2 text-center">
-        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-[10px] opacity-75 block">نشاط المنصة</span>
-          <h3 class="text-sm font-bold mt-1 text-primary">متواجدون الآن</h3>
+        <!-- عدد العملاء -->
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
+          <div class="text-primary mb-1"><i data-lucide="users" class="w-4 h-4"></i></div>
+          <span class="text-[10px] opacity-75 block">عدد العملاء</span>
+          <h3 class="text-sm font-bold mt-1 text-primary" id="statsClientsCount">0</h3>
         </div>
-        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-[10px] opacity-75 block">النشطون</span>
-          <h3 class="text-sm font-bold mt-1 text-emerald-500">1,420</h3>
+        <!-- التقييم الإجمالي -->
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
+          <div class="text-amber-400 mb-1"><i data-lucide="star" class="w-4 h-4 fill-amber-400"></i></div>
+          <span class="text-[10px] opacity-75 block">تقييم المنصة</span>
+          <h3 class="text-sm font-bold mt-1 text-amber-400" id="statsRating">4.9</h3>
         </div>
-        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-[10px] opacity-75 block">المسجلون والتجار</span>
-          <h3 class="text-sm font-bold mt-1 text-cyan-500">+3,850</h3>
+        <!-- الطلبات المنفذة -->
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
+          <div class="text-emerald-500 mb-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
+          <span class="text-[10px] opacity-75 block">الطلبات المنفذة</span>
+          <h3 class="text-sm font-bold mt-1 text-emerald-500" id="statsOrdersCount">0</h3>
         </div>
       </div>
 
-      <!-- الحاسبات والأدوات -->
+      <!-- آخر التحديثات والأدوات (تثبت لاحقاً من لوحة التحكم) -->
       <div>
         <div class="flex items-center justify-between mb-3">
           <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">آخر التحديثات / الأحدث</span>
@@ -276,24 +290,22 @@
       </div>
     </div>
 
-    <!-- 3. قسم المتجر (Store) - الهيكل والأقسام الثلاثية -->
+    <!-- 3. قسم المتجر (Store) - الأقسام الثلاثية -->
     <div id="tab-store" class="tab-content hidden space-y-4">
       
-      <!-- إطار مرن للبانر (يُدار لاحقاً من لوحة التحكم) -->
-      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
-        <span class="text-xs bg-primary text-white px-2.5 py-0.5 rounded font-bold">بانر المتجر (قيد الإدارة السحابية)</span>
-        <h2 class="text-base font-bold text-primary">سوق المنتجات الرقمية والاشتراكات الفورية</h2>
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-4 rounded border border-primary/30 text-center space-y-1">
+        <span class="text-[11px] bg-primary text-white px-2.5 py-0.5 rounded font-bold">سوق المنتجات الرقمية</span>
+        <h2 class="text-sm font-bold text-primary">تصفح الأقسام والمنتجات الفورية</h2>
       </div>
 
-      <!-- شبكة الأقسام (3 أعمدة في كل صف - grid-cols-3) -->
+      <!-- الأقسام (3 أعمدة في كل صف) -->
       <div class="space-y-2">
         <div class="flex items-center justify-between">
-          <h3 class="font-bold text-sm">أقسام وتصنيفات المتجر</h3>
+          <h3 class="font-bold text-sm">أقسام المتجر</h3>
           <button onclick="filterStoreByCategory('all')" class="text-xs text-primary font-bold hover:underline">عرض الكل</button>
         </div>
 
         <div class="grid grid-cols-3 gap-2.5">
-          <!-- القسم 1: الاشتراكات الترفيهية -->
           <div onclick="filterStoreByCategory('entertainment')" id="cat-btn-entertainment" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="tv" class="w-5 h-5"></i>
@@ -302,7 +314,6 @@
             <span class="text-[9px] opacity-65">شاهد • نتفليكس</span>
           </div>
 
-          <!-- القسم 2: البرامج والتطبيقات -->
           <div onclick="filterStoreByCategory('software')" id="cat-btn-software" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="cpu" class="w-5 h-5"></i>
@@ -311,7 +322,6 @@
             <span class="text-[9px] opacity-65">كانفا • أوفيس</span>
           </div>
 
-          <!-- القسم 3: البطاقات والألعاب -->
           <div onclick="filterStoreByCategory('gaming')" id="cat-btn-gaming" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="gamepad-2" class="w-5 h-5"></i>
@@ -320,7 +330,6 @@
             <span class="text-[9px] opacity-65">ستور • بلايستيشن</span>
           </div>
 
-          <!-- القسم 4: أدوات الذكاء الاصطناعي -->
           <div onclick="filterStoreByCategory('ai')" id="cat-btn-ai" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="bot" class="w-5 h-5"></i>
@@ -329,7 +338,6 @@
             <span class="text-[9px] opacity-65">ChatGPT • مساعد</span>
           </div>
 
-          <!-- القسم 5: القوالب والأصول الرقمية -->
           <div onclick="filterStoreByCategory('templates')" id="cat-btn-templates" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="file-code" class="w-5 h-5"></i>
@@ -338,7 +346,6 @@
             <span class="text-[9px] opacity-65">أكواد • قوالب</span>
           </div>
 
-          <!-- القسم 6: الخدمات الرقمية -->
           <div onclick="filterStoreByCategory('social')" id="cat-btn-social" class="store-cat-card cursor-pointer bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 hover:border-primary transition text-center flex flex-col items-center justify-center gap-1.5">
             <div class="w-9 h-9 rounded bg-primary/10 text-primary flex items-center justify-center">
               <i data-lucide="share-2" class="w-5 h-5"></i>
@@ -349,7 +356,7 @@
         </div>
       </div>
 
-      <!-- عرض المنتجات الديناميكي -->
+      <!-- عرض المنتجات -->
       <div class="space-y-2.5 pt-2">
         <div class="flex items-center justify-between">
           <h3 class="font-bold text-sm text-primary" id="selectedCategoryTitle">جميع منتجات المتجر</h3>
@@ -361,7 +368,7 @@
 
     </div>
 
-    <!-- 4. قسم الأدوات (Tools - حاسبة الميزانية المدمجة) -->
+    <!-- 4. قسم الأدوات (الميزانية) -->
     <div id="tab-budget" class="tab-content hidden space-y-3">
       <div class="month-toolbar">
         <div>
@@ -418,7 +425,7 @@
       </div>
     </div>
 
-    <!-- 5. قسم المبدعين (Creators Showcase & License Request) -->
+    <!-- 5. قسم المبدعين -->
     <div id="tab-creators" class="tab-content hidden space-y-3">
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-base">سوق المبدعين والتجار (بوابة التراخيص)</h3>
@@ -433,7 +440,7 @@
       </div>
     </div>
 
-    <!-- 6. قسم حسابي (My Account) -->
+    <!-- 6. قسم حسابي -->
     <div id="tab-account" class="tab-content hidden space-y-3">
       <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 flex items-center justify-between">
         <div class="flex items-center gap-3">
@@ -456,41 +463,42 @@
 
   </main>
 
-  <!-- ================= الشريط العائم السفلي ================= -->
-  <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
-    
-    <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
-      <i data-lucide="home" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
-    </button>
+  <!-- ================= الشريط العائم الثابت السفلي ================= -->
+  <nav class="safe-bottom-nav">
+    <div class="max-w-lg mx-auto p-2 flex items-center justify-around">
+      <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
+        <i data-lucide="home" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
+      </button>
 
-    <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="users" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
-    </button>
+      <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+        <i data-lucide="users" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
+      </button>
 
-    <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="store" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-semibold">المتجر</span>
-    </button>
+      <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+        <i data-lucide="store" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">المتجر</span>
+      </button>
 
-    <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="calculator" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
-    </button>
+      <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+        <i data-lucide="calculator" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
+      </button>
 
-    <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="palette" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
-    </button>
+      <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+        <i data-lucide="palette" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
+      </button>
 
-    <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="user" class="w-5 h-5"></i>
-      <span class="text-[10px] mt-1 font-semibold">حسابي</span>
-    </button>
+      <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
+        <i data-lucide="user" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">حسابي</span>
+      </button>
+    </div>
   </nav>
 
-  <!-- نوافذ الحوار والتحكم -->
+  <!-- النوافذ المنبثقة -->
   <div id="guestCheckoutModal" class="modal-overlay">
     <div class="modal-card">
       <h3 class="font-bold text-sm mb-2 text-primary">إتمام عملية الشراء</h3>
@@ -543,7 +551,7 @@
       <div class="space-y-2 text-xs">
         <input type="email" placeholder="البريد الإلكتروني" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
         <input type="password" placeholder="كلمة المرور" class="w-full bg-[#0B0F17] border border-gray-800 rounded p-2 text-white">
-        <button onclick="showToast('تم تسجيل الدخول بنجاح!'); closeAuthModal();" class="w-full bg-primary text-white py-2 rounded font-bold">دخول</button>
+        <button onclick="simulateNewClientRegistration()" class="w-full bg-primary text-white py-2 rounded font-bold">دخول / تسجيل</button>
       </div>
     </div>
   </div>
@@ -552,9 +560,38 @@
     تم الإجراء بنجاح
   </div>
 
-  <!-- جافاسكريبت التحكم والتشغيل -->
+  <!-- جافاسكريبت التحكم والتشغيل والحاهزة الإحصائية التفاعلية -->
   <script>
     lucide.createIcons();
+
+    // نظام العدادات الحية الحقيقية (تبدأ من الصفر وتزيد مع كل عميل أو طلب)
+    let platformStats = {
+      clients: localStorage.getItem('mohd_clients') ? parseInt(localStorage.getItem('mohd_clients')) : 0,
+      orders: localStorage.getItem('mohd_orders') ? parseInt(localStorage.getItem('mohd_orders')) : 0,
+      rating: 4.9
+    };
+
+    function updatePlatformStatsUI() {
+      document.getElementById('statsClientsCount').innerText = platformStats.clients.toLocaleString();
+      document.getElementById('statsOrdersCount').innerText = platformStats.orders.toLocaleString();
+      document.getElementById('statsRating').innerText = platformStats.rating;
+    }
+
+    // محاكاة تسجيل عميل جديد لزيادة العداد حياً
+    function simulateNewClientRegistration() {
+      platformStats.clients += 1;
+      localStorage.setItem('mohd_clients', platformStats.clients);
+      updatePlatformStatsUI();
+      showToast('تم تسجيل حساب عميل جديد! (زاد عداد العملاء)');
+      closeAuthModal();
+    }
+
+    // محاكاة إتمام طلب جديد لزيادة العداد حياً
+    function simulateNewOrder() {
+      platformStats.orders += 1;
+      localStorage.setItem('mohd_orders', platformStats.orders);
+      updatePlatformStatsUI();
+    }
 
     const storeCategoryTitles = {
       all: 'جميع منتجات المتجر',
@@ -637,10 +674,11 @@
 
     function completeCheckout(type) {
       document.getElementById('guestCheckoutModal').style.display = 'none';
+      simulateNewOrder(); // زيادة عداد الطلبات تلقائياً مع كل عملية شراء
       if (type === 'guest') {
-        showToast('تم إتمام الطلب بنجاح كعميل زائر!');
+        showToast('تم إتمام الطلب بنجاح كعميل زائر! (زاد عداد الطلبات)');
       } else {
-        openAuthModal();
+        showToast('تم إتمام الطلب وتسجيل الحساب بنجاح!');
       }
     }
 
@@ -881,6 +919,7 @@
       updateLogo();
       renderBudgetApp();
       renderStoreItems();
+      updatePlatformStatsUI();
     });
   </script>
 </body>
