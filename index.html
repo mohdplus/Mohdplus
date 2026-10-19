@@ -156,17 +156,20 @@
       </div>
 
       <div class="flex items-center gap-2">
+        <!-- أيقونة الدعم الفني (support-icon.png) -->
         <button onclick="openSupportModal()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
-          <i data-lucide="headphones" class="w-5 h-5 text-primary"></i>
+          <img src="support-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/support-icon.png';" alt="الدعم الفني" class="w-5 h-5 object-contain">
         </button>
 
+        <!-- أيقونة الإشعارات (notification-icon.png) -->
         <button onclick="openNotificationsModal()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition relative" title="الإشعارات">
           <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-primary rounded-full"></span>
-          <i data-lucide="bell" class="w-5 h-5 text-primary"></i>
+          <img src="notification-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/notification-icon.png';" alt="الإشعارات" class="w-5 h-5 object-contain">
         </button>
 
+        <!-- أيقونة تبديل الوضع النهاري والليلي (daytime-icon.png / Night-icon.png) -->
         <button onclick="toggleDarkMode()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="تبديل الوضع">
-          <i id="theme-icon" data-lucide="sun" class="w-5 h-5 text-primary"></i>
+          <img id="theme-icon-img" src="daytime-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/daytime-icon.png';" alt="تبديل الوضع" class="w-5 h-5 object-contain">
         </button>
       </div>
 
@@ -275,6 +278,15 @@
 
     <!-- 3. قسم المتجر (Store) -->
     <div id="tab-store" class="tab-content hidden space-y-3">
+      
+      <!-- بانر واجهة المتجر (panar-store.png) -->
+      <div class="w-full overflow-hidden rounded border border-gray-200 dark:border-gray-800">
+        <img src="panar-store.png" 
+             onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/panar-store.png';" 
+             alt="بانر المتجر" 
+             class="w-full h-auto object-cover block">
+      </div>
+
       <div class="flex items-center justify-between">
         <h3 class="font-bold text-base">سوق الأصول الرقمية للمبدعين</h3>
         <span class="text-xs bg-primary/10 text-primary px-2 py-1 rounded">متاجر مرخصة</span>
@@ -405,23 +417,24 @@
   <!-- ================= الشريط العائم السفلي ================= -->
   <nav class="safe-bottom-nav max-w-lg mx-auto bg-white/95 dark:bg-[#121824]/95 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-xl p-2 flex items-center justify-around">
     
+    <!-- أيقونة الرئيسية (house-icon.png) -->
     <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
-      <i data-lucide="home" class="w-5 h-5"></i>
+      <img src="house-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/house-icon.png';" alt="الرئيسية" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
     </button>
 
     <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="group-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="group-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/group-icon.png';" alt="المجتمع" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
     </button>
 
     <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="store-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="store-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png';" alt="المتجر" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">المتجر</span>
     </button>
 
     <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <img src="ai-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png'" alt="" class="w-5 h-5 object-contain">
+      <img src="ai-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/ai-icon.png';" alt="الميزانية" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
     </button>
 
@@ -430,8 +443,9 @@
       <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
     </button>
 
+    <!-- أيقونة حسابي (account-icon.png) -->
     <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 dark:text-gray-400 hover:text-primary transition">
-      <i data-lucide="user" class="w-5 h-5"></i>
+      <img src="account-icon.png" onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/account-icon.png';" alt="حسابي" class="w-5 h-5 object-contain">
       <span class="text-[10px] mt-1 font-semibold">حسابي</span>
     </button>
 
@@ -718,28 +732,34 @@
 
     function updateLogo() {
       const logoImg = document.getElementById('platform-logo');
+      const themeIconImg = document.getElementById('theme-icon-img');
       const isDark = document.documentElement.classList.contains('dark');
       if (isDark) {
         logoImg.src = 'logo-black.svg';
         logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg'; };
+        if (themeIconImg) {
+          themeIconImg.src = 'daytime-icon.png';
+          themeIconImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/daytime-icon.png'; };
+        }
       } else {
         logoImg.src = 'logo-light.svg';
         logoImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-light.svg'; };
+        if (themeIconImg) {
+          themeIconImg.src = 'Night-icon.png';
+          themeIconImg.onerror = function() { this.src = 'https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/Night-icon.png'; };
+        }
       }
     }
 
     function toggleDarkMode() {
       const html = document.documentElement;
-      const themeIcon = document.getElementById('theme-icon');
       if (html.classList.contains('dark')) {
         html.classList.remove('dark');
         html.classList.add('light');
-        themeIcon.setAttribute('data-lucide', 'moon');
         localStorage.setItem('theme', 'light');
       } else {
         html.classList.remove('light');
         html.classList.add('dark');
-        themeIcon.setAttribute('data-lucide', 'sun');
         localStorage.setItem('theme', 'dark');
       }
       lucide.createIcons();
@@ -767,7 +787,6 @@
       if (savedTheme === 'light') {
         document.documentElement.classList.remove('dark');
         document.documentElement.classList.add('light');
-        document.getElementById('theme-icon').setAttribute('data-lucide', 'moon');
         lucide.createIcons();
       }
       updateLogo();
