@@ -33,6 +33,12 @@
       font-family: 'Thmanyah', 'Cairo', sans-serif !important;
       font-weight: 700 !important;
     }
+
+    /* تفعيل الكشيدة للعنوان الرئيسي */
+    .kashida-title {
+      text-align: justify;
+      text-justify: distribute;
+    }
   </style>
 
   <!-- Tailwind CSS & Lucide Icons -->
@@ -95,7 +101,7 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* حاسبة الميزانية الأنماط المدمجة */
+    /* حاسبة الميزانية والتبويبات */
     .view-section { display: none; }
     .view-section.active { display: block; }
     .month-toolbar { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--card-border); border-radius: 6px; padding: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
@@ -172,34 +178,40 @@
 
     <!-- 1. قسم الرئيسية (Home) -->
     <div id="tab-home" class="tab-content space-y-4">
-      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-4 rounded border border-primary/30 relative overflow-hidden">
-        <div class="flex items-center justify-between">
-          <div>
-            <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">الأحدث اليوم</span>
-            <h2 class="text-lg font-bold mt-1">مرحباً بك في محمد بلس!</h2>
-            <p class="text-xs opacity-80 mt-0.5">منصتك الشخصية التجارية لعرض ابتكاراتك، أدواتك الذكية، وسوق المبدعين.</p>
-          </div>
-          <button onclick="switchTab('store')" class="bg-primary text-white px-3 py-2 rounded text-xs font-bold hover:bg-primary-hover transition">استكشف المتجر</button>
+      
+      <!-- الصورة الأولى: الترحيب المنتصف مع الكشيدة -->
+      <div class="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent p-5 rounded border border-primary/30 text-center space-y-2">
+        <h1 class="text-xl font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
+        <p class="text-xs opacity-90 leading-relaxed">منصة محمد بلس للتجارة الإلكترونية والمنتجات الرقمية وأدوات صنع بواسطة محمد بلس Ai</p>
+        <div class="pt-2">
+          <button onclick="switchTab('store')" class="bg-primary text-white px-4 py-2 rounded text-xs font-bold hover:bg-primary-hover transition">استكشف المتجر</button>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-3">
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 cursor-pointer" onclick="switchTab('budget')">
-          <span class="text-xs opacity-75">أدوات مالية مجتمعية</span>
-          <h3 class="text-base font-bold mt-1 text-primary">حاسبة الميزانية 📊</h3>
-          <span class="text-[10px] text-emerald-500 font-semibold">إدارة الدخل والالتزامات</span>
+      <!-- الصورة الثانية: ثلاثة أعمدة (نشاط المنصة، النشطون، المسجلون والتجار) -->
+      <div class="grid grid-cols-3 gap-2 text-center">
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
+          <span class="text-[10px] opacity-75 block">نشاط المنصة</span>
+          <h3 class="text-sm font-bold mt-1 text-primary">متواجدون الآن</h3>
         </div>
-        <div class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800">
-          <span class="text-xs opacity-75">سوق المبدعين (التجار)</span>
-          حاسبة المعاش والتمويل
-          <h3 class="text-base font-bold mt-1 text-primary">تراخيص معتمدة</h3>
-          <span class="text-[10px] text-cyan-500 font-semibold">بوابة التجار الموثوقة</span>
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
+          <span class="text-[10px] opacity-75 block">النشطون</span>
+          <h3 class="text-sm font-bold mt-1 text-emerald-500">1,420</h3>
+        </div>
+        <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800">
+          <span class="text-[10px] opacity-75 block">المسجلون والتجار</span>
+          <h3 class="text-sm font-bold mt-1 text-cyan-500">+3,850</h3>
         </div>
       </div>
 
+      <!-- الصورة الثالثة: بنر الأحدث وحاسبة الميزانية، التمويل، والمعاش التقاعدي -->
       <div>
-        <h3 class="font-bold text-sm mb-3">أبرز ابتكارات وأدوات محمد بلس</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs bg-primary text-white px-2 py-0.5 rounded font-bold">آخر التحديثات / الأحدث</span>
+        </div>
+        
+        <div class="grid grid-cols-1 gap-3">
+          <!-- حاسبة الميزانية الشهرية -->
           <div onclick="switchTab('budget')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
               <i data-lucide="calculator" class="w-6 h-6"></i>
@@ -211,18 +223,32 @@
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
 
-          <div onclick="switchTab('store')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+          <!-- حاسبة التمويل -->
+          <div onclick="showToast('تم فتح حاسبة التمويل الذكية')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
             <div class="p-2.5 rounded bg-primary/10 text-primary">
-              <img src="store-icon.png" onerror="this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/store-icon.png'" class="w-6 h-6 object-contain" alt="">
+              <i data-lucide="landmark" class="w-6 h-6"></i>
             </div>
             <div class="flex-1">
-              <h4 class="font-bold text-sm">سوق المبدعين والأصول الرقمية</h4>
-              <p class="text-xs opacity-70">شراء سريع كزائر أو تسجيل حساب تاجر مرخص.</p>
+              <h4 class="font-bold text-sm">حاسبة التمويل</h4>
+              <p class="text-xs opacity-70">حساب الأقساط والأرباح للتمويلات الشخصية والعقارية.</p>
+            </div>
+            <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
+          </div>
+
+          <!-- حاسبة المعاش التقاعدي -->
+          <div onclick="showToast('تم فتح حاسبة المعاش التقاعدي')" class="bg-white dark:bg-[#1E293B] p-3 rounded border border-gray-200 dark:border-gray-800 flex items-center gap-3 cursor-pointer hover:border-primary transition">
+            <div class="p-2.5 rounded bg-primary/10 text-primary">
+              <i data-lucide="award" class="w-6 h-6"></i>
+            </div>
+            <div class="flex-1">
+              <h4 class="font-bold text-sm">حاسبة المعاش التقاعدي</h4>
+              <p class="text-xs opacity-70">تقدير راتبك التقاعدي بناءً على سنوات الخدمة.</p>
             </div>
             <i data-lucide="chevron-left" class="w-5 h-5 opacity-50"></i>
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- 2. قسم المجتمع (Community) -->
@@ -281,7 +307,7 @@
       </div>
     </div>
 
-    <!-- 4. قسم الأدوات (Tools - شامل حاسبة الميزانية المدمجة) -->
+    <!-- 4. قسم الأدوات (Tools - حاسبة الميزانية المدمجة) -->
     <div id="tab-budget" class="tab-content hidden space-y-3">
       <div class="month-toolbar">
         <div>
@@ -335,15 +361,6 @@
         <div style="font-size:1.2rem; font-weight:800; color:#4ade80;">
           <span id="grandTotalText">0</span> ر.س <span id="grandTotalPct" style="font-size:0.8rem; color:#94a3b8;">(0%)</span>
         </div>
-      </div>
-    </div>
-
-    <!-- أقسام أخرى (Tools عامة، المبدعين، وحسابي) -->
-    <div id="tab-tools" class="tab-content hidden space-y-3">
-      <h3 class="font-bold text-base">الأدوات الذكية والحلول</h3>
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800 space-y-2">
-        <h4 class="font-bold text-sm">حاسبة التمويل والمعاش التقاعدي</h4>
-        <p class="text-xs opacity-70">أدوات إضافية مقترحة لإضافتها قريباً لمجتمع محمد بلس.</p>
       </div>
     </div>
 
