@@ -105,10 +105,11 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+    /* أنماط التصميم المتطابقة مع الصورة home_3.png */
     .banner-main-home { background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(30, 41, 59, 0.85)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1.5rem; text-align: center; }
     .banner-sub-home { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.9rem; text-align: center; }
-    .banner-col-title { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.7rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.8rem; }
-    .home-card-box { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.7rem; text-align: center; transition: all 0.2s; cursor: pointer; min-height: 55px; display: flex; flex-direction: column; justify-content: center; }
+    .banner-col-title { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.5rem 0.3rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.75rem; }
+    .home-card-box { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.5rem 0.3rem; text-align: center; transition: all 0.2s; cursor: pointer; min-height: 52px; display: flex; flex-direction: column; justify-content: center; }
     .home-card-box:hover { border-color: #F59E0B; background: rgba(245, 158, 11, 0.1); }
   </style>
 </head>
@@ -143,7 +144,7 @@
   <!-- ================= المحتوى الرئيسي للمنصة ================= -->
   <main class="max-w-2xl mx-auto p-4 space-y-4">
 
-    <!-- 1. الرئيسية -->
+    <!-- 1. الرئيسية (مطابقة تماماً لـ home_3.png) -->
     <div id="tab-home" class="tab-content space-y-3.5">
       
       <!-- بانر رقم 1 / بانر الواجهة الرئيسية -->
@@ -158,7 +159,7 @@
         <span class="text-xs font-bold text-primary">بانر رقم 2 / بانر فرعي</span>
       </div>
 
-      <!-- الإحصائيات (عدد العملاء، تقييم المنصة، الطلبات المنفذة) -->
+      <!-- الإحصائيات الثلاثة -->
       <div class="grid grid-cols-3 gap-2 text-center">
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
           <span class="text-[10px] opacity-75 block">عدد العملاء</span>
@@ -174,40 +175,40 @@
         </div>
       </div>
 
-      <!-- الهيكل المتجاور: بانر 4 وبانر 3 جنباً إلى جنب في عامودين -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+      <!-- الهيكل المتجاور الدائم (عامودين جنباً إلى جنب للبانرات ومحتوياتها) -->
+      <div class="grid grid-cols-2 gap-2.5 pt-1">
         
-        <!-- العمود الأول: بانر رقم 4 / سوق حراج بلس ومحتوياته -->
-        <div class="space-y-2.5">
-          <div class="banner-col-title">بانر رقم 4 / سوق حراج بلس</div>
+        <!-- العمود الأيمن: بانر رقم 4 (سوق حراج بلس) وتحته المنتجات -->
+        <div class="space-y-2">
+          <div class="banner-col-title">سوق حراج بلس</div>
           <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
           <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
           <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
         </div>
 
-        <!-- العمود الثاني: بانر رقم 3 / آخر التحديثات للمنصة ومحتوياته -->
-        <div class="space-y-2.5">
-          <div class="banner-col-title">بانر رقم 3 / آخر التحديثات للمنصة</div>
+        <!-- العمود الأيسر: بانر رقم 3 (آخر التحديثات للمنصة) وتحته المواضيع -->
+        <div class="space-y-2">
+          <div class="banner-col-title">آخر التحديثات للمنصة</div>
           <div class="home-card-box" onclick="switchTab('budget')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
           <div class="home-card-box" onclick="switchTab('budget')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
           <div class="home-card-box" onclick="switchTab('budget')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
+            <span class="text-[11px] font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[8px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
         </div>
 
