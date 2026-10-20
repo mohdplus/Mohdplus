@@ -105,25 +105,32 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* تخصيصات الهياكل المرفقة */
-    .banner-main { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(30, 41, 59, 0.85)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1.5rem; text-align: center; }
-    .banner-sub { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.8rem; text-align: center; }
-    .banner-section-title { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.6rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.85rem; }
-    .card-item-box { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.6rem; text-align: center; transition: all 0.2s; cursor: pointer; }
-    .card-item-box:hover { border-color: #F59E0B; background: rgba(245, 158, 11, 0.1); }
-    
-    .blog-post-card { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--card-border); border-radius: 8px; padding: 1rem; space-y: 2; }
-    
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 1rem; }
-    .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
+    /* أنماط التصميم المستوحاة من صورتك home_2.png */
+    .banner-main-home { background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(30, 41, 59, 0.85)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .banner-sub-home { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.9rem; text-align: center; }
+    .banner-col-title { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.7rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.85rem; }
+    .home-card-box { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.7rem; text-align: center; transition: all 0.2s; cursor: pointer; min-height: 65px; display: flex; flex-direction: column; justify-content: center; }
+    .home-card-box:hover { border-color: #F59E0B; background: rgba(245, 158, 11, 0.1); }
   </style>
 </head>
 <body class="min-h-screen pb-32 selection:bg-primary selection:text-white">
 
-  <!-- ================= الترويسة العلَوية ================= -->
+  <!-- ================= الترويسة العلَوية (مطابقة لطلبك) ================= -->
   <header class="sticky top-0 z-40 backdrop-blur-md bg-[#121824]/90 dark:bg-[#121824]/90 bg-white/90 border-b border-gray-200 dark:border-gray-800 px-4 py-3">
     <div class="max-w-2xl mx-auto flex items-center justify-between">
       
+      <!-- الأيقونات في الجهة المقابلة (الوضع النهاري/الليلي + الدعم) -->
+      <div class="flex items-center gap-2">
+        <button onclick="toggleDarkMode()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="تبديل الوضع">
+          <i id="theme-icon" data-lucide="sun" class="w-5 h-5 text-primary"></i>
+        </button>
+
+        <button onclick="showToast('جارٍ فتح الدعم الفني...')" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
+          <i data-lucide="headphones" class="w-5 h-5 text-primary"></i>
+        </button>
+      </div>
+
+      <!-- الشعار -->
       <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('home')">
         <img id="platform-logo" src="logo-black.svg" 
              onerror="this.onerror=null; this.src='https://cdn.jsdelivr.net/gh/mohdplus/Mohdplus@main/logo-black.svg';" 
@@ -131,38 +138,28 @@
              class="h-10 max-w-[170px] object-contain">
       </div>
 
-      <div class="flex items-center gap-2">
-        <button onclick="showToast('جارٍ فتح الدعم الفني...')" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="الدعم الفني">
-          <i data-lucide="headphones" class="w-5 h-5 text-primary"></i>
-        </button>
-
-        <button onclick="toggleDarkMode()" class="p-2 rounded bg-gray-100 dark:bg-[#1E293B] text-gray-700 dark:text-gray-200 hover:bg-primary/20 transition" title="تبديل الوضع">
-          <i id="theme-icon" data-lucide="sun" class="w-5 h-5 text-primary"></i>
-        </button>
-      </div>
-
     </div>
   </header>
 
   <!-- ================= المحتوى الرئيسي للمنصة ================= -->
-  <main class="max-w-2xl mx-auto p-4 space-y-5">
+  <main class="max-w-2xl mx-auto p-4 space-y-4">
 
-    <!-- 1. الرئيسية (مطابقة لـ home.png) -->
-    <div id="tab-home" class="tab-content space-y-4">
+    <!-- 1. الرئيسية (مطابقة لـ home_2.png) -->
+    <div id="tab-home" class="tab-content space-y-3.5">
       
-      <!-- بانر رقم 1 / بانر الواجهة الرئيسية -->
-      <div class="banner-main space-y-1.5">
+      <!-- بانر رقم 1 / بانر الواجهة الرئيسية الكبير -->
+      <div class="banner-main-home space-y-1.5">
         <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">بانر رقم 1</span>
         <h1 class="text-lg font-bold text-primary kashida-title">بانر الواجهة الرئيسية</h1>
-        <p class="text-xs opacity-80">منصة محمد بلس الرقمية لإبراز الإمكانيات والخدمات</p>
+        <p class="text-xs opacity-80 leading-relaxed">منصة محمد بلس الرقمية لإبراز الإمكانيات والخدمات</p>
       </div>
 
-      <!-- بانر رقم 2 / بانر فرعي -->
-      <div class="banner-sub">
+      <!-- بانر رقم 2 / بانر فرعي صغير -->
+      <div class="banner-sub-home">
         <span class="text-xs font-bold text-primary">بانر رقم 2 / بانر فرعي</span>
       </div>
 
-      <!-- الإحصائيات (عدد العملاء، تقييم المنصة، الطلبات المنفذة) -->
+      <!-- الثلاثة أعمدة (عدد العملاء - تقييم المنصة - الطلبات المنفذة) -->
       <div class="grid grid-cols-3 gap-2 text-center">
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
           <span class="text-[10px] opacity-75 block">عدد العملاء</span>
@@ -178,48 +175,40 @@
         </div>
       </div>
 
-      <!-- الهيكل ذو العمودين المتوازيين -->
+      <!-- العمودين (سوق حراج بلس - آخر التحديثات للمنصة) -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
         
-        <!-- العمود الأيمن: حراج بلس / المنتجات -->
+        <!-- العمود الأيمن: سوق حراج بلس -->
         <div class="space-y-2.5">
-          <div class="banner-section-title">بانر رقم 4 / حراج بلس</div>
-          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+          <div class="banner-col-title">بانر رقم 4 / سوق حراج بلس</div>
+          <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
-          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+          <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
-          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+          <div class="home-card-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
-          </div>
-          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+            <p class="text-[9px] opacity-70 mt-0.5">منتج جديد على حراج بلس</p>
           </div>
         </div>
 
-        <!-- العمود الأيسر: آخر التحديثات والأحدث -->
+        <!-- العمود الأيسر: آخر التحديثات للمنصة -->
         <div class="space-y-2.5">
-          <div class="banner-section-title">بانر رقم 3 / آخر التحديثات</div>
-          <div class="card-item-box" onclick="switchTab('budget')">
+          <div class="banner-col-title">بانر رقم 3 / آخر التحديثات للمنصة</div>
+          <div class="home-card-box" onclick="switchTab('budget')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
-          <div class="card-item-box" onclick="switchTab('budget')">
+          <div class="home-card-box" onclick="switchTab('budget')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
-          <div class="card-item-box" onclick="switchTab('budget')">
+          <div class="home-card-box" onclick="switchTab('budget')">
             <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
-          </div>
-          <div class="card-item-box" onclick="switchTab('budget')">
-            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
-            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+            <p class="text-[9px] opacity-70 mt-0.5">أداة جديدة / موضوع جديد</p>
           </div>
         </div>
 
@@ -227,144 +216,51 @@
 
     </div>
 
-    <!-- 2. المدونة (مطابقة لـ المدونة.png) -->
-    <div id="tab-blog" class="tab-content hidden space-y-4">
-      
-      <!-- بانر واجهة المجتمع/المدونة -->
-      <div class="banner-main space-y-1">
-        <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">واجهة المدونة</span>
-        <h2 class="text-base font-bold text-primary">بانر 1 واجهة المجتمع والمدونة</h2>
-      </div>
-
-      <!-- صف أزرار التصنيفات الأفقية (نص / بانر / صورة) -->
-      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
-        <button onclick="filterBlogCategory('all')" class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded whitespace-nowrap">الكل</button>
-        <button onclick="filterBlogCategory('finance')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">المال والأعمال</button>
-        <button onclick="filterBlogCategory('ecommerce')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">التجارة الرقمية</button>
-        <button onclick="filterBlogCategory('health')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">الصحة والجمال</button>
-      </div>
-
-      <!-- قائمة المقالات والمنشورات -->
-      <div class="space-y-3" id="blogPostsContainer">
-        
-        <!-- مقال 1 -->
-        <div class="blog-post-card space-y-2">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
-              <div>
-                <h4 class="font-bold text-xs">محمد بلس</h4>
-                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
-              </div>
-            </div>
-            <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2.5 py-0.5 rounded font-bold">المال والأعمال</span>
-          </div>
-          <h3 class="font-bold text-sm text-white">العنوان الرئيسي للمقال أو فكرة المشروع الاحترافية</h3>
-          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
-            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
-            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
-          </div>
-        </div>
-
-        <!-- مقال 2 -->
-        <div class="blog-post-card space-y-2">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
-              <div>
-                <h4 class="font-bold text-xs">محمد بلس</h4>
-                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
-              </div>
-            </div>
-            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded font-bold">التجارة الرقمية</span>
-          </div>
-          <h3 class="font-bold text-sm text-white">كيف تبدأ متجرك الرقمي وتحقق أول ألف دولار</h3>
-          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
-            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
-            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
-          </div>
-        </div>
-
-        <!-- مقال 3 -->
-        <div class="blog-post-card space-y-2">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
-              <div>
-                <h4 class="font-bold text-xs">محمد بلس</h4>
-                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
-              </div>
-            </div>
-            <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2.5 py-0.5 rounded font-bold">الصحة والجمال</span>
-          </div>
-          <h3 class="font-bold text-sm text-white">نظام الحياة الذكي وتنظيم الوقت اليومي</h3>
-          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
-            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
-            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
-          </div>
-        </div>
-
-      </div>
-
+    <!-- بقية التبويبات الأخرى (المدونة، المتجر، الميزانية، المبدعين، حسابي) -->
+    <div id="tab-blog" class="tab-content hidden space-y-3">
+      <div class="banner-sub-home"><h3 class="font-bold text-sm text-primary">قسم المدونة ومحتوى المنصة</h3></div>
     </div>
-
-    <!-- 3. المتجر -->
-    <div id="tab-store" class="tab-content hidden space-y-4">
-      <div class="banner-main">
-        <h2 class="text-base font-bold text-primary">متجر محمد بلس الرقمي</h2>
-        <p class="text-xs opacity-80">تسليم فوري وآمن</p>
-      </div>
+    <div id="tab-store" class="tab-content hidden space-y-3">
+      <div class="banner-sub-home"><h3 class="font-bold text-sm text-primary">قسم المتجر الرقمي</h3></div>
     </div>
-
-    <!-- 4. الميزانية -->
     <div id="tab-budget" class="tab-content hidden space-y-3">
-      <div class="banner-sub">
-        <h3 class="font-bold text-sm text-primary">حاسبة الميزانية والأدوات الذكية</h3>
-      </div>
+      <div class="banner-sub-home"><h3 class="font-bold text-sm text-primary">قسم الأدوات الذكية والميزانية</h3></div>
     </div>
-
-    <!-- 5. المبدعين -->
     <div id="tab-creators" class="tab-content hidden space-y-3">
-      <div class="banner-sub">
-        <h3 class="font-bold text-sm text-primary">سوق المبدعين والتجار</h3>
-      </div>
+      <div class="banner-sub-home"><h3 class="font-bold text-sm text-primary">قسم حراج بلس وسوق المبدعين</h3></div>
     </div>
-
-    <!-- 6. حسابي -->
     <div id="tab-account" class="tab-content hidden space-y-3">
-      <div class="banner-sub">
-        <h3 class="font-bold text-sm text-primary">حسابي ومساحتي الخاصة</h3>
-      </div>
+      <div class="banner-sub-home"><h3 class="font-bold text-sm text-primary">قسم الحساب الشخصي</h3></div>
     </div>
 
   </main>
 
-  <!-- ================= الشريط السفلي الثابت ================= -->
+  <!-- ================= الشريط السفلي الثابت (7 أقسام رئيسية حسب طلبك) ================= -->
   <nav class="safe-bottom-nav">
-    <div class="max-w-lg mx-auto p-2 flex items-center justify-around">
-      <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-primary transition">
+    <div class="max-w-lg mx-auto p-1.5 flex items-center justify-around">
+      <button onclick="switchTab('home')" id="nav-home" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-primary transition">
         <i data-lucide="home" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
+        <span class="text-[9px] mt-1 font-bold">الرئيسية</span>
       </button>
-      <button onclick="switchTab('blog')" id="nav-blog" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
+      <button onclick="switchTab('blog')" id="nav-blog" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-gray-500 hover:text-primary transition">
         <i data-lucide="book-open" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">المدونة</span>
+        <span class="text-[9px] mt-1 font-semibold">المدونة</span>
       </button>
-      <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
+      <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-gray-500 hover:text-primary transition">
         <i data-lucide="store" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">المتجر</span>
+        <span class="text-[9px] mt-1 font-semibold">المتجر</span>
       </button>
-      <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
+      <button onclick="switchTab('budget')" id="nav-budget" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-gray-500 hover:text-primary transition">
         <i data-lucide="calculator" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">الميزانية</span>
+        <span class="text-[9px] mt-1 font-semibold">الأدوات</span>
       </button>
-      <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
-        <i data-lucide="palette" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">المبدعين</span>
+      <button onclick="switchTab('creators')" id="nav-creators" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-gray-500 hover:text-primary transition">
+        <i data-lucide="tags" class="w-5 h-5"></i>
+        <span class="text-[9px] mt-1 font-semibold">حراج بلس</span>
       </button>
-      <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
+      <button onclick="switchTab('account')" id="nav-account" class="nav-btn flex flex-col items-center justify-center py-1 px-1.5 rounded text-gray-500 hover:text-primary transition">
         <i data-lucide="user" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">حسابي</span>
+        <span class="text-[9px] mt-1 font-semibold">الحساب</span>
       </button>
     </div>
   </nav>
@@ -400,10 +296,6 @@
         activeBtn.classList.add('text-primary');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function filterBlogCategory(cat) {
-      showToast(`تم تصفية المقالات حسب التصنيف: ${cat}`);
     }
 
     function showToast(msg) {
