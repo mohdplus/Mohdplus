@@ -105,12 +105,14 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* الهيكل المستوحى من تصميمك على الفوتوشوب */
-    .store-banner-main { background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(30, 41, 59, 0.8)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1.5rem; text-align: center; }
-    .store-banner-sub { background: rgba(30, 41, 59, 0.7); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.8rem; text-align: center; }
-    .store-banner-section { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.7rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.9rem; }
-    .store-grid-item { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; min-height: 110px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0.5rem; text-align: center; transition: all 0.2s; cursor: pointer; }
-    .store-grid-item:hover { border-color: #F59E0B; background: rgba(245, 158, 11, 0.1); }
+    /* تخصيصات الهياكل المرفقة */
+    .banner-main { background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(30, 41, 59, 0.85)); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1.5rem; text-align: center; }
+    .banner-sub { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.8rem; text-align: center; }
+    .banner-section-title { background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 6px; padding: 0.6rem; text-align: center; color: #F59E0B; font-weight: 700; font-size: 0.85rem; }
+    .card-item-box { background: rgba(30, 41, 59, 0.75); border: 1px solid var(--card-border); border-radius: 6px; padding: 0.6rem; text-align: center; transition: all 0.2s; cursor: pointer; }
+    .card-item-box:hover { border-color: #F59E0B; background: rgba(245, 158, 11, 0.1); }
+    
+    .blog-post-card { background: rgba(30, 41, 59, 0.8); border: 1px solid var(--card-border); border-radius: 8px; padding: 1rem; space-y: 2; }
     
     .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 1rem; }
     .modal-card { background: #1E293B; border: 1px solid #F59E0B; border-radius: 6px; padding: 1.2rem; width: 100%; max-width: 400px; }
@@ -145,143 +147,193 @@
   <!-- ================= المحتوى الرئيسي للمنصة ================= -->
   <main class="max-w-2xl mx-auto p-4 space-y-5">
 
-    <!-- 1. الرئيسية -->
+    <!-- 1. الرئيسية (مطابقة لـ home.png) -->
     <div id="tab-home" class="tab-content space-y-4">
-      <div class="store-banner-main space-y-2">
-        <span class="text-xs bg-primary text-white px-2.5 py-0.5 rounded font-bold">بانر المنصة الرئيسي</span>
-        <h1 class="text-xl font-bold text-primary kashida-title">منصة محمد بلس الرقمية</h1>
-        <p class="text-xs opacity-90 leading-relaxed">تبرز إمكانياتي، مهاراتي، وتجاربي الرقمية مع أدوات ذكية ومتجر متكامل.</p>
+      
+      <!-- بانر رقم 1 / بانر الواجهة الرئيسية -->
+      <div class="banner-main space-y-1.5">
+        <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">بانر رقم 1</span>
+        <h1 class="text-lg font-bold text-primary kashida-title">بانر الواجهة الرئيسية</h1>
+        <p class="text-xs opacity-80">منصة محمد بلس الرقمية لإبراز الإمكانيات والخدمات</p>
       </div>
 
+      <!-- بانر رقم 2 / بانر فرعي -->
+      <div class="banner-sub">
+        <span class="text-xs font-bold text-primary">بانر رقم 2 / بانر فرعي</span>
+      </div>
+
+      <!-- الإحصائيات (عدد العملاء، تقييم المنصة، الطلبات المنفذة) -->
       <div class="grid grid-cols-3 gap-2 text-center">
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
-          <div class="text-primary mb-1"><i data-lucide="users" class="w-4 h-4"></i></div>
           <span class="text-[10px] opacity-75 block">عدد العملاء</span>
           <h3 class="text-sm font-bold mt-1 text-primary" id="statsClientsCount">0</h3>
         </div>
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
-          <div class="text-amber-400 mb-1"><i data-lucide="star" class="w-4 h-4 fill-amber-400"></i></div>
           <span class="text-[10px] opacity-75 block">تقييم المنصة</span>
           <h3 class="text-sm font-bold mt-1 text-amber-400">4.9</h3>
         </div>
         <div class="bg-white dark:bg-[#1E293B] p-2.5 rounded border border-gray-200 dark:border-gray-800 flex flex-col justify-center items-center">
-          <div class="text-emerald-500 mb-1"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
           <span class="text-[10px] opacity-75 block">الطلبات المنفذة</span>
           <h3 class="text-sm font-bold mt-1 text-emerald-500" id="statsOrdersCount">0</h3>
         </div>
       </div>
+
+      <!-- الهيكل ذو العمودين المتوازيين -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+        
+        <!-- العمود الأيمن: حراج بلس / المنتجات -->
+        <div class="space-y-2.5">
+          <div class="banner-section-title">بانر رقم 4 / حراج بلس</div>
+          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+          </div>
+          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+          </div>
+          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+          </div>
+          <div class="card-item-box" onclick="showToast('تم اختيار منتج من حراج بلس')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">منتج جديد من حراج بلس</p>
+          </div>
+        </div>
+
+        <!-- العمود الأيسر: آخر التحديثات والأحدث -->
+        <div class="space-y-2.5">
+          <div class="banner-section-title">بانر رقم 3 / آخر التحديثات</div>
+          <div class="card-item-box" onclick="switchTab('budget')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+          </div>
+          <div class="card-item-box" onclick="switchTab('budget')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+          </div>
+          <div class="card-item-box" onclick="switchTab('budget')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+          </div>
+          <div class="card-item-box" onclick="switchTab('budget')">
+            <span class="text-xs font-bold">صورة / بانر / تصنيف</span>
+            <p class="text-[10px] opacity-70 mt-0.5">أداة جديدة / تغريدة جديدة</p>
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- 2. المتجر (حسب هيكل الفوتوشوب الخاص بك) -->
-    <div id="tab-store" class="tab-content hidden space-y-4">
+    <!-- 2. المدونة (مطابقة لـ المدونة.png) -->
+    <div id="tab-blog" class="tab-content hidden space-y-4">
       
-      <!-- بانر رئيسي -->
-      <div class="store-banner-main">
-        <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">بانر رئيسي</span>
-        <h2 class="text-base font-bold text-primary mt-1">متجر محمد بلس الرقمي</h2>
+      <!-- بانر واجهة المجتمع/المدونة -->
+      <div class="banner-main space-y-1">
+        <span class="text-[10px] bg-primary text-white px-2 py-0.5 rounded font-bold">واجهة المدونة</span>
+        <h2 class="text-base font-bold text-primary">بانر 1 واجهة المجتمع والمدونة</h2>
       </div>
 
-      <!-- بانر فرعي -->
-      <div class="store-banner-sub">
-        <span class="text-xs font-bold text-primary">بانر فرعي (عروض وتنبيهات)</span>
+      <!-- صف أزرار التصنيفات الأفقية (نص / بانر / صورة) -->
+      <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+        <button onclick="filterBlogCategory('all')" class="bg-primary text-white text-xs font-bold px-3 py-1.5 rounded whitespace-nowrap">الكل</button>
+        <button onclick="filterBlogCategory('finance')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">المال والأعمال</button>
+        <button onclick="filterBlogCategory('ecommerce')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">التجارة الرقمية</button>
+        <button onclick="filterBlogCategory('health')" class="bg-white dark:bg-[#1E293B] border border-gray-700 text-xs font-semibold px-3 py-1.5 rounded whitespace-nowrap">الصحة والجمال</button>
       </div>
 
-      <!-- بانر قسم 1 -->
-      <div class="store-banner-section">
-        بانر قسم (الاشتراكات الترفيهية)
-      </div>
+      <!-- قائمة المقالات والمنشورات -->
+      <div class="space-y-3" id="blogPostsContainer">
+        
+        <!-- مقال 1 -->
+        <div class="blog-post-card space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
+              <div>
+                <h4 class="font-bold text-xs">محمد بلس</h4>
+                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2.5 py-0.5 rounded font-bold">المال والأعمال</span>
+          </div>
+          <h3 class="font-bold text-sm text-white">العنوان الرئيسي للمقال أو فكرة المشروع الاحترافية</h3>
+          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
+            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
+            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
+          </div>
+        </div>
 
-      <!-- شبكة الأقسام (3 أعمدة في كل صف) -->
-      <div class="grid grid-cols-3 gap-2.5">
-        <div onclick="showToast('تم اختيار شاهد VIP')" class="store-grid-item">
-          <i data-lucide="tv" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">شاهد VIP</span>
+        <!-- مقال 2 -->
+        <div class="blog-post-card space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
+              <div>
+                <h4 class="font-bold text-xs">محمد بلس</h4>
+                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2.5 py-0.5 rounded font-bold">التجارة الرقمية</span>
+          </div>
+          <h3 class="font-bold text-sm text-white">كيف تبدأ متجرك الرقمي وتحقق أول ألف دولار</h3>
+          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
+            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
+            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
+          </div>
         </div>
-        <div onclick="showToast('تم اختيار نتفليكس')" class="store-grid-item">
-          <i data-lucide="film" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">نتفليكس</span>
-        </div>
-        <div onclick="showToast('تم اختيار ديزني بلس')" class="store-grid-item">
-          <i data-lucide="play-square" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">ديزني بلس</span>
-        </div>
-      </div>
 
-      <div class="grid grid-cols-3 gap-2.5">
-        <div onclick="showToast('تم اختيار يوتيوب')" class="store-grid-item">
-          <i data-lucide="youtube" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">يوتيوب</span>
+        <!-- مقال 3 -->
+        <div class="blog-post-card space-y-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded bg-primary/20 text-primary font-bold flex items-center justify-center text-xs">م</div>
+              <div>
+                <h4 class="font-bold text-xs">محمد بلس</h4>
+                <span class="text-[9px] opacity-60">المالك والمؤسس</span>
+              </div>
+            </div>
+            <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2.5 py-0.5 rounded font-bold">الصحة والجمال</span>
+          </div>
+          <h3 class="font-bold text-sm text-white">نظام الحياة الذكي وتنظيم الوقت اليومي</h3>
+          <div class="flex items-center justify-between pt-1 border-t border-gray-800 text-[10px] opacity-70">
+            <span>السبت | 01 مايو 2027 م | 02:54 م</span>
+            <button onclick="showToast('فتح المقال الكامل...')" class="bg-primary text-white px-2.5 py-1 rounded font-bold">المزيد ...</button>
+          </div>
         </div>
-        <div onclick="showToast('تم اختيار الموسيقى')" class="store-grid-item">
-          <i data-lucide="music" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">أنغامي / سبوتيفاي</span>
-        </div>
-        <div onclick="showToast('تم اختيار الألعاب')" class="store-grid-item">
-          <i data-lucide="gamepad-2" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">بطاقات شحن</span>
-        </div>
-      </div>
 
-      <!-- بانر قسم 2 -->
-      <div class="store-banner-section">
-        بانر قسم (البرامج وأدوات الذكاء الاصطناعي)
-      </div>
-
-      <div class="grid grid-cols-3 gap-2.5">
-        <div onclick="showToast('تم اختيار كانفا برو')" class="store-grid-item">
-          <i data-lucide="pen-tool" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">كانفا برو</span>
-        </div>
-        <div onclick="showToast('تم اختيار ChatGPT Plus')" class="store-grid-item">
-          <i data-lucide="bot" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">ChatGPT Plus</span>
-        </div>
-        <div onclick="showToast('تم اختيار أدوبي')" class="store-grid-item">
-          <i data-lucide="cpu" class="w-5 h-5 text-primary mb-1"></i>
-          <span class="text-xs font-bold">بانر صورة قسم</span>
-          <span class="text-[9px] opacity-60">أدوبي كرييتف</span>
-        </div>
       </div>
 
     </div>
 
-    <!-- 3. الميزانية والأدوات -->
+    <!-- 3. المتجر -->
+    <div id="tab-store" class="tab-content hidden space-y-4">
+      <div class="banner-main">
+        <h2 class="text-base font-bold text-primary">متجر محمد بلس الرقمي</h2>
+        <p class="text-xs opacity-80">تسليم فوري وآمن</p>
+      </div>
+    </div>
+
+    <!-- 4. الميزانية -->
     <div id="tab-budget" class="tab-content hidden space-y-3">
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800">
-        <h3 class="font-bold text-sm mb-1 text-primary">📊 أدوات محمد بلس المالية</h3>
-        <p class="text-xs opacity-75">حاسبة الميزانية والتمويل والمعاش التقاعدي.</p>
-      </div>
-    </div>
-
-    <!-- 4. المجتمع -->
-    <div id="tab-community" class="tab-content hidden space-y-3">
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800">
-        <h3 class="font-bold text-base mb-2">مجتمع محمد بلس</h3>
-        <p class="text-xs opacity-80">شارك أفكارك وتفاعل مع الأعضاء.</p>
+      <div class="banner-sub">
+        <h3 class="font-bold text-sm text-primary">حاسبة الميزانية والأدوات الذكية</h3>
       </div>
     </div>
 
     <!-- 5. المبدعين -->
     <div id="tab-creators" class="tab-content hidden space-y-3">
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800">
-        <h3 class="font-bold text-base mb-2">سوق المبدعين والتجار</h3>
-        <p class="text-xs opacity-80">بوابة التجار المستقلين وإرفاق التراخيص.</p>
+      <div class="banner-sub">
+        <h3 class="font-bold text-sm text-primary">سوق المبدعين والتجار</h3>
       </div>
     </div>
 
     <!-- 6. حسابي -->
     <div id="tab-account" class="tab-content hidden space-y-3">
-      <div class="bg-white dark:bg-[#1E293B] p-4 rounded border border-gray-200 dark:border-gray-800">
-        <h3 class="font-bold text-base mb-2">حسابي ومساحتي الخاصة</h3>
-        <p class="text-xs opacity-80">إعدادات الحساب، الطلبات، والدعم الفني.</p>
+      <div class="banner-sub">
+        <h3 class="font-bold text-sm text-primary">حسابي ومساحتي الخاصة</h3>
       </div>
     </div>
 
@@ -294,9 +346,9 @@
         <i data-lucide="home" class="w-5 h-5"></i>
         <span class="text-[10px] mt-1 font-bold">الرئيسية</span>
       </button>
-      <button onclick="switchTab('community')" id="nav-community" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
-        <i data-lucide="users" class="w-5 h-5"></i>
-        <span class="text-[10px] mt-1 font-semibold">المجتمع</span>
+      <button onclick="switchTab('blog')" id="nav-blog" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
+        <i data-lucide="book-open" class="w-5 h-5"></i>
+        <span class="text-[10px] mt-1 font-semibold">المدونة</span>
       </button>
       <button onclick="switchTab('store')" id="nav-store" class="nav-btn flex flex-col items-center justify-center py-1 px-2 rounded text-gray-500 hover:text-primary transition">
         <i data-lucide="store" class="w-5 h-5"></i>
@@ -348,6 +400,10 @@
         activeBtn.classList.add('text-primary');
       }
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function filterBlogCategory(cat) {
+      showToast(`تم تصفية المقالات حسب التصنيف: ${cat}`);
     }
 
     function showToast(msg) {
