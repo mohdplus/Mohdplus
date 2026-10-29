@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusQuant | Elite Algorithmic Trading & Analytics Engine</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0a0b0e',
+                            800: '#12141c',
+                            700: '#1b1f2e',
+                            600: '#272d42',
+                            500: '#38415c'
+                        },
+                        accent: {
+                            green: '#10b981',
+                            red: '#ef4444',
+                            blue: '#3b82f6',
+                            cyan: '#06b6d4',
+                            purple: '#8b5cf6'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Custom scrollbar for elite fintech look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0b0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #272d42;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38415c;
+        }
+        .glow-green {
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+        }
+        .glow-blue {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-dark-900 text-slate-100 min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-dark-700 bg-dark-800/80 backdrop-blur-md sticky top-0 z-50 px-4 lg:px-8 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+            <div class="flex items-center space-x-2">
+                <div class="w-9 h-9 bg-gradient-to-tr from-cyan-600 to-blue-500 rounded-lg flex items-center justify-center glow-blue">
+                    <i data-lucide="cpu" class="w-5 h-5 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-wider text-white flex items-center gap-2">
+                        NEXUS<span class="text-cyan-400 font-mono text-sm px-1.5 py-0.5 bg-cyan-950/80 border border-cyan-800/50 rounded">BOT v4.8</span>
+                    </h1>
+                    <p class="text-xs text-slate-400 tracking-tight">AUTONOMOUS QUANTITATIVE TRADING ENGINE</p>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-2 ml-6 pl-6 border-l border-dark-700">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-950 text-emerald-400 border border-emerald-800/40">
+                    <span class="w-2 h-2 mr-1.5 bg-emerald-400 rounded-full animate-pulse"></span> LIVE SESSION ACTIVE
+                </span>
+                <span class="text-xs font-mono text-slate-400 px-2 py-1 bg-dark-700 rounded">NIGHT SHIFT • 6 AGENTS</span>
+            </div>
+        </div>
+
+        <div class="flex items-center space-x-4">
+            <div id="clock" class="hidden sm:block font-mono text-xs text-cyan-300 bg-dark-700/60 px-3 py-1.5 rounded border border-dark-600">
+                04:22:15 UTC
+            </div>
+            <button onclick="toggleSimulation()" id="simToggleBtn" class="flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-900/30">
+                <i data-lucide="pause" class="w-3.5 h-3.5" id="simToggleIcon"></i>
+                <span id="simToggleText">PAUSE ENGINE</span>
+            </button>
+            <button onclick="resetData()" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 text-slate-300 transition" title="Reset Simulation">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+            </button>
+            <div class="h-6 w-px bg-dark-700"></div>
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center font-bold text-xs">
+                    NQ
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="flex-1 p-4 lg:p-6 max-w-[1600px] w-full mx-auto grid grid-cols-1 xl:grid-cols-12 gap-6">
+
+        <!-- Left Column: Key Stats & Agent Pipeline (4 cols on XL) -->
+        <div class="xl:col-span-4 flex flex-col space-y-6">
+
+            <!-- Core Metrics Box -->
+            <div class="grid grid-cols-2 gap-4">
+                <!-- Win Rate Card -->
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between">
+                    <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
+                        <i data-lucide="trending-up" class="w-32 h-32 text-emerald-400"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-1 flex items-center justify-between">
+                            <span>Win Rate</span>
+                            <i data-lucide="bar-chart-2" class="w-4 h-4 text-emerald-400"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-white font-mono tracking-tight mt-1" id="winRateVal">67.2%</div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dark-700 flex items-center justify-between text-xs font-mono">
+                        <span class="text-emerald-400 font-semibold" id="winsVal">W: 41</span>
+                        <span class="text-red-400 font-semibold" id="lossesVal">L: 20</span>
+                        <span class="text-slate-400" id="totalClosesVal">61 closes</span>
+                    </div>
+                </div>
+
+                <!-- Balance Card -->
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 relative overflow-hidden flex flex-col justify-between glow-green">
+                    <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none">
+                        <i data-lucide="wallet" class="w-32 h-32 text-cyan-400"></i>
+                    </div>
+                    <div>
+                        <div class="text-xs font-semibold text-slate-400 tracking-wider uppercase mb-1 flex items-center justify-between">
+                            <span>Balance</span>
+                            <i data-lucide="dollar-sign" class="w-4 h-4 text-cyan-400"></i>
+                        </div>
+                        <div class="text-3xl font-extrabold text-emerald-400 font-mono tracking-tight mt-1" id="balanceVal">$779.67</div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-dark-700 flex items-center justify-between text-xs font-mono">
+                        <span class="text-slate-400">Start: $14.82</span>
+                        <span class="text-emerald-400 font-bold" id="roiVal">+5,160%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Pipeline Status -->
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i> Agent Pipeline Flow
+                    </h3>
+                    <span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">6 Active Nodes</span>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                    <!-- Node 1 -->
+                    <div id="node-1" class="bg-dark-700/80 border border-cyan-500/50 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">01 • SCAN</div>
+                        <div class="text-xs font-bold text-cyan-300 truncate">New Pairs</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node1-sub">$FXNN0</div>
+                    </div>
+                    <!-- Node 2 -->
+                    <div id="node-2" class="bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">02 • VOLUME</div>
+                        <div class="text-xs font-bold text-slate-300 truncate">Spike 9.6x</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node2-sub">$SABLE</div>
+                    </div>
+                    <!-- Node 3 -->
+                    <div id="node-3" class="bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">03 • RUG CHECK</div>
+                        <div class="text-xs font-bold text-slate-300 truncate">Filter Rugs</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node3-sub">$OWLET</div>
+                    </div>
+                    <!-- Node 4 -->
+                    <div id="node-4" class="bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">04 • SIZE</div>
+                        <div class="text-xs font-bold text-slate-300 truncate">Kelly %</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node4-sub">$LUMI</div>
+                    </div>
+                    <!-- Node 5 -->
+                    <div id="node-5" class="bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">05 • EXECUTE</div>
+                        <div class="text-xs font-bold text-slate-300 truncate">Auto Enter</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node5-sub">$DUSKD</div>
+                    </div>
+                    <!-- Node 6 -->
+                    <div id="node-6" class="bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all">
+                        <div class="text-[10px] font-mono text-slate-400 mb-1">06 • LOG</div>
+                        <div class="text-xs font-bold text-slate-300 truncate">Audit Trail</div>
+                        <div class="text-[10px] font-mono text-slate-500 mt-1 truncate" id="node6-sub">$GLOAM</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events & System Logs Counter -->
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 flex items-center justify-between">
+                <div>
+                    <div class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Events Logged</div>
+                    <div class="text-3xl font-bold font-mono text-white tracking-tight" id="eventsCountVal">977</div>
+                    <p class="text-[11px] text-slate-500 mt-0.5">Every agent call recorded with immutable reasoning signature</p>
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-dark-700 border border-dark-600 flex items-center justify-center text-cyan-400">
+                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Chart, Agent Calls & Recent Trades (8 cols on XL) -->
+        <div class="xl:col-span-8 flex flex-col space-y-6">
+
+            <!-- Chart & Visualizer Section -->
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 lg:p-6 flex flex-col">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-dark-700 gap-4">
+                    <div>
+                        <h3 class="text-base font-bold text-white flex items-center gap-2">
+                            <i data-lucide="line-chart" class="w-5 h-5 text-cyan-400"></i> Equity Curve & Portfolio Growth
+                        </h3>
+                        <p class="text-xs text-slate-400">Real-time valuation curve from $14.82 initial capital allocation</p>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-dark-700/70 p-1 rounded-xl border border-dark-600 text-xs font-mono">
+                        <button onclick="setChartScale('linear')" id="scaleLinear" class="px-3 py-1.5 rounded-lg bg-dark-600 text-white font-medium transition">Linear</button>
+                        <button onclick="setChartScale('logarithmic')" id="scaleLog" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition">Log Scale</button>
+                    </div>
+                </div>
+
+                <!-- Canvas Container -->
+                <div class="relative w-full h-[280px] sm:h-[340px] mt-4">
+                    <canvas id="equityChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Two Column Split: Live Agent Calls & Recent Trades -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- Agent Live Calls Terminal -->
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="terminal" class="w-4 h-4 text-cyan-400"></i> Agent Decision Stream
+                        </h3>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    </div>
+
+                    <div class="bg-dark-900 border border-dark-700 rounded-xl p-3 font-mono text-xs overflow-y-auto h-[220px] flex flex-col space-y-2" id="agentCallsContainer">
+                        <!-- Items populated via JS -->
+                    </div>
+                </div>
+
+                <!-- Recent Trades Ledger -->
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="history" class="w-4 h-4 text-cyan-400"></i> Recent Execution Ledger
+                        </h3>
+                        <span class="text-xs font-mono text-slate-400">Live feed</span>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs font-mono">
+                            <thead>
+                                <tr class="text-slate-400 border-b border-dark-700">
+                                    <th class="pb-2.5 font-medium">TOKEN</th>
+                                    <th class="pb-2.5 font-medium">ENTRY</th>
+                                    <th class="pb-2.5 font-medium">EXIT</th>
+                                    <th class="pb-2.5 font-medium">SLIP</th>
+                                    <th class="pb-2.5 font-medium text-right">P&L</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tradesTableBody" class="divide-y divide-dark-700/50">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-dark-700 bg-dark-800/40 py-4 px-6 text-center text-xs text-slate-500 font-mono">
+        NEXUS QUANTITATIVE SYSTEMS • ALL AGENT EXECUTURES ARE CRYPTOGRAPHICALLY AUDITED • v4.8-PRO
+    </footer>
+
+    <!-- Script Logic -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Clock update
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toISOString().replace('T', ' ').substring(0, 19) + ' UTC';
+        }, 1000);
+
+        // Simulation State Data
+        let isRunning = true;
+        let balance = 779.67;
+        let startBalance = 14.82;
+        let winCount = 41;
+        let lossCount = 20;
+        let totalEvents = 977;
+
+        // Chart setup
+        const ctx = document.getElementById('equityChart').getContext('2d');
+        const chartData = {
+            labels: ['23:00', '00:00', '01:00', '02:00', '03:00', '04:00', '04:22'],
+            datasets: [{
+                label: 'Portfolio Equity ($)',
+                data: [14.82, 35.50, 89.20, 210.45, 450.80, 680.12, 779.67],
+                borderColor: '#06b6d4',
+                backgroundColor: function(context) {
+                    const chart = context.chart;
+                    const {ctx, chartArea} = chart;
+                    if (!chartArea) return null;
+                    const gradient = ctx.createLinearGradient(0, chartArea.top, 0, chartArea.bottom);
+                    gradient.addColorStop(0, 'rgba(6, 182, 212, 0.3)');
+                    gradient.addColorStop(1, 'rgba(6, 182, 212, 0.0)');
+                    return gradient;
+                },
+                borderWidth: 2.5,
+                fill: true,
+                tension: 0.35,
+                pointBackgroundColor: '#06b6d4',
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 1.5,
+                pointRadius: 4,
+                pointHoverRadius: 6
+            }]
+        };
+
+        const equityChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(39, 45, 66, 0.4)' },
+                        ticks: { color: '#94a3b8', font: { family: 'JetBrains Mono', size: 11 } }
+                    },
+                    y: {
+                        type: 'linear',
+                        grid: { color: 'rgba(39, 45, 66, 0.4)' },
+                        ticks: { 
+                            color: '#94a3b8', 
+                            font: { family: 'JetBrains Mono', size: 11 },
+                            callback: value => '$' + value.toLocaleString()
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: '#12141c',
+                        titleColor: '#ffffff',
+                        bodyColor: '#06b6d4',
+                        borderColor: '#272d42',
+                        borderWidth: 1,
+                        padding: 10,
+                        callbacks: {
+                            label: context => ` Portfolio Value: $${context.parsed.y.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`
+                        }
+                    }
+                }
+            }
+        });
+
+        // Toggle Scale
+        function setChartScale(type) {
+            equityChart.options.scales.y.type = type;
+            equityChart.update();
+            if(type === 'linear') {
+                document.getElementById('scaleLinear').className = 'px-3 py-1.5 rounded-lg bg-dark-600 text-white font-medium transition';
+                document.getElementById('scaleLog').className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition';
+            } else {
+                document.getElementById('scaleLog').className = 'px-3 py-1.5 rounded-lg bg-dark-600 text-white font-medium transition';
+                document.getElementById('scaleLinear').className = 'px-3 py-1.5 rounded-lg text-slate-400 hover:text-white transition';
+            }
+        }
+
+        // Agent calls sample pool
+        const tokensPool = ['$DUSKD', '$NOCTA', '$GLOAM', '$DRAVI', '$VESPR', '$SOLAR', '$PULSE', '$NEXUS', '$VORTX'];
+        const actionsPool = [
+            { type: 'ENTER', detail: (t) => `size 45% @ 0.00${Math.floor(Math.random()*800 + 100)}` },
+            { type: 'EXIT', detail: (t) => `-$${(Math.random()*60 + 10).toFixed(2)} • stop-loss` },
+            { type: 'EXIT', detail: (t) => `+$${(Math.random()*150 + 40).toFixed(2)} • target hit` },
+            { type: 'ENTER', detail: (t) => `size 50% @ 0.03${Math.floor(Math.random()*800 + 100)}` }
+        ];
+
+        let agentCallsData = [
+            { time: '04:28', action: 'ENTER', token: '$DUSKD', desc: 'size 45% @ 0.00176' },
+            { time: '04:28', action: 'EXIT', token: '$NOCTA', desc: '-$46.27 • stop-loss' },
+            { time: '04:16', action: 'ENTER', token: '$GLOAM', desc: 'size 44% @ 0.0002572' },
+            { time: '04:14', action: 'EXIT', token: '$DRAVI', desc: '+$111.18 • target hit' },
+            { time: '04:12', action: 'ENTER', token: '$VESPR', desc: 'size 55% @ 0.02919' }
+        ];
+
+        let tradesData = [
+            { token: '$NOCTA', entry: '0.00153', exit: '0.00136', slip: '1.79%', pnl: '-$46.27', isWin: false },
+            { token: '$DRAVI', entry: '0.0001160', exit: '0.0001541', slip: '0.48%', pnl: '+chiha $111.18', rawPnl: 111.18, isWin: true },
+            { token: '$ZOLLO', entry: '0.00149', exit: '0.00198', slip: '0.97%', pnl: '+$95.56', isWin: true },
+            { token: '$REXO', entry: '0.0004003', exit: '0.0006156', slip: '0.39%', pnl: '+$123.89', isWin: true }
+        ];
+
+        function renderAgentCalls() {
+            const container = document.getElementById('agentCallsContainer');
+            container.innerHTML = agentCallsData.map(c => `
+                <div class="flex items-center justify-between py-1 border-b border-dark-800 last:border-0">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-slate-500">${c.time}</span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-bold ${c.action === 'ENTER' ? 'bg-blue-950 text-blue-400 border border-blue-800/50' : 'bg-purple-950 text-purple-400 border border-purple-800/50'}">${c.action}</span>
+                        <span class="text-slate-300 font-semibold">EXECUTE</span>
+                        <span class="text-cyan-400">${c.token}</span>
+                    </div>
+                    <span class="text-slate-400">${c.desc}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderTrades() {
+            const tbody = document.getElementById('tradesTableBody');
+            tbody.innerHTML = tradesData.map(t => `
+                <tr class="hover:bg-dark-700/30 transition">
+                    <td class="py-2.5 font-semibold text-white">${t.token}</td>
+                    <td class="py-2.5 text-slate-300">${t.entry}</td>
+                    <td class="py-2.5 text-slate-300">${t.exit}</td>
+                    <td class="py-2.5 text-slate-400">${t.slip}</td>
+                    <td class="py-2.5 text-right font-bold ${t.isWin ? 'text-emerald-400' : 'text-red-400'}">${t.pnl}</td>
+                </tr>
+            `).join('');
+        }
+
+        renderAgentCalls();
+        renderTrades();
+
+        // Real-time Simulation Engine Loop
+        function simulateTick() {
+            if (!isRunning) return;
+
+            // Update balance slightly
+            const delta = (Math.random() * 4.5 - 1.8);
+            balance = Math.max(startBalance, balance + delta);
+            totalEvents += 1;
+
+            // Update DOM
+            document.getElementById('balanceVal').innerText = '$' + balance.toFixed(2);
+            document.getElementById('eventsCountVal').innerText = totalEvents;
+
+            // Randomly push new agent call & trade
+            const now = new Date();
+            const timeStr = String(now.getUTCHours()).padStart(2,'0') + ':' + String(now.getUTCMinutes()).padStart(2,'0');
+            const token = tokensPool[Math.floor(Math.random() * tokensPool.length)];
+            const isWin = Math.random() > 0.35;
+            const action = Math.random() > 0.5 ? 'ENTER' : 'EXIT';
+            
+            let desc = '';
+            if(action === 'ENTER') {
+                desc = `size ${Math.floor(Math.random()*30 + 30)}% @ 0.00${Math.floor(Math.random()*800 + 100)}`;
+            } else {
+                const amount = (Math.random() * 120 + 15).toFixed(2);
+                desc = isWin ? `+$${amount} • target hit` : `-$${amount} • stop-loss`;
+                if(isWin) { winCount++; } else { lossCount++; }
+                
+                // Update win rate
+                const totalCloses = winCount + lossCount;
+                const winRate = ((winCount / totalCloses) * 100).toFixed(1) + '%';
+                document.getElementById('winRateVal').innerText = winRate;
+                document.getElementById('winsVal').innerText = 'W: ' + winCount;
+                document.getElementById('lossesVal').innerText = 'L: ' + lossCount;
+                document.getElementById('totalClosesVal').innerText = totalCloses + ' closes';
+                
+                // Add to recent trades
+                tradesData.unshift({
+                    token: token,
+                    entry: '0.00' + Math.floor(Math.random()*8000 + 1000),
+                    exit: '0.00' + Math.floor(Math.random()*9000 + 1000),
+                    slip: (Math.random() * 1.5 + 0.2).toFixed(2) + '%',
+                    pnl: (isWin ? '+' : '-') + '$' + amount,
+                    isWin: isWin
+                });
+                if(tradesData.length > 6) tradesData.pop();
+                renderTrades();
+            }
+
+            agentCallsData.unshift({ time: timeStr, action: action, token: token, desc: desc });
+            if(agentCallsData.length > 6) agentCallsData.pop();
+            renderAgentCalls();
+
+            // Update chart data point
+            const labels = equityChart.data.labels;
+            const dataSet = equityChart.data.datasets[0].data;
+            labels.push(timeStr);
+            dataSet.push(balance);
+            if(labels.length > 10) {
+                labels.shift();
+                dataSet.shift();
+            }
+            equityChart.update('none');
+
+            // Highlight random pipeline node
+            for(let i=1; i<=6; i++) {
+                document.getElementById(`node-${i}`).className = 'bg-dark-700/50 border border-dark-600 rounded-xl p-3 text-center transition-all';
+            }
+            const activeNode = Math.floor(Math.random() * 6) + 1;
+            const activeEl = document.getElementById(`node-${activeNode}`);
+            activeEl.className = 'bg-dark-700/80 border border-cyan-500/50 rounded-xl p-3 text-center transition-all shadow-lg shadow-cyan-950/50';
+            document.getElementById(`node${activeNode}-sub`).innerText = token;
+        }
+
+        let simInterval = setInterval(simulateTick, 3500);
+
+        function toggleSimulation() {
+            isRunning = !isRunning;
+            const btnText = document.getElementById('simToggleText');
+            const btnIcon = document.getElementById('simToggleIcon');
+            const btn = document.getElementById('simToggleBtn');
+            
+            if(isRunning) {
+                btnText.innerText = 'PAUSE ENGINE';
+                btn.className = 'flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition shadow-lg shadow-emerald-900/30';
+                btnIcon.setAttribute('data-lucide', 'pause');
+            } else {
+                btnText.innerText = 'RESUME ENGINE';
+                btn.className = 'flex items-center space-x-2 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-cyan-600 hover:bg-cyan-500 text-white transition shadow-lg shadow-cyan-900/30';
+                btnIcon.setAttribute('data-lucide', 'play');
+            }
+            lucide.createIcons();
+        }
+
+        function resetData() {
+            balance = 14.82;
+            winCount = 0;
+            lossCount = 0;
+            totalEvents = 1;
+            document.getElementById('balanceVal').innerText = '$14.82';
+            document.getElementById('winRateVal').innerText = '0.0%';
+            document.getElementById('winsVal').innerText = 'W: 0';
+            document.getElementById('lossesVal').innerText = 'L: 0';
+            document.getElementById('totalClosesVal').innerText = '0 closes';
+            document.getElementById('eventsCountVal').innerText = '1';
+            equityChart.data.labels = ['00:00'];
+            equityChart.data.datasets[0].data = [14.82];
+            equityChart.update();
+        }
+    </script>
+</body>
+</html>
